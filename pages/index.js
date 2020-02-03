@@ -2,6 +2,7 @@ import React from "react"
 import Head from "next/head"
 import Header from "../common/components/Header"
 import basePageHoc from "../common/hocs/basePageHoc"
+import GalleryModal from "../modules/gallery/components/GalleryModal"
 import Cover from "../modules/home/components/Cover"
 import {
   showCovers,
@@ -19,23 +20,23 @@ class IndexPage extends React.Component {
     const coverItems = [
       {
         description: "test",
-        imageUrl:
+        image:
           "https://pbs.twimg.com/media/EPGJuZFUEAAJDVK?format=jpg&name=large",
-        thumbnailImageUrl:
+        thumbnailImage:
           "https://pbs.twimg.com/profile_images/1221035283619037184/nYXhsAoU_mini.jpg"
       },
       {
         description: "test2",
-        imageUrl:
+        image:
           "https://pbs.twimg.com/media/EPtXS7YUYAAez9K?format=jpg&name=large",
-        thumbnailImageUrl:
+        thumbnailImage:
           "https://pbs.twimg.com/profile_images/1222697781774573568/0yi1pzcD_mini.jpg"
       },
       {
         description: "test3",
-        imageUrl:
+        image:
           "https://pbs.twimg.com/media/EPsgjZ8UcAAot_V?format=jpg&name=large",
-        thumbnailImageUrl:
+        thumbnailImage:
           "https://pbs.twimg.com/profile_images/1076080213027483648/9LQV89R7_mini.jpg"
       }
     ]
@@ -47,24 +48,24 @@ class IndexPage extends React.Component {
           "C95お品書きああああああああああああああああああああああああああ",
         createdAt: "2019.01.01",
         url: "/blog/1",
-        imageUrl:
-          "https://i.pximg.net/img-master/img/2017/12/30/02/13/34/66529303_p0_master1200.jpg"
+        image:
+          "https://pbs.twimg.com/media/EP1xJQdVAAEHViq?format=jpg&name=large"
       },
       {
         title:
           "C95お品書きああああああああああああああああああああああああああ",
         createdAt: "2019.01.01",
         url: "/blog/2",
-        imageUrl:
-          "https://i.pximg.net/img-master/img/2017/12/30/02/13/34/66529303_p0_master1200.jpg"
+        image:
+          "https://pbs.twimg.com/media/EP1xJQdVAAEHViq?format=jpg&name=large"
       },
       {
         title:
           "C95お品書きああああああああああああああああああああああああああ",
         createdAt: "2019.01.01",
         url: "/blog/3",
-        imageUrl:
-          "https://i.pximg.net/img-master/img/2017/12/30/02/13/34/66529303_p0_master1200.jpg"
+        image:
+          "https://pbs.twimg.com/media/EP1xJQdVAAEHViq?format=jpg&name=large"
       }
     ]
     dispatch(showArticles(articles))
@@ -73,37 +74,37 @@ class IndexPage extends React.Component {
       {
         title: "Superstars! mini1+2",
         url: "/works#1",
-        imageUrl:
+        image:
           "https://pbs.twimg.com/media/EMcTvtrUUAAKCN4?format=jpg&name=900x900"
       },
       {
         title: "Superstars! mini2",
         url: "/works#1",
-        imageUrl:
+        image:
           "https://pbs.twimg.com/media/EBfcFhOVUAAC1jU?format=jpg&name=900x900"
       },
       {
         title: "Superstars!",
         url: "/works#1",
-        imageUrl:
+        image:
           "https://pbs.twimg.com/media/DvOFOTjUYAAgfHL?format=jpg&name=900x900"
       },
       {
         title: "歳納京子 大物YouTubeｒになる 完全版",
         url: "/works#1",
-        imageUrl:
+        image:
           "https://pbs.twimg.com/media/DkOBeJcV4AAAoQ8?format=jpg&name=small"
       },
       {
         title: "未完",
         url: "/works#1",
-        imageUrl:
+        image:
           "https://pbs.twimg.com/media/DR5OZTdUEAAK4BV?format=jpg&name=360x360"
       },
       {
         title: "【寄稿】Bon Appetit",
         url: "/works#1",
-        imageUrl:
+        image:
           "https://pbs.twimg.com/media/DQ0v93fVQAAyFWd?format=jpg&name=small"
       }
     ]
@@ -114,48 +115,49 @@ class IndexPage extends React.Component {
         title: "test",
         createdAt: "2019.01.01",
         url: "/gallery#1",
-        imageUrl:
-          "https://pbs.twimg.com/media/EOoKFQXUUAEAYQd?format=jpg&name=small",
+        images:
+          ["https://pbs.twimg.com/media/EOoKFQXUUAEAYQd?format=jpg&name=small",
+        "https://pbs.twimg.com/media/EPxk6DZU8AECdls?format=jpg&name=large"],
         description: "ああああああ\nああああああああああああああああああああ"
       },
       {
         title: "test",
         createdAt: "2019.01.01",
         url: "/gallery#1",
-        imageUrl:
-          "https://pbs.twimg.com/media/EOoKFQXUUAEAYQd?format=jpg&name=small",
+        images:
+          ["https://pbs.twimg.com/media/EOoKFQXUUAEAYQd?format=jpg&name=small"],
         description: "ああああああ\nああああああああああああああああああああ"
       },
       {
         title: "test",
         createdAt: "2019.01.01",
         url: "/gallery#1",
-        imageUrl:
-          "https://pbs.twimg.com/media/EOpCuukU8AU_gXq?format=jpg&name=900x900",
+        images:
+          ["https://pbs.twimg.com/media/EOpCuukU8AU_gXq?format=jpg&name=900x900"],
+        description: "ああああああ\nああああああああああああああああああああ\naaaa\n555555\nqfefaw"
+      },
+      {
+        title: "test",
+        createdAt: "2019.01.01",
+        url: "/gallery#1",
+        images:
+          ["https://pbs.twimg.com/media/EOCwK6GVAAEPYB2?format=jpg&name=900x900"],
         description: "ああああああ\nああああああああああああああああああああ"
       },
       {
         title: "test",
         createdAt: "2019.01.01",
         url: "/gallery#1",
-        imageUrl:
-          "https://pbs.twimg.com/media/EOCwK6GVAAEPYB2?format=jpg&name=900x900",
+        images:
+          ["https://pbs.twimg.com/media/EN3FWw0VUAAxvU7?format=jpg&name=900x900"],
         description: "ああああああ\nああああああああああああああああああああ"
       },
       {
         title: "test",
         createdAt: "2019.01.01",
         url: "/gallery#1",
-        imageUrl:
-          "https://pbs.twimg.com/media/EN3FWw0VUAAxvU7?format=jpg&name=900x900",
-        description: "ああああああ\nああああああああああああああああああああ"
-      },
-      {
-        title: "test",
-        createdAt: "2019.01.01",
-        url: "/gallery#1",
-        imageUrl:
-          "https://pbs.twimg.com/media/EN7QRNAVUAAy7RX?format=jpg&name=900x900",
+        images:
+          ["https://pbs.twimg.com/media/EN7QRNAVUAAy7RX?format=jpg&name=900x900"],
         description: "ああああああ\nああああああああああああああああああああ"
       }
     ]
@@ -185,7 +187,7 @@ class IndexPage extends React.Component {
                 <div
                   className="blog-article-background"
                   style={{
-                    backgroundImage: `url(${item.imageUrl})`
+                    backgroundImage: `url(${item.image})`
                   }}></div>
                 <a className="blog-article__link" href={item.url}>
                   <div className="blog-article-foreground">
@@ -263,7 +265,7 @@ class IndexPage extends React.Component {
                   <div
                     className="gallery-item-background"
                     style={{
-                      backgroundImage: `url(${item.imageUrl})`
+                      backgroundImage: `url(${item.image})`
                     }}></div>
                   <a
                     className="gallery-item__link"
@@ -293,11 +295,18 @@ class IndexPage extends React.Component {
                   <div
                     className="gallery-item-background"
                     style={{
-                      backgroundImage: `url(${item.imageUrl})`
+                      backgroundImage: `url(${item.images[0]})`
                     }}></div>
                   <a
                     className="gallery-item__link"
-                    href={isLast ? "/gallery" : item.url}>
+                    href={isLast ? "/gallery" : item.url}
+                    onClick={
+                      (e) => {
+                        if (isLast) return
+                        e.preventDefault()
+                        GalleryModal.open(item)
+                      }
+                    }>
                     {isLast && (
                       <div className="gallery-item-foreground--more">
                         <div className="gallery-more">more ＞</div>
@@ -308,6 +317,7 @@ class IndexPage extends React.Component {
               )
             })}
           </div>
+          <GalleryModal.Component />
         </section>
         <footer className="site-footer">
           <div className="copyright">{"© 2020 kanata (かなた)."}</div>

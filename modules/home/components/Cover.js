@@ -44,7 +44,7 @@ export default ({ items }) => {
             key={index}
             className="cover-background-item"
             style={{
-              backgroundImage: `url(${item.imageUrl})`,
+              backgroundImage: `url(${item.image})`,
               ...(index === currentIndex ? { opacity: 1 } : {})
             }}></li>
         ))}
@@ -60,7 +60,7 @@ export default ({ items }) => {
               handleNavItemClick(index)
             }}
             style={{
-              backgroundImage: `url(${item.thumbnailImageUrl})`
+              backgroundImage: `url(${item.thumbnailImage})`
             }}></li>
         ))}
       </ul>
