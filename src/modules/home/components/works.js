@@ -9,7 +9,7 @@ export default ({ items }) => {
               <div
                 className="gallery-item-background"
                 style={{
-                  backgroundImage: `url(${item.image})`
+                  backgroundImage: `url(${item.images && item.images.length ? item.images[0].url : "/images/no-image.png"})`
                 }}></div>
               <a className="gallery-item__link" href={"/works"}>
                 <div className="gallery-item-foreground--more">
@@ -22,9 +22,9 @@ export default ({ items }) => {
               <div
                 className="gallery-item-background"
                 style={{
-                  backgroundImage: `url(${item.image})`
+                  backgroundImage: `url(${item.images && item.images.length ? item.images[0].url : "/images/no-image.png"})`
                 }}></div>
-              <a className="gallery-item__link" href={item.url}>
+              <a className="gallery-item__link" href={`/works/${item.id}`}>
                 <div className="gallery-item-foreground">
                   <h3 className="gallery-item-title">{item.title}</h3>
                 </div>

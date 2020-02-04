@@ -11,7 +11,7 @@ export default () => {
         <img
           className="profile-image__image"
           alt="プロフィール画像"
-          src="/static/images/profile-image.png"
+          src="/images/profile-image.png"
         />
       </figure>
       <h3 className="author-name">kanata（かなた）</h3>
@@ -23,7 +23,7 @@ export default () => {
             <img
               className="social-icons-item__image"
               alt="Twitter"
-              src="/static/images/twitter-icon.png"
+              src="/images/twitter-icon.png"
             />
           </a>
         </li>

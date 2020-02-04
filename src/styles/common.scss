@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/earlyaccess/roundedmplus1c.css");
+@import "reset";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+a {
+  color: initial;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+body {
+  font-family: "Montserrat", "Rounded Mplus 1c", sans-serif;
+  line-height: 1.2em;
+}
+
+.site-header {
+  background-color: white;
+  height: 54px;
+  left: 0;
+  opacity: 0.8;
+  overflow: visible;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.title {
+  left: 18px;
+  position: absolute;
+  top: 13px;
+
+  &__link {
+    display: block;
+    background-image: url(/images/atelier-logo.svg);
+    background-size:100%;
+    height: 28px;
+    width: 224px;
+  }
+}
+
+.global-nav {
+  display: flex;
+  position: absolute;
+
+  @media (max-width: 899px) {
+    flex-direction: column;
+    right: 0;
+    top: 100%;
+  }
+
+  @media (min-width: 900px) {
+    align-items: center;
+    right: 18px;
+    top: 15px;
+  }
+
+  &-item {
+    @media (max-width: 899px) {
+      overflow: hidden;
+      width: 175px;
+
+      &:not(:first-child) {
+        margin-top: 1px;
+      }
+    }
+
+    &__link {
+      font-size: 24px;
+      line-height: 24px;
+
+      @media (max-width: 899px) {
+        background-color: white;
+        display: block;
+        padding: 10px 16px;
+        text-align: right;
+      }
+
+      @media (min-width: 900px) {
+        margin-left: 24px;
+      }
+
+      &:hover {
+        color: gray;
+      }
+    }
+  }
+
+  &-hamburger-button {
+    cursor: pointer;
+    position: absolute;
+    right: 18px;
+    top: 15px;
+
+    &__icon {
+      font-size: 24px;
+      line-height: 24px;
+
+      &:not(.active) {
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      &.active {
+        color: white;
+        text-shadow:
+            black 1px 1px 0, black -1px -1px 0,
+            black -1px 1px 0, black 1px -1px 0,
+            black 0px 1px 0, black 0 -1px 0,
+            black -1px 0 0, black 1px 0 0;
+      }
+    }
+  }
+}
+
+.page-wrapper {
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 54px;
+}
+
+.site-footer {
+  &:before {
+    content:"";
+    display:block;
+    height:2px;
+    width:100%;
+    background: linear-gradient(to right, lightgray, gray);
+  }
+
+  .copyright {
+    color: gray;
+    margin: 16px 0;
+    text-align: center;
+  }
+}

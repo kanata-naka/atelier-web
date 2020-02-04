@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "node server.js",
     "build": "next build",
-    "prettier": "prettier {common,modules,pages,utils}/**/*.js --write"
+    "prettier": "prettier src/**/*.js --write"
   },
   "author": "",
   "license": "ISC",

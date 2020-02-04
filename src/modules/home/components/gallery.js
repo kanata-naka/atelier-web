@@ -11,7 +11,7 @@ export default ({ items }) => {
               <div
                 className="gallery-item-background"
                 style={{
-                  backgroundImage: `url(${item.images[0]})`
+                  backgroundImage: `url(${item.images[0].url})`
                 }}></div>
               <a className="gallery-item__link" href={"/gallery"}>
                 <div className="gallery-item-foreground--more">
@@ -24,11 +24,11 @@ export default ({ items }) => {
               <div
                 className="gallery-item-background"
                 style={{
-                  backgroundImage: `url(${item.images[0]})`
+                  backgroundImage: `url(${item.images[0].url})`
                 }}></div>
               <a
                 className="gallery-item__link"
-                href={item.url}
+                href={`/gallery/${item.id}`}
                 onClick={e => {
                   e.preventDefault()
                   // モーダルを開く

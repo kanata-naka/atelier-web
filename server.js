@@ -17,8 +17,9 @@ app.prepare().then(() => {
   const server = express()
 
   server.get('*', (req, res) => {
+    console.log('Current path: ' + req.path)
     const paths = req.path.substring(1).split('/')
-    if (paths[0] !== '_next' && paths[0] !== 'static' && paths.length > 1) {
+    if (paths[0] !== '_next' && paths[0] !== 'images' && paths.length > 1) {
       return app.render(req, res, '/' + paths[0], req.query)
     }
     return handle(req, res)

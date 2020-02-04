@@ -1,3 +1,5 @@
+import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
+
 export default ({ items }) => {
   return (
     <section id="blog" className="blog">
@@ -6,13 +8,14 @@ export default ({ items }) => {
           <div
             className="blog-article-background"
             style={{
-              backgroundImage: `url(${item.image})`
+              backgroundImage: `url(${item.topImageUrl || "/images/no-image.png"})`
             }}></div>
-          <a className="blog-article__link" href={item.url}>
+          <a className="blog-article__link" href={`/blog/${item.id}`}>
             <div className="blog-article-foreground">
               <div className="blog-article-date">
                 <i className="far fa-clock"></i>
-                {" " + item.createdAt}
+                &nbsp;
+                {formatDateFromUnixTimestamp(item.createdAt)}
               </div>
               <h3 className="blog-article-title">{item.title}</h3>
             </div>

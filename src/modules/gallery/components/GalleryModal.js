@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react"
 import Modal from "react-modal"
+import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
 import { nl2br } from "../../../utils/stringUtil"
 
 Modal.setAppElement("#__next")
@@ -36,7 +37,7 @@ const Component = () => {
         className="gallery-modal-container"
         style={{
           backgroundImage: `url(${item.images &&
-            item.images[currentImageIndex]})`
+            item.images[currentImageIndex].url})`
         }}>
         <div className="gallery-modal-foreground">
           <h3 className="gallery-modal-title">{item.title}</h3>
@@ -45,7 +46,8 @@ const Component = () => {
             dangerouslySetInnerHTML={{ __html: nl2br(item.description) }}></p>
           <div className="gallery-modal-date">
             <i className="far fa-clock"></i>
-            {" " + item.createdAt}
+            &nbsp;
+            {formatDateFromUnixTimestamp(item.createdAt)}
           </div>
         </div>
         <ul className="diff-list">
@@ -55,7 +57,7 @@ const Component = () => {
                 key={index}
                 className="diff-list-item"
                 style={{
-                  backgroundImage: `url(${image})`
+                  backgroundImage: `url(${image.url})`
                 }}>
                 <a
                   className="diff-list-item__link"

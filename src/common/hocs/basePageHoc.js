@@ -3,6 +3,7 @@ import { Provider } from "react-redux"
 import Head from "next/head"
 import { Globals } from "../models"
 import { initialize as initializeStore } from "../store"
+import "../../styles/common.scss"
 
 export default (Component, reducer) => {
   const BasePage = ({ initialState, ...props }) => {
