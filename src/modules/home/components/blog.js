@@ -8,7 +8,8 @@ export default ({ items }) => {
           <div
             className="blog-article-background"
             style={{
-              backgroundImage: `url(${item.topImageUrl || "/images/no-image.png"})`
+              backgroundImage: `url(${item.topImageUrl ||
+                "/images/no-image.png"})`
             }}></div>
           <a className="blog-article__link" href={`/blog/${item.id}`}>
             <div className="blog-article-foreground">

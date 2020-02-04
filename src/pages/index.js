@@ -9,19 +9,19 @@ import About from "../modules/home/components/about"
 import Works from "../modules/home/components/works"
 import Gallery from "../modules/home/components/gallery"
 import {
-  showCovers,
-  showArticles,
-  showWorks,
-  showGallery
+  fetchCovers,
+  fetchArticles,
+  fetchWorks,
+  fetchGallery
 } from "../modules/home/actions"
 import { MODULE_NAME } from "../modules/home/models"
 import reducer from "../modules/home/reducer"
 import "../styles/index.scss"
 
-class IndexPage extends React.Component {
+class Component extends React.Component {
   static async getInitialProps({ store: { dispatch } }) {
     // カバー画像の一覧を取得する
-    const coverItems = [
+    const covers = [
       {
         description: "test",
         imageUrl:
@@ -44,8 +44,8 @@ class IndexPage extends React.Component {
           "https://pbs.twimg.com/profile_images/1076080213027483648/9LQV89R7_mini.jpg"
       }
     ]
-    dispatch(showCovers(coverItems))
-    // BLOGの記事を取得する
+    dispatch(fetchCovers(covers))
+    // BLOGの記事一覧を取得する
     const articles = [
       {
         title:
@@ -71,9 +71,9 @@ class IndexPage extends React.Component {
           "https://pbs.twimg.com/media/EP1xJQdVAAEHViq?format=jpg&name=large"
       }
     ]
-    dispatch(showArticles(articles))
+    dispatch(fetchArticles(articles))
     // WORKSの作品一覧を取得する
-    const workItems = [
+    const works = [
       {
         title: "Superstars! mini1+2",
         id: 6,
@@ -130,7 +130,7 @@ class IndexPage extends React.Component {
         ]
       }
     ]
-    dispatch(showWorks(workItems))
+    dispatch(fetchWorks(works))
     // GALLERYの作品一覧を取得する
     const galleryItems = [
       {
@@ -151,7 +151,8 @@ class IndexPage extends React.Component {
               "https://pbs.twimg.com/media/EP7-A_hUUAAEah6?format=jpg&name=large"
           }
         ],
-        description: "🎨2月5日～のパレプロEXスケジュールです🎨\n\nメンバーの配信曜日が変わってるのでご確認くださいませ！\n\n※暁月クララは都合によりお休みです🙇‍♀️\n振替日は追ってご連絡いたします🍮"
+        description:
+          "🎨2月5日～のパレプロEXスケジュールです🎨\n\nメンバーの配信曜日が変わってるのでご確認くださいませ！\n\n※暁月クララは都合によりお休みです🙇‍♀️\n振替日は追ってご連絡いたします🍮"
       },
       {
         title: "やっぱり猫やんけ！",
@@ -163,7 +164,8 @@ class IndexPage extends React.Component {
               "https://pbs.twimg.com/media/EP7tZYOU4AA3SJn?format=jpg&name=large"
           }
         ],
-        description: "🏮【緊急事態】私たち、入れ替わってる！？愛の力で元に戻れ！！【白上フブキ/夏色まつり】\n🏮2月5日21:00〜\n\n1-2-Switchをやって負けたら罰ゲーム！\n\n待機場所\nyoutube.com/watch?v=TdVzrW…\n\nリスナーさんを満足させたらもとに戻れるんですか・・・？"
+        description:
+          "🏮【緊急事態】私たち、入れ替わってる！？愛の力で元に戻れ！！【白上フブキ/夏色まつり】\n🏮2月5日21:00〜\n\n1-2-Switchをやって負けたら罰ゲーム！\n\n待機場所\nyoutube.com/watch?v=TdVzrW…\n\nリスナーさんを満足させたらもとに戻れるんですか・・・？"
       },
       {
         title: "めっかわいい",
@@ -200,7 +202,8 @@ class IndexPage extends React.Component {
               "https://pbs.twimg.com/media/EN3FWw0VUAAxvU7?format=jpg&name=large"
           }
         ],
-        description: "いつか 素顔を見せる日がきたら そのときは笑顔でいたい♪の璃奈ちゃんの笑顔で全俺が泣いた😂"
+        description:
+          "いつか 素顔を見せる日がきたら そのときは笑顔でいたい♪の璃奈ちゃんの笑顔で全俺が泣いた😂"
       },
       {
         title: "大事なお知らせがある！！！！！！！２３時から！！！！！",
@@ -212,20 +215,21 @@ class IndexPage extends React.Component {
               "https://pbs.twimg.com/media/EN7QRNAVUAAy7RX?format=jpg&name=large"
           }
         ],
-        description: "アニメやゲームに出てきそうな現在風忍者をイメージしました！ #ぽこピー新衣装"
+        description:
+          "アニメやゲームに出てきそうな現在風忍者をイメージしました！ #ぽこピー新衣装"
       }
     ]
-    dispatch(showGallery(galleryItems))
+    dispatch(fetchGallery(galleryItems))
     return {
-      coverItems,
+      covers,
       articles,
-      workItems,
+      works,
       galleryItems
     }
   }
 
   render() {
-    const { coverItems, articles, workItems, galleryItems } = this.props
+    const { covers, articles, works, galleryItems } = this.props
 
     return (
       <div>
@@ -233,12 +237,12 @@ class IndexPage extends React.Component {
           <title>カナタノアトリエ</title>
         </Head>
         <Header />
-        <Cover items={coverItems} />
+        <Cover items={covers} />
         <div className="dashboard">
           <Blog items={articles} />
           <About />
         </div>
-        <Works items={workItems} />
+        <Works items={works} />
         <Gallery items={galleryItems} />
         <Footer />
       </div>
@@ -246,6 +250,6 @@ class IndexPage extends React.Component {
   }
 }
 
-export default basePageHoc(IndexPage, {
+export default basePageHoc(Component, {
   [MODULE_NAME]: reducer
 })

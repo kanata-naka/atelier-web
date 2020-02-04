@@ -1,37 +1,37 @@
 import { handleActions } from "redux-actions"
-import { showCovers, showArticles, showWorks, showGallery } from "./actions"
+import { fetchCovers, fetchArticles, fetchWorks, fetchGallery } from "./actions"
 
 const initialState = {
   // カバー画像一覧
-  coverItems: [],
+  covers: [],
   // ブログの記事一覧
   articles: [],
   // WORKSの作品一覧
-  workItems: [],
+  works: [],
   // GALLERYの作品一覧
   galleryItems: []
 }
 
 const handlers = {
-  [showCovers]: (state, action) => ({
+  [fetchCovers]: (state, action) => ({
     ...state,
     ...{
-      coverItems: action.payload
+      covers: action.payload
     }
   }),
-  [showArticles]: (state, action) => ({
+  [fetchArticles]: (state, action) => ({
     ...state,
     ...{
       articles: action.payload
     }
   }),
-  [showWorks]: (state, action) => ({
+  [fetchWorks]: (state, action) => ({
     ...state,
     ...{
-      workItems: action.payload
+      works: action.payload
     }
   }),
-  [showGallery]: (state, action) => ({
+  [fetchGallery]: (state, action) => ({
     ...state,
     ...{
       galleryItems: action.payload
