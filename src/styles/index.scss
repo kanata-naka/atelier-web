@@ -64,7 +64,7 @@
   display: flex;
 
   @media (max-width: 900px){
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 }
 
@@ -84,12 +84,12 @@
 
   &-article {
     flex-grow: 1;
+    margin-top: 8px;
     overflow: hidden;
     position: relative;
 
     &:not(:first-child) {
         flex-grow: 0.5;
-        margin-top: 8px;
     }
 
     @media (max-width: 900px){

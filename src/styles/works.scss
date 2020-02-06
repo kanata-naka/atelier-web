@@ -1,14 +1,5 @@
 @import "mixins";
 
-.page-heading {
-  color: #5F569A;
-  font-size: 32px;
-  font-weight: bold;
-  line-height: 32px;
-  margin: 24px 0;
-  text-align: center;
-}
-
 .works-list {
   &-item {
     &-title {
@@ -52,77 +43,6 @@
     &-image {
       border: 1px solid lightgray;
       width: 100%;
-    }
-  }
-}
-
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 24px 12px;
-
-  &-item {
-    &, &--prev, &--next, &--ellipse {
-      color: #5F569A;
-      font-weight: bold;
-      height: 32px;
-      width: 32px;
-      text-align: center;
-      line-height: 32px;
-      margin: 0 6px;
-    }
-
-    &, &--prev, &--next {
-      &:hover {
-        opacity: 0.7;
-      }
-    }
-
-    &--prev, &--next {
-      padding: 2px 16px;
-      background-color: #eeeeff;
-      color: #343434;
-      font-size: 1.2em;
-      line-height: 30px;
-    }
-
-    &--ellipse {
-      color: lightgray;
-    }
-
-    &__link {
-      color: inherit;
-      display: block;
-    }
-
-    @media (max-width: 799px){
-      &, &--prev, &--next {
-        margin: 0;
-        height: 48px;
-        line-height: 48px;
-      }
-
-      & {
-        flex-grow: 1;
-      }
-
-      &--prev, &--next {
-        background-color: #eeeeff;
-        color: #343434;
-        flex-grow: 2;
-      }
-
-      &:not(.active), &--ellipse {
-        display: none;
-      }
-    }
-
-    @media (min-width: 800px){
-      &.active {
-        background-color: #babaff;
-        color: white;
-      }
     }
   }
 }

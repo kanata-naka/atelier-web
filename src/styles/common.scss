@@ -15,6 +15,15 @@ ul, ol {
   list-style: none;
 }
 
+.link--normal {
+  color: #6a6adf;
+  text-decoration: underline;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
 body {
   font-family: "Montserrat", "Rounded Mplus 1c", sans-serif;
   line-height: 1.2em;
@@ -49,6 +58,7 @@ body {
 .global-nav {
   display: flex;
   position: absolute;
+  user-select: none;
 
   @media (max-width: 899px) {
     flex-direction: column;
@@ -126,6 +136,93 @@ body {
   position: absolute;
   right: 0;
   top: 54px;
+}
+
+.page-heading {
+  color: #5F569A;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 32px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.pagination {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 24px 12px;
+
+  &-item {
+    @media (max-width: 799px) {
+      flex-grow: 1;
+
+      &:not(.active) {
+        display: none;
+      }
+    }
+
+    @media (min-width: 800px){
+      &.active {
+        background-color: #babaff;
+        color: white;
+      }
+    }
+
+    &, &--prev, &--next, &--ellipse {
+      color: #343434;
+      font-weight: bold;
+      height: 32px;
+      line-height: 32px;
+      margin: 0 6px;
+      text-align: center;
+      user-select: none;
+    }
+
+    &, &--prev, &--next {
+      &:hover:not(.disabled) {
+        opacity: 0.7;
+      }
+
+      @media (max-width: 799px) {
+        margin: 0;
+        height: 48px;
+        line-height: 48px;
+      }
+    }
+
+    &--prev, &--next {
+      width: 48px;
+      background-color: #eeeeff;
+      color: #343434;
+      font-size: 1.2em;
+
+      &.disabled {
+        opacity: 0;
+      }
+
+      @media (max-width: 799px) {
+        flex-grow: 2;
+      }
+    }
+
+    &, &--ellipse {
+      width: 32px;
+    }
+
+    &--ellipse {
+      color: lightgray;
+
+      @media (max-width: 799px) {
+        display: none;
+      }
+    }
+
+    &__link {
+      color: inherit;
+      display: block;
+    }
+  }
 }
 
 .site-footer {

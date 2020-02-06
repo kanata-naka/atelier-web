@@ -48,7 +48,13 @@ export default (Component, reducer) => {
     let id = paths[1]
     // コンポーネントを初期化する
     const props = Component.getInitialProps
-      ? await Component.getInitialProps({ ...context, store, globals, id })
+      ? await Component.getInitialProps({
+          ...context,
+          store,
+          globals,
+          id,
+          query: context.query
+        })
       : {}
     return {
       ...props,

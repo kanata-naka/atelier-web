@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Modal from "react-modal"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
 import { nl2br } from "../../../utils/stringUtil"

@@ -2,7 +2,7 @@ import React from "react"
 import Head from "next/head"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
-import basePageHoc from "../common/hocs/basePageHoc"
+import basePage from "../common/hocs/basePage"
 import Cover from "../modules/home/components/cover"
 import Blog from "../modules/home/components/blog"
 import About from "../modules/home/components/about"
@@ -239,8 +239,8 @@ class Component extends React.Component {
         <Header />
         <Cover items={covers} />
         <div className="dashboard">
-          <Blog items={articles} />
           <About />
+          <Blog items={articles} />
         </div>
         <Works items={works} />
         <Gallery items={galleryItems} />
@@ -250,6 +250,6 @@ class Component extends React.Component {
   }
 }
 
-export default basePageHoc(Component, {
+export default basePage(Component, {
   [MODULE_NAME]: reducer
 })

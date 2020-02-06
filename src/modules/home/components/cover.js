@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect } from "react"
 
 // 画像を切り替える間隔（ミリ秒）
 const SWITCH_ITEM_INTERVAL = 7000

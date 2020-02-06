@@ -1,4 +1,5 @@
 import React from "react"
+import { getOffsetByPageNumber } from "../models"
 
 /**
  * ページネーション
@@ -28,16 +29,38 @@ export default class extends React.Component {
     const { pagination, onMovePage } = this.props
     onMovePage({
       ...pagination,
-      offset: pagination.perPage * (pageNumber - 1)
+      offset: getOffsetByPageNumber(pageNumber, pagination.perPage)
     })
+    // URLにページ番号のクエリを書き加える
+    history && history.pushState("", "", `?page=${pageNumber}`)
   }
 
   /**
    * 各ページのボタンを描画する
    */
   renderItems() {
+    const { maxRange } = this.props
+
+    let first, last
+    if (this.lastPageNumber < maxRange) {
+      first = 1
+      last = this.lastPageNumber
+    } else if (this.currentPageNumber <= Math.floor(maxRange / 2) + 1) {
+      first = 1
+      last = Math.min(maxRange, this.lastPageNumber)
+    } else if (
+      this.currentPageNumber >=
+      this.lastPageNumber - Math.floor(maxRange / 2)
+    ) {
+      first = Math.max(1, this.lastPageNumber - maxRange + 1)
+      last = this.lastPageNumber
+    } else {
+      first = this.currentPageNumber - Math.floor(maxRange / 2)
+      last = this.currentPageNumber + Math.floor(maxRange / 2)
+    }
+
     const pages = []
-    for (let pageNumber = 1; pageNumber <= this.lastPageNumber; pageNumber++) {
+    for (let pageNumber = first; pageNumber <= last; pageNumber++) {
       pages.push(
         <li
           key={pageNumber}
@@ -63,42 +86,40 @@ export default class extends React.Component {
   render() {
     return (
       <ul className="pagination">
-        <li className="pagination-item--prev">
-          <a
-            className="pagination-item__link"
-            href={
-              this.currentPageNumber > 1
-                ? `?page=${this.currentPageNumber - 1}`
-                : ""
-            }
-            onClick={e => {
-              e.preventDefault()
-              if (this.currentPageNumber === 1) {
-                return
-              }
-              this.movePage(this.currentPageNumber - 1)
-            }}>
-            &lt;
-          </a>
+        <li
+          className={
+            "pagination-item--prev " +
+            (this.currentPageNumber === 1 ? "disabled" : "")
+          }>
+          {this.currentPageNumber > 1 && (
+            <a
+              className="pagination-item__link"
+              href={`?page=${this.currentPageNumber - 1}`}
+              onClick={e => {
+                e.preventDefault()
+                this.movePage(this.currentPageNumber - 1)
+              }}>
+              &lt;
+            </a>
+          )}
         </li>
         {this.renderItems()}
-        <li className="pagination-item--next">
-          <a
-            className="pagination-item__link"
-            href={
-              this.currentPageNumber < this.lastPageNumber
-                ? `?page=${this.currentPageNumber + 1}`
-                : ""
-            }
-            onClick={e => {
-              e.preventDefault()
-              if (this.currentPageNumber === this.lastPageNumber) {
-                return
-              }
-              this.movePage(this.currentPageNumber + 1)
-            }}>
-            &gt;
-          </a>
+        <li
+          className={
+            "pagination-item--next " +
+            (this.currentPageNumber === this.lastPageNumber ? "disabled" : "")
+          }>
+          {this.currentPageNumber < this.lastPageNumber && (
+            <a
+              className="pagination-item__link"
+              href={`?page=${this.currentPageNumber + 1}`}
+              onClick={e => {
+                e.preventDefault()
+                this.movePage(this.currentPageNumber + 1)
+              }}>
+              &gt;
+            </a>
+          )}
         </li>
       </ul>
     )
