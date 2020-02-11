@@ -65,17 +65,6 @@ const SocialIcons = ({ items }) => {
       {items.map(item => (
         <SocialIcon item={item} />
       ))}
-      <li className="social-icons-item">
-        <a
-          className="social-icons-item__link"
-          href="https://twitter.com/kanata_fabiko">
-          <img
-            className="social-icons-item__image"
-            alt="Twitter"
-            src="/images/twitter-icon.png"
-          />
-        </a>
-      </li>
     </ul>
   )
 }

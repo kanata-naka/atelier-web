@@ -37,8 +37,8 @@ export default ({ items }) => {
     )
   }
   return (
-    <section className="cover">
-      <BackgroundList items={items} currentIndex={currentIndex} />
+    <section className="top-carousel">
+      <CarouselList items={items} currentIndex={currentIndex} />
       <Navigation
         items={items}
         currentIndex={currentIndex}
@@ -48,11 +48,11 @@ export default ({ items }) => {
   )
 }
 
-const BackgroundList = ({ items, currentIndex }) => {
+const CarouselList = ({ items, currentIndex }) => {
   return (
-    <ul className="cover-background-list">
+    <ul className="top-carousel-list">
       {items.map((item, index) => (
-        <Background
+        <CarouselListItem
           item={item}
           index={index}
           isActive={index === currentIndex}
@@ -62,11 +62,11 @@ const BackgroundList = ({ items, currentIndex }) => {
   )
 }
 
-const Background = ({ item, index, isActive }) => {
+const CarouselListItem = ({ item, index, isActive }) => {
   return (
     <li
       key={index}
-      className="cover-background"
+      className="top-carousel-list-item"
       style={{
         backgroundImage: `url(${item.imageUrl})`,
         ...(isActive ? { opacity: 1 } : {})
@@ -76,7 +76,7 @@ const Background = ({ item, index, isActive }) => {
 
 const Navigation = ({ items, currentIndex, onSelect }) => {
   return (
-    <ul className="cover-nav">
+    <ul className="top-carousel-nav">
       {items.map((item, index) => (
         <NavigationItem
           item={item}
@@ -93,7 +93,7 @@ const NavigationItem = ({ item, index, isActive, onClick }) => {
   return (
     <li
       key={index}
-      className={"cover-nav-item " + (isActive ? "active" : "")}
+      className={"top-carousel-nav-item " + (isActive ? "active" : "")}
       onClick={onClick}
       style={{
         backgroundImage: `url(${item.thumbnailImageUrl})`

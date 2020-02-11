@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import Modal from "react-modal"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
-import { nl2br } from "../../../utils/stringUtil"
+import { decorateText } from "../../../utils/stringUtil"
 
 Modal.setAppElement("#__next")
 
@@ -42,10 +42,10 @@ const Component = () => {
           <Description>
             <span
               dangerouslySetInnerHTML={{
-                __html: nl2br(item.description)
+                __html: decorateText(item.description)
               }}></span>
           </Description>
-          <PublicationDate timestamp={item.createdAt} />
+          <PostedDate timestamp={item.createdAt} />
         </div>
         <DiffList
           images={item.images}
@@ -79,7 +79,7 @@ const Description = ({ children }) => {
   return <p className="gallery-modal-description">{children}</p>
 }
 
-const PublicationDate = ({ timestamp }) => {
+const PostedDate = ({ timestamp }) => {
   return (
     <div className="gallery-modal-date">
       <i className="far fa-clock"></i>

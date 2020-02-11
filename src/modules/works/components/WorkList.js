@@ -2,7 +2,7 @@ import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import Pagination from "../../../common/components/Pagination"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
-import { nl2br, createLinkFromUrl } from "../../../utils/stringUtil"
+import { decorateText, createLinkFromUrl } from "../../../utils/stringUtil"
 import { movePage } from "../actions"
 import { MODULE_NAME, PAGE_NUMBER_DISPLAY_MAX_RANGE } from "../models"
 import { getWorksByPage } from "../reducer"
@@ -25,18 +25,18 @@ const WorkList = ({ worksByPage, pagination, movePage }) => {
 }
 
 const WorkListItem = ({ item, index }) => {
-  let description = nl2br(item.description)
-  description = createLinkFromUrl(description)
   return (
     <article key={index} id={item.id} className="works-list-item">
       <WorkListItemTitle>{item.title}</WorkListItemTitle>
-      <WorkListItemPublicationDate timestamp={item.createdAt} />
+      <WorkListItemPostedDate timestamp={item.createdAt} />
       <div className="works-list-item-row">
         <div className="works-list-item-row__left-column">
           <WorkListItemDescription>
-            <span dangerouslySetInnerHTML={{
-              __html: nl2br(description)
-            }} />
+            <span
+              dangerouslySetInnerHTML={{
+                __html: decorateText(item.description)
+              }}
+            />
           </WorkListItemDescription>
         </div>
         <div className="works-list-item-row__right-column">
@@ -55,7 +55,7 @@ const WorkListItemTitle = ({ children }) => {
   )
 }
 
-const WorkListItemPublicationDate = ({ timestamp }) => {
+const WorkListItemPostedDate = ({ timestamp }) => {
   return (
     <div className="works-list-item-date">
       <i className="far fa-clock"></i>

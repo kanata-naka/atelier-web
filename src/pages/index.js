@@ -3,13 +3,13 @@ import Head from "next/head"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import basePage from "../common/hocs/basePage"
-import Covers from "../modules/home/components/covers"
+import Carousel from "../modules/home/components/Carousel"
 import LatestArticles from "../modules/home/components/LatestArticles"
 import About from "../modules/home/components/About"
-import LatestWorks from "../modules/home/components/LatestWorks"
-import Gallery from "../modules/home/components/gallery"
+import Works from "../modules/home/components/Works"
+import Gallery from "../modules/home/components/Gallery"
 import {
-  loadCovers,
+  loadTopImages,
   loadArticles,
   loadWorks,
   loadGallery
@@ -21,7 +21,7 @@ import "../styles/index.scss"
 class Component extends React.Component {
   static async getInitialProps({ store: { dispatch } }) {
     // カバー画像の一覧を取得する
-    const covers = [
+    const topImages = [
       {
         description: "test",
         imageUrl:
@@ -44,7 +44,7 @@ class Component extends React.Component {
           "https://pbs.twimg.com/profile_images/1076080213027483648/9LQV89R7_mini.jpg"
       }
     ]
-    dispatch(loadCovers(covers))
+    dispatch(loadTopImages(topImages))
     // BLOGの記事一覧を取得する
     const articles = [
       {
@@ -221,7 +221,7 @@ class Component extends React.Component {
     ]
     dispatch(loadGallery(gallery))
     return {
-      covers,
+      topImages,
       articles,
       works,
       gallery
@@ -229,7 +229,7 @@ class Component extends React.Component {
   }
 
   render() {
-    const { covers, articles, works, gallery } = this.props
+    const { topImages, articles, works, gallery } = this.props
 
     return (
       <div>
@@ -237,12 +237,12 @@ class Component extends React.Component {
           <title>カナタノアトリエ</title>
         </Head>
         <Header />
-        <Covers items={covers} />
+        <Carousel items={topImages} />
         <div className="dashboard">
           <About />
           <LatestArticles items={articles} />
         </div>
-        <LatestWorks items={works} />
+        <Works items={works} />
         <Gallery items={gallery} />
         <Footer />
       </div>

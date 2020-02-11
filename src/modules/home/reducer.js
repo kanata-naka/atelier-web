@@ -1,10 +1,5 @@
 import { handleActions } from "redux-actions"
-import {
-  loadCovers,
-  loadArticles,
-  loadWorks,
-  loadGallery
-} from "./actions"
+import { loadTopImages, loadArticles, loadWorks, loadGallery } from "./actions"
 
 const initialState = {
   // カバー画像一覧
@@ -18,7 +13,7 @@ const initialState = {
 }
 
 const handlers = {
-  [loadCovers]: (state, action) => ({
+  [loadTopImages]: (state, action) => ({
     ...state,
     ...{
       covers: action.payload
