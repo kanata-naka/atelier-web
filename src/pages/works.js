@@ -1,11 +1,12 @@
 import React from "react"
 import Head from "next/head"
+import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import basePage from "../common/hocs/basePage"
 import { createPagination } from "../common/models"
 import WorkList from "../modules/works/components/WorkList"
-import { fetchWorks, movePage } from "../modules/works/actions"
+import { loadWorks, movePage } from "../modules/works/actions"
 import { MODULE_NAME, PER_PAGE } from "../modules/works/models"
 import reducer from "../modules/works/reducer"
 import "../styles/works.scss"
@@ -153,10 +154,8 @@ class Component extends React.Component {
         ]
       }
     ]
-    dispatch(fetchWorks(works))
-    // クエリにページ番号が指定されていればページを切り替える
-    query.page &&
-      dispatch(movePage(createPagination(works, PER_PAGE, query.page)))
+    dispatch(loadWorks(works))
+    dispatch(movePage(createPagination(works, PER_PAGE, query.page)))
     return {
       works
     }
@@ -169,6 +168,7 @@ class Component extends React.Component {
           <title>カナタノアトリエ</title>
         </Head>
         <Header />
+        <PageHeading>WORKS</PageHeading>
         <WorkList />
         <Footer />
       </div>

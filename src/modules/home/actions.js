@@ -2,10 +2,12 @@ import { createAction } from "redux-actions"
 import { MODULE_NAME } from "./models"
 
 // カバー画像の一覧を取得する
-export const fetchCovers = createAction(MODULE_NAME + "_" + "fetchCovers")
+export const loadCovers = createAction(MODULE_NAME + "_" + "loadCovers")
 // ブログの記事一覧を取得する
-export const fetchArticles = createAction(MODULE_NAME + "_" + "fetchArticles")
+export const loadArticles = createAction(MODULE_NAME + "_" + "loadArticles")
 // WORKSの作品一覧を取得する
-export const fetchWorks = createAction(MODULE_NAME + "_" + "fetchWorks")
+export const loadWorks = createAction(MODULE_NAME + "_" + "loadWorks")
 // GALLERYの作品一覧を取得する
-export const fetchGallery = createAction(MODULE_NAME + "_" + "fetchGallery")
+export const loadGallery = createAction(
+  MODULE_NAME + "_" + "loadGallery"
+)

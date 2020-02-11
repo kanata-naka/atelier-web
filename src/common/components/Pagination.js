@@ -35,10 +35,31 @@ export default class extends React.Component {
     history && history.pushState("", "", `?page=${pageNumber}`)
   }
 
-  /**
-   * 各ページのボタンを描画する
-   */
-  renderItems() {
+  render() {
+    return (
+      <ul className="pagination">
+        <PagePrevButton
+          pageNumber={this.currentPageNumber - 1}
+          disabled={this.currentPageNumber === 1}
+          onClick={e => {
+            e.preventDefault()
+            this.movePage(this.currentPageNumber - 1)
+          }}
+        />
+        {this.renderPageNumberButtons()}
+        <PageNextButton
+          pageNumber={this.currentPageNumber + 1}
+          disabled={this.currentPageNumber === this.lastPageNumber}
+          onClick={e => {
+            e.preventDefault()
+            this.movePage(this.currentPageNumber + 1)
+          }}
+        />
+      </ul>
+    )
+  }
+
+  renderPageNumberButtons() {
     const { maxRange } = this.props
 
     let first, last
@@ -59,69 +80,66 @@ export default class extends React.Component {
       last = this.currentPageNumber + Math.floor(maxRange / 2)
     }
 
-    const pages = []
+    const pageNumberButtons = []
     for (let pageNumber = first; pageNumber <= last; pageNumber++) {
-      pages.push(
-        <li
-          key={pageNumber}
-          className={
-            "pagination-item " +
-            (pageNumber === this.currentPageNumber ? "active" : "")
-          }>
-          <a
-            className="pagination-item__link"
-            href={`?page=${pageNumber}`}
-            onClick={e => {
-              e.preventDefault()
-              this.movePage(pageNumber)
-            }}>
-            {pageNumber}
-          </a>
-        </li>
+      pageNumberButtons.push(
+        <PageNumberButton
+          pageNumber={pageNumber}
+          isActive={pageNumber === this.currentPageNumber}
+          onClick={e => {
+            e.preventDefault()
+            this.movePage(pageNumber)
+          }}
+        />
       )
     }
-    return pages
+    return pageNumberButtons
   }
+}
 
-  render() {
-    return (
-      <ul className="pagination">
-        <li
-          className={
-            "pagination-item--prev " +
-            (this.currentPageNumber === 1 ? "disabled" : "")
-          }>
-          {this.currentPageNumber > 1 && (
-            <a
-              className="pagination-item__link"
-              href={`?page=${this.currentPageNumber - 1}`}
-              onClick={e => {
-                e.preventDefault()
-                this.movePage(this.currentPageNumber - 1)
-              }}>
-              &lt;
-            </a>
-          )}
-        </li>
-        {this.renderItems()}
-        <li
-          className={
-            "pagination-item--next " +
-            (this.currentPageNumber === this.lastPageNumber ? "disabled" : "")
-          }>
-          {this.currentPageNumber < this.lastPageNumber && (
-            <a
-              className="pagination-item__link"
-              href={`?page=${this.currentPageNumber + 1}`}
-              onClick={e => {
-                e.preventDefault()
-                this.movePage(this.currentPageNumber + 1)
-              }}>
-              &gt;
-            </a>
-          )}
-        </li>
-      </ul>
-    )
-  }
+const PagePrevButton = ({ pageNumber, disabled, onClick }) => {
+  return (
+    <li
+      key="prev"
+      className={`pagination-item--prev ${disabled && "disabled"}`}>
+      {!disabled && (
+        <a
+          className="pagination-item__link"
+          href={`?page=${pageNumber}`}
+          onClick={onClick}>
+          &lt;
+        </a>
+      )}
+    </li>
+  )
+}
+
+const PageNextButton = ({ pageNumber, disabled, onClick }) => {
+  return (
+    <li
+      key="next"
+      className={`pagination-item--next ${disabled && "disabled"}`}>
+      {!disabled && (
+        <a
+          className="pagination-item__link"
+          href={`?page=${pageNumber}`}
+          onClick={onClick}>
+          &gt;
+        </a>
+      )}
+    </li>
+  )
+}
+
+const PageNumberButton = ({ pageNumber, isActive, onClick }) => {
+  return (
+    <li key={pageNumber} className={`pagination-item ${isActive && "active"}`}>
+      <a
+        className="pagination-item__link"
+        href={`?page=${pageNumber}`}
+        onClick={onClick}>
+        {pageNumber}
+      </a>
+    </li>
+  )
 }

@@ -1,5 +1,10 @@
 import { handleActions } from "redux-actions"
-import { fetchCovers, fetchArticles, fetchWorks, fetchGallery } from "./actions"
+import {
+  loadCovers,
+  loadArticles,
+  loadWorks,
+  loadGallery
+} from "./actions"
 
 const initialState = {
   // カバー画像一覧
@@ -9,32 +14,32 @@ const initialState = {
   // WORKSの作品一覧
   works: [],
   // GALLERYの作品一覧
-  galleryItems: []
+  gallery: []
 }
 
 const handlers = {
-  [fetchCovers]: (state, action) => ({
+  [loadCovers]: (state, action) => ({
     ...state,
     ...{
       covers: action.payload
     }
   }),
-  [fetchArticles]: (state, action) => ({
+  [loadArticles]: (state, action) => ({
     ...state,
     ...{
       articles: action.payload
     }
   }),
-  [fetchWorks]: (state, action) => ({
+  [loadWorks]: (state, action) => ({
     ...state,
     ...{
       works: action.payload
     }
   }),
-  [fetchGallery]: (state, action) => ({
+  [loadGallery]: (state, action) => ({
     ...state,
     ...{
-      galleryItems: action.payload
+      gallery: action.payload
     }
   })
 }

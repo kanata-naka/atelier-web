@@ -12,7 +12,7 @@
     overflow: hidden;
   }
 
-  &-background {
+  &-overlay {
     background-color: black;
     bottom: 0;
     left: 0;
@@ -23,9 +23,6 @@
   }
 
   &-container {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
     height: 80%;
     left: 10%;
     position: absolute;
@@ -38,6 +35,17 @@
       top: 0;
       width: 100%;
     }
+  }
+
+  &-background {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
   }
 
   &-foreground {

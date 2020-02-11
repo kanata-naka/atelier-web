@@ -1,8 +1,6 @@
 import { handleActions } from "redux-actions"
 import { createSelector } from "reselect"
-import { createPagination } from "../../common/models"
-import { fetchWorks, movePage } from "./actions"
-import { PER_PAGE } from "./models"
+import { loadWorks, movePage } from "./actions"
 
 const initialState = {
   // 作品一覧
@@ -12,11 +10,10 @@ const initialState = {
 }
 
 const handlers = {
-  [fetchWorks]: (state, action) => ({
+  [loadWorks]: (state, action) => ({
     ...state,
     ...{
-      works: action.payload,
-      pagination: createPagination(action.payload, PER_PAGE)
+      works: action.payload
     }
   }),
   [movePage]: (state, action) => ({

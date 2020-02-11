@@ -5,10 +5,12 @@ import { nl2br } from "../../../utils/stringUtil"
 
 Modal.setAppElement("#__next")
 
-// モーダルの実体
+/**
+ * モーダルの実体
+ */
 const Component = () => {
   const [isOpen, setOpen] = useState(false)
-  const [item, setItem] = useState({})
+  const [item, setItem] = useState({ images: [] })
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   useEffect(() => {
@@ -32,48 +34,105 @@ const Component = () => {
       className="gallery-modal"
       bodyOpenClassName="gallery-modal--open"
       style={{ overlay: { zIndex: 2 } }}>
-      <div className="gallery-modal-background" onClick={close}></div>
-      <div
-        className="gallery-modal-container"
-        style={{
-          backgroundImage: `url(${item.images &&
-            item.images[currentImageIndex].url})`
-        }}>
+      <Overlay onClick={close} />
+      <div className="gallery-modal-container">
+        <Background image={item.images[currentImageIndex]} />
         <div className="gallery-modal-foreground">
-          <h3 className="gallery-modal-title">{item.title}</h3>
-          <p
-            className="gallery-modal-description"
-            dangerouslySetInnerHTML={{ __html: nl2br(item.description) }}></p>
-          <div className="gallery-modal-date">
-            <i className="far fa-clock"></i>
-            &nbsp;
-            {formatDateFromUnixTimestamp(item.createdAt)}
-          </div>
+          <Title>{item.title}</Title>
+          <Description>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: nl2br(item.description)
+              }}></span>
+          </Description>
+          <PublicationDate timestamp={item.createdAt} />
         </div>
-        <ul className="diff-list">
-          {item.images &&
-            item.images.map((image, index) => (
-              <li
-                key={index}
-                className="diff-list-item"
-                style={{
-                  backgroundImage: `url(${image.url})`
-                }}>
-                <a
-                  className="diff-list-item__link"
-                  href="javascript:void(0)"
-                  onClick={() => {
-                    // 画像を切り替える
-                    setCurrentImageIndex(index)
-                  }}></a>
-              </li>
-            ))}
-        </ul>
+        <DiffList
+          images={item.images}
+          onSelect={index => setCurrentImageIndex(index)}
+        />
       </div>
-      <div className="gallery-modal-close-button" onClick={close}>
-        <i className="fas fa-times gallery-modal-close-button__icon"></i>
-      </div>
+      <CloseButton onClick={close} />
     </Modal>
+  )
+}
+
+const Overlay = ({ onClick }) => {
+  return <div className="gallery-modal-overlay" onClick={onClick}></div>
+}
+
+const Background = ({ image }) => {
+  return (
+    <div
+      className="gallery-modal-background"
+      style={{
+        backgroundImage: image && `url(${image.url})`
+      }}></div>
+  )
+}
+
+const Title = ({ children }) => {
+  return <h3 className="gallery-modal-title">{children}</h3>
+}
+
+const Description = ({ children }) => {
+  return <p className="gallery-modal-description">{children}</p>
+}
+
+const PublicationDate = ({ timestamp }) => {
+  return (
+    <div className="gallery-modal-date">
+      <i className="far fa-clock"></i>
+      &nbsp;
+      {formatDateFromUnixTimestamp(timestamp)}
+    </div>
+  )
+}
+
+/**
+ * 差分リスト
+ */
+const DiffList = ({ images, onSelect }) => {
+  if (!images || !images.length) {
+    return
+  }
+  return (
+    <ul className="diff-list">
+      {images.map((image, index) => (
+        <DiffListItem
+          image={image}
+          index={index}
+          onClick={() => onSelect(index)}
+        />
+      ))}
+    </ul>
+  )
+}
+
+const DiffListItem = ({ image, index, onClick }) => {
+  return (
+    <li
+      key={index}
+      className="diff-list-item"
+      style={{
+        backgroundImage: `url(${image.url})`
+      }}>
+      <a
+        className="diff-list-item__link"
+        href="javascript:void(0)"
+        onClick={onClick}></a>
+    </li>
+  )
+}
+
+/**
+ * 閉じるボタン
+ */
+const CloseButton = ({ onClick }) => {
+  return (
+    <div className="gallery-modal-close-button" onClick={onClick}>
+      <i className="fas fa-times gallery-modal-close-button__icon"></i>
+    </div>
   )
 }
 

@@ -1,6 +1,23 @@
 import { useState, useEffect, useCallback } from "react"
 
+/**
+ * ヘッダー
+ */
 export default () => {
+  return (
+    <header className="site-header">
+      <h1 className="title">
+        <a className="title__link" href="/"></a>
+      </h1>
+      <GlobalNav />
+    </header>
+  )
+}
+
+/**
+ * グローバルナビゲーション
+ */
+const GlobalNav = () => {
   const [enableToggleMenu, setEnableToggleMenu] = useState(false)
   const [isToggleMenuActive, setToggleMenuActive] = useState(false)
 
@@ -21,40 +38,43 @@ export default () => {
   })
 
   return (
-    <header className="site-header">
-      <h1 className="title">
-        <a className="title__link" href="/"></a>
-      </h1>
-      <nav className="global-nav-container" role="navigation">
-        {enableToggleMenu && (
-          <div
-            className="global-nav-hamburger-button"
-            onClick={handleHamburgerButtonClick}>
-            <i
-              className={
-                "fas fa-bars global-nav-hamburger-button__icon " +
-                (isToggleMenuActive ? "active" : "")
-              }></i>
-          </div>
-        )}
-        {(!enableToggleMenu || isToggleMenuActive) && (
-          <ul className="global-nav">
-            <GlobalNavItem href="/#about" id="about" title="ABOUT" />
-            <GlobalNavItem href="/blog" id="blog" title="BLOG" />
-            <GlobalNavItem href="/works" id="works" title="WORKS" />
-            <GlobalNavItem href="/gallery" id="gallery" title="GALLERY" />
-          </ul>
-        )}
-      </nav>
-    </header>
+    <nav className="global-nav-container" role="navigation">
+      {enableToggleMenu && (
+        <HamburgerButton
+          isActive={isToggleMenuActive}
+          onClick={handleHamburgerButtonClick}
+        />
+      )}
+      {(!enableToggleMenu || isToggleMenuActive) && (
+        <ul className="global-nav">
+          <GlobalNavItem id="about" title="ABOUT" url="/#about" />
+          <GlobalNavItem id="blog" title="BLOG" url="/blog" />
+          <GlobalNavItem id="works" title="WORKS" url="/works" />
+          <GlobalNavItem id="gallery" title="GALLERY" url="/gallery" />
+        </ul>
+      )}
+    </nav>
   )
 }
 
-const GlobalNavItem = ({ href, title }) => {
+/**
+ * ハンバーガーボタン
+ */
+const HamburgerButton = ({ isActive, onClick }) => {
   return (
-    <li className="global-nav-item">
-      {href ? (
-        <a className="global-nav-item__link" href={href}>
+    <div className="global-nav-hamburger-button" onClick={onClick}>
+      <i
+        className={`fas fa-bars global-nav-hamburger-button__icon ${isActive &&
+          "active"}`}></i>
+    </div>
+  )
+}
+
+const GlobalNavItem = ({ title, id, url }) => {
+  return (
+    <li key={id} className="global-nav-item">
+      {url ? (
+        <a className="global-nav-item__link" href={url}>
           {title}
         </a>
       ) : (

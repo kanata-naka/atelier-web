@@ -3,16 +3,16 @@ import Head from "next/head"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import basePage from "../common/hocs/basePage"
-import Cover from "../modules/home/components/cover"
-import Blog from "../modules/home/components/blog"
-import About from "../modules/home/components/about"
-import Works from "../modules/home/components/works"
+import Covers from "../modules/home/components/covers"
+import LatestArticles from "../modules/home/components/LatestArticles"
+import About from "../modules/home/components/About"
+import LatestWorks from "../modules/home/components/LatestWorks"
 import Gallery from "../modules/home/components/gallery"
 import {
-  fetchCovers,
-  fetchArticles,
-  fetchWorks,
-  fetchGallery
+  loadCovers,
+  loadArticles,
+  loadWorks,
+  loadGallery
 } from "../modules/home/actions"
 import { MODULE_NAME } from "../modules/home/models"
 import reducer from "../modules/home/reducer"
@@ -44,7 +44,7 @@ class Component extends React.Component {
           "https://pbs.twimg.com/profile_images/1076080213027483648/9LQV89R7_mini.jpg"
       }
     ]
-    dispatch(fetchCovers(covers))
+    dispatch(loadCovers(covers))
     // BLOGの記事一覧を取得する
     const articles = [
       {
@@ -71,7 +71,7 @@ class Component extends React.Component {
           "https://pbs.twimg.com/media/EP1xJQdVAAEHViq?format=jpg&name=large"
       }
     ]
-    dispatch(fetchArticles(articles))
+    dispatch(loadArticles(articles))
     // WORKSの作品一覧を取得する
     const works = [
       {
@@ -130,9 +130,9 @@ class Component extends React.Component {
         ]
       }
     ]
-    dispatch(fetchWorks(works))
+    dispatch(loadWorks(works))
     // GALLERYの作品一覧を取得する
-    const galleryItems = [
+    const gallery = [
       {
         title: "羊肉ブーム....................？？？？？？？？？？",
         createdAt: 1580823569,
@@ -219,17 +219,17 @@ class Component extends React.Component {
           "アニメやゲームに出てきそうな現在風忍者をイメージしました！ #ぽこピー新衣装"
       }
     ]
-    dispatch(fetchGallery(galleryItems))
+    dispatch(loadGallery(gallery))
     return {
       covers,
       articles,
       works,
-      galleryItems
+      gallery
     }
   }
 
   render() {
-    const { covers, articles, works, galleryItems } = this.props
+    const { covers, articles, works, gallery } = this.props
 
     return (
       <div>
@@ -237,13 +237,13 @@ class Component extends React.Component {
           <title>カナタノアトリエ</title>
         </Head>
         <Header />
-        <Cover items={covers} />
+        <Covers items={covers} />
         <div className="dashboard">
           <About />
-          <Blog items={articles} />
+          <LatestArticles items={articles} />
         </div>
-        <Works items={works} />
-        <Gallery items={galleryItems} />
+        <LatestWorks items={works} />
+        <Gallery items={gallery} />
         <Footer />
       </div>
     )

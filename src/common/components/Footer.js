@@ -1,3 +1,6 @@
+/**
+ * フッター
+ */
 export default () => {
   return (
     <footer className="site-footer">
