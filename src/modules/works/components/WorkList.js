@@ -49,7 +49,7 @@ const WorkListItem = ({ item, index }) => {
 
 const WorkListItemTitle = ({ children }) => {
   return (
-    <h3 id="1" className="works-list-item-title">
+    <h3 className="works-list-item-title">
       {children}
     </h3>
   )
