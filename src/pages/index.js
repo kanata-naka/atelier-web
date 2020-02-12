@@ -6,13 +6,13 @@ import basePage from "../common/hocs/basePage"
 import Carousel from "../modules/home/components/Carousel"
 import LatestArticles from "../modules/home/components/LatestArticles"
 import About from "../modules/home/components/About"
-import Works from "../modules/home/components/Works"
-import Gallery from "../modules/home/components/Gallery"
+import RecentWorks from "../modules/home/components/RecentWorks"
+import RecentArts from "../modules/home/components/RecentArts"
 import {
   loadTopImages,
-  loadArticles,
-  loadWorks,
-  loadGallery
+  loadLatestArticles,
+  loadRecentWorks,
+  loadRecentArts
 } from "../modules/home/actions"
 import { MODULE_NAME } from "../modules/home/models"
 import reducer from "../modules/home/reducer"
@@ -46,7 +46,7 @@ class Component extends React.Component {
     ]
     dispatch(loadTopImages(topImages))
     // BLOGの記事一覧を取得する
-    const articles = [
+    const latestArticles = [
       {
         title:
           "C95お品書きああああああああああああああああああああああああああ",
@@ -71,9 +71,9 @@ class Component extends React.Component {
           "https://pbs.twimg.com/media/EP1xJQdVAAEHViq?format=jpg&name=large"
       }
     ]
-    dispatch(loadArticles(articles))
+    dispatch(loadLatestArticles(latestArticles))
     // WORKSの作品一覧を取得する
-    const works = [
+    const recentWorks = [
       {
         title: "Superstars! mini1+2",
         id: 6,
@@ -130,9 +130,9 @@ class Component extends React.Component {
         ]
       }
     ]
-    dispatch(loadWorks(works))
+    dispatch(loadRecentWorks(recentWorks))
     // GALLERYの作品一覧を取得する
-    const gallery = [
+    const recentArts = [
       {
         title: "羊肉ブーム....................？？？？？？？？？？",
         createdAt: 1580823569,
@@ -219,17 +219,17 @@ class Component extends React.Component {
           "アニメやゲームに出てきそうな現在風忍者をイメージしました！ #ぽこピー新衣装"
       }
     ]
-    dispatch(loadGallery(gallery))
+    dispatch(loadRecentArts(recentArts))
     return {
       topImages,
-      articles,
-      works,
-      gallery
+      latestArticles,
+      recentWorks,
+      recentArts
     }
   }
 
   render() {
-    const { topImages, articles, works, gallery } = this.props
+    const { topImages, latestArticles, recentWorks, recentArts } = this.props
 
     return (
       <div>
@@ -240,10 +240,10 @@ class Component extends React.Component {
         <Carousel items={topImages} />
         <div className="dashboard">
           <About />
-          <LatestArticles items={articles} />
+          <LatestArticles items={latestArticles} />
         </div>
-        <Works items={works} />
-        <Gallery items={gallery} />
+        <RecentWorks items={recentWorks} />
+        <RecentArts items={recentArts} />
         <Footer />
       </div>
     )

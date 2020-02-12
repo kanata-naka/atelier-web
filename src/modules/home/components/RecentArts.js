@@ -3,11 +3,11 @@ import GalleryModal from "../../gallery/components/GalleryModal"
 
 export default ({ items }) => {
   return (
-    <section className="gallery">
-      <SectionHeading>GALLERY</SectionHeading>
-      <div className="gallery-container">
+    <section className="recent-arts">
+      <SectionHeading>RECENT ARTS</SectionHeading>
+      <div className="recent-arts-container">
         {items.map((item, index) => (
-          <GalleryItem
+          <RecentArtItem
             item={item}
             index={index}
             isLast={index === items.length - 1}
@@ -19,12 +19,12 @@ export default ({ items }) => {
   )
 }
 
-const GalleryItem = ({ item, index, isLast }) => {
+const RecentArtItem = ({ item, index, isLast }) => {
   return (
-    <div key={index} className="gallery-item">
-      <GalleryItemBackground image={item.images[0]} />
-      <GalleryItemForeground
-        className={isLast && "gallery-item-foreground--more"}
+    <div key={index} className="recent-arts-item">
+      <RecentArtItemBackground image={item.images[0]} />
+      <RecentArtItemForeground
+        className={isLast ? "recent-arts-item-foreground--more" : "recent-arts-item-foreground"}
         url={isLast ? "/gallery" : `/gallery/${item.id}`}
         onClick={e => {
           if (isLast) {
@@ -34,25 +34,25 @@ const GalleryItem = ({ item, index, isLast }) => {
           // モーダルを開く
           GalleryModal.open(item)
         }}>
-        {isLast && <div className="gallery-more">{"more ＞"}</div>}
-      </GalleryItemForeground>
+        {isLast && <div className="recent-arts-more">{"more ＞"}</div>}
+      </RecentArtItemForeground>
     </div>
   )
 }
 
-const GalleryItemBackground = ({ image }) => {
+const RecentArtItemBackground = ({ image }) => {
   return (
     <div
-      className="gallery-item-background"
+      className="recent-arts-item-background"
       style={{
         backgroundImage: `url(${image.url})`
       }}></div>
   )
 }
 
-const GalleryItemForeground = ({ url, onClick, children, ...props }) => {
+const RecentArtItemForeground = ({ url, onClick, children, ...props }) => {
   return (
-    <a className="gallery-item__link" href={url} onClick={onClick}>
+    <a className="recent-arts-item__link" href={url} onClick={onClick}>
       <div {...props}>{children}</div>
     </a>
   )

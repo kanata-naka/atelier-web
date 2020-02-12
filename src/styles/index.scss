@@ -235,7 +235,7 @@
   }
 }
 
-.gallery {
+@mixin recent-elements {
   padding-bottom: 24px;
 
   &:before {
@@ -265,10 +265,8 @@
     }
 
     &:before {
-        // 正方形にする
         content: "";
         display: block;
-        padding-top: 100%;
     }
 
     &-background {
@@ -332,10 +330,22 @@
     color: white;
     font-size: 24px;
   }
+
+  @content;
 }
 
-.works {
-  .gallery-item:before {
-      padding-top: 130%;
+.recent-arts {
+  @include recent-elements {
+    &-item:before {
+        padding-top: 100%;
+    }
+  }
+}
+
+.recent-works {
+  @include recent-elements {
+    &-item:before {
+        padding-top: 130%;
+    }
   }
 }

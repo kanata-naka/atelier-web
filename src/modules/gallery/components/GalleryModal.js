@@ -5,9 +5,7 @@ import { decorateText } from "../../../utils/stringUtil"
 
 Modal.setAppElement("#__next")
 
-/**
- * モーダルの実体
- */
+// モーダルの実体
 const Component = () => {
   const [isOpen, setOpen] = useState(false)
   const [item, setItem] = useState({ images: [] })
@@ -57,6 +55,7 @@ const Component = () => {
   )
 }
 
+// オーバーレイ
 const Overlay = ({ onClick }) => {
   return <div className="gallery-modal-overlay" onClick={onClick}></div>
 }
@@ -79,6 +78,7 @@ const Description = ({ children }) => {
   return <p className="gallery-modal-description">{children}</p>
 }
 
+// 投稿日時
 const PostedDate = ({ timestamp }) => {
   return (
     <div className="gallery-modal-date">
@@ -89,9 +89,7 @@ const PostedDate = ({ timestamp }) => {
   )
 }
 
-/**
- * 差分リスト
- */
+// 差分リスト
 const DiffList = ({ images, onSelect }) => {
   if (!images || !images.length) {
     return
@@ -125,9 +123,7 @@ const DiffListItem = ({ image, index, onClick }) => {
   )
 }
 
-/**
- * 閉じるボタン
- */
+// 閉じるボタン
 const CloseButton = ({ onClick }) => {
   return (
     <div className="gallery-modal-close-button" onClick={onClick}>
