@@ -1,6 +1,7 @@
 import React from "react"
 import { Provider } from "react-redux"
 import Head from "next/head"
+import { initializeApi } from "../api"
 import { Globals } from "../models"
 import { initialize as initializeStore } from "../store"
 import "../../styles/common.scss"
@@ -9,6 +10,7 @@ export default (Component, reducer) => {
   const BasePage = ({ initialState, ...props }) => {
     const store = initializeStore(reducer, initialState)
     Object.assign(Globals, props.globals)
+    initializeApi(Globals.env)
     return (
       <Provider store={store}>
         <div>
@@ -43,6 +45,7 @@ export default (Component, reducer) => {
     } else {
       globals = { ...Globals }
     }
+    initializeApi(globals.env)
     // パスを取得する
     const paths = context.req.path.substring(1).split("/")
     let id = paths[1]

@@ -11,6 +11,9 @@ export const createPagination = (items, perPage, pageNumber = 1) => {
   }
 }
 
+/**
+ * ページ番号から1件目のオフセットを取得する
+ */
 export const getOffsetByPageNumber = (pageNumber, perPage) => {
   return perPage * (pageNumber - 1)
 }

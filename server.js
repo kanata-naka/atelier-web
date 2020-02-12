@@ -8,7 +8,7 @@ const handle = (req, res) => {
   // 環境設定
   req.env = {
     ENVIRONMENT: process.env.NODE_ENV,
-    API_ENDPOINT: config.get("api.endpoint")
+    API_BASE_URL: config.get("api.baseUrl")
   }
   return app.getRequestHandler()(req, res)
 }

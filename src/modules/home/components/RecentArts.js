@@ -1,7 +1,10 @@
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
 import { SectionHeading } from "../../../common/components/elements"
 import GalleryModal from "../../gallery/components/GalleryModal"
+import { MODULE_NAME } from "../models"
 
-export default ({ items }) => {
+const RecentArts = ({ items }) => {
   return (
     <section className="recent-arts">
       <SectionHeading>RECENT ARTS</SectionHeading>
@@ -24,7 +27,11 @@ const RecentArtItem = ({ item, index, isLast }) => {
     <div key={index} className="recent-arts-item">
       <RecentArtItemBackground image={item.images[0]} />
       <RecentArtItemForeground
-        className={isLast ? "recent-arts-item-foreground--more" : "recent-arts-item-foreground"}
+        className={
+          isLast
+            ? "recent-arts-item-foreground--more"
+            : "recent-arts-item-foreground"
+        }
         url={isLast ? "/gallery" : `/gallery/${item.id}`}
         onClick={e => {
           if (isLast) {
@@ -57,3 +64,13 @@ const RecentArtItemForeground = ({ url, onClick, children, ...props }) => {
     </a>
   )
 }
+
+const mapStateToProps = state => ({
+  items: state[MODULE_NAME].recentArts
+})
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators({}, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecentArts)
