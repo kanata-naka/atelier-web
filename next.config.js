@@ -1,5 +1,7 @@
 const withSass = require("@zeit/next-sass")
 
 module.exports = {
-  ...withSass()
+  ...withSass(),
+  distDir: "dist/functions/build",
+  target: 'serverless'
 }

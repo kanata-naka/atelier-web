@@ -100,7 +100,7 @@ const DiffList = ({ images, onSelect }) => {
         <DiffListItem
           key={index}
           image={image}
-          onClick={(e) => {
+          onClick={e => {
             e.preventDefault()
             onSelect(index)
           }}

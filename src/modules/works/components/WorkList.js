@@ -48,11 +48,7 @@ const WorkListItem = ({ item }) => {
 }
 
 const WorkListItemTitle = ({ children }) => {
-  return (
-    <h3 className="works-list-item-title">
-      {children}
-    </h3>
-  )
+  return <h3 className="works-list-item-title">{children}</h3>
 }
 
 const WorkListItemPostedDate = ({ timestamp }) => {

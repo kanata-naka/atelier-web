@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import Link from 'next/link'
+import Link from "next/link"
 import { SectionHeading } from "../../../common/components/elements"
 import GalleryModal from "../../gallery/components/GalleryModal"
 import { MODULE_NAME } from "../models"

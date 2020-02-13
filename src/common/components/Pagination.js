@@ -1,5 +1,5 @@
 import React from "react"
-import Link from 'next/link'
+import Link from "next/link"
 import { getOffsetByPageNumber } from "../models"
 
 /**
@@ -101,13 +101,10 @@ export default class extends React.Component {
 
 const PagePrevButton = ({ pageNumber, disabled, onClick }) => {
   return (
-    <li
-      className={`pagination-item--prev ${disabled && "disabled"}`}>
+    <li className={`pagination-item--prev ${disabled && "disabled"}`}>
       {!disabled && (
         <Link href={`?page=${pageNumber}`}>
-          <a
-            className="pagination-item__link"
-            onClick={onClick}>
+          <a className="pagination-item__link" onClick={onClick}>
             &lt;
           </a>
         </Link>
@@ -118,13 +115,10 @@ const PagePrevButton = ({ pageNumber, disabled, onClick }) => {
 
 const PageNextButton = ({ pageNumber, disabled, onClick }) => {
   return (
-    <li
-      className={`pagination-item--next ${disabled && "disabled"}`}>
+    <li className={`pagination-item--next ${disabled && "disabled"}`}>
       {!disabled && (
         <Link href={`?page=${pageNumber}`}>
-          <a
-            className="pagination-item__link"
-            onClick={onClick}>
+          <a className="pagination-item__link" onClick={onClick}>
             &gt;
           </a>
         </Link>
@@ -137,9 +131,7 @@ const PageNumberButton = ({ pageNumber, isActive, onClick }) => {
   return (
     <li className={`pagination-item ${isActive && "active"}`}>
       <Link href={`?page=${pageNumber}`}>
-        <a
-          className="pagination-item__link"
-          onClick={onClick}>
+        <a className="pagination-item__link" onClick={onClick}>
           {pageNumber}
         </a>
       </Link>

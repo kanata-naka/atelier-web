@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react"
-import Link from 'next/link'
+import Link from "next/link"
 
 /**
  * ヘッダー
@@ -77,10 +77,9 @@ const GlobalNavItem = ({ title, id, url }) => {
   return (
     <li key={id} className="global-nav-item">
       {url ? (
-<Link href={url}>
-        <a className="global-nav-item__link">
-          {title}
-        </a></Link>
+        <Link href={url}>
+          <a className="global-nav-item__link">{title}</a>
+        </Link>
       ) : (
         { title }
       )}

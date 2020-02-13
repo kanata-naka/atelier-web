@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "public": "dist/public",
+    "rewrites": [
+      {
+        "source": "/",
+        "function": "index"
+      },
+      {
+        "source": "/works",
+        "function": "works"
+      }
+    ]
+  },
+  "functions": {
+    "source": "dist/functions"
+  }
+}

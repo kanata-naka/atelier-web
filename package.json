@@ -2,9 +2,18 @@
   "name": "atelier-web",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "10"
+  },
   "scripts": {
     "dev": "node server.js",
+    "clean": "rimraf \"dist/functions/**\" && rimraf \"dist/public/**\"",
     "build": "next build",
+    "copy-resources": "cpx \"functions/**/*.*\" \"dist/functions\" && cpx \"public/**/*.*\" \"dist/public\" && cpx \"dist/functions/build/static/**/*.*\" \"dist/public/_next/static\" && cpx \"config/**/*.*\" \"dist/functions/config\"",
+    "install-dependencies": "cpx \"*{package.json,package-lock.json}\" \"dist/functions\" && cd \"dist/functions\" && npm install",
+    "preserve": "npm run clean && npm run build && npm run copy-resources && npm run install-dependencies",
+    "serve": "cross-env NODE_ENV=production firebase serve",
+    "deploy": "firebase deploy",
     "prettier": "prettier src/**/*.js --write"
   },
   "author": "",
@@ -15,6 +24,8 @@
     "config": "^3.2.5",
     "decimal.js": "^10.2.0",
     "express": "^4.17.1",
+    "firebase-admin": "^8.9.2",
+    "firebase-functions": "^3.3.0",
     "moment": "^2.24.0",
     "next": "^9.2.1",
     "node-sass": "^4.13.1",
@@ -29,7 +40,11 @@
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "cpx": "^1.5.0",
+    "cross-env": "^7.0.0",
+    "firebase-tools": "^7.13.0",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.2"
   },
   "prettier": {
     "semi": false,

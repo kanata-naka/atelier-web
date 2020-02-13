@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import Link from 'next/link'
+import Link from "next/link"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
 import { MODULE_NAME } from "../models"
 
@@ -59,9 +59,7 @@ const Footer = () => {
   return (
     <footer className="latest-articles-footer">
       <Link href="/blog">
-        <a className="latest-articles-more__link">
-          {"more ＞"}
-        </a>
+        <a className="latest-articles-more__link">{"more ＞"}</a>
       </Link>
     </footer>
   )
