@@ -98,26 +98,28 @@ const DiffList = ({ images, onSelect }) => {
     <ul className="diff-list">
       {images.map((image, index) => (
         <DiffListItem
+          key={index}
           image={image}
-          index={index}
-          onClick={() => onSelect(index)}
+          onClick={(e) => {
+            e.preventDefault()
+            onSelect(index)
+          }}
         />
       ))}
     </ul>
   )
 }
 
-const DiffListItem = ({ image, index, onClick }) => {
+const DiffListItem = ({ image, onClick }) => {
   return (
     <li
-      key={index}
       className="diff-list-item"
       style={{
         backgroundImage: `url(${image.url})`
       }}>
       <a
         className="diff-list-item__link"
-        href="javascript:void(0)"
+        href={image.url}
         onClick={onClick}></a>
     </li>
   )

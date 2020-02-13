@@ -62,8 +62,8 @@ const AuthorName = ({ children }) => {
 const SocialIcons = ({ items }) => {
   return (
     <ul className="social-icons">
-      {items.map(item => (
-        <SocialIcon item={item} />
+      {items.map((item, index) => (
+        <SocialIcon key={index} item={item} />
       ))}
     </ul>
   )

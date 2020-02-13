@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
+import Link from 'next/link'
 import { SectionHeading } from "../../../common/components/elements"
 import { MODULE_NAME } from "../models"
 
@@ -10,8 +11,8 @@ const RecentWorks = ({ items }) => {
       <div className="recent-works-container">
         {items.map((item, index) => (
           <RecentWorkItem
+            key={index}
             item={item}
-            index={index}
             isLast={index === items.length - 1}
           />
         ))}
@@ -20,9 +21,9 @@ const RecentWorks = ({ items }) => {
   )
 }
 
-const RecentWorkItem = ({ item, index, isLast }) => {
+const RecentWorkItem = ({ item, isLast }) => {
   return (
-    <div key={index} className="recent-works-item">
+    <div className="recent-works-item">
       <RecentWorkItemBackground image={item.images && item.images[0]} />
       <RecentWorkItemForeground
         className={
@@ -53,11 +54,13 @@ const RecentWorkItemBackground = ({ image }) => {
 
 const RecentWorkItemForeground = ({ url, children, ...props }) => {
   return (
-    <a className="recent-works-item__link" href={url}>
-      <div className="recent-works-item-foreground" {...props}>
-        {children}
-      </div>
-    </a>
+    <Link href={url}>
+      <a className="recent-works-item__link">
+        <div className="recent-works-item-foreground" {...props}>
+          {children}
+        </div>
+      </a>
+    </Link>
   )
 }
 

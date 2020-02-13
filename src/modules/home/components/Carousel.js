@@ -28,6 +28,10 @@ const Carousel = ({ items }) => {
       handleSwitchItem,
       SWITCH_ITEM_INTERVAL
     )
+    return () => {
+      // componentWillUnmount と同じタイミングで実行する
+      clearInterval(currentIntervalIdRef.current)
+    }
   }, [])
   const handleNavItemClick = index => {
     if (currentIntervalIdRef.current) {
@@ -56,8 +60,8 @@ const CarouselList = ({ items, currentIndex }) => {
     <ul className="top-carousel-list">
       {items.map((item, index) => (
         <CarouselListItem
+          key={index}
           item={item}
-          index={index}
           isActive={index === currentIndex}
         />
       ))}
@@ -65,10 +69,9 @@ const CarouselList = ({ items, currentIndex }) => {
   )
 }
 
-const CarouselListItem = ({ item, index, isActive }) => {
+const CarouselListItem = ({ item, isActive }) => {
   return (
     <li
-      key={index}
       className="top-carousel-list-item"
       style={{
         backgroundImage: `url(${item.imageUrl})`,
@@ -82,8 +85,8 @@ const Navigation = ({ items, currentIndex, onSelect }) => {
     <ul className="top-carousel-nav">
       {items.map((item, index) => (
         <NavigationItem
+          key={index}
           item={item}
-          index={index}
           isActive={index === currentIndex}
           onClick={() => onSelect(index)}
         />
@@ -92,10 +95,9 @@ const Navigation = ({ items, currentIndex, onSelect }) => {
   )
 }
 
-const NavigationItem = ({ item, index, isActive, onClick }) => {
+const NavigationItem = ({ item, isActive, onClick }) => {
   return (
     <li
-      key={index}
       className={"top-carousel-nav-item " + (isActive ? "active" : "")}
       onClick={onClick}
       style={{

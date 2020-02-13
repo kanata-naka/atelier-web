@@ -1,4 +1,5 @@
 import React from "react"
+import Link from 'next/link'
 import { getOffsetByPageNumber } from "../models"
 
 /**
@@ -84,6 +85,7 @@ export default class extends React.Component {
     for (let pageNumber = first; pageNumber <= last; pageNumber++) {
       pageNumberButtons.push(
         <PageNumberButton
+          key={pageNumber}
           pageNumber={pageNumber}
           isActive={pageNumber === this.currentPageNumber}
           onClick={e => {
@@ -100,15 +102,15 @@ export default class extends React.Component {
 const PagePrevButton = ({ pageNumber, disabled, onClick }) => {
   return (
     <li
-      key="prev"
       className={`pagination-item--prev ${disabled && "disabled"}`}>
       {!disabled && (
-        <a
-          className="pagination-item__link"
-          href={`?page=${pageNumber}`}
-          onClick={onClick}>
-          &lt;
-        </a>
+        <Link href={`?page=${pageNumber}`}>
+          <a
+            className="pagination-item__link"
+            onClick={onClick}>
+            &lt;
+          </a>
+        </Link>
       )}
     </li>
   )
@@ -117,15 +119,15 @@ const PagePrevButton = ({ pageNumber, disabled, onClick }) => {
 const PageNextButton = ({ pageNumber, disabled, onClick }) => {
   return (
     <li
-      key="next"
       className={`pagination-item--next ${disabled && "disabled"}`}>
       {!disabled && (
-        <a
-          className="pagination-item__link"
-          href={`?page=${pageNumber}`}
-          onClick={onClick}>
-          &gt;
-        </a>
+        <Link href={`?page=${pageNumber}`}>
+          <a
+            className="pagination-item__link"
+            onClick={onClick}>
+            &gt;
+          </a>
+        </Link>
       )}
     </li>
   )
@@ -133,13 +135,14 @@ const PageNextButton = ({ pageNumber, disabled, onClick }) => {
 
 const PageNumberButton = ({ pageNumber, isActive, onClick }) => {
   return (
-    <li key={pageNumber} className={`pagination-item ${isActive && "active"}`}>
-      <a
-        className="pagination-item__link"
-        href={`?page=${pageNumber}`}
-        onClick={onClick}>
-        {pageNumber}
-      </a>
+    <li className={`pagination-item ${isActive && "active"}`}>
+      <Link href={`?page=${pageNumber}`}>
+        <a
+          className="pagination-item__link"
+          onClick={onClick}>
+          {pageNumber}
+        </a>
+      </Link>
     </li>
   )
 }

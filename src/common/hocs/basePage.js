@@ -46,23 +46,17 @@ export default (Component, reducer) => {
       globals = { ...Globals }
     }
     initializeApi(globals.env)
-    // パスを取得する
-    const paths = context.req.path.substring(1).split("/")
-    let id = paths[1]
     // コンポーネントを初期化する
     const props = Component.getInitialProps
       ? await Component.getInitialProps({
           ...context,
           store,
-          globals,
-          id,
-          query: context.query
+          globals
         })
       : {}
     return {
       ...props,
       globals,
-      id,
       initialState: store.getState()
     }
   }

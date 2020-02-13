@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react"
+import Link from 'next/link'
 
 /**
  * ヘッダー
@@ -7,7 +8,9 @@ export default () => {
   return (
     <header className="site-header">
       <h1 className="title">
-        <a className="title__link" href="/"></a>
+        <Link href="/">
+          <a className="title__link"></a>
+        </Link>
       </h1>
       <GlobalNav />
     </header>
@@ -74,9 +77,10 @@ const GlobalNavItem = ({ title, id, url }) => {
   return (
     <li key={id} className="global-nav-item">
       {url ? (
-        <a className="global-nav-item__link" href={url}>
+<Link href={url}>
+        <a className="global-nav-item__link">
           {title}
-        </a>
+        </a></Link>
       ) : (
         { title }
       )}

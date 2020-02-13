@@ -12,7 +12,7 @@ const WorkList = ({ worksByPage, pagination, movePage }) => {
     <div>
       <section className="works-list">
         {worksByPage.map((item, index) => (
-          <WorkListItem item={item} index={index} />
+          <WorkListItem key={index} item={item} />
         ))}
       </section>
       <Pagination
@@ -24,9 +24,9 @@ const WorkList = ({ worksByPage, pagination, movePage }) => {
   )
 }
 
-const WorkListItem = ({ item, index }) => {
+const WorkListItem = ({ item }) => {
   return (
-    <article key={index} id={item.id} className="works-list-item">
+    <article id={item.id} className="works-list-item">
       <WorkListItemTitle>{item.title}</WorkListItemTitle>
       <WorkListItemPostedDate timestamp={item.createdAt} />
       <div className="works-list-item-row">

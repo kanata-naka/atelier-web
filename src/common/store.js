@@ -6,12 +6,5 @@ export const initialize = (reducer, initialState) => {
     common: commonReducer,
     ...reducer
   })
-  if (typeof window === "undefined") {
-    return createStore(combinedReducer, initialState)
-  } else {
-    if (!window.store) {
-      window.store = createStore(combinedReducer, initialState)
-    }
-    return window.store
-  }
+  return createStore(combinedReducer, initialState)
 }

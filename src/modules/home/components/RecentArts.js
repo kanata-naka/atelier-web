@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
+import Link from 'next/link'
 import { SectionHeading } from "../../../common/components/elements"
 import GalleryModal from "../../gallery/components/GalleryModal"
 import { MODULE_NAME } from "../models"
@@ -11,8 +12,8 @@ const RecentArts = ({ items }) => {
       <div className="recent-arts-container">
         {items.map((item, index) => (
           <RecentArtItem
+            key={index}
             item={item}
-            index={index}
             isLast={index === items.length - 1}
           />
         ))}
@@ -22,9 +23,9 @@ const RecentArts = ({ items }) => {
   )
 }
 
-const RecentArtItem = ({ item, index, isLast }) => {
+const RecentArtItem = ({ item, isLast }) => {
   return (
-    <div key={index} className="recent-arts-item">
+    <div className="recent-arts-item">
       <RecentArtItemBackground image={item.images[0]} />
       <RecentArtItemForeground
         className={
@@ -59,9 +60,11 @@ const RecentArtItemBackground = ({ image }) => {
 
 const RecentArtItemForeground = ({ url, onClick, children, ...props }) => {
   return (
-    <a className="recent-arts-item__link" href={url} onClick={onClick}>
-      <div {...props}>{children}</div>
-    </a>
+    <Link href={url}>
+      <a className="recent-arts-item__link" onClick={onClick}>
+        <div {...props}>{children}</div>
+      </a>
+    </Link>
   )
 }
 

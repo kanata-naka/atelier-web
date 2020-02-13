@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
+import Link from 'next/link'
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
 import { MODULE_NAME } from "../models"
 
@@ -7,23 +8,25 @@ const LatestArticles = ({ items }) => {
   return (
     <section className="latest-articles">
       {items.map((item, index) => (
-        <Article item={item} index={index} />
+        <Article key={index} item={item} />
       ))}
       <Footer />
     </section>
   )
 }
 
-const Article = ({ item, index }) => {
+const Article = ({ item }) => {
   return (
-    <article key={index} className="latest-articles-item">
+    <article className="latest-articles-item">
       <ArticleBackground item={item} />
-      <a className="latest-articles-item__link" href={`/blog/${item.id}`}>
-        <div className="latest-articles-item-foreground">
-          <ArticlePostedDate timestamp={item.createdAt} />
-          <ArticleTitle>{item.title}</ArticleTitle>
-        </div>
-      </a>
+      <Link href={`/blog/${item.id}`}>
+        <a className="latest-articles-item__link">
+          <div className="latest-articles-item-foreground">
+            <ArticlePostedDate timestamp={item.createdAt} />
+            <ArticleTitle>{item.title}</ArticleTitle>
+          </div>
+        </a>
+      </Link>
     </article>
   )
 }
@@ -55,9 +58,11 @@ const ArticleTitle = ({ children }) => {
 const Footer = () => {
   return (
     <footer className="latest-articles-footer">
-      <a className="latest-articles-more__link" href="/blog">
-        {"more ＞"}
-      </a>
+      <Link href="/blog">
+        <a className="latest-articles-more__link">
+          {"more ＞"}
+        </a>
+      </Link>
     </footer>
   )
 }

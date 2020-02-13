@@ -21,7 +21,7 @@ import "../styles/index.scss"
 
 class Component extends React.Component {
   static async getInitialProps({ store: { dispatch } }) {
-    return Promise.all([
+    await Promise.all([
       // トップ画像の一覧を取得する
       fetchApi(dispatch, {
         method: "get",
