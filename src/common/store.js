@@ -1,10 +1,14 @@
 import { createStore, combineReducers } from "redux"
-import commonReducer from "./reducer"
+import commonReducers from "./reducer"
 
-export const initialize = (reducer, initialState) => {
+export const initialize = (reducers, isServer, initialState) => {
   const combinedReducer = combineReducers({
-    common: commonReducer,
-    ...reducer
+    common: commonReducers,
+    ...reducers
   })
-  return createStore(combinedReducer, initialState)
+  const store = createStore(combinedReducer, initialState)
+  if (isServer && typeof window === 'undefined') {
+    return store
+  }
+  return window.store = store
 }

@@ -7,10 +7,9 @@ import { initialize as initializeStore } from "../store"
 import "../../styles/common.scss"
 
 export default (Component, reducer) => {
-  const BasePage = ({ initialState, ...props }) => {
-    const store = initializeStore(reducer, initialState)
-    Object.assign(Globals, props.globals)
-    initializeApi(Globals.env)
+  const BasePage = ({ initialState, isServer, globals, ...props }) => {
+    const store = initializeStore(reducer, isServer, initialState)
+    Object.assign(Globals, globals)
     return (
       <Provider store={store}>
         <div>
@@ -35,29 +34,32 @@ export default (Component, reducer) => {
     )
   }
   BasePage.getInitialProps = async context => {
-    const store = initializeStore(reducer)
+    const isServer = !!context.req
+    const store = initializeStore(reducer, isServer)
     // グローバル変数を初期化する
     let globals
-    if (context.req) {
+    if (isServer) {
       globals = {
         env: context.req.env
       }
     } else {
-      globals = { ...Globals }
+      globals = Object.assign({}, Globals)
     }
     initializeApi(globals.env)
-    // コンポーネントを初期化する
+    // ページを初期化する
     const props = Component.getInitialProps
       ? await Component.getInitialProps({
           ...context,
           store,
+          isServer,
           globals
         })
       : {}
     return {
       ...props,
-      globals,
-      initialState: store.getState()
+      initialState: store.getState(),
+      isServer,
+      globals
     }
   }
   return BasePage

@@ -22,39 +22,17 @@ export default class extends React.Component {
     return Math.ceil(pagination.size / pagination.perPage)
   }
 
-  /**
-   * 指定したページに切り替える
-   * @param pageNumber ページ番号
-   */
-  movePage(pageNumber) {
-    const { pagination, onMovePage } = this.props
-    onMovePage({
-      ...pagination,
-      offset: getOffsetByPageNumber(pageNumber, pagination.perPage)
-    })
-    // URLにページ番号のクエリを書き加える
-    history && history.pushState("", "", `?page=${pageNumber}`)
-  }
-
   render() {
     return (
       <ul className="pagination">
         <PagePrevButton
           pageNumber={this.currentPageNumber - 1}
           disabled={this.currentPageNumber === 1}
-          onClick={e => {
-            e.preventDefault()
-            this.movePage(this.currentPageNumber - 1)
-          }}
         />
         {this.renderPageNumberButtons()}
         <PageNextButton
           pageNumber={this.currentPageNumber + 1}
           disabled={this.currentPageNumber === this.lastPageNumber}
-          onClick={e => {
-            e.preventDefault()
-            this.movePage(this.currentPageNumber + 1)
-          }}
         />
       </ul>
     )
@@ -88,10 +66,6 @@ export default class extends React.Component {
           key={pageNumber}
           pageNumber={pageNumber}
           isActive={pageNumber === this.currentPageNumber}
-          onClick={e => {
-            e.preventDefault()
-            this.movePage(pageNumber)
-          }}
         />
       )
     }
@@ -99,12 +73,12 @@ export default class extends React.Component {
   }
 }
 
-const PagePrevButton = ({ pageNumber, disabled, onClick }) => {
+const PagePrevButton = ({ pageNumber, disabled }) => {
   return (
     <li className={`pagination-item--prev ${disabled && "disabled"}`}>
       {!disabled && (
         <Link href={`?page=${pageNumber}`}>
-          <a className="pagination-item__link" onClick={onClick}>
+          <a className="pagination-item__link">
             &lt;
           </a>
         </Link>
@@ -113,12 +87,12 @@ const PagePrevButton = ({ pageNumber, disabled, onClick }) => {
   )
 }
 
-const PageNextButton = ({ pageNumber, disabled, onClick }) => {
+const PageNextButton = ({ pageNumber, disabled }) => {
   return (
     <li className={`pagination-item--next ${disabled && "disabled"}`}>
       {!disabled && (
         <Link href={`?page=${pageNumber}`}>
-          <a className="pagination-item__link" onClick={onClick}>
+          <a className="pagination-item__link">
             &gt;
           </a>
         </Link>
@@ -127,11 +101,11 @@ const PageNextButton = ({ pageNumber, disabled, onClick }) => {
   )
 }
 
-const PageNumberButton = ({ pageNumber, isActive, onClick }) => {
+const PageNumberButton = ({ pageNumber, isActive }) => {
   return (
     <li className={`pagination-item ${isActive && "active"}`}>
       <Link href={`?page=${pageNumber}`}>
-        <a className="pagination-item__link" onClick={onClick}>
+        <a className="pagination-item__link">
           {pageNumber}
         </a>
       </Link>

@@ -7,7 +7,7 @@ import Footer from "../common/components/Footer"
 import basePage from "../common/hocs/basePage"
 import { createPagination } from "../common/models"
 import WorkList from "../modules/works/components/WorkList"
-import { loadWorks, movePage } from "../modules/works/actions"
+import { loadWorks, setPage } from "../modules/works/actions"
 import { MODULE_NAME, PER_PAGE } from "../modules/works/models"
 import reducer from "../modules/works/reducer"
 import "../styles/works.scss"
@@ -21,7 +21,7 @@ class Component extends React.Component {
         url: `/works`
       })
       dispatch(loadWorks(response.data))
-      dispatch(movePage(createPagination(response.data, PER_PAGE, query.page)))
+      dispatch(setPage(createPagination(response.data, PER_PAGE, query.page)))
     } catch (error) {
       console.error(error)
     }

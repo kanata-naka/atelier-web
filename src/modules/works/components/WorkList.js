@@ -2,12 +2,11 @@ import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import Pagination from "../../../common/components/Pagination"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
-import { decorateText, createLinkFromUrl } from "../../../utils/stringUtil"
-import { movePage } from "../actions"
+import { decorateText } from "../../../utils/stringUtil"
 import { MODULE_NAME, PAGE_NUMBER_DISPLAY_MAX_RANGE } from "../models"
 import { getWorksByPage } from "../reducer"
 
-const WorkList = ({ worksByPage, pagination, movePage }) => {
+const WorkList = ({ worksByPage, pagination }) => {
   return (
     <div>
       <section className="works-list">
@@ -17,7 +16,6 @@ const WorkList = ({ worksByPage, pagination, movePage }) => {
       </section>
       <Pagination
         pagination={pagination}
-        onMovePage={movePage}
         maxRange={PAGE_NUMBER_DISPLAY_MAX_RANGE}
       />
     </div>
@@ -80,12 +78,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators(
-    {
-      movePage
-    },
-    dispatch
-  )
+  ...bindActionCreators({}, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkList)

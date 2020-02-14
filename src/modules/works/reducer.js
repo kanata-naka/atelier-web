@@ -1,6 +1,6 @@
 import { handleActions } from "redux-actions"
 import { createSelector } from "reselect"
-import { loadWorks, movePage } from "./actions"
+import { loadWorks, setPage } from "./actions"
 
 const initialState = {
   // 作品一覧
@@ -16,7 +16,7 @@ const handlers = {
       works: action.payload
     }
   }),
-  [movePage]: (state, action) => ({
+  [setPage]: (state, action) => ({
     ...state,
     ...{
       pagination: action.payload
