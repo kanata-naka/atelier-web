@@ -78,9 +78,7 @@ const PagePrevButton = ({ pageNumber, disabled }) => {
     <li className={`pagination-item--prev ${disabled && "disabled"}`}>
       {!disabled && (
         <Link href={`?page=${pageNumber}`}>
-          <a className="pagination-item__link">
-            &lt;
-          </a>
+          <a className="pagination-item__link">&lt;</a>
         </Link>
       )}
     </li>
@@ -92,9 +90,7 @@ const PageNextButton = ({ pageNumber, disabled }) => {
     <li className={`pagination-item--next ${disabled && "disabled"}`}>
       {!disabled && (
         <Link href={`?page=${pageNumber}`}>
-          <a className="pagination-item__link">
-            &gt;
-          </a>
+          <a className="pagination-item__link">&gt;</a>
         </Link>
       )}
     </li>
@@ -105,9 +101,7 @@ const PageNumberButton = ({ pageNumber, isActive }) => {
   return (
     <li className={`pagination-item ${isActive && "active"}`}>
       <Link href={`?page=${pageNumber}`}>
-        <a className="pagination-item__link">
-          {pageNumber}
-        </a>
+        <a className="pagination-item__link">{pageNumber}</a>
       </Link>
     </li>
   )

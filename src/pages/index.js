@@ -9,30 +9,22 @@ import LatestArticles from "../modules/home/components/LatestArticles"
 import About from "../modules/home/components/About"
 import RecentWorks from "../modules/home/components/RecentWorks"
 import RecentArts from "../modules/home/components/RecentArts"
-import {
-  loadTopImages,
-  loadLatestArticles,
-  loadRecentWorks,
-  loadRecentArts
-} from "../modules/home/actions"
-import { MODULE_NAME } from "../modules/home/models"
-import reducer from "../modules/home/reducer"
 import "../styles/index.scss"
 
 class Component extends React.Component {
   static async getInitialProps({ store: { dispatch } }) {
-    await Promise.all([
+    const result = await Promise.all([
       // トップ画像の一覧を取得する
       fetchApi(dispatch, {
         method: "get",
         url: `/top_images`
       })
         .then(async response => {
-          dispatch(loadTopImages(response.data))
+          return response.data
         })
         .catch(error => {
           console.error(error)
-          dispatch(loadTopImages([]))
+          return []
         }),
       // 最新記事の一覧を取得する
       fetchApi(dispatch, {
@@ -41,11 +33,11 @@ class Component extends React.Component {
         params: { max: 3 }
       })
         .then(async response => {
-          dispatch(loadLatestArticles(response.data))
+          return response.data
         })
         .catch(error => {
           console.error(error)
-          dispatch(loadLatestArticles([]))
+          return []
         }),
       // 最近の作品一覧を取得する
       fetchApi(dispatch, {
@@ -54,11 +46,11 @@ class Component extends React.Component {
         params: { max: 6 }
       })
         .then(async response => {
-          dispatch(loadRecentWorks(response.data))
+          return response.data
         })
         .catch(error => {
           console.error(error)
-          dispatch(loadRecentWorks([]))
+          return []
         }),
       // 最近のイラスト一覧を取得する
       fetchApi(dispatch, {
@@ -67,35 +59,40 @@ class Component extends React.Component {
         params: { max: 6 }
       })
         .then(async response => {
-          dispatch(loadRecentArts(response.data))
+          return response.data
         })
         .catch(error => {
           console.error(error)
-          dispatch(loadRecentArts([]))
+          return []
         })
     ])
+    return {
+      topImages: result[0],
+      latestArticles: result[1],
+      recentWorks: result[2],
+      recentArts: result[3]
+    }
   }
 
   render() {
+    const { topImages, latestArticles, recentWorks, recentArts } = this.props
     return (
       <div>
         <Head>
           <title>カナタノアトリエ</title>
         </Head>
         <Header />
-        <Carousel />
+        <Carousel items={topImages} />
         <div className="dashboard">
           <About />
-          <LatestArticles />
+          <LatestArticles items={latestArticles} />
         </div>
-        <RecentWorks />
-        <RecentArts />
+        <RecentWorks items={recentWorks} />
+        <RecentArts items={recentArts} />
         <Footer />
       </div>
     )
   }
 }
 
-export default basePage(Component, {
-  [MODULE_NAME]: reducer
-})
+export default basePage(Component, {})

@@ -1,12 +1,9 @@
 import { useState, useRef, useEffect } from "react"
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
-import { MODULE_NAME } from "../models"
 
 // 画像を切り替える間隔（ミリ秒）
 const SWITCH_ITEM_INTERVAL = 7000
 
-const Carousel = ({ items }) => {
+export default ({ items }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const indexRef = useRef(currentIndex)
   useEffect(() => {
@@ -105,13 +102,3 @@ const NavigationItem = ({ item, isActive, onClick }) => {
       }}></li>
   )
 }
-
-const mapStateToProps = state => ({
-  items: state[MODULE_NAME].topImages
-})
-
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({}, dispatch)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Carousel)

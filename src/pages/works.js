@@ -4,30 +4,37 @@ import { fetchApi } from "../common/api"
 import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
+import Pagination from "../common/components/Pagination"
 import basePage from "../common/hocs/basePage"
 import { createPagination } from "../common/models"
 import WorkList from "../modules/works/components/WorkList"
-import { loadWorks, setPage } from "../modules/works/actions"
-import { MODULE_NAME, PER_PAGE } from "../modules/works/models"
-import reducer from "../modules/works/reducer"
+import {
+  PER_PAGE,
+  PAGE_NUMBER_DISPLAY_MAX_RANGE,
+  getWorksByPage
+} from "../modules/works/models"
 import "../styles/works.scss"
 
 class Component extends React.Component {
   static async getInitialProps({ store: { dispatch }, query }) {
-    // WORKSの作品一覧を取得する
+    // 作品一覧を取得する
     try {
       const response = await fetchApi(dispatch, {
         method: "get",
         url: `/works`
       })
-      dispatch(loadWorks(response.data))
-      dispatch(setPage(createPagination(response.data, PER_PAGE, query.page)))
+      const pagination = createPagination(response.data, PER_PAGE, query.page)
+      return {
+        works: getWorksByPage(response.data, pagination),
+        pagination
+      }
     } catch (error) {
       console.error(error)
     }
   }
 
   render() {
+    const { works, pagination } = this.props
     return (
       <div>
         <Head>
@@ -35,13 +42,15 @@ class Component extends React.Component {
         </Head>
         <Header />
         <PageHeading>WORKS</PageHeading>
-        <WorkList />
+        <WorkList items={works} />
+        <Pagination
+          pagination={pagination}
+          maxRange={PAGE_NUMBER_DISPLAY_MAX_RANGE}
+        />
         <Footer />
       </div>
     )
   }
 }
 
-export default basePage(Component, {
-  [MODULE_NAME]: reducer
-})
+export default basePage(Component, {})

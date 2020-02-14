@@ -1,10 +1,7 @@
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
 import Link from "next/link"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
-import { MODULE_NAME } from "../models"
 
-const LatestArticles = ({ items }) => {
+export default ({ items }) => {
   return (
     <section className="latest-articles">
       {items.map((item, index) => (
@@ -64,13 +61,3 @@ const Footer = () => {
     </footer>
   )
 }
-
-const mapStateToProps = state => ({
-  items: state[MODULE_NAME].latestArticles
-})
-
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({}, dispatch)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(LatestArticles)

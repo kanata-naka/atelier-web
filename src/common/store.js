@@ -7,8 +7,11 @@ export const initialize = (reducers, isServer, initialState) => {
     ...reducers
   })
   const store = createStore(combinedReducer, initialState)
-  if (isServer && typeof window === 'undefined') {
+  if (isServer && typeof window === "undefined") {
     return store
   }
-  return window.store = store
+  if (!window.store) {
+    window.store = store
+  }
+  return window.store
 }

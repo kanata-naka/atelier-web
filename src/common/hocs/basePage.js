@@ -4,7 +4,6 @@ import Head from "next/head"
 import { initializeApi } from "../api"
 import { Globals } from "../models"
 import { initialize as initializeStore } from "../store"
-import "../../styles/common.scss"
 
 export default (Component, reducer) => {
   const BasePage = ({ initialState, isServer, globals, ...props }) => {

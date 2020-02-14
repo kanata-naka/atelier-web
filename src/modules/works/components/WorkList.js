@@ -1,24 +1,13 @@
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
-import Pagination from "../../../common/components/Pagination"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
 import { decorateText } from "../../../utils/stringUtil"
-import { MODULE_NAME, PAGE_NUMBER_DISPLAY_MAX_RANGE } from "../models"
-import { getWorksByPage } from "../reducer"
 
-const WorkList = ({ worksByPage, pagination }) => {
+export default ({ items }) => {
   return (
-    <div>
-      <section className="works-list">
-        {worksByPage.map((item, index) => (
-          <WorkListItem key={index} item={item} />
-        ))}
-      </section>
-      <Pagination
-        pagination={pagination}
-        maxRange={PAGE_NUMBER_DISPLAY_MAX_RANGE}
-      />
-    </div>
+    <section className="works-list">
+      {items.map((item, index) => (
+        <WorkListItem key={index} item={item} />
+      ))}
+    </section>
   )
 }
 
@@ -71,14 +60,3 @@ const WorkListItemImage = ({ image }) => {
     />
   )
 }
-
-const mapStateToProps = state => ({
-  worksByPage: getWorksByPage(state[MODULE_NAME]),
-  pagination: state[MODULE_NAME].pagination
-})
-
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({}, dispatch)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(WorkList)

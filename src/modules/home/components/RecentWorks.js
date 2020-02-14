@@ -1,10 +1,7 @@
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
 import Link from "next/link"
 import { SectionHeading } from "../../../common/components/elements"
-import { MODULE_NAME } from "../models"
 
-const RecentWorks = ({ items }) => {
+export default ({ items }) => {
   return (
     <section className="recent-works">
       <SectionHeading>RECENT WORKS</SectionHeading>
@@ -67,13 +64,3 @@ const RecentWorkItemForeground = ({ url, children, ...props }) => {
 const RecentWorkItemTitle = ({ children }) => {
   return <h3 className="recent-works-item-title">{children}</h3>
 }
-
-const mapStateToProps = state => ({
-  items: state[MODULE_NAME].recentWorks
-})
-
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({}, dispatch)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(RecentWorks)
