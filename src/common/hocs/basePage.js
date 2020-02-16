@@ -2,6 +2,7 @@ import React from "react"
 import { Provider } from "react-redux"
 import Head from "next/head"
 import { initializeApi } from "../api"
+import { initializeFirebase } from "../firebase"
 import { Globals } from "../models"
 import { initialize as initializeStore } from "../store"
 
@@ -45,6 +46,7 @@ export default (Component, reducer) => {
       globals = Object.assign({}, Globals)
     }
     initializeApi(globals.env)
+    initializeFirebase(globals.env)
     // ページを初期化する
     const props = Component.getInitialProps
       ? await Component.getInitialProps({

@@ -13,14 +13,15 @@ export const initializeApi = ({ API_BASE_URL, API_TIMEOUT }) => {
  * APIを呼び出す
  */
 export const fetchApi = async (dispatch, config) => {
-  dispatch(fetchStart({ config }))
-  try {
-    const response = await axios(config)
-    dispatch(fetchSucceeded({ response, config }))
-    return response
-  } catch (error) {
-    // 呼び出しに失敗した場合
-    dispatch(fetchFailed({ error, config }))
-    throw error
-  }
+  return { data: [] }
+  // dispatch(fetchStart({ config }))
+  // try {
+  //   const response = await axios(config)
+  //   dispatch(fetchSucceeded({ response, config }))
+  //   return response
+  // } catch (error) {
+  //   // 呼び出しに失敗した場合
+  //   dispatch(fetchFailed({ error, config }))
+  //   throw error
+  // }
 }

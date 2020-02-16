@@ -1,6 +1,7 @@
 import React from "react"
 import Head from "next/head"
 import { fetchApi } from "../common/api"
+import { callFunction } from "../common/firebase"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import basePage from "../common/hocs/basePage"
@@ -12,15 +13,16 @@ import RecentArts from "../modules/home/components/RecentArts"
 import "../styles/index.scss"
 
 class Component extends React.Component {
-  static async getInitialProps({ store: { dispatch } }) {
+  static async getInitialProps({ store: { dispatch }, globals }) {
     const result = await Promise.all([
       // トップ画像の一覧を取得する
-      fetchApi(dispatch, {
-        method: "get",
-        url: `/top_images`
+      callFunction({
+        dispatch,
+        name: "api-topImages-get",
+        globals
       })
-        .then(async response => {
-          return response.data
+        .then(async result => {
+          return result.data
         })
         .catch(error => {
           console.error(error)

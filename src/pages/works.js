@@ -38,7 +38,7 @@ class Component extends React.Component {
     return (
       <div>
         <Head>
-          <title>カナタノアトリエ</title>
+          <title>{"WORKS - カナタノアトリエ"}</title>
         </Head>
         <Header />
         <PageHeading>WORKS</PageHeading>

@@ -24,6 +24,6 @@ export default handleActions(
 )
 
 const updateFetching = (fetching, payload, isFetching) => {
-  const key = payload.config.key || payload.config.url
-  return { ...fetching, ...{ [key]: isFetching } }
+  const name = payload.config.name || payload.config.url
+  return { ...fetching, ...{ [name]: isFetching } }
 }
