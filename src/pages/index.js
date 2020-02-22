@@ -55,13 +55,14 @@ class Component extends React.Component {
           return []
         }),
       // 最近のイラスト一覧を取得する
-      fetchApi(dispatch, {
-        method: "get",
-        url: `/arts`,
-        params: { max: 6 }
+      callFunction({
+        dispatch,
+        name: "api-arts-get",
+        data: { limit: 6 },
+        globals
       })
-        .then(async response => {
-          return response.data
+        .then(async result => {
+          return result.data
         })
         .catch(error => {
           console.error(error)

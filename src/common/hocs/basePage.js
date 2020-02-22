@@ -10,6 +10,7 @@ export default (Component, reducer) => {
   const BasePage = ({ initialState, isServer, globals, ...props }) => {
     const store = initializeStore(reducer, isServer, initialState)
     Object.assign(Globals, globals)
+    initializeFirebase(Globals.env)
     return (
       <Provider store={store}>
         <div>

@@ -1,7 +1,7 @@
 import firebase from "firebase/app"
 import "firebase/functions"
 import { fetchStart, fetchSucceeded, fetchFailed } from "./actions"
-import { Globals } from "../common/models"
+import { Globals } from "./models"
 
 /**
  * Firebaseを初期化する
@@ -43,13 +43,11 @@ export const callFunction = async ({
       // ローカル環境の場合
       callable = firebase.functions().httpsCallable(name)
     } else {
-      console.log("region: ", env ? env.FIREBASE_REGION : Globals.env.FIREBASE_REGION)
       callable = firebase
         .app()
         .functions(env ? env.FIREBASE_REGION : Globals.env.FIREBASE_REGION)
         .httpsCallable(name)
     }
-    console.log("callable: ", callable)
     const result = await callable(data)
     dispatch(fetchSucceeded({ config: { name, data } }))
     return result
