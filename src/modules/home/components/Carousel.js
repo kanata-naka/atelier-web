@@ -30,6 +30,7 @@ export default ({ items }) => {
       clearInterval(currentIntervalIdRef.current)
     }
   }, [])
+  // ナビゲーションのアイコンをクリックした際の処理
   const handleNavItemClick = index => {
     if (currentIntervalIdRef.current) {
       clearInterval(currentIntervalIdRef.current)
