@@ -1,6 +1,5 @@
 import React from "react"
 import Head from "next/head"
-import { fetchApi } from "../common/api"
 import { callFunction } from "../common/firebase"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
@@ -29,10 +28,11 @@ class Component extends React.Component {
           return []
         }),
       // 最新記事の一覧を取得する
-      fetchApi(dispatch, {
-        method: "get",
-        url: `/articles`,
-        params: { max: 3 }
+      callFunction({
+        dispatch,
+        name: "api-articles-get",
+        data: { limit: 6 },
+        globals
       })
         .then(async response => {
           return response.data
@@ -42,10 +42,11 @@ class Component extends React.Component {
           return []
         }),
       // 最近の作品一覧を取得する
-      fetchApi(dispatch, {
-        method: "get",
-        url: `/works`,
-        params: { max: 6 }
+      callFunction({
+        dispatch,
+        name: "api-works-get",
+        data: { limit: 6 },
+        globals
       })
         .then(async response => {
           return response.data
@@ -54,7 +55,7 @@ class Component extends React.Component {
           console.error(error)
           return []
         }),
-      // 最近のイラスト一覧を取得する
+      // 最近のアート一覧を取得する
       callFunction({
         dispatch,
         name: "api-arts-get",

@@ -1,6 +1,5 @@
 import React from "react"
 import Head from "next/head"
-import { fetchApi } from "../common/api"
 import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
@@ -16,12 +15,13 @@ import {
 import "../styles/works.scss"
 
 class Component extends React.Component {
-  static async getInitialProps({ store: { dispatch }, query }) {
+  static async getInitialProps({ store: { dispatch }, query, globals }) {
     // 作品一覧を取得する
     try {
-      const response = await fetchApi(dispatch, {
-        method: "get",
-        url: `/works`
+      const response = await callFunction({
+        dispatch,
+        name: "api-works-get",
+        globals
       })
       const pagination = createPagination(response.data, PER_PAGE, query.page)
       return {

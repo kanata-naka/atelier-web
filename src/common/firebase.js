@@ -28,7 +28,7 @@ export const initializeFirebase = ({
 }
 
 /**
- * Firebase functionsの関数を実行する
+ * Firebase Functionsの関数を実行する
  */
 export const callFunction = async ({
   dispatch,
@@ -36,7 +36,7 @@ export const callFunction = async ({
   data,
   globals: { env }
 }) => {
-  dispatch(fetchStart({ config: { name, data } }))
+  dispatch(fetchStart({ name }))
   try {
     let callable
     if ((env ? env.ENVIRONMENT : Globals.env.ENVIRONMENT) !== "production") {
@@ -49,10 +49,10 @@ export const callFunction = async ({
         .httpsCallable(name)
     }
     const result = await callable(data)
-    dispatch(fetchSucceeded({ config: { name, data } }))
+    dispatch(fetchSucceeded({ name }))
     return result
   } catch (error) {
-    dispatch(fetchFailed({ config: { name, data } }))
+    dispatch(fetchFailed({ name }))
     throw error
   }
 }

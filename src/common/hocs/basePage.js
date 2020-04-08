@@ -1,7 +1,6 @@
 import React from "react"
 import { Provider } from "react-redux"
 import Head from "next/head"
-import { initializeApi } from "../api"
 import { initializeFirebase } from "../firebase"
 import { Globals } from "../models"
 import { initialize as initializeStore } from "../store"
@@ -9,6 +8,7 @@ import { initialize as initializeStore } from "../store"
 export default (Component, reducers) => {
   const BasePage = ({ initialState, isServer, globals, ...props }) => {
     const store = initializeStore(reducers, isServer, initialState)
+    // グローバル変数をマージする
     Object.assign(Globals, globals)
     initializeFirebase(Globals.env)
     return (
@@ -46,7 +46,6 @@ export default (Component, reducers) => {
     } else {
       globals = Object.assign({}, Globals)
     }
-    initializeApi(globals.env)
     initializeFirebase(globals.env)
     // ページを初期化する
     const props = Component.getInitialProps
