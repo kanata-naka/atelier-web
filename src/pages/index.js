@@ -28,12 +28,13 @@ class Component extends React.Component {
     // 最新記事の一覧を取得する
     let latestArticles = []
     // try {
-    //   latestArticles = await callFunction({
+    //   const response = await callFunction({
     //     dispatch,
     //     name: "api-articles-get",
     //     data: { limit: 6 },
     //     globals
-    //   }).data
+    //   })
+    //   latestArticles = response.data
     // } catch (error) {
     //   console.error(error)
     // }
