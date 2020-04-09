@@ -3,20 +3,12 @@
  */
 export const Globals = {}
 
-/**
- * ページネーションを作成する
- */
-export const createPagination = (items, perPage, pageNumber = 1) => {
-  return {
-    offset: getOffsetByPageNumber(pageNumber, perPage),
-    perPage,
-    size: items.length
-  }
+export const getItemsByPage = (items, page, perPage) => {
+  const offset = getOffsetByPage(page, perPage)
+  const itemsByPage = items.slice(offset, offset + perPage)
+  return [...itemsByPage]
 }
 
-/**
- * ページ番号から1件目のオフセットを取得する
- */
-export const getOffsetByPageNumber = (pageNumber, perPage) => {
-  return perPage * (pageNumber - 1)
+const getOffsetByPage = (page, perPage) => {
+  return perPage * (page - 1)
 }

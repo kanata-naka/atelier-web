@@ -10,8 +10,5 @@ export const initialize = (reducers, isServer, initialState) => {
   if (isServer && typeof window === "undefined") {
     return store
   }
-  if (!window.store) {
-    window.store = store
-  }
-  return window.store
+  return (window.store = store)
 }

@@ -5,17 +5,17 @@ export default () => {
     <section id="about" className="about">
       <SectionHeading>ABOUT</SectionHeading>
       <Description>
-        フリーのイラストレーター・漫画家「kanata（かなた）」のホームページです。
+        フリーのイラストレーター・漫画家「彼方ノナメ」のホームページです。
         <br />
         あああああああああああああああああああああ
       </Description>
-      <ProfileImage src="/images/profile-image.png" />
+      <ProfileImage url="/images/profile-image.png" />
       <AuthorName>kanata（かなた）</AuthorName>
       <SocialIcons
         items={[
           {
             name: "Twitter",
-            url: "https://twitter.com/kanata_fabiko",
+            url: "https://twitter.com/kanata_x2",
             imageUrl: "/images/twitter-icon.png"
           },
           {
@@ -35,7 +35,7 @@ export default () => {
         <br />
         ああああああああああああああああああああああ
       </Introduction>
-      <TwitterWidgets id="kanata_fabiko" />
+      <TwitterWidgets id="kanata_x2" />
     </section>
   )
 }
@@ -47,10 +47,10 @@ const Description = ({ children }) => {
 /**
  * プロフィール画像
  */
-const ProfileImage = ({ src }) => {
+const ProfileImage = ({ url }) => {
   return (
     <figure className="profile-image">
-      <img className="profile-image__image" alt="プロフィール画像" src={src} />
+      <img className="profile-image__image" alt="プロフィール画像" src={url} />
     </figure>
   )
 }

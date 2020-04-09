@@ -4,79 +4,57 @@ import Link from "next/link"
 /**
  * ページネーション
  */
-export default class extends React.Component {
-  /**
-   * 現在のページ番号
-   */
-  get currentPageNumber() {
-    const { pagination } = this.props
-    return pagination.offset / pagination.perPage + 1
-  }
+export default ({ pagination, maxRange }) => {
+  // 現在のページ
+  const currentPage = pagination.page
+  // 最後のページ
+  const lastPage = Math.ceil(pagination.total / pagination.perPage)
 
-  /**
-   * 最後のページ番号
-   */
-  get lastPageNumber() {
-    const { pagination } = this.props
-    return Math.ceil(pagination.size / pagination.perPage)
-  }
-
-  render() {
-    return (
-      <ul className="pagination">
-        <PagePrevButton
-          pageNumber={this.currentPageNumber - 1}
-          disabled={this.currentPageNumber === 1}
-        />
-        {this.renderPageNumberButtons()}
-        <PageNextButton
-          pageNumber={this.currentPageNumber + 1}
-          disabled={this.currentPageNumber === this.lastPageNumber}
-        />
-      </ul>
-    )
-  }
-
-  renderPageNumberButtons() {
-    const { maxRange } = this.props
-
+  const renderPageNumberButtons = () => {
     let first, last
-    if (this.lastPageNumber < maxRange) {
+    if (lastPage < maxRange) {
       first = 1
-      last = this.lastPageNumber
-    } else if (this.currentPageNumber <= Math.floor(maxRange / 2) + 1) {
+      last = lastPage
+    } else if (currentPage <= Math.floor(maxRange / 2) + 1) {
       first = 1
-      last = Math.min(maxRange, this.lastPageNumber)
-    } else if (
-      this.currentPageNumber >=
-      this.lastPageNumber - Math.floor(maxRange / 2)
-    ) {
-      first = Math.max(1, this.lastPageNumber - maxRange + 1)
-      last = this.lastPageNumber
+      last = Math.min(maxRange, lastPage)
+    } else if (currentPage >= lastPage - Math.floor(maxRange / 2)) {
+      first = Math.max(1, lastPage - maxRange + 1)
+      last = lastPage
     } else {
-      first = this.currentPageNumber - Math.floor(maxRange / 2)
-      last = this.currentPageNumber + Math.floor(maxRange / 2)
+      first = currentPage - Math.floor(maxRange / 2)
+      last = currentPage + Math.floor(maxRange / 2)
     }
-
     const pageNumberButtons = []
-    for (let pageNumber = first; pageNumber <= last; pageNumber++) {
+    for (let page = first; page <= last; page++) {
       pageNumberButtons.push(
         <PageNumberButton
-          key={pageNumber}
-          pageNumber={pageNumber}
-          isActive={pageNumber === this.currentPageNumber}
+          key={page}
+          page={page}
+          isActive={page === currentPage}
         />
       )
     }
     return pageNumberButtons
   }
+
+  return (
+    <ul className="pagination">
+      <PagePrevButton page={currentPage - 1} disabled={currentPage === 1} />
+      {renderPageNumberButtons()}
+      <PageNextButton
+        page={currentPage + 1}
+        disabled={currentPage === lastPage}
+      />
+    </ul>
+  )
 }
 
-const PagePrevButton = ({ pageNumber, disabled }) => {
+const PagePrevButton = ({ page, disabled }) => {
   return (
     <li className={`pagination-item--prev ${disabled && "disabled"}`}>
       {!disabled && (
-        <Link href={`?page=${pageNumber}`}>
+        <Link href={`?page=${page}`}>
           <a className="pagination-item__link">&lt;</a>
         </Link>
       )}
@@ -84,24 +62,24 @@ const PagePrevButton = ({ pageNumber, disabled }) => {
   )
 }
 
-const PageNextButton = ({ pageNumber, disabled }) => {
+const PageNumberButton = ({ page, isActive }) => {
   return (
-    <li className={`pagination-item--next ${disabled && "disabled"}`}>
-      {!disabled && (
-        <Link href={`?page=${pageNumber}`}>
-          <a className="pagination-item__link">&gt;</a>
-        </Link>
-      )}
+    <li className={`pagination-item ${isActive && "active"}`}>
+      <Link href={`?page=${page}`}>
+        <a className="pagination-item__link">{page}</a>
+      </Link>
     </li>
   )
 }
 
-const PageNumberButton = ({ pageNumber, isActive }) => {
+const PageNextButton = ({ page, disabled }) => {
   return (
-    <li className={`pagination-item ${isActive && "active"}`}>
-      <Link href={`?page=${pageNumber}`}>
-        <a className="pagination-item__link">{pageNumber}</a>
-      </Link>
+    <li className={`pagination-item--next ${disabled && "disabled"}`}>
+      {!disabled && (
+        <Link href={`?page=${page}`}>
+          <a className="pagination-item__link">&gt;</a>
+        </Link>
+      )}
     </li>
   )
 }

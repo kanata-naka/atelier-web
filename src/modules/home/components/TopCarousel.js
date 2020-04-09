@@ -43,7 +43,7 @@ export default ({ items }) => {
   }
   return (
     <section className="top-carousel">
-      <CarouselList items={items} currentIndex={currentIndex} />
+      <TopCarouselList items={items} currentIndex={currentIndex} />
       <Navigation
         items={items}
         currentIndex={currentIndex}
@@ -53,11 +53,11 @@ export default ({ items }) => {
   )
 }
 
-const CarouselList = ({ items, currentIndex }) => {
+const TopCarouselList = ({ items, currentIndex }) => {
   return (
     <ul className="top-carousel-list">
       {items.map((item, index) => (
-        <CarouselListItem
+        <TopCarouselListItem
           key={index}
           item={item}
           isActive={index === currentIndex}
@@ -67,12 +67,12 @@ const CarouselList = ({ items, currentIndex }) => {
   )
 }
 
-const CarouselListItem = ({ item, isActive }) => {
+const TopCarouselListItem = ({ item, isActive }) => {
   return (
     <li
       className="top-carousel-list-item"
       style={{
-        backgroundImage: `url(${item.imageUrl})`,
+        backgroundImage: `url(${item.image.url})`,
         ...(isActive ? { opacity: 1 } : {})
       }}></li>
   )
@@ -99,7 +99,7 @@ const NavigationItem = ({ item, isActive, onClick }) => {
       className={"top-carousel-nav-item " + (isActive ? "active" : "")}
       onClick={onClick}
       style={{
-        backgroundImage: `url(${item.thumbnailImageUrl})`
+        backgroundImage: `url(${item.thumbnailImage.url})`
       }}></li>
   )
 }

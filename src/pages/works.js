@@ -1,16 +1,16 @@
 import React from "react"
 import Head from "next/head"
+import { callFunction } from "../common/firebase"
 import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import Pagination from "../common/components/Pagination"
 import basePage from "../common/hocs/basePage"
-import { createPagination } from "../common/models"
+import { getItemsByPage } from "../common/models"
 import WorkList from "../modules/works/components/WorkList"
 import {
   PER_PAGE,
-  PAGE_NUMBER_DISPLAY_MAX_RANGE,
-  getWorksByPage
+  PAGE_NUMBER_DISPLAY_MAX_RANGE
 } from "../modules/works/models"
 import "../styles/works.scss"
 
@@ -23,9 +23,14 @@ class Component extends React.Component {
         name: "api-works-get",
         globals
       })
-      const pagination = createPagination(response.data, PER_PAGE, query.page)
+      // ページネーションを作成する
+      const pagination = {
+        page: query.page,
+        perPage: PER_PAGE,
+        total: response.data.length
+      }
       return {
-        works: getWorksByPage(response.data, pagination),
+        items: getItemsByPage(response.data, query.page, PER_PAGE),
         pagination
       }
     } catch (error) {
@@ -34,7 +39,8 @@ class Component extends React.Component {
   }
 
   render() {
-    const { works, pagination } = this.props
+    const { items, pagination } = this.props
+    console.log(this.props)
     return (
       <div>
         <Head>
@@ -42,7 +48,7 @@ class Component extends React.Component {
         </Head>
         <Header />
         <PageHeading>WORKS</PageHeading>
-        <WorkList items={works} />
+        <WorkList items={items} />
         <Pagination
           pagination={pagination}
           maxRange={PAGE_NUMBER_DISPLAY_MAX_RANGE}
