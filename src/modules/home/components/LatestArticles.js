@@ -33,7 +33,8 @@ const ArticleBackground = ({ item }) => {
     <div
       className="latest-articles-item-background"
       style={{
-        backgroundImage: `url(${item.top && item.top.url || "/images/no-image.png"})`
+        backgroundImage: `url(${(item.topImage && item.topImage.url) ||
+          "/images/no-image.png"})`
       }}></div>
   )
 }

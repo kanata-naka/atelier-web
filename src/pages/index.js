@@ -13,15 +13,15 @@ import "../styles/index.scss"
 
 class Component extends React.Component {
   static async getInitialProps({ store: { dispatch }, globals }) {
-    // トップ絵の一覧を取得する
-    let tops = []
+    // トップ画像の一覧を取得する
+    let topImages = []
     try {
       const response = await callFunction({
         dispatch,
-        name: "api-tops-get",
+        name: "api-topImages-get",
         globals
       })
-      tops = response.data
+      topImages = response.data
     } catch (error) {
       console.error(error)
     }
@@ -65,7 +65,7 @@ class Component extends React.Component {
       console.error(error)
     }
     return {
-      tops,
+      topImages,
       latestArticles,
       recentWorks,
       recentArts
@@ -73,14 +73,14 @@ class Component extends React.Component {
   }
 
   render() {
-    const { tops, latestArticles, recentWorks, recentArts } = this.props
+    const { topImages, latestArticles, recentWorks, recentArts } = this.props
     return (
       <div>
         <Head>
           <title>カナタノアトリエ</title>
         </Head>
         <Header />
-        <TopCarousel items={tops} />
+        <TopCarousel items={topImages} />
         <div className="dashboard">
           <About />
           <LatestArticles items={latestArticles} />
