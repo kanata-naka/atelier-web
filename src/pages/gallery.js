@@ -6,12 +6,13 @@ import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import basePage from "../common/hocs/basePage"
+import TagsInfo from "../modules/gallery/components/TagsInfo"
 import ArtScroll from "../modules/gallery/components/ArtScroll"
 import GalleryModal from "../modules/gallery/components/GalleryModal"
 import { LIMIT } from "../modules/gallery/models"
 import "../styles/gallery.scss"
 
-const Component = ({ item, items }) => {
+const Component = ({ item, allTagsInfo, items }) => {
   useEffect(() => {
     if (item) {
       GalleryModal.open(item)
@@ -30,6 +31,7 @@ const Component = ({ item, items }) => {
       </Head>
       <Header />
       <PageHeading>GALLERY</PageHeading>
+      {allTagsInfo && <TagsInfo tagsInfo={allTagsInfo} />}
       {item && <GalleryModal.Component onClose={onClose} />}
       {items && <ArtScroll items={items} />}
       <Footer />
@@ -52,6 +54,22 @@ Component.getInitialProps = async ({ store: { dispatch }, query, globals }) => {
       item: response.data
     }
   } else {
+    // 全てのタグとその件数を取得する
+    let allTagsInfo = {}
+    try {
+      const response = await callFunction({
+        dispatch,
+        name: "api-arts-getAllTagsInfo",
+        data: {},
+        globals
+      })
+      allTagsInfo = response.data
+      console.log("allTagsInfo", allTagsInfo)
+    } catch (error) {
+      console.error(error)
+    }
+    // イラスト一覧（最初の${LIMIT}件）を取得する
+    let items = []
     try {
       const response = await callFunction({
         dispatch,
@@ -61,11 +79,12 @@ Component.getInitialProps = async ({ store: { dispatch }, query, globals }) => {
         },
         globals
       })
-      return {
-        items: response.data.result
-      }
+      items = response.data.result
     } catch (error) {
       console.error(error)
+    }
+    return {
+      allTagsInfo, items
     }
   }
 }

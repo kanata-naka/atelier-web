@@ -2,6 +2,78 @@
 @import "common";
 @import "gallery-modal";
 
+.tags-info {
+  position: relative;
+  margin: 12px;
+  border: 1px solid #efefef;
+  height: 48px;
+  overflow: hidden;
+
+  &.expanded {
+    height: auto;
+  }
+
+  &-foreground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+    pointer-events: none;
+  }
+
+  &.expanded &-foreground {
+    background: none;
+  }
+
+  &-slide-button {
+    position: absolute;
+    color: #5F569A;
+    bottom: 0;
+    width: 100%;
+
+    &__link {
+      display: block;
+      padding-top: 12px;
+      text-align: center;
+      text-decoration: none;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.tag-list {
+  position: relative;
+  padding: 18px 10px 20px 18px;
+
+  &-item {
+    display: inline-block;
+    margin: 0 8px 8px 0;
+
+    &__link {
+      display: block;
+      text-decoration: none;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .tag-name {
+
+  }
+
+  .tag-count {
+    color: gray;
+    font-size: 0.7em;
+  }
+}
+
 .art-scroll {
 
   &-container {
@@ -29,9 +101,14 @@
     }
 
     &-background {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      bottom: 0;
       left: 0;
       position: absolute;
       top: 0;
+      right: 0;
     }
 
     &__link {

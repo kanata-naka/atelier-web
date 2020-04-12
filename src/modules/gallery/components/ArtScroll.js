@@ -121,7 +121,7 @@ const ArtScrollItem = ({ item }) => {
 const ArtScrollItemBackground = ({ image }) => {
   return (
     <div
-      className="recent-arts-item-background"
+      className="art-scroll-item-background"
       style={{
         backgroundImage: `url(${image.url})`
       }}></div>
@@ -131,7 +131,7 @@ const ArtScrollItemBackground = ({ image }) => {
 const ArtScrollItemForeground = ({ url, onClick, children, ...props }) => {
   return (
     <Link href={url}>
-      <a className="recent-arts-item__link" onClick={onClick}>
+      <a className="art-scroll-item__link" onClick={onClick}>
         <div {...props}>{children}</div>
       </a>
     </Link>
