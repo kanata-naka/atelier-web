@@ -84,7 +84,8 @@ Component.getInitialProps = async ({ store: { dispatch }, query, globals }) => {
       console.error(error)
     }
     return {
-      allTagsInfo, items
+      allTagsInfo,
+      items
     }
   }
 }
