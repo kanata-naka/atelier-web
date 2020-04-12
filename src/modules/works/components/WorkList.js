@@ -3,7 +3,7 @@ import { decorateText } from "../../../utils/stringUtil"
 
 export default ({ items }) => {
   return (
-    <section className="works-list">
+    <section className="work-list">
       {items.map((item, index) => (
         <WorkListItem key={index} item={item} />
       ))}
@@ -13,11 +13,11 @@ export default ({ items }) => {
 
 const WorkListItem = ({ item }) => {
   return (
-    <article id={item.id} className="works-list-item">
+    <article id={item.id} className="work-list-item">
       <WorkListItemTitle>{item.title}</WorkListItemTitle>
       <WorkListItemPostedDate timestamp={item.createdAt} />
-      <div className="works-list-item-row">
-        <div className="works-list-item-row__left-column">
+      <div className="work-list-item-row">
+        <div className="work-list-item-row__left-column">
           <WorkListItemDescription>
             <span
               dangerouslySetInnerHTML={{
@@ -26,7 +26,7 @@ const WorkListItem = ({ item }) => {
             />
           </WorkListItemDescription>
         </div>
-        <div className="works-list-item-row__right-column">
+        <div className="work-list-item-row__right-column">
           <WorkListItemImage image={item.images && item.images[0]} />
         </div>
       </div>
@@ -35,12 +35,12 @@ const WorkListItem = ({ item }) => {
 }
 
 const WorkListItemTitle = ({ children }) => {
-  return <h3 className="works-list-item-title">{children}</h3>
+  return <h3 className="work-list-item-title">{children}</h3>
 }
 
 const WorkListItemPostedDate = ({ timestamp }) => {
   return (
-    <div className="works-list-item-date">
+    <div className="work-list-item-date">
       <i className="far fa-clock"></i>
       &nbsp;
       {formatDateFromUnixTimestamp(timestamp)}
@@ -49,13 +49,13 @@ const WorkListItemPostedDate = ({ timestamp }) => {
 }
 
 const WorkListItemDescription = ({ children }) => {
-  return <p className="works-list-item-description">{children}</p>
+  return <p className="work-list-item-description">{children}</p>
 }
 
 const WorkListItemImage = ({ image }) => {
   return (
     <img
-      className="works-list-item-image"
+      className="work-list-item-image"
       src={image ? image.url : "/images/no-image.png"}
     />
   )

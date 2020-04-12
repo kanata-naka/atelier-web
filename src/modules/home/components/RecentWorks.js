@@ -28,7 +28,7 @@ const RecentWorkItem = ({ item, isLast }) => {
             ? "recent-works-item-foreground--more"
             : "recent-works-item-foreground"
         }
-        url={isLast ? "/works" : `/works#${item.id}`}>
+        url={isLast ? "/works" : `/works/${item.id}`}>
         {isLast ? (
           <div className="recent-works-more">{"more ＞"}</div>
         ) : (

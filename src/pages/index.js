@@ -47,11 +47,11 @@ class Component extends React.Component {
         data: { limit: 6 },
         globals
       })
-      recentWorks = response.data
+      recentWorks = response.data.result
     } catch (error) {
       console.error(error)
     }
-    // 最近のアート一覧を取得する
+    // 最近のイラスト一覧を取得する
     let recentArts = []
     try {
       const response = await callFunction({
@@ -60,7 +60,7 @@ class Component extends React.Component {
         data: { limit: 6 },
         globals
       })
-      recentArts = response.data
+      recentArts = response.data.result
     } catch (error) {
       console.error(error)
     }

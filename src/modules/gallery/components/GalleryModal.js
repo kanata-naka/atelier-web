@@ -6,7 +6,7 @@ import { decorateText } from "../../../utils/stringUtil"
 Modal.setAppElement("#__next")
 
 // モーダルの実体
-const Component = () => {
+const Component = ({ onClose }) => {
   const [isOpen, setOpen] = useState(false)
   const [item, setItem] = useState({ images: [] })
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -22,6 +22,9 @@ const Component = () => {
 
   // モーダルを閉じる
   const close = useCallback(() => {
+    if (onClose) {
+      onClose(item)
+    }
     setOpen(false)
   })
 

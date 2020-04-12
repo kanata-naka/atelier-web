@@ -4,25 +4,34 @@ const express = require("express")
 
 const dev = process.env.NODE_ENV !== "production"
 const app = next({dev})
-const handle = (req, res) => {
-  // 環境設定
-  req.env = {
-    ENVIRONMENT: process.env.NODE_ENV,
-    API_BASE_URL: config.get("api.baseUrl"),
-    FIREBASE_API_KEY: config.get("firebase.apiKey"),
-    FIREBASE_AUTH_DOMAIN: config.get("firebase.authDomain"),
-    FIREBASE_PROJECT_ID: config.get("firebase.projectId"),
-    FIREBASE_REGION: config.get("firebase.region")
-  }
-  return app.getRequestHandler()(req, res)
-}
 
 app.prepare().then(() => {
   const server = express()
 
-  server.get('*', (req, res) => {
+  server.use(function (req, res, next) {
     console.log('Current path: ' + req.path)
-    return handle(req, res)
+    // 環境設定
+    req.env = {
+      ENVIRONMENT: process.env.NODE_ENV,
+      API_BASE_URL: config.get("api.baseUrl"),
+      FIREBASE_API_KEY: config.get("firebase.apiKey"),
+      FIREBASE_AUTH_DOMAIN: config.get("firebase.authDomain"),
+      FIREBASE_PROJECT_ID: config.get("firebase.projectId"),
+      FIREBASE_REGION: config.get("firebase.region")
+    }
+    next()
+  })
+
+  server.get('/works/:id', (req, res) => {
+    return app.render(req, res, '/works', { id: req.params.id })
+  })
+
+  server.get('/gallery/:id', (req, res) => {
+    return app.render(req, res, '/gallery', { id: req.params.id })
+  })
+
+  server.get('*', (req, res) => {
+    return app.getRequestHandler()(req, res)
   })
 
   server.listen(8080, error => {

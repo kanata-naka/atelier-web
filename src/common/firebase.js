@@ -48,7 +48,7 @@ export const callFunction = async ({
         .functions(env ? env.FIREBASE_REGION : Globals.env.FIREBASE_REGION)
         .httpsCallable(name)
     }
-    const result = await callable(data)
+    const result = await callable({ ...data })
     dispatch(fetchSucceeded({ name }))
     return result
   } catch (error) {
