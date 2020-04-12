@@ -32,24 +32,12 @@ const hasScrolledToBottom = () => {
 export default ({ items: _items }) => {
   const dispatch = useDispatch()
   const [items, setItems] = useState([..._items])
-  const itemsRef = useRef(items)
-  useEffect(() => {
-    itemsRef.current = items
-  }, [items])
   const [loading, setLoading] = useState(false)
-  const loadingRef = useRef(loading)
-  useEffect(() => {
-    loadingRef.current = loading
-  }, [loading])
   const [fetchedAll, setFetchedAll] = useState(false)
-  const fetchedAllRef = useRef(fetchedAll)
-  useEffect(() => {
-    fetchedAllRef.current = fetchedAll
-  }, [fetchedAll])
 
   // 次の${LIMIT}件を取得する
   const load = async () => {
-    if (fetchedAllRef.current || loadingRef.current || !hasScrolledToBottom()) {
+    if (fetchedAll || loading || !hasScrolledToBottom()) {
       return
     }
     setLoading(true)
@@ -58,12 +46,12 @@ export default ({ items: _items }) => {
         dispatch,
         name: "api-arts-get",
         data: {
-          lastId: itemsRef.current[itemsRef.current.length - 1].id,
+          lastId: items[items.length - 1].id,
           limit: LIMIT
         },
         globals: Globals
       })
-      setItems([...itemsRef.current, ...response.data.result])
+      setItems([...items, ...response.data.result])
       setFetchedAll(response.data.fetchedAll)
     } catch (error) {
       console.error(error)
@@ -73,6 +61,7 @@ export default ({ items: _items }) => {
     }, 100)
   }
 
+  // ※timerだけは変更頻度が多すぎるので別のエフェクトで管理する
   const [timer, setTimer] = useState(0)
   const timerRef = useRef(timer)
   useEffect(() => {
@@ -96,7 +85,7 @@ export default ({ items: _items }) => {
         console.log("ArtScroll: Fetch aborted")
       }
     }
-  }, [])
+  }, [items, loading, fetchedAll])
 
   return (
     <section className="art-scroll">
