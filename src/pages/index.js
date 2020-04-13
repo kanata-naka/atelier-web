@@ -78,6 +78,11 @@ class Component extends React.Component {
       <div>
         <Head>
           <title>カナタノアトリエ</title>
+            <script
+              async
+              src="https://platform.twitter.com/widgets.js"
+              charSet="utf-8"
+            />
         </Head>
         <Header />
         <TopCarousel items={topImages} />

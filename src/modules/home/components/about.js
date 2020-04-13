@@ -100,11 +100,6 @@ const TwitterWidgets = ({ id }) => {
         href={`https://twitter.com/${id}?ref_src=twsrc%5Etfw`}>
         {`Tweets by ${id}`}
       </a>
-      <script
-        async
-        src="https://platform.twitter.com/widgets.js"
-        charSet="utf-8"
-      />
     </div>
   )
 }
