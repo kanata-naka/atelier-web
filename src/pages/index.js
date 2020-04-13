@@ -38,19 +38,6 @@ class Component extends React.Component {
     // } catch (error) {
     //   console.error(error)
     // }
-    // 最近の作品一覧を取得する
-    let recentWorks = []
-    try {
-      const response = await callFunction({
-        dispatch,
-        name: "api-works-get",
-        data: { limit: 6 },
-        globals
-      })
-      recentWorks = response.data.result
-    } catch (error) {
-      console.error(error)
-    }
     // 最近のイラスト一覧を取得する
     let recentArts = []
     try {
@@ -64,11 +51,24 @@ class Component extends React.Component {
     } catch (error) {
       console.error(error)
     }
+    // 最近の作品一覧を取得する
+    let recentWorks = []
+    try {
+      const response = await callFunction({
+        dispatch,
+        name: "api-works-get",
+        data: { limit: 6 },
+        globals
+      })
+      recentWorks = response.data.result
+    } catch (error) {
+      console.error(error)
+    }
     return {
       topImages,
       latestArticles,
-      recentWorks,
-      recentArts
+      recentArts,
+      recentWorks
     }
   }
 
@@ -85,8 +85,8 @@ class Component extends React.Component {
           <About />
           <LatestArticles items={latestArticles} />
         </div>
-        <RecentWorks items={recentWorks} />
         <RecentArts items={recentArts} />
+        <RecentWorks items={recentWorks} />
         <Footer />
       </div>
     )

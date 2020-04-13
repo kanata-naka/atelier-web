@@ -60,6 +60,7 @@ const GlobalNav = () => {
           <GlobalNavItem id="blog" title="BLOG" url="/blog" />
           <GlobalNavItem id="works" title="WORKS" url="/works" />
           <GlobalNavItem id="gallery" title="GALLERY" url="/gallery" />
+          <GlobalNavItem id="contact" title="CONTACT" url="/contact" />
         </ul>
       )}
     </nav>
