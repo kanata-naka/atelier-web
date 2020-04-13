@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import Modal from "react-modal"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
-import { decorateText } from "../../../utils/stringUtil"
+import { styleDescription } from "../../../utils/domUtil"
 
 Modal.setAppElement("#__next")
 
@@ -43,7 +43,7 @@ const Component = ({ onClose }) => {
           <Description>
             <span
               dangerouslySetInnerHTML={{
-                __html: decorateText(item.description)
+                __html: styleDescription(item.description)
               }}></span>
           </Description>
           <PostedDate timestamp={item.createdAt} />

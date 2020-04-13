@@ -1,5 +1,5 @@
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
-import { decorateText } from "../../../utils/stringUtil"
+import { styleDescription } from "../../../utils/domUtil"
 
 export default ({ items }) => {
   return (
@@ -21,7 +21,7 @@ const WorkListItem = ({ item }) => {
           <WorkListItemDescription>
             <span
               dangerouslySetInnerHTML={{
-                __html: decorateText(item.description)
+                __html: styleDescription(item.description)
               }}
             />
           </WorkListItemDescription>
