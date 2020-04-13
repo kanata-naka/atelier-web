@@ -8,10 +8,7 @@
   border: 1px solid #efefef;
   height: 48px;
   overflow: hidden;
-
-  &.expanded {
-    height: auto;
-  }
+  transition: height 500ms;
 
   &-foreground {
     position: absolute;
@@ -23,8 +20,28 @@
     pointer-events: none;
   }
 
-  &.expanded &-foreground {
-    background: none;
+  &.slide-entering, &.slide-exited {
+    .tags-info-slide-button__down {
+      display: inline;
+    }
+    .tags-info-slide-button__up {
+      display: none;
+    }
+  }
+
+  &.slide-entered, &.slide-exiting {
+    .tags-info-slide-button__down {
+      display: none;
+    }
+    .tags-info-slide-button__up {
+      display: inline;
+    }
+  }
+
+  &.slide-entered {
+    .tags-info-foreground {
+      background: none;
+    }
   }
 
   &-slide-button {
