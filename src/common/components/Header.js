@@ -24,15 +24,21 @@ const GlobalNav = () => {
   const [enableToggleMenu, setEnableToggleMenu] = useState(false)
   const [isToggleMenuActive, setToggleMenuActive] = useState(false)
 
+  const handleResize = () => {
+    // ウィンドウの幅が一定以下ならトグルメニューを有効にする
+    setEnableToggleMenu(window.matchMedia("(max-width: 899px)").matches)
+  }
+
   useEffect(() => {
     // componentDidMount と同じタイミングで実行する
     if (typeof window === "undefined") {
       return
     }
-    ;(window.onresize = () => {
-      // ウィンドウの幅が一定以下ならトグルメニューを有効にする
-      setEnableToggleMenu(window.matchMedia("(max-width: 899px)").matches)
-    })()
+    window.addEventListener("resize", handleResize)
+    handleResize()
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
   }, [])
 
   // ハンバーガーボタンを押下した際の処理

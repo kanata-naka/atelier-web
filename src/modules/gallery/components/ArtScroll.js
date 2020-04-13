@@ -29,11 +29,19 @@ const hasScrolledToBottom = () => {
   return currentScrollTop >= offsetScrolledToBottom
 }
 
-export default ({ items: _items }) => {
+export default ({ tag, items: _items, fetchedAll: _fetchedAll }) => {
   const dispatch = useDispatch()
   const [items, setItems] = useState([..._items])
   const [loading, setLoading] = useState(false)
-  const [fetchedAll, setFetchedAll] = useState(false)
+  const [fetchedAll, setFetchedAll] = useState(_fetchedAll)
+
+  useEffect(() => {
+    // 同じページ間の遷移（例：タグのリンクを押下した）場合、ComponentやStateはリセットされない模様。
+    // →データをリセットする
+    setItems(_items)
+    setLoading(false)
+    setFetchedAll(_fetchedAll)
+  }, [_items])
 
   // 次の${LIMIT}件を取得する
   const load = async () => {
@@ -47,7 +55,8 @@ export default ({ items: _items }) => {
         name: "api-arts-get",
         data: {
           lastId: items[items.length - 1].id,
-          limit: LIMIT
+          limit: LIMIT,
+          tag: tag
         },
         globals: Globals
       })
@@ -77,9 +86,11 @@ export default ({ items: _items }) => {
   }
 
   useEffect(() => {
-    window.onscroll = window.onresize = handleScroll
+    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("resize", handleScroll)
     return () => {
-      window.onscroll = window.onresize = null
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("resize", handleScroll)
       if (timerRef.current) {
         clearTimeout(timerRef.current)
         console.log("ArtScroll: Fetch aborted")

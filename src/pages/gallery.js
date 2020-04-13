@@ -12,7 +12,7 @@ import GalleryModal from "../modules/gallery/components/GalleryModal"
 import { LIMIT } from "../modules/gallery/models"
 import "../styles/gallery.scss"
 
-const Component = ({ item, allTagsInfo, items }) => {
+const Component = ({ item, allTagsInfo, tag, items, fetchedAll }) => {
   useEffect(() => {
     if (item) {
       GalleryModal.open(item)
@@ -33,7 +33,7 @@ const Component = ({ item, allTagsInfo, items }) => {
       <PageHeading>GALLERY</PageHeading>
       {allTagsInfo && <TagsInfo tagsInfo={allTagsInfo} />}
       {item && <GalleryModal.Component onClose={onClose} />}
-      {items && <ArtScroll items={items} />}
+      {items && <ArtScroll tag={tag} items={items} fetchedAll={fetchedAll} />}
       <Footer />
     </div>
   )
@@ -64,28 +64,32 @@ Component.getInitialProps = async ({ store: { dispatch }, query, globals }) => {
         globals
       })
       allTagsInfo = response.data
-      console.log("allTagsInfo", allTagsInfo)
     } catch (error) {
       console.error(error)
     }
     // イラスト一覧（最初の${LIMIT}件）を取得する
     let items = []
+    let fetchedAll = false
     try {
       const response = await callFunction({
         dispatch,
         name: "api-arts-get",
         data: {
-          limit: LIMIT
+          limit: LIMIT,
+          tag: query.tag
         },
         globals
       })
       items = response.data.result
+      fetchedAll = response.data.fetchedAll
     } catch (error) {
       console.error(error)
     }
     return {
       allTagsInfo,
-      items
+      tag: query.tag,
+      items,
+      fetchedAll
     }
   }
 }

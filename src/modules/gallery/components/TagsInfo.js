@@ -48,7 +48,7 @@ export default ({ tagsInfo }) => {
 const TagInfo = ({ tag, count, rate }) => {
   return (
     <li className="tag-list-item">
-      <Link href={`?tag=${tag}`}>
+      <Link href={`/gallery?tag=${tag}`}>
         <a className="tag-list-item__link">
           <span
             className="tag-name"
