@@ -8,7 +8,6 @@ import LatestArticles from "../modules/home/components/LatestArticles"
 import About from "../modules/home/components/About"
 import RecentWorks from "../modules/home/components/RecentWorks"
 import RecentArts from "../modules/home/components/RecentArts"
-import "../styles/index.scss"
 
 export default class Component extends React.Component {
   static async getInitialProps({ store: { dispatch }, globals }) {

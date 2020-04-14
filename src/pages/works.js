@@ -11,7 +11,6 @@ import {
   PER_PAGE,
   PAGE_NUMBER_DISPLAY_MAX_RANGE
 } from "../modules/works/models"
-import "../styles/works.scss"
 
 export default class Component extends React.Component {
   static async getInitialProps({ query, store: { dispatch }, globals }) {

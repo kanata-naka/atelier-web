@@ -9,7 +9,6 @@ import TagsInfo from "../modules/gallery/components/TagsInfo"
 import ArtScroll from "../modules/gallery/components/ArtScroll"
 import GalleryModal from "../modules/gallery/components/GalleryModal"
 import { LIMIT } from "../modules/gallery/models"
-import "../styles/gallery.scss"
 
 const Component = ({ item, allTagsInfo, tag, items, fetchedAll }) => {
   useEffect(() => {

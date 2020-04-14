@@ -6,6 +6,7 @@ import { initializeFirebase } from "../common/firebase"
 import { Globals } from "../common/models"
 import { initialize as initializeStore } from "../common/store"
 import RoutingEffect from "../common/components/RoutingEffect"
+import "../styles/style.scss"
 
 export default class extends App {
   static async getInitialProps({ Component, ctx }) {
