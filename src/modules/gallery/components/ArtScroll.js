@@ -116,7 +116,7 @@ const ArtScrollItem = ({ item }) => {
       <ArtScrollItemBackground image={item.images[0]} />
       <ArtScrollItemForeground
         className="art-scroll-item-foreground"
-        url={`/gallery/${item.id}`}
+        id={item.id}
         onClick={e => {
           e.preventDefault()
           // モーダルを開く
@@ -136,9 +136,9 @@ const ArtScrollItemBackground = ({ image }) => {
   )
 }
 
-const ArtScrollItemForeground = ({ url, onClick, children, ...props }) => {
+const ArtScrollItemForeground = ({ id, onClick, children, ...props }) => {
   return (
-    <Link href={url}>
+    <Link href={`/gallery?id=${id}`} as={`/gallery/${id}`}>
       <a className="art-scroll-item__link" onClick={onClick}>
         <div {...props}>{children}</div>
       </a>

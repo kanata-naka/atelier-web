@@ -30,7 +30,8 @@ const RecentArtItem = ({ item, isLast }) => {
             ? "recent-arts-item-foreground--more"
             : "recent-arts-item-foreground"
         }
-        url={isLast ? "/gallery" : `/gallery/${item.id}`}
+        isLast={isLast}
+        id={item.id}
         onClick={e => {
           if (isLast) {
             return
@@ -55,9 +56,17 @@ const RecentArtItemBackground = ({ image }) => {
   )
 }
 
-const RecentArtItemForeground = ({ url, onClick, children, ...props }) => {
+const RecentArtItemForeground = ({
+  isLast,
+  id,
+  onClick,
+  children,
+  ...props
+}) => {
   return (
-    <Link href={url}>
+    <Link
+      href={`/gallery${isLast ? "" : `?id=${id}`}`}
+      as={`/gallery${isLast ? "" : `/${id}`}`}>
       <a className="recent-arts-item__link" onClick={onClick}>
         <div {...props}>{children}</div>
       </a>

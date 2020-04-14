@@ -29,11 +29,7 @@ export const initializeFirebase = ({
 /**
  * Firebase Functionsの関数を実行する
  */
-export const callFunction = async ({
-  name,
-  data,
-  globals: { env }
-}) => {
+export const callFunction = async ({ name, data, globals: { env } }) => {
   try {
     let callable
     if ((env ? env.ENVIRONMENT : Globals.env.ENVIRONMENT) !== "production") {

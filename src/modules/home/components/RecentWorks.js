@@ -28,7 +28,8 @@ const RecentWorkItem = ({ item, isLast }) => {
             ? "recent-works-item-foreground--more"
             : "recent-works-item-foreground"
         }
-        url={isLast ? "/works" : `/works/${item.id}`}>
+        isLast={isLast}
+        id={item.id}>
         {isLast ? (
           <div className="recent-works-more">{"more ＞"}</div>
         ) : (
@@ -49,9 +50,11 @@ const RecentWorkItemBackground = ({ image }) => {
   )
 }
 
-const RecentWorkItemForeground = ({ url, children, ...props }) => {
+const RecentWorkItemForeground = ({ isLast, id, children, ...props }) => {
   return (
-    <Link href={url}>
+    <Link
+      href={`/works${isLast ? "" : `?id=${id}`}`}
+      as={`/works${isLast ? "" : `/${id}`}`}>
       <a className="recent-works-item__link">
         <div className="recent-works-item-foreground" {...props}>
           {children}

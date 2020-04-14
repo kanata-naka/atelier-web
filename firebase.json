@@ -3,12 +3,8 @@
     "public": "dist/public",
     "rewrites": [
       {
-        "source": "/",
-        "function": "index"
-      },
-      {
-        "source": "/works",
-        "function": "works"
+        "source": "**/**",
+        "function": "app"
       }
     ]
   },
