@@ -11,58 +11,59 @@ import RecentArts from "../modules/home/components/RecentArts"
 
 export default class Component extends React.Component {
   static async getInitialProps({ globals }) {
-    // トップ画像の一覧を取得する
-    let topImages = []
-    try {
-      const response = await callFunction({
+    const result = await Promise.all([
+      // トップ画像の一覧を取得する
+      callFunction({
         name: "api-topImages-get",
         globals
+      }).then(response => {
+        return response.data
       })
-      topImages = response.data
-    } catch (error) {
-      console.error(error)
-    }
-    // 最新記事の一覧を取得する
-    let latestArticles = []
-    // try {
-    //   const response = await callFunction({
-    //     name: "api-articles-get",
-    //     data: { limit: 6 },
-    //     globals
-    //   })
-    //   latestArticles = response.data
-    // } catch (error) {
-    //   console.error(error)
-    // }
-    // 最近のイラスト一覧を取得する
-    let recentArts = []
-    try {
-      const response = await callFunction({
+      .catch(error => {
+        console.error(error)
+        return []
+      }),
+      // 最新記事の一覧を取得する
+      // callFunction({
+      //   name: "api-articles-get",
+      //   globals
+      // }).then(response => {
+      //   return response.data
+      // })
+      // .catch(error => {
+      //   console.error(error)
+      //   return []
+      // }),
+      // 最近のイラスト一覧を取得する
+      await callFunction({
         name: "api-arts-get",
         data: { limit: 6 },
         globals
+      }).then(response => {
+        return response.data.result
       })
-      recentArts = response.data.result
-    } catch (error) {
-      console.error(error)
-    }
-    // 最近の作品一覧を取得する
-    let recentWorks = []
-    try {
-      const response = await callFunction({
+      .catch(error => {
+        console.error(error)
+        return []
+      }),
+      // 最近の作品一覧を取得する
+      await callFunction({
         name: "api-works-get",
         data: { limit: 6 },
         globals
+      }).then(response => {
+        return response.data.result
       })
-      recentWorks = response.data.result
-    } catch (error) {
-      console.error(error)
-    }
+      .catch(error => {
+        console.error(error)
+        return []
+      })
+    ])
     return {
-      topImages,
-      latestArticles,
-      recentArts,
-      recentWorks
+      topImages: result[0],
+      latestArticles: [], // result[1],
+      recentArts: result[1],
+      recentWorks: result[2]
     }
   }
 
