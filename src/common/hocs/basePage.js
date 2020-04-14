@@ -5,9 +5,9 @@ import { initializeFirebase } from "../firebase"
 import { Globals } from "../models"
 import { initialize as initializeStore } from "../store"
 
-export default (Component, reducers) => {
+export default (Component) => {
   const BasePage = ({ initialState, isServer, globals, ...props }) => {
-    const store = initializeStore(reducers, isServer, initialState)
+    const store = initializeStore(isServer, initialState)
     // グローバル変数をマージする
     Object.assign(Globals, globals)
     initializeFirebase(Globals.env)
@@ -36,7 +36,7 @@ export default (Component, reducers) => {
   }
   BasePage.getInitialProps = async context => {
     const isServer = !!context.req
-    const store = initializeStore(reducers, isServer)
+    const store = initializeStore(isServer)
     // グローバル変数を初期化する
     let globals
     if (isServer) {

@@ -94,4 +94,4 @@ Component.getInitialProps = async ({ store: { dispatch }, query, globals }) => {
   }
 }
 
-export default basePage(Component, {})
+export default basePage(Component)

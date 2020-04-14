@@ -98,4 +98,4 @@ class Component extends React.Component {
   }
 }
 
-export default basePage(Component, {})
+export default basePage(Component)
