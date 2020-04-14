@@ -5,7 +5,6 @@ import { callFunction } from "../common/firebase"
 import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
-import basePage from "../common/hocs/basePage"
 import TagsInfo from "../modules/gallery/components/TagsInfo"
 import ArtScroll from "../modules/gallery/components/ArtScroll"
 import GalleryModal from "../modules/gallery/components/GalleryModal"
@@ -39,7 +38,7 @@ const Component = ({ item, allTagsInfo, tag, items, fetchedAll }) => {
   )
 }
 
-Component.getInitialProps = async ({ store: { dispatch }, query, globals }) => {
+Component.getInitialProps = async ({ query, store: { dispatch }, globals }) => {
   if (query.id) {
     const response = await callFunction({
       dispatch,
@@ -94,4 +93,4 @@ Component.getInitialProps = async ({ store: { dispatch }, query, globals }) => {
   }
 }
 
-export default basePage(Component)
+export default Component

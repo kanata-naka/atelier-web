@@ -5,7 +5,6 @@ import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import Pagination from "../common/components/Pagination"
-import basePage from "../common/hocs/basePage"
 import { getOffsetByPage, createPagination } from "../common/models"
 import WorkList from "../modules/works/components/WorkList"
 import {
@@ -14,8 +13,8 @@ import {
 } from "../modules/works/models"
 import "../styles/works.scss"
 
-class Component extends React.Component {
-  static async getInitialProps({ store: { dispatch }, query, globals }) {
+export default class Component extends React.Component {
+  static async getInitialProps({ query, store: { dispatch }, globals }) {
     if (query.id) {
       const response = await callFunction({
         dispatch,
@@ -74,5 +73,3 @@ class Component extends React.Component {
     )
   }
 }
-
-export default basePage(Component)

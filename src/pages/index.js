@@ -3,7 +3,6 @@ import Head from "next/head"
 import { callFunction } from "../common/firebase"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
-import basePage from "../common/hocs/basePage"
 import TopCarousel from "../modules/home/components/TopCarousel"
 import LatestArticles from "../modules/home/components/LatestArticles"
 import About from "../modules/home/components/About"
@@ -11,7 +10,7 @@ import RecentWorks from "../modules/home/components/RecentWorks"
 import RecentArts from "../modules/home/components/RecentArts"
 import "../styles/index.scss"
 
-class Component extends React.Component {
+export default class Component extends React.Component {
   static async getInitialProps({ store: { dispatch }, globals }) {
     // トップ画像の一覧を取得する
     let topImages = []
@@ -97,5 +96,3 @@ class Component extends React.Component {
     )
   }
 }
-
-export default basePage(Component)
