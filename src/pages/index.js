@@ -10,12 +10,11 @@ import RecentWorks from "../modules/home/components/RecentWorks"
 import RecentArts from "../modules/home/components/RecentArts"
 
 export default class Component extends React.Component {
-  static async getInitialProps({ store: { dispatch }, globals }) {
+  static async getInitialProps({ globals }) {
     // トップ画像の一覧を取得する
     let topImages = []
     try {
       const response = await callFunction({
-        dispatch,
         name: "api-topImages-get",
         globals
       })
@@ -27,7 +26,6 @@ export default class Component extends React.Component {
     let latestArticles = []
     // try {
     //   const response = await callFunction({
-    //     dispatch,
     //     name: "api-articles-get",
     //     data: { limit: 6 },
     //     globals
@@ -40,7 +38,6 @@ export default class Component extends React.Component {
     let recentArts = []
     try {
       const response = await callFunction({
-        dispatch,
         name: "api-arts-get",
         data: { limit: 6 },
         globals
@@ -53,7 +50,6 @@ export default class Component extends React.Component {
     let recentWorks = []
     try {
       const response = await callFunction({
-        dispatch,
         name: "api-works-get",
         data: { limit: 6 },
         globals

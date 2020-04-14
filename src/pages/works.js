@@ -13,10 +13,9 @@ import {
 } from "../modules/works/models"
 
 export default class Component extends React.Component {
-  static async getInitialProps({ query, store: { dispatch }, globals }) {
+  static async getInitialProps({ query, globals }) {
     if (query.id) {
       const response = await callFunction({
-        dispatch,
         name: "api-works-getById",
         data: {
           id: query.id
@@ -31,7 +30,6 @@ export default class Component extends React.Component {
       const page = +query.page || 1
       try {
         const response = await callFunction({
-          dispatch,
           name: "api-works-get",
           data: {
             offset: getOffsetByPage(page, PER_PAGE),

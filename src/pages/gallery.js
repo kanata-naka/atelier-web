@@ -37,10 +37,9 @@ const Component = ({ item, allTagsInfo, tag, items, fetchedAll }) => {
   )
 }
 
-Component.getInitialProps = async ({ query, store: { dispatch }, globals }) => {
+Component.getInitialProps = async ({ query, globals }) => {
   if (query.id) {
     const response = await callFunction({
-      dispatch,
       name: "api-arts-getById",
       data: {
         id: query.id
@@ -56,7 +55,6 @@ Component.getInitialProps = async ({ query, store: { dispatch }, globals }) => {
     let allTagsInfo = {}
     try {
       const response = await callFunction({
-        dispatch,
         name: "api-arts-getAllTagsInfo",
         data: {},
         globals
@@ -70,7 +68,6 @@ Component.getInitialProps = async ({ query, store: { dispatch }, globals }) => {
     let fetchedAll = false
     try {
       const response = await callFunction({
-        dispatch,
         name: "api-arts-get",
         data: {
           limit: LIMIT,

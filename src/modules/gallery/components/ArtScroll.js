@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, useRef } from "react"
-import { useDispatch } from "react-redux"
 import Link from "next/link"
 import { callFunction } from "../../../common/firebase"
 import { Globals } from "../../../common/models"
@@ -30,7 +29,6 @@ const hasScrolledToBottom = () => {
 }
 
 export default ({ tag, items: _items, fetchedAll: _fetchedAll }) => {
-  const dispatch = useDispatch()
   const [items, setItems] = useState([..._items])
   const [loading, setLoading] = useState(false)
   const [fetchedAll, setFetchedAll] = useState(_fetchedAll)
@@ -51,7 +49,6 @@ export default ({ tag, items: _items, fetchedAll: _fetchedAll }) => {
     setLoading(true)
     try {
       const response = await callFunction({
-        dispatch,
         name: "api-arts-get",
         data: {
           lastId: items[items.length - 1].id,
