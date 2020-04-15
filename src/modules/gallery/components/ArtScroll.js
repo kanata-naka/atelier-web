@@ -28,18 +28,22 @@ const hasScrolledToBottom = () => {
   return currentScrollTop >= offsetScrolledToBottom
 }
 
-export default ({ tag, items: _items, fetchedAll: _fetchedAll }) => {
-  const [items, setItems] = useState([..._items])
+export default ({
+  tag,
+  items: initinalItems,
+  fetchedAll: initialFetchedAll
+}) => {
+  const [items, setItems] = useState([...initinalItems])
   const [loading, setLoading] = useState(false)
-  const [fetchedAll, setFetchedAll] = useState(_fetchedAll)
+  const [fetchedAll, setFetchedAll] = useState(initialFetchedAll)
 
   useEffect(() => {
     // 同じページ間の遷移（例：タグのリンクを押下した）場合、ComponentやStateはリセットされない模様。
     // →データをリセットする
-    setItems(_items)
+    setItems(initinalItems)
     setLoading(false)
-    setFetchedAll(_fetchedAll)
-  }, [_items])
+    setFetchedAll(initialFetchedAll)
+  }, [initinalItems])
 
   // 次の${LIMIT}件を取得する
   const load = async () => {

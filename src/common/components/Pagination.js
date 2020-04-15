@@ -1,5 +1,5 @@
 import React from "react"
-import Link from "next/link"
+import Router from "next/router"
 
 /**
  * ページネーション
@@ -9,6 +9,12 @@ export default ({ pagination, maxRange }) => {
   const currentPage = pagination.page
   // 最後のページ
   const lastPage = Math.ceil(pagination.total / pagination.perPage)
+
+  const handlePageNumberButtonClick = (e, page) => {
+    e.preventDefault()
+    // ドキュメントの読み取り量を減らすため、shallow routingを使用する
+    Router.push(`/works?page=${page}`, `/works?page=${page}`, { shallow: true })
+  }
 
   const renderPageNumberButtons = () => {
     let first, last
@@ -32,6 +38,7 @@ export default ({ pagination, maxRange }) => {
           key={page}
           page={page}
           isActive={page === currentPage}
+          onClick={handlePageNumberButtonClick}
         />
       )
     }
@@ -40,45 +47,59 @@ export default ({ pagination, maxRange }) => {
 
   return (
     <ul className="pagination">
-      <PagePrevButton page={currentPage - 1} disabled={currentPage === 1} />
+      <PagePrevButton
+        page={currentPage - 1}
+        disabled={currentPage === 1}
+        onClick={handlePageNumberButtonClick}
+      />
       {renderPageNumberButtons()}
       <PageNextButton
         page={currentPage + 1}
         disabled={currentPage === lastPage}
+        onClick={handlePageNumberButtonClick}
       />
     </ul>
   )
 }
 
-const PagePrevButton = ({ page, disabled }) => {
+const PagePrevButton = ({ page, disabled, onClick }) => {
   return (
     <li className={`pagination-item--prev ${disabled && "disabled"}`}>
       {!disabled && (
-        <Link href={`?page=${page}`}>
-          <a className="pagination-item__link">&lt;</a>
-        </Link>
+        <a
+          className="pagination-item__link"
+          href={`/works?page=${page}`}
+          onClick={e => onClick(e, page)}>
+          &lt;
+        </a>
       )}
     </li>
   )
 }
 
-const PageNumberButton = ({ page, isActive }) => {
+const PageNumberButton = ({ page, isActive, onClick }) => {
   return (
     <li className={`pagination-item ${isActive && "active"}`}>
-      <Link href={`?page=${page}`}>
-        <a className="pagination-item__link">{page}</a>
-      </Link>
+      <a
+        className="pagination-item__link"
+        href={`/works?page=${page}`}
+        onClick={e => onClick(e, page)}>
+        {page}
+      </a>
     </li>
   )
 }
 
-const PageNextButton = ({ page, disabled }) => {
+const PageNextButton = ({ page, disabled, onClick }) => {
   return (
     <li className={`pagination-item--next ${disabled && "disabled"}`}>
       {!disabled && (
-        <Link href={`?page=${page}`}>
-          <a className="pagination-item__link">&gt;</a>
-        </Link>
+        <a
+          className="pagination-item__link"
+          href={`/works?page=${page}`}
+          onClick={e => onClick(e, page)}>
+          &gt;
+        </a>
       )}
     </li>
   )

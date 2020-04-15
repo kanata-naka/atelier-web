@@ -3,10 +3,12 @@
  */
 export const Globals = {}
 
-export const getOffsetByPage = (page, perPage) => {
-  return perPage * (page - 1)
-}
-
 export const createPagination = (page, perPage, total) => {
   return { page, perPage, total }
+}
+
+export const getItemsByPage = (items, page, perPage) => {
+  const offset = perPage * (page - 1)
+  const itemsByPage = items.slice(offset, offset + perPage)
+  return [...itemsByPage]
 }
