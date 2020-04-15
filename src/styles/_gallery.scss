@@ -1,6 +1,6 @@
 @import "mixins";
 
-.tags-info {
+.tag-info {
   position: relative;
   margin: 12px;
   border: 1px solid #efefef;
@@ -19,25 +19,25 @@
   }
 
   &.slide-entering, &.slide-exited {
-    .tags-info-slide-button__down {
+    .tag-info-slide-button__down {
       display: inline;
     }
-    .tags-info-slide-button__up {
+    .tag-info-slide-button__up {
       display: none;
     }
   }
 
   &.slide-entered, &.slide-exiting {
-    .tags-info-slide-button__down {
+    .tag-info-slide-button__down {
       display: none;
     }
-    .tags-info-slide-button__up {
+    .tag-info-slide-button__up {
       display: inline;
     }
   }
 
   &.slide-entered {
-    .tags-info-foreground {
+    .tag-info-foreground {
       background: none;
     }
   }

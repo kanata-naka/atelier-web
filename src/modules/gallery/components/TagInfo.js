@@ -9,7 +9,7 @@ const transitionClasses = {
   exited: "slide-exited"
 }
 
-export default ({ tagsInfo }) => {
+export default ({ tagInfo }) => {
   const [collasped, setCollasped] = useState(true)
   const [height, setHeight] = useState(48)
   const tagListRef = useRef(null)
@@ -21,8 +21,8 @@ export default ({ tagsInfo }) => {
   }, [collasped])
 
   // タグの最大件数
-  const maxCount = Object.keys(tagsInfo).reduce(
-    (a, b) => Math.max(a, tagsInfo[b]),
+  const maxCount = Object.keys(tagInfo).reduce(
+    (a, b) => Math.max(a, tagInfo[b]),
     1
   )
 
@@ -37,29 +37,29 @@ export default ({ tagsInfo }) => {
         }
         return (
           <div
-            className={`tags-info ${transitionClasses[state] || ""}`}
+            className={`tag-info ${transitionClasses[state] || ""}`}
             style={transitionStyle[state]}>
             <ul className="tag-list" ref={tagListRef}>
-              {Object.keys(tagsInfo).map((tag, index) => {
-                const rate = tagsInfo[tag] / maxCount
+              {Object.keys(tagInfo).map((tag, index) => {
+                const rate = tagInfo[tag] / maxCount
                 return (
                   <TagInfo
                     key={index}
                     tag={tag}
-                    count={tagsInfo[tag]}
+                    count={tagInfo[tag]}
                     rate={rate}
                   />
                 )
               })}
             </ul>
-            <div className="tags-info-foreground" />
-            <div className="tags-info-slide-button">
+            <div className="tag-info-foreground" />
+            <div className="tag-info-slide-button">
               <a
                 href="#"
-                className="tags-info-slide-button__link"
+                className="tag-info-slide-button__link"
                 onClick={handleClickToggleButton}>
-                <i className="fas fa-chevron-down tags-info-slide-button__down"></i>
-                <i className="fas fa-chevron-up tags-info-slide-button__up"></i>
+                <i className="fas fa-chevron-down tag-info-slide-button__down"></i>
+                <i className="fas fa-chevron-up tag-info-slide-button__up"></i>
               </a>
             </div>
           </div>

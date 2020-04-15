@@ -5,12 +5,12 @@ import { callFunction } from "../common/firebase"
 import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
-import TagsInfo from "../modules/gallery/components/TagsInfo"
+import TagInfo from "../modules/gallery/components/TagInfo"
 import ArtScroll from "../modules/gallery/components/ArtScroll"
 import GalleryModal from "../modules/gallery/components/GalleryModal"
 import { LIMIT } from "../modules/gallery/models"
 
-const Component = ({ item, allTagsInfo, tag, items, fetchedAll }) => {
+const Component = ({ item, tagInfo, tag, items, fetchedAll }) => {
   useEffect(() => {
     if (item) {
       GalleryModal.open(item)
@@ -29,7 +29,7 @@ const Component = ({ item, allTagsInfo, tag, items, fetchedAll }) => {
       </Head>
       <Header />
       <PageHeading>GALLERY</PageHeading>
-      {allTagsInfo && <TagsInfo tagsInfo={allTagsInfo} />}
+      {tagInfo && <TagInfo tagInfo={tagInfo} />}
       {item && <GalleryModal.Component onClose={onClose} />}
       {items && <ArtScroll tag={tag} items={items} fetchedAll={fetchedAll} />}
       <Footer />
@@ -52,14 +52,14 @@ Component.getInitialProps = async ({ query, globals }) => {
     }
   } else {
     // 全てのタグとその件数を取得する
-    let allTagsInfo = {}
+    let tagInfo = {}
     try {
       const response = await callFunction({
-        name: "api-arts-getAllTagsInfo",
-        data: {},
+        name: "api-tagInfo-get",
+        data: {category:"arts"},
         globals
       })
-      allTagsInfo = response.data
+      tagInfo = response.data.info
     } catch (error) {
       console.error(error)
     }
@@ -81,7 +81,7 @@ Component.getInitialProps = async ({ query, globals }) => {
       console.error(error)
     }
     return {
-      allTagsInfo,
+      tagInfo,
       tag: query.tag,
       items,
       fetchedAll
