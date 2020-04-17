@@ -21,8 +21,8 @@ export default ({ tagInfo }) => {
   }, [collasped])
 
   // タグの最大件数
-  const maxCount = Object.keys(tagInfo).reduce(
-    (a, b) => Math.max(a, tagInfo[b]),
+  const maxCount = tagInfo.reduce(
+    (_maxCount, tag) => Math.max(_maxCount, tag.count),
     1
   )
 
@@ -40,13 +40,13 @@ export default ({ tagInfo }) => {
             className={`tag-info ${transitionClasses[state] || ""}`}
             style={transitionStyle[state]}>
             <ul className="tag-list" ref={tagListRef}>
-              {Object.keys(tagInfo).map((tag, index) => {
-                const rate = tagInfo[tag] / maxCount
+              {tagInfo.map((tag, index) => {
+                const rate = tag.count / maxCount
                 return (
                   <TagInfo
                     key={index}
-                    tag={tag}
-                    count={tagInfo[tag]}
+                    tag={tag.name}
+                    count={tag.count}
                     rate={rate}
                   />
                 )
