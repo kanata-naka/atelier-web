@@ -59,10 +59,10 @@ export default class extends App {
             crossOrigin="anonymous"
           />
         </Head>
-        <RoutingEffect.Component />
         <div className="page-wrapper">
           <Component {...pageProps} />
         </div>
+        <RoutingEffect.Component />
       </div>
     )
   }

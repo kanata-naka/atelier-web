@@ -1,16 +1,18 @@
-import { useEffect, useCallback } from "react"
+import React, { useEffect, useCallback } from "react"
 import Head from "next/head"
 import Router from "next/router"
 import { callFunction } from "../common/firebase"
+import { SITE_NAME } from "../common/models"
 import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
+import OgpTags from "../common/components/OgpTags"
 import TagInfo from "../modules/gallery/components/TagInfo"
 import ArtScroll from "../modules/gallery/components/ArtScroll"
 import GalleryModal from "../modules/gallery/components/GalleryModal"
 import { LIMIT } from "../modules/gallery/models"
 
-const Component = ({ item, tagInfo, tag, items, fetchedAll }) => {
+const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
   useEffect(() => {
     if (item) {
       GalleryModal.open(item)
@@ -25,8 +27,26 @@ const Component = ({ item, tagInfo, tag, items, fetchedAll }) => {
   return (
     <div>
       <Head>
-        <title>{"GALLERY - カナタノアトリエ"}</title>
+        <title>{`GALLERY - ${SITE_NAME}`}</title>
       </Head>
+      {item ? (
+        <OgpTags
+          path={`/gallery/${id}`}
+          ogType="article"
+          title={`${item.title} - ${SITE_NAME}`}
+          description={item.description}
+          ogImage={item.images[0].url}
+          twitterCard="summary_large_image"
+          twitterImage={item.images[0].url}
+        />
+      ) : (
+        <OgpTags
+          path="/gallery"
+          ogType="blog"
+          title={`GALLERY - ${SITE_NAME}`}
+          twitterCard="summary_card"
+        />
+      )}
       <Header />
       <PageHeading>GALLERY</PageHeading>
       {tagInfo && <TagInfo tagInfo={tagInfo} />}

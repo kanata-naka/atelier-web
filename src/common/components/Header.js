@@ -54,7 +54,9 @@ const GlobalNav = () => {
           onClick={handleHamburgerButtonClick}
         />
       )}
-      <ul className="global-nav" style={{
+      <ul
+        className="global-nav"
+        style={{
           visibility: (!enableToggleMenu || isToggleMenuActive) && "visible"
         }}>
         <GlobalNavItem id="about" title="ABOUT" url="/#about" />

@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { callFunction } from "../common/firebase"
+import { SITE_NAME } from "../common/models"
 import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
+import OgpTags from "../common/components/OgpTags"
 import Pagination from "../common/components/Pagination"
 import { createPagination, getItemsByPage } from "../common/models"
 import WorkList from "../modules/works/components/WorkList"
@@ -33,8 +35,28 @@ const Component = ({ id, items }) => {
   return (
     <div>
       <Head>
-        <title>{"WORKS - カナタノアトリエ"}</title>
+        <title>{`WORKS - ${SITE_NAME}`}</title>
       </Head>
+      {id ? (
+        <OgpTags
+          path={`/works/${id}`}
+          ogType="article"
+          title={`${items[0].title} - ${SITE_NAME}`}
+          description={items[0].description}
+          ogImage={items[0].images[0] && items[0].images[0].url}
+          twitterCard={
+            items[0].images[0] ? "summary_large_image" : "summary_card"
+          }
+          twitterImage={items[0].images[0] && items[0].images[0].url}
+        />
+      ) : (
+        <OgpTags
+          path="/works"
+          ogType="blog"
+          title={`WORKS - ${SITE_NAME}`}
+          twitterCard="summary_card"
+        />
+      )}
       <Header />
       <PageHeading>WORKS</PageHeading>
       <WorkList items={itemsByPage} />

@@ -22,7 +22,6 @@ server.use(function(req, res, next) {
   }
   next()
 })
-
 ;["works", "gallery"].forEach(page => {
   server.get(`/${page}/:id`, (req, res) => {
     return app.render(req, res, `/${page}`, { id: req.params.id })

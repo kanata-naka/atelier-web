@@ -1,41 +1,25 @@
+import {
+  AUTHOR_NAME,
+  SITE_DESCRIPTION,
+  SOCIAL_ACCOUNTS,
+  TWITTER_USERNAME
+} from "../../../common/models"
 import { SectionHeading } from "../../../common/components/elements"
 
 export default () => {
   return (
     <section id="about" className="about">
       <SectionHeading>ABOUT</SectionHeading>
-      <Description>
-        フリーのイラストレーター・漫画家「彼方ノナメ」のホームページです。
-        <br />
-        あああああああああああああああああああああ
-      </Description>
+      <Description>{SITE_DESCRIPTION}</Description>
       <ProfileImage url="/images/profile-image.png" />
-      <AuthorName>kanata（かなた）</AuthorName>
-      <SocialIcons
-        items={[
-          {
-            name: "Twitter",
-            url: "https://twitter.com/kanata_x2",
-            imageUrl: "/images/twitter-icon.png"
-          },
-          {
-            name: "pixiv",
-            url: "https://www.pixiv.net/users/204608",
-            imageUrl: "/images/pixiv-icon.png"
-          },
-          {
-            name: "YouTube",
-            url: "https://www.youtube.com/channel/UCVeHzl5wDqmJLszg_eG7tCw",
-            imageUrl: "/images/youtube-icon.png"
-          }
-        ]}
-      />
+      <AuthorName>{AUTHOR_NAME}</AuthorName>
+      <SocialIcons items={SOCIAL_ACCOUNTS} />
       <Introduction>
-        自己紹介あああああああああああああああああああああああああ
+        版権メインの個人サークル「カナタノアトリエ」、
         <br />
-        ああああああああああああああああああああああ
+        一次創作オンリーのサークル「old dear place」で活動しています。
       </Introduction>
-      <TwitterWidgets id="kanata_x2" />
+      <TwitterWidgets id={TWITTER_USERNAME} />
     </section>
   )
 }
