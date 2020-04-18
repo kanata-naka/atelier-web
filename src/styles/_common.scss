@@ -59,6 +59,7 @@ body {
   display: flex;
   position: absolute;
   user-select: none;
+  visibility: hidden;
 
   @media (max-width: 899px) {
     flex-direction: column;

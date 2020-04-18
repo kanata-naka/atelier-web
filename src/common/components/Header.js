@@ -54,15 +54,15 @@ const GlobalNav = () => {
           onClick={handleHamburgerButtonClick}
         />
       )}
-      {(!enableToggleMenu || isToggleMenuActive) && (
-        <ul className="global-nav">
-          <GlobalNavItem id="about" title="ABOUT" url="/#about" />
-          <GlobalNavItem id="blog" title="BLOG" url="/blog" />
-          <GlobalNavItem id="works" title="WORKS" url="/works" />
-          <GlobalNavItem id="gallery" title="GALLERY" url="/gallery" />
-          <GlobalNavItem id="contact" title="CONTACT" url="/contact" />
-        </ul>
-      )}
+      <ul className="global-nav" style={{
+          visibility: (!enableToggleMenu || isToggleMenuActive) && "visible"
+        }}>
+        <GlobalNavItem id="about" title="ABOUT" url="/#about" />
+        <GlobalNavItem id="blog" title="BLOG" url="/blog" />
+        <GlobalNavItem id="works" title="WORKS" url="/works" />
+        <GlobalNavItem id="gallery" title="GALLERY" url="/gallery" />
+        <GlobalNavItem id="contact" title="CONTACT" url="/contact" />
+      </ul>
     </nav>
   )
 }
