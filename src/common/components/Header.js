@@ -59,11 +59,11 @@ const GlobalNav = ({ blogUrl }) => {
         style={{
           visibility: (!enableToggleMenu || isToggleMenuActive) && "visible"
         }}>
-        <GlobalNavItem id="about" title="ABOUT" url="/#about" />
+        <GlobalNavItem id="about" title="ABOUT" path="/#about" />
         <GlobalNavItem id="blog" title="BLOG" url={blogUrl} />
-        <GlobalNavItem id="works" title="WORKS" url="/works" />
-        <GlobalNavItem id="gallery" title="GALLERY" url="/gallery" />
-        <GlobalNavItem id="contact" title="CONTACT" url="/contact" />
+        <GlobalNavItem id="works" title="WORKS" path="/works" />
+        <GlobalNavItem id="gallery" title="GALLERY" path="/gallery" />
+        <GlobalNavItem id="contact" title="CONTACT" path="/contact" />
       </ul>
     </nav>
   )
@@ -82,13 +82,17 @@ const HamburgerButton = ({ isActive, onClick }) => {
   )
 }
 
-const GlobalNavItem = ({ title, id, url }) => {
+const GlobalNavItem = ({ title, id, url, path }) => {
   return (
     <li key={id} className="global-nav-item">
-      {url ? (
-        <Link href={url}>
+      {path ? (
+        <Link href={path}>
           <a className="global-nav-item__link">{title}</a>
         </Link>
+      ) : url ? (
+        <a className="global-nav-item__link" href={url}>
+          {title}
+        </a>
       ) : (
         { title }
       )}

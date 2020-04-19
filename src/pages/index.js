@@ -41,7 +41,8 @@ const Component = ({
       <div className="dashboard">
         <About />
         <LatestArticles
-          baseUrl={env.BLOG_ARTICLES_BASE_URL}
+          url={env.BLOG_URL}
+          articleBaseUrl={env.BLOG_ARTICLES_BASE_URL}
           items={latestArticles}
         />
       </div>

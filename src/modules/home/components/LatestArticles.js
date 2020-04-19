@@ -1,12 +1,12 @@
 import Link from "next/link"
 
-export default ({ baseUrl, items }) => {
+export default ({ url, articleBaseUrl, items }) => {
   return (
     <section className="latest-articles">
       {items.map((item, index) => (
-        <Article key={index} baseUrl={baseUrl} item={item} />
+        <Article key={index} baseUrl={articleBaseUrl} item={item} />
       ))}
-      <Footer />
+      <Footer url={url} />
     </section>
   )
 }
@@ -50,12 +50,10 @@ const ArticleTitle = ({ children }) => {
   return <h3 className="latest-articles-item-title">{children}</h3>
 }
 
-const Footer = () => {
+const Footer = ({url}) => {
   return (
     <footer className="latest-articles-footer">
-      <Link href="/blog">
-        <a className="latest-articles-more__link">{"more ＞"}</a>
-      </Link>
+      <a className="latest-articles-more__link" href={url}>{"more ＞"}</a>
     </footer>
   )
 }
