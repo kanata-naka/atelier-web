@@ -43,7 +43,7 @@ export default ({ tagInfo }) => {
               {tagInfo.map((tag, index) => {
                 const rate = tag.count / maxCount
                 return (
-                  <TagInfo
+                  <TagListItem
                     key={index}
                     tag={tag.name}
                     count={tag.count}
@@ -52,16 +52,8 @@ export default ({ tagInfo }) => {
                 )
               })}
             </ul>
-            <div className="tag-info-foreground" />
-            <div className="tag-info-slide-button">
-              <a
-                href="#"
-                className="tag-info-slide-button__link"
-                onClick={handleClickToggleButton}>
-                <i className="fas fa-chevron-down tag-info-slide-button__down"></i>
-                <i className="fas fa-chevron-up tag-info-slide-button__up"></i>
-              </a>
-            </div>
+            <TagInfoForeground />
+            <TagInfoSlideButton onClick={handleClickToggleButton} />
           </div>
         )
       }}
@@ -69,7 +61,7 @@ export default ({ tagInfo }) => {
   )
 }
 
-const TagInfo = ({ tag, count, rate }) => {
+const TagListItem = ({ tag, count, rate }) => {
   return (
     <li className="tag-list-item">
       <Link href={`/gallery?tag=${tag}`}>
@@ -89,5 +81,20 @@ const TagInfo = ({ tag, count, rate }) => {
         </a>
       </Link>
     </li>
+  )
+}
+
+const TagInfoForeground = () => {
+  return <div className="tag-info-foreground" />
+}
+
+const TagInfoSlideButton = ({ onClick }) => {
+  return (
+    <div className="tag-info-slide-button">
+      <a href="#" className="tag-info-slide-button__link" onClick={onClick}>
+        <i className="fas fa-chevron-down tag-info-slide-button__down"></i>
+        <i className="fas fa-chevron-up tag-info-slide-button__up"></i>
+      </a>
+    </div>
   )
 }

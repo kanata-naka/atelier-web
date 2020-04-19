@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import Modal from "react-modal"
+import { reloadShareButtons } from "../../../common/hooks"
+import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
 import { styleDescription } from "../../../utils/domUtil"
 
@@ -19,6 +21,14 @@ const Component = ({ onClose }) => {
       setOpen(true)
     }
   }, [])
+
+  useEffect(() => {
+    if (isOpen) {
+      // すぐにシェアボタンの読み込みを再実行しても一部のボタンが表示されないため、
+      // 0.1秒ほど待機してから実行する
+      setTimeout(reloadShareButtons, 100)
+    }
+  }, [isOpen])
 
   // モーダルを閉じる
   const close = useCallback(() => {
@@ -46,6 +56,11 @@ const Component = ({ onClose }) => {
                 __html: styleDescription(item.description)
               }}></span>
           </Description>
+          <ShareButtons
+            path={`/gallery/${item.id}`}
+            title={item.title}
+            classPrefix="gallery-modal-"
+          />
           <PostedDate timestamp={item.createdAt} />
         </div>
         <DiffList

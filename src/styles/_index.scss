@@ -27,10 +27,18 @@
 
   &-nav {
     align-items: center;
-    bottom: 18px;
     display: flex;
     position: absolute;
-    left: 18px;
+
+    @media (max-width: 899px){
+      bottom: 9px;
+      left: 9px;
+    }
+
+    @media (min-width: 900px) {
+      bottom: 18px;
+      left: 18px;
+    }
 
     &-item {
       background-position: center;
@@ -39,10 +47,18 @@
       border: 1px solid white;
       border-radius: 5px;
       cursor: pointer;
-      height: 32px;
       opacity: 0.5;
       padding: 2px;
-      width: 32px;
+
+      @media (max-width: 899px){
+        height: 24px;
+        width: 24px;
+      }
+
+      @media (min-width: 900px) {
+        height: 32px;
+        width: 32px;
+      }
 
       &:not(:first-child) {
         margin-left: 5px;
@@ -349,5 +365,16 @@
       color: white;
       padding: 36px 12px 12px;
     }
+  }
+}
+
+.share-buttons {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+
+  &-item {
+    margin: 0 5px;
   }
 }

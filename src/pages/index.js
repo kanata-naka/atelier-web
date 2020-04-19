@@ -1,10 +1,12 @@
 import React from "react"
 import Head from "next/head"
 import { callFunction } from "../common/firebase"
+import { useShareButtons } from "../common/hooks"
 import { SITE_NAME, SITE_DESCRIPTION } from "../common/models"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import OgpTags from "../common/components/OgpTags"
+import ShareButtons from "../common/components/ShareButtons"
 import TopCarousel from "../modules/home/components/TopCarousel"
 import LatestArticles from "../modules/home/components/LatestArticles"
 import About from "../modules/home/components/About"
@@ -12,15 +14,12 @@ import RecentWorks from "../modules/home/components/RecentWorks"
 import RecentArts from "../modules/home/components/RecentArts"
 
 const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
+  useShareButtons()
+
   return (
     <div>
       <Head>
         <title>{SITE_NAME}</title>
-        <script
-          async
-          src="https://platform.twitter.com/widgets.js"
-          charSet="utf-8"
-        />
       </Head>
       <OgpTags
         path="/"
@@ -39,6 +38,7 @@ const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
       </div>
       <RecentArts items={recentArts} />
       <RecentWorks items={recentWorks} />
+      <ShareButtons path="/" />
       <Footer />
     </div>
   )

@@ -1,3 +1,9 @@
+import {
+  SITE_BASE_URL,
+  SITE_NAME,
+  TWITTER_USERNAME
+} from "../../../common/models"
+import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
 import { styleDescription } from "../../../utils/domUtil"
 
@@ -25,6 +31,11 @@ const WorkListItem = ({ item }) => {
               }}
             />
           </WorkListItemDescription>
+          <ShareButtons
+            path={`/works/${item.id}`}
+            title={item.title}
+            classPrefix="work-list-item-"
+          />
         </div>
         <div className="work-list-item-row__right-column">
           <WorkListItemImage image={item.images && item.images[0]} />

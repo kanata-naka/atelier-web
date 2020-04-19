@@ -41,6 +41,25 @@
       word-wrap: break-word;
     }
 
+    &-share-buttons {
+      align-items: flex-start;
+      display: flex;
+      margin: 16px 0;
+
+      @media (max-width: 799px){
+        justify-content: center;
+      }
+
+      @media (min-width: 800px){
+        justify-content: flex-start;
+        margin-left: 20px;
+      }
+
+      &-item {
+        margin: 0 5px;
+      }
+    }
+
     &-image {
       border: 1px solid lightgray;
       width: 100%;

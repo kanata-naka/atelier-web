@@ -29,7 +29,7 @@
     top: 10%;
     width: 80%;
 
-    @media (max-width: 600px){
+    @media (max-width: 599px){
       height: 100%;
       left: 0;
       top: 0;
@@ -56,7 +56,6 @@
     padding: 36px 12px 12px;
     position: absolute;
     right: 0;
-    pointer-events: none;
   }
 
   &-title {
@@ -70,6 +69,25 @@
 
   &-date {
     text-align: right;
+    white-space: nowrap;
+  }
+
+  &-share-buttons {
+    align-items: flex-start;
+    display: flex;
+    justify-content: flex-start;
+
+    @media (max-width: 599px){
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 600px){
+      float: left;
+    }
+
+    &-item {
+      margin: 0 5px;
+    }
   }
 
   .diff-list {
