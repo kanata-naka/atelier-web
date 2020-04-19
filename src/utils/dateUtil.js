@@ -11,3 +11,13 @@ export const formatDateFromUnixTimestamp = (
     return dateTime.format(format)
   }
 }
+
+export const formatDateFromIsoDate = (
+  dateString,
+  format = DEFAULT_DATE_FORMAT
+) => {
+  const dateTime = moment(dateString)
+  if (dateTime.isValid()) {
+    return dateTime.format(format)
+  }
+}

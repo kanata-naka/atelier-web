@@ -18,11 +18,6 @@ export const SOCIAL_ACCOUNTS = [
     name: "pixiv",
     url: "https://www.pixiv.net/users/204608",
     imageUrl: "/images/pixiv-icon.png"
-  },
-  {
-    name: "YouTube",
-    url: "https://www.youtube.com/channel/UCVeHzl5wDqmJLszg_eG7tCw",
-    imageUrl: "/images/youtube-icon.png"
   }
 ]
 

@@ -40,11 +40,7 @@ const Component = ({
       <TopCarousel items={topImages} />
       <div className="dashboard">
         <About />
-        <LatestArticles
-          url={env.BLOG_URL}
-          articleBaseUrl={env.BLOG_ARTICLES_BASE_URL}
-          items={latestArticles}
-        />
+        <LatestArticles url={env.BLOG_URL} items={latestArticles} />
       </div>
       <RecentArts baseUrl={env.BASE_URL} items={recentArts} />
       <RecentWorks items={recentWorks} />

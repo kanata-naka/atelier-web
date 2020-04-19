@@ -20,10 +20,7 @@ server.use(function(req, res, next) {
     FIREBASE_AUTH_DOMAIN: config.get("firebase.authDomain"),
     FIREBASE_PROJECT_ID: config.get("firebase.projectId"),
     FIREBASE_REGION: config.get("firebase.region"),
-    BLOG_URL: config.get("blog.url"),
-    BLOG_ARTICLES_BASE_URL: `${config.get("blog.url")}${config.get(
-      "blog.articlesBasePath"
-    )}`
+    BLOG_URL: config.get("blog.url")
   }
   next()
 })
