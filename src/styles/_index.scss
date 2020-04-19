@@ -4,6 +4,12 @@
   overflow: hidden;
   position: relative;
 
+  &.enable-transition {
+    .top-carousel-list-item {
+      transition: opacity 1.0s;
+    }
+  }
+
   &:before {
       content: "";
       display: block;
@@ -19,9 +25,8 @@
       left: 0;
       opacity: 0;
       position: absolute;
-      top: 0;
-      transition: opacity 1.0s;
       right: 0;
+      top: 0;
     }
   }
 

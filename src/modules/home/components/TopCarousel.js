@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect } from "react"
 
 // 画像を切り替える間隔（ミリ秒）
 const SWITCH_ITEM_INTERVAL = 7000
@@ -9,8 +9,16 @@ export default ({ items }) => {
   useEffect(() => {
     indexRef.current = currentIndex
   }, [currentIndex])
+  const [preloading, setPreloading] = useState(true)
+  const preloadingRef = useRef(preloading)
+  useEffect(() => {
+    preloadingRef.current = preloading
+  }, [preloading])
   // 画像を切り替える処理
   const handleSwitchItem = () => {
+    if (preloadingRef.current) {
+      setPreloading(false)
+    }
     let nextIndex = indexRef.current + 1
     if (nextIndex === items.length) {
       // 最初に戻る
@@ -41,8 +49,11 @@ export default ({ items }) => {
       SWITCH_ITEM_INTERVAL
     )
   }
+  // Chromeではページを読み込んだ際もtransitionが効いてしまうので、
+  // DOMの読み込みが完了するまでtransitionを無効にする
   return (
-    <section className="top-carousel">
+    <section
+      className={`top-carousel ${!preloading ? "enable-transition" : ""}`}>
       <TopCarouselList items={items} currentIndex={currentIndex} />
       <Navigation
         items={items}

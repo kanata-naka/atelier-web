@@ -40,8 +40,14 @@ const WorkListItem = ({ baseUrl, item }) => {
           />
         </div>
         <div className="work-list-item-row__right-column">
-          <DiffList images={item.images} currentImageIndex={currentImageIndex} onSelect={index => setCurrentImageIndex(index)} />
-          <WorkListItemImage image={item.images && item.images[currentImageIndex]} />
+          <DiffList
+            images={item.images}
+            currentImageIndex={currentImageIndex}
+            onSelect={index => setCurrentImageIndex(index)}
+          />
+          <WorkListItemImage
+            image={item.images && item.images[currentImageIndex]}
+          />
         </div>
       </div>
     </article>
