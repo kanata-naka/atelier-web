@@ -1,29 +1,28 @@
 import Link from "next/link"
-import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
 
-export default ({ items }) => {
+export default ({ blogBaseUrl, items }) => {
   return (
     <section className="latest-articles">
       {items.map((item, index) => (
-        <Article key={index} item={item} />
+        <Article key={index} blogBaseUrl={blogBaseUrl} item={item} />
       ))}
       <Footer />
     </section>
   )
 }
 
-const Article = ({ item }) => {
+const Article = ({ blogBaseUrl, item }) => {
   return (
     <article className="latest-articles-item">
       <ArticleBackground item={item} />
-      <Link href={`/blog/${item.id}`}>
-        <a className="latest-articles-item__link">
-          <div className="latest-articles-item-foreground">
-            <ArticlePostedDate timestamp={item.createdAt} />
-            <ArticleTitle>{item.title}</ArticleTitle>
-          </div>
-        </a>
-      </Link>
+      <a
+        className="latest-articles-item__link"
+        href={`${blogBaseUrl}${item.id}`}>
+        <div className="latest-articles-item-foreground">
+          <ArticlePostedDate timestamp={item.createdAt} />
+          <ArticleTitle>{item.title}</ArticleTitle>
+        </div>
+      </a>
     </article>
   )
 }
@@ -44,7 +43,7 @@ const ArticlePostedDate = ({ timestamp }) => {
     <div className="latest-articles-item-date">
       <i className="far fa-clock"></i>
       &nbsp;
-      {formatDateFromUnixTimestamp(timestamp)}
+      {timestamp}
     </div>
   )
 }

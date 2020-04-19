@@ -1,5 +1,3 @@
-/** サイトのURL */
-export const SITE_BASE_URL = "https://atelier-4464b.firebaseapp.com"
 /** サイト名 */
 export const SITE_NAME = "カナタノアトリエ"
 /** 作者名 */

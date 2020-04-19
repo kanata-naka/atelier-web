@@ -12,7 +12,15 @@ import ArtScroll from "../modules/gallery/components/ArtScroll"
 import GalleryModal from "../modules/gallery/components/GalleryModal"
 import { LIMIT } from "../modules/gallery/models"
 
-const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
+const Component = ({
+  globals: { env },
+  id,
+  item,
+  tagInfo,
+  tag,
+  items,
+  fetchedAll
+}) => {
   useEffect(() => {
     if (item) {
       GalleryModal.open(item)
@@ -31,7 +39,7 @@ const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
       </Head>
       {item ? (
         <OgpTags
-          path={`/gallery/${id}`}
+          url={`${env.BASE_URL}/gallery/${id}`}
           ogType="article"
           title={`${item.title} - ${SITE_NAME}`}
           description={item.description}
@@ -41,7 +49,7 @@ const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
         />
       ) : (
         <OgpTags
-          path="/gallery"
+          url={`${env.BASE_URL}/gallery`}
           ogType="blog"
           title={`GALLERY - ${SITE_NAME}`}
           twitterCard="summary_card"

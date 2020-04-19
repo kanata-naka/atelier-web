@@ -1,23 +1,18 @@
-import {
-  SITE_BASE_URL,
-  SITE_NAME,
-  TWITTER_USERNAME
-} from "../../../common/models"
 import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
 import { styleDescription } from "../../../utils/domUtil"
 
-export default ({ items }) => {
+export default ({ baseUrl, items }) => {
   return (
     <section className="work-list">
       {items.map((item, index) => (
-        <WorkListItem key={index} item={item} />
+        <WorkListItem key={index} baseUrl={baseUrl} item={item} />
       ))}
     </section>
   )
 }
 
-const WorkListItem = ({ item }) => {
+const WorkListItem = ({ baseUrl, item }) => {
   return (
     <article id={item.id} className="work-list-item">
       <WorkListItemTitle>{item.title}</WorkListItemTitle>
@@ -32,7 +27,7 @@ const WorkListItem = ({ item }) => {
             />
           </WorkListItemDescription>
           <ShareButtons
-            path={`/works/${item.id}`}
+            url={`${baseUrl}/works/${item.id}`}
             title={item.title}
             classPrefix="work-list-item-"
           />

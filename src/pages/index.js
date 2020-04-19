@@ -13,7 +13,13 @@ import About from "../modules/home/components/About"
 import RecentWorks from "../modules/home/components/RecentWorks"
 import RecentArts from "../modules/home/components/RecentArts"
 
-const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
+const Component = ({
+  globals: { env },
+  topImages,
+  latestArticles,
+  recentWorks,
+  recentArts
+}) => {
   useShareButtons()
 
   return (
@@ -22,7 +28,7 @@ const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
         <title>{SITE_NAME}</title>
       </Head>
       <OgpTags
-        path="/"
+        url={`${env.BASE_URL}/`}
         ogType="website"
         title={SITE_NAME}
         description={SITE_DESCRIPTION}
@@ -34,11 +40,14 @@ const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
       <TopCarousel items={topImages} />
       <div className="dashboard">
         <About />
-        <LatestArticles items={latestArticles} />
+        <LatestArticles
+          blogBaseUrl={env.BLOG_BASE_URL}
+          items={latestArticles}
+        />
       </div>
-      <RecentArts items={recentArts} />
+      <RecentArts baseUrl={env.BASE_URL} items={recentArts} />
       <RecentWorks items={recentWorks} />
-      <ShareButtons path="/" />
+      <ShareButtons url={`${env.BASE_URL}/`} />
       <Footer />
     </div>
   )
@@ -59,18 +68,20 @@ Component.getInitialProps = async ({ globals }) => {
         return []
       }),
     // 最新記事の一覧を取得する
-    // callFunction({
-    //   name: "api-articles-get",
-    //   globals
-    // }).then(response => {
-    //   return response.data
-    // })
-    // .catch(error => {
-    //   console.error(error)
-    //   return []
-    // }),
+    callFunction({
+      name: "api-blog-getArticles",
+      data: { page: 1, limit: 3 },
+      globals
+    })
+      .then(response => {
+        return response.data.result
+      })
+      .catch(error => {
+        console.error(error)
+        return []
+      }),
     // 最近のイラスト一覧を取得する
-    await callFunction({
+    callFunction({
       name: "api-arts-get",
       data: { limit: 6, pickupFlag: true },
       globals
@@ -83,7 +94,7 @@ Component.getInitialProps = async ({ globals }) => {
         return []
       }),
     // 最近の作品一覧を取得する
-    await callFunction({
+    callFunction({
       name: "api-works-get",
       data: { limit: 6, pickupFlag: true },
       globals
@@ -98,9 +109,9 @@ Component.getInitialProps = async ({ globals }) => {
   ])
   return {
     topImages: result[0],
-    latestArticles: [], // result[1],
-    recentArts: result[1],
-    recentWorks: result[2]
+    latestArticles: result[1],
+    recentArts: result[2],
+    recentWorks: result[3]
   }
 }
 

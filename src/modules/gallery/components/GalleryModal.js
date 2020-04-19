@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import Modal from "react-modal"
 import { reloadShareButtons } from "../../../common/hooks"
+import { Globals } from "../../../common/models"
 import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
 import { styleDescription } from "../../../utils/domUtil"
@@ -57,7 +58,7 @@ const Component = ({ onClose }) => {
               }}></span>
           </Description>
           <ShareButtons
-            path={`/gallery/${item.id}`}
+            url={`${Globals.env.BASE_URL}/gallery/${item.id}`}
             title={item.title}
             classPrefix="gallery-modal-"
           />

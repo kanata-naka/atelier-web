@@ -16,7 +16,7 @@ import {
   PAGE_NUMBER_DISPLAY_MAX_RANGE
 } from "../modules/works/models"
 
-const Component = ({ id, items }) => {
+const Component = ({ globals: { env }, id, items }) => {
   const [itemsByPage, setItemsByPage] = useState([...items])
   const [pagination, setPagination] = useState(null)
   const router = useRouter()
@@ -41,7 +41,7 @@ const Component = ({ id, items }) => {
       </Head>
       {id ? (
         <OgpTags
-          path={`/works/${id}`}
+          url={`${env.BASE_URL}/works/${id}`}
           ogType="article"
           title={`${items[0].title} - ${SITE_NAME}`}
           description={items[0].description}
@@ -53,7 +53,7 @@ const Component = ({ id, items }) => {
         />
       ) : (
         <OgpTags
-          path="/works"
+          url={`${env.BASE_URL}/works`}
           ogType="blog"
           title={`WORKS - ${SITE_NAME}`}
           twitterCard="summary_card"
@@ -61,7 +61,7 @@ const Component = ({ id, items }) => {
       )}
       <Header />
       <PageHeading>WORKS</PageHeading>
-      <WorkList items={itemsByPage} />
+      <WorkList baseUrl={env.BASE_URL} items={itemsByPage} />
       {pagination && (
         <Pagination
           pagination={pagination}

@@ -43,7 +43,7 @@ export default class extends App {
   }
 
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, globals, pageProps } = this.props
     return (
       <div>
         <Head>
@@ -60,7 +60,7 @@ export default class extends App {
           />
         </Head>
         <div className="page-wrapper">
-          <Component {...pageProps} />
+          <Component {...{ globals, ...pageProps }} />
         </div>
         <RoutingEffect.Component />
       </div>

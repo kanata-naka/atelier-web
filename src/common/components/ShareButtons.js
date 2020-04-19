@@ -1,6 +1,6 @@
-import { SITE_BASE_URL, SITE_NAME, TWITTER_USERNAME } from "../models"
+import { SITE_NAME, TWITTER_USERNAME } from "../models"
 
-export default ({ path, title, classPrefix = "" }) => {
+export default ({ url, title, classPrefix = "" }) => {
   return (
     <ul className={`${classPrefix}share-buttons`}>
       <ShareButtonItem classPrefix={classPrefix}>
@@ -8,7 +8,7 @@ export default ({ path, title, classPrefix = "" }) => {
           href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw"
           className="twitter-hashtag-button"
           data-text={title ? `${title} - ${SITE_NAME}` : SITE_NAME}
-          data-url={`${SITE_BASE_URL}${path}`}
+          data-url={url}
           data-related={TWITTER_USERNAME}
           data-lang="ja"
           data-show-count="false">
@@ -18,7 +18,7 @@ export default ({ path, title, classPrefix = "" }) => {
       <ShareButtonItem classPrefix={classPrefix}>
         <div
           className="fb-like"
-          data-href={`${SITE_BASE_URL}${path}`}
+          data-href={url}
           data-width=""
           data-layout="button"
           data-action="like"
@@ -31,7 +31,7 @@ export default ({ path, title, classPrefix = "" }) => {
           data-lang="ja"
           data-type="share-a"
           data-ver="3"
-          data-url={`${SITE_BASE_URL}${path}`}
+          data-url={url}
           data-color="default"
           data-size="small"
           data-count="false"
