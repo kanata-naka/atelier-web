@@ -17,7 +17,7 @@ const Component = () => {
         title={`CONTACT - ${SITE_NAME}`}
         twitterCard="summary_card"
       />
-      <Header />
+      <Header blogUrl={env.BLOG_URL} />
       <div className="under-construction">{"UNDER CONSTRUCTION"}</div>
       <Footer />
     </div>

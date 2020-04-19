@@ -59,7 +59,7 @@ const Component = ({ globals: { env }, id, items }) => {
           twitterCard="summary_card"
         />
       )}
-      <Header />
+      <Header blogUrl={env.BLOG_URL} />
       <PageHeading>WORKS</PageHeading>
       <WorkList baseUrl={env.BASE_URL} items={itemsByPage} />
       {pagination && (

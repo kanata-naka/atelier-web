@@ -4,7 +4,7 @@ import Link from "next/link"
 /**
  * ヘッダー
  */
-export default () => {
+export default ({blogUrl}) => {
   return (
     <header className="site-header">
       <h1 className="title">
@@ -12,7 +12,7 @@ export default () => {
           <a className="title__link"></a>
         </Link>
       </h1>
-      <GlobalNav />
+      <GlobalNav blogUrl={blogUrl} />
     </header>
   )
 }
@@ -20,7 +20,7 @@ export default () => {
 /**
  * グローバルナビゲーション
  */
-const GlobalNav = () => {
+const GlobalNav = ({blogUrl}) => {
   const [enableToggleMenu, setEnableToggleMenu] = useState(false)
   const [isToggleMenuActive, setToggleMenuActive] = useState(false)
 
@@ -60,7 +60,7 @@ const GlobalNav = () => {
           visibility: (!enableToggleMenu || isToggleMenuActive) && "visible"
         }}>
         <GlobalNavItem id="about" title="ABOUT" url="/#about" />
-        <GlobalNavItem id="blog" title="BLOG" url="/blog" />
+        <GlobalNavItem id="blog" title="BLOG" url={blogUrl} />
         <GlobalNavItem id="works" title="WORKS" url="/works" />
         <GlobalNavItem id="gallery" title="GALLERY" url="/gallery" />
         <GlobalNavItem id="contact" title="CONTACT" url="/contact" />

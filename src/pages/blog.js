@@ -17,11 +17,19 @@ const Component = () => {
         title={`BLOG - ${SITE_NAME}`}
         twitterCard="summary_card"
       />
-      <Header />
+      <Header blogUrl={env.BLOG_URL} />
       <div className="under-construction">{"UNDER CONSTRUCTION"}</div>
       <Footer />
     </div>
   )
+}
+
+Component.getInitialProps = async ({ globals: { env }, res }) => {
+  if (res) {
+    // TODO noteにリダイレクトする
+    res.writeHead(302, { Location: env.BLOG_URL })
+    res.end()
+  }
 }
 
 export default Component

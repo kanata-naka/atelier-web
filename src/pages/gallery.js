@@ -55,7 +55,7 @@ const Component = ({
           twitterCard="summary_card"
         />
       )}
-      <Header />
+      <Header blogUrl={env.BLOG_URL} />
       <PageHeading>GALLERY</PageHeading>
       {tagInfo && <TagInfo tagInfo={tagInfo} />}
       {item && <GalleryModal.Component onClose={onClose} />}

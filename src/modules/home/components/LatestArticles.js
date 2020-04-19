@@ -1,23 +1,21 @@
 import Link from "next/link"
 
-export default ({ blogBaseUrl, items }) => {
+export default ({ baseUrl, items }) => {
   return (
     <section className="latest-articles">
       {items.map((item, index) => (
-        <Article key={index} blogBaseUrl={blogBaseUrl} item={item} />
+        <Article key={index} baseUrl={baseUrl} item={item} />
       ))}
       <Footer />
     </section>
   )
 }
 
-const Article = ({ blogBaseUrl, item }) => {
+const Article = ({ baseUrl, item }) => {
   return (
     <article className="latest-articles-item">
       <ArticleBackground item={item} />
-      <a
-        className="latest-articles-item__link"
-        href={`${blogBaseUrl}${item.id}`}>
+      <a className="latest-articles-item__link" href={`${baseUrl}${item.id}`}>
         <div className="latest-articles-item-foreground">
           <ArticlePostedDate timestamp={item.createdAt} />
           <ArticleTitle>{item.title}</ArticleTitle>

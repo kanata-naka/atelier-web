@@ -14,11 +14,16 @@ server.use(function(req, res, next) {
   // 環境設定
   req.env = {
     ENVIRONMENT: process.env.NODE_ENV,
+    BASE_URL: config.get("baseUrl"),
     API_BASE_URL: config.get("api.baseUrl"),
     FIREBASE_API_KEY: config.get("firebase.apiKey"),
     FIREBASE_AUTH_DOMAIN: config.get("firebase.authDomain"),
     FIREBASE_PROJECT_ID: config.get("firebase.projectId"),
-    FIREBASE_REGION: config.get("firebase.region")
+    FIREBASE_REGION: config.get("firebase.region"),
+    BLOG_URL: config.get("blog.url"),
+    BLOG_ARTICLES_BASE_URL: `${config.get("blog.url")}${config.get(
+      "blog.articlesBasePath"
+    )}`
   }
   next()
 })

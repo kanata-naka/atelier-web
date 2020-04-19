@@ -2,7 +2,7 @@ import React from "react"
 import Head from "next/head"
 import { callFunction } from "../common/firebase"
 import { useShareButtons } from "../common/hooks"
-import { SITE_NAME, SITE_DESCRIPTION } from "../common/models"
+import { SITE_NAME, SITE_DESCRIPTION, Globals } from "../common/models"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import OgpTags from "../common/components/OgpTags"
@@ -36,12 +36,12 @@ const Component = ({
         twitterCard="summary_large_image"
         twitterImage="/images/ogp-twitter-image.png"
       />
-      <Header />
+    <Header blogUrl={env.BLOG_URL} />
       <TopCarousel items={topImages} />
       <div className="dashboard">
         <About />
         <LatestArticles
-          blogBaseUrl={env.BLOG_BASE_URL}
+          baseUrl={env.BLOG_ARTICLES_BASE_URL}
           items={latestArticles}
         />
       </div>
