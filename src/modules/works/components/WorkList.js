@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react"
 import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
 import { styleDescription } from "../../../utils/domUtil"
@@ -13,6 +14,12 @@ export default ({ baseUrl, items }) => {
 }
 
 const WorkListItem = ({ baseUrl, item }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  useEffect(() => {
+    setCurrentImageIndex(0)
+  }, [item])
+
   return (
     <article id={item.id} className="work-list-item">
       <WorkListItemTitle>{item.title}</WorkListItemTitle>
@@ -33,7 +40,8 @@ const WorkListItem = ({ baseUrl, item }) => {
           />
         </div>
         <div className="work-list-item-row__right-column">
-          <WorkListItemImage image={item.images && item.images[0]} />
+          <DiffList images={item.images} currentImageIndex={currentImageIndex} onSelect={index => setCurrentImageIndex(index)} />
+          <WorkListItemImage image={item.images && item.images[currentImageIndex]} />
         </div>
       </div>
     </article>
@@ -64,5 +72,42 @@ const WorkListItemImage = ({ image }) => {
       className="work-list-item-image"
       src={image ? image.url : "/images/no-image.png"}
     />
+  )
+}
+
+const DiffList = ({ images, currentImageIndex, onSelect }) => {
+  if (!images || images.length <= 1) {
+    // 画像が2つ以上なければ表示しない
+    return null
+  }
+  return (
+    <ul className="diff-list">
+      {images.map((image, index) => (
+        <DiffListItem
+          key={index}
+          image={image}
+          isActive={index === currentImageIndex}
+          onClick={e => {
+            e.preventDefault()
+            onSelect(index)
+          }}
+        />
+      ))}
+    </ul>
+  )
+}
+
+const DiffListItem = ({ image, isActive, onClick }) => {
+  return (
+    <li
+      className={`diff-list-item ${isActive ? "active" : ""}`}
+      style={{
+        backgroundImage: `url(${image.url})`
+      }}>
+      <a
+        className="diff-list-item__link"
+        href={image.url}
+        onClick={onClick}></a>
+    </li>
   )
 }

@@ -64,5 +64,40 @@
       border: 1px solid lightgray;
       width: 100%;
     }
+
+    .diff-list {
+      margin: 8px 0;
+      display: flex;
+
+      &-item {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 64px;
+        height: 64px;
+        border: 1px solid #cdcdcd;
+        padding: 4px;
+        margin-right: 6px;
+        position: relative;
+
+        &__link {
+          display: block;
+          bottom: 0;
+          left: 0;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        &.active {
+          border-color: #A5A5BF;
+          box-shadow: 0 0 2px #A5A5BF;
+        }
+      }
+    }
   }
 }

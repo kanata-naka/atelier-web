@@ -66,6 +66,7 @@ const Component = ({ onClose }) => {
         </div>
         <DiffList
           images={item.images}
+          currentImageIndex={currentImageIndex}
           onSelect={index => setCurrentImageIndex(index)}
         />
       </div>
@@ -109,9 +110,9 @@ const PostedDate = ({ timestamp }) => {
 }
 
 // 差分リスト
-const DiffList = ({ images, onSelect }) => {
+const DiffList = ({ images, currentImageIndex, onSelect }) => {
   if (!images || !images.length) {
-    return
+    return null
   }
   return (
     <ul className="diff-list">
@@ -119,6 +120,7 @@ const DiffList = ({ images, onSelect }) => {
         <DiffListItem
           key={index}
           image={image}
+          isActive={index === currentImageIndex}
           onClick={e => {
             e.preventDefault()
             onSelect(index)
@@ -129,10 +131,10 @@ const DiffList = ({ images, onSelect }) => {
   )
 }
 
-const DiffListItem = ({ image, onClick }) => {
+const DiffListItem = ({ image, isActive, onClick }) => {
   return (
     <li
-      className="diff-list-item"
+      className={`diff-list-item ${isActive ? "active" : ""}`}
       style={{
         backgroundImage: `url(${image.url})`
       }}>
