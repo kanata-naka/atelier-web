@@ -17,7 +17,7 @@ const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
     if (item) {
       GalleryModal.open(item)
     }
-  }, [])
+  }, [item])
 
   const onClose = useCallback(() => {
     // history.replaceState('','','/gallery')

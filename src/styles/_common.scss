@@ -253,7 +253,7 @@ body {
   right: 0;
   top: 0;
   transition: opacity 250ms;
-  z-index: 2;
+  z-index: 9;
 
   .loading-image {
     animation: loading_image 2s linear infinite;
