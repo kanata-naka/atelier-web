@@ -4,7 +4,7 @@ import Link from "next/link"
 /**
  * ヘッダー
  */
-export default ({blogUrl}) => {
+export default ({ blogUrl }) => {
   return (
     <header className="site-header">
       <h1 className="title">
@@ -20,7 +20,7 @@ export default ({blogUrl}) => {
 /**
  * グローバルナビゲーション
  */
-const GlobalNav = ({blogUrl}) => {
+const GlobalNav = ({ blogUrl }) => {
   const [enableToggleMenu, setEnableToggleMenu] = useState(false)
   const [isToggleMenuActive, setToggleMenuActive] = useState(false)
 

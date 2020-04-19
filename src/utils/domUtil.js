@@ -20,9 +20,6 @@ export const createLinkFromUrl = content => {
   )
 }
 
-/**
- * 作品、イラストの説明を表示用に整形する
- */
 export const styleDescription = content => {
   if (!content) return
   // 改行コードをbrタグに変換する

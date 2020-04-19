@@ -36,7 +36,7 @@ const Component = ({
         twitterCard="summary_large_image"
         twitterImage="/images/ogp-twitter-image.png"
       />
-    <Header blogUrl={env.BLOG_URL} />
+      <Header blogUrl={env.BLOG_URL} />
       <TopCarousel items={topImages} />
       <div className="dashboard">
         <About />
