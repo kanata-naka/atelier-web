@@ -1,12 +1,14 @@
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useEffect, useCallback } from "react"
 import { useStateRef } from "../../../common/hooks"
 
 // 画像を切り替える間隔（ミリ秒）
 const SWITCH_ITEM_INTERVAL = 7000
 
 export default ({ items }) => {
-  const [currentIndex, currntIndexRef, setCurrentIndex] = useStateRef(0)
   const [preloading, preloadingRef, setPreloading] = useStateRef(true)
+  const [currentIndex, currntIndexRef, setCurrentIndex] = useStateRef(0)
+  const currentIntervalIdRef = useRef(null)
+
   // 画像を切り替える処理
   const handleSwitchItem = () => {
     if (preloadingRef.current) {
@@ -19,7 +21,7 @@ export default ({ items }) => {
     }
     setCurrentIndex(nextIndex)
   }
-  const currentIntervalIdRef = useRef(null)
+
   useEffect(() => {
     // 一定時間ごとに画像を切り替える
     currentIntervalIdRef.current = setInterval(
@@ -31,17 +33,20 @@ export default ({ items }) => {
       clearInterval(currentIntervalIdRef.current)
     }
   }, [])
+
   // ナビゲーションのアイコンをクリックした際の処理
-  const handleNavItemClick = index => {
+  const handleNavItemClick = useCallback(index => {
     if (currentIntervalIdRef.current) {
       clearInterval(currentIntervalIdRef.current)
     }
+    setPreloading(false)
     setCurrentIndex(index)
     currentIntervalIdRef.current = setInterval(
       handleSwitchItem,
       SWITCH_ITEM_INTERVAL
     )
-  }
+  })
+
   // Chromeではページを読み込んだ際もtransitionが効いてしまうので、
   // DOMの読み込みが完了するまでtransitionを無効にする
   return (
