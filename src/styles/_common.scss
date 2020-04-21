@@ -65,6 +65,7 @@ body {
     flex-direction: column;
     right: 0;
     top: 100%;
+    visibility: hidden;
   }
 
   @media (min-width: 900px) {

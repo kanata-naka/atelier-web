@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useCallback, useRef } from "react"
 import Link from "next/link"
 import { Transition } from "react-transition-group"
 
@@ -9,6 +9,9 @@ const transitionClasses = {
   exited: "slide-exited"
 }
 
+/**
+ * タグ一覧
+ */
 export default ({ tagInfo }) => {
   const [collasped, setCollasped] = useState(true)
   const [height, setHeight] = useState(48)

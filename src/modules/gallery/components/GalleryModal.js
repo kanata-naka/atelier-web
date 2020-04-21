@@ -4,7 +4,7 @@ import { reloadShareButtons } from "../../../common/hooks"
 import { Globals } from "../../../common/models"
 import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
-import { styleDescription } from "../../../utils/domUtil"
+import { createDescriptionHtml } from "../../../utils/domUtil"
 
 Modal.setAppElement("#__next")
 
@@ -54,7 +54,7 @@ const Component = ({ onClose }) => {
           <Description>
             <span
               dangerouslySetInnerHTML={{
-                __html: styleDescription(item.description)
+                __html: createDescriptionHtml(item.description)
               }}></span>
           </Description>
           <ShareButtons

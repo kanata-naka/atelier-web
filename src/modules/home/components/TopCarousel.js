@@ -1,25 +1,18 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useRef, useEffect } from "react"
+import { useStateRef } from "../../../common/hooks"
 
 // 画像を切り替える間隔（ミリ秒）
 const SWITCH_ITEM_INTERVAL = 7000
 
 export default ({ items }) => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const indexRef = useRef(currentIndex)
-  useEffect(() => {
-    indexRef.current = currentIndex
-  }, [currentIndex])
-  const [preloading, setPreloading] = useState(true)
-  const preloadingRef = useRef(preloading)
-  useEffect(() => {
-    preloadingRef.current = preloading
-  }, [preloading])
+  const [currentIndex, currntIndexRef, setCurrentIndex] = useStateRef(0)
+  const [preloading, preloadingRef, setPreloading] = useStateRef(true)
   // 画像を切り替える処理
   const handleSwitchItem = () => {
     if (preloadingRef.current) {
       setPreloading(false)
     }
-    let nextIndex = indexRef.current + 1
+    let nextIndex = currntIndexRef.current + 1
     if (nextIndex === items.length) {
       // 最初に戻る
       nextIndex = 0

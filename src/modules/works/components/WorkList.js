@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
-import { styleDescription } from "../../../utils/domUtil"
+import { createDescriptionHtml } from "../../../utils/domUtil"
 
 export default ({ baseUrl, items }) => {
   return (
@@ -29,7 +29,7 @@ const WorkListItem = ({ baseUrl, item }) => {
           <WorkListItemDescription>
             <span
               dangerouslySetInnerHTML={{
-                __html: styleDescription(item.description)
+                __html: createDescriptionHtml(item.description)
               }}
             />
           </WorkListItemDescription>
