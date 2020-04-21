@@ -1,3 +1,4 @@
+import React, { useCallback } from "react"
 import {
   AUTHOR_NAME,
   SITE_DESCRIPTION,
@@ -5,6 +6,7 @@ import {
   TWITTER_USERNAME
 } from "../../../common/models"
 import { SectionHeading } from "../../../common/components/elements"
+import { reloadTwitterWidgets } from "../../../utils/vendorUtil"
 
 export default () => {
   return (
@@ -75,8 +77,15 @@ const Introduction = ({ children }) => {
 }
 
 const TwitterWidgets = ({ id }) => {
+  const elementRef = useCallback(element => {
+    if (!element) {
+      return
+    }
+    reloadTwitterWidgets(element)
+  }, [])
+
   return (
-    <div className="twitter-widgets">
+    <div className="twitter-widgets" ref={elementRef}>
       <a
         className="twitter-timeline"
         data-lang="ja"

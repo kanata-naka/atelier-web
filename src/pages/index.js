@@ -1,8 +1,7 @@
 import React from "react"
 import Head from "next/head"
 import { callFunction } from "../common/firebase"
-import { useShareButtons } from "../common/hooks"
-import { SITE_NAME, SITE_DESCRIPTION, Globals } from "../common/models"
+import { SITE_NAME, SITE_DESCRIPTION } from "../common/models"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import OgpTags from "../common/components/OgpTags"
@@ -20,8 +19,6 @@ const Component = ({
   recentWorks,
   recentArts
 }) => {
-  useShareButtons()
-
   return (
     <div>
       <Head>

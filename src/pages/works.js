@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { callFunction } from "../common/firebase"
-import { useShareButtons } from "../common/hooks"
 import { SITE_NAME } from "../common/models"
 import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
@@ -17,10 +16,9 @@ import {
 } from "../modules/works/models"
 
 const Component = ({ globals: { env }, id, items }) => {
-  const [itemsByPage, setItemsByPage] = useState([...items])
+  const [itemsByPage, setItemsByPage] = useState([])
   const [pagination, setPagination] = useState(null)
   const router = useRouter()
-  useShareButtons()
 
   useEffect(() => {
     if (id) {

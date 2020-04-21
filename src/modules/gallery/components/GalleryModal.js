@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react"
 import Modal from "react-modal"
-import { reloadShareButtons } from "../../../common/hooks"
 import { Globals } from "../../../common/models"
 import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
@@ -22,14 +21,6 @@ const Component = ({ onClose }) => {
       setOpen(true)
     }
   }, [])
-
-  useEffect(() => {
-    if (isOpen) {
-      // すぐにシェアボタンの読み込みを再実行しても一部のボタンが表示されないため、
-      // 0.1秒ほど待機してから実行する
-      setTimeout(reloadShareButtons, 100)
-    }
-  }, [isOpen])
 
   // モーダルを閉じる
   const close = useCallback(() => {
