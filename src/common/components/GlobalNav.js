@@ -59,7 +59,7 @@ const GlobalNavItem = ({ title, id, url, path }) => {
           <a className="global-nav-item__link">{title}</a>
         </Link>
       ) : url ? (
-        <a className="global-nav-item__link" href={url}>
+        <a className="global-nav-item__link" href={url} target="_blank">
           {title}
         </a>
       ) : (

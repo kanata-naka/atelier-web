@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { formatDateFromIsoDate } from "../../../utils/dateUtil"
 
 export default ({ url, items }) => {
@@ -16,7 +15,7 @@ const Article = ({ item }) => {
   return (
     <article className="latest-articles-item">
       <ArticleBackground item={item} />
-      <a className="latest-articles-item__link" href={item.url}>
+      <a className="latest-articles-item__link" href={item.url} target="_blank">
         <div className="latest-articles-item-foreground">
           <ArticlePostedDate timestamp={item.createdAt} />
           <ArticleTitle>{item.title}</ArticleTitle>
@@ -54,7 +53,7 @@ const ArticleTitle = ({ children }) => {
 const Footer = ({ url }) => {
   return (
     <footer className="latest-articles-footer">
-      <a className="latest-articles-more__link" href={url}>
+      <a className="latest-articles-more__link" href={url} target="_blank">
         {"more ＞"}
       </a>
     </footer>
