@@ -83,8 +83,8 @@ Component.getInitialProps = async ({ query, globals }) => {
     let tagInfo = {}
     try {
       const response = await callFunction({
-        name: "api-tagInfo-get",
-        data: { category: "arts" },
+        name: "api-tagInfo-getById",
+        data: { id: "arts" },
         globals
       })
       tagInfo = response.data.info

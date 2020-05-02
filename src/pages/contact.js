@@ -5,7 +5,7 @@ import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import OgpTags from "../common/components/OgpTags"
 
-const Component = () => {
+const Component = ({globals: { env }}) => {
   return (
     <div>
       <Head>

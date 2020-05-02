@@ -55,7 +55,7 @@ Component.getInitialProps = async ({ globals }) => {
       globals
     })
       .then(response => {
-        return response.data
+        return response.data.result
       })
       .catch(error => {
         console.error(error)
