@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
-import { createDescriptionHtml } from "../../../utils/domUtil"
+import { renderMarkdown } from "../../../utils/domUtil"
 
 export default ({ baseUrl, items }) => {
   return (
@@ -23,15 +23,11 @@ const WorkListItem = ({ baseUrl, item }) => {
   return (
     <article id={item.id} className="work-list-item">
       <WorkListItemTitle>{item.title}</WorkListItemTitle>
-      <WorkListItemPostedDate timestamp={item.createdAt} />
+      <WorkListItemPostedDate timestamp={item.publishedDate} />
       <div className="work-list-item-row">
         <div className="work-list-item-row__left-column">
           <WorkListItemDescription>
-            <span
-              dangerouslySetInnerHTML={{
-                __html: createDescriptionHtml(item.description)
-              }}
-            />
+            {renderMarkdown(item.description)}
           </WorkListItemDescription>
           <ShareButtons
             url={`${baseUrl}/works/${item.id}`}

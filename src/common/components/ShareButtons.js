@@ -25,7 +25,10 @@ const TwitterShareButton = ({ classPrefix, url, title }) => {
   }, [])
 
   return (
-    <li key={url} className={`${classPrefix}share-buttons-item`} ref={elementRef}>
+    <li
+      key={url}
+      className={`${classPrefix}share-buttons-item`}
+      ref={elementRef}>
       <a
         href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw"
         className="twitter-hashtag-button"
@@ -49,7 +52,10 @@ const FacebookShareButton = ({ classPrefix, url }) => {
   }, [])
 
   return (
-    <li key={url} className={`${classPrefix}share-buttons-item`} ref={elementRef}>
+    <li
+      key={url}
+      className={`${classPrefix}share-buttons-item`}
+      ref={elementRef}>
       <div
         className="fb-like"
         data-href={url}
@@ -71,7 +77,10 @@ const LINEShareButton = ({ classPrefix, url }) => {
   }, [])
 
   return (
-    <li key={url} className={`${classPrefix}share-buttons-item`} ref={elementRef}>
+    <li
+      key={url}
+      className={`${classPrefix}share-buttons-item`}
+      ref={elementRef}>
       <div
         className="line-it-button"
         data-lang="ja"

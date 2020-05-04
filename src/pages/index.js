@@ -90,7 +90,15 @@ Component.getInitialProps = async ({ globals }) => {
     // 最近の作品一覧を取得する
     callFunction({
       name: "api-works-get",
-      data: { limit: 6, pickupFlag: true },
+      data: {
+        limit: 6,
+        pickupFlag: true,
+        sort: {
+          // 出版日の降順
+          column: "publishedDate",
+          order: "desc"
+        }
+      },
       globals
     })
       .then(response => {

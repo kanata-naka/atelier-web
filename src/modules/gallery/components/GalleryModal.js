@@ -3,7 +3,7 @@ import Modal from "react-modal"
 import { Globals } from "../../../common/models"
 import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
-import { createDescriptionHtml } from "../../../utils/domUtil"
+import { renderMarkdown } from "../../../utils/domUtil"
 
 Modal.setAppElement("#__next")
 
@@ -42,12 +42,7 @@ const Component = ({ onClose }) => {
         <Background image={item.images[currentImageIndex]} />
         <div className="gallery-modal-foreground">
           <Title>{item.title}</Title>
-          <Description>
-            <span
-              dangerouslySetInnerHTML={{
-                __html: createDescriptionHtml(item.description)
-              }}></span>
-          </Description>
+          <Description>{renderMarkdown(item.description)}</Description>
           <ShareButtons
             url={`${Globals.env.BASE_URL}/gallery/${item.id}`}
             title={item.title}

@@ -90,7 +90,13 @@ Component.getInitialProps = async ({ query, globals }) => {
       // ※shallow routingで再読み込みを行わずにページングを実現するため
       const response = await callFunction({
         name: "api-works-get",
-        data: {},
+        data: {
+          sort: {
+            // 出版日の降順
+            column: "publishedDate",
+            order: "desc"
+          }
+        },
         globals
       })
       return {

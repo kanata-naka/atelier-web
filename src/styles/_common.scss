@@ -15,15 +15,6 @@ ul, ol {
   list-style: none;
 }
 
-.link--normal {
-  color: #6a6adf;
-  text-decoration: underline;
-
-  &:hover {
-    opacity: 0.7;
-  }
-}
-
 body {
   font-family: "Montserrat", "Rounded Mplus 1c", sans-serif;
   line-height: 1.2em;
@@ -282,4 +273,12 @@ body {
   font-size: 1.5em;
   color: gray;
   margin: 16px 0;
+}
+
+.markdown-body {
+  color: inherit !important;
+
+  ul, ol {
+    list-style: initial !important;
+  }
 }
