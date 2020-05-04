@@ -63,7 +63,6 @@ export const useScroll = (callback, delay, finished, deps) => {
     window.addEventListener("scroll", handleScroll)
     window.addEventListener("resize", handleScroll)
     return () => {
-      console.log("Art scroll aborted.")
       timer && clearTimeout(timer)
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("resize", handleScroll)

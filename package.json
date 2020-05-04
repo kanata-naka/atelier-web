@@ -13,7 +13,7 @@
     "install-dependencies": "cpx \"*{package.json,package-lock.json}\" \"dist/functions\" && cd \"dist/functions\" && npm install",
     "preserve": "npm run build && npm run copy-resources && npm run install-dependencies",
     "serve": "cross-env NODE_ENV=production firebase serve",
-    "deploy": "firebase deploy --interactive",
+    "deploy": "firebase deploy --only functions:app,hosting",
     "prettier": "prettier {src,functions}/**/*.js --write"
   },
   "author": "",

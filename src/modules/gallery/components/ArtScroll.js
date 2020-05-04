@@ -18,7 +18,6 @@ export default ({
   const [loading, setLoading] = useScroll(
     async () => {
       try {
-        console.log(`lastId: ${items[items.length - 1].id}`)
         // 次の${LIMIT}件を取得する
         const response = await callFunction({
           name: "api-arts-get",
