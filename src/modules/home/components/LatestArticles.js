@@ -38,7 +38,7 @@ const ArticleBackground = ({ item }) => {
 
 const ArticlePostedDate = ({ timestamp }) => {
   return (
-    <div className="latest-articles-item-date">
+    <div className="latest-articles-item-posted-date">
       <i className="far fa-clock"></i>
       &nbsp;
       {formatDateFromIsoDate(timestamp)}
