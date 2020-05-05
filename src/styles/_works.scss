@@ -3,8 +3,8 @@
 .work-list {
   &-item {
     &-title {
-      background-color: #EFF0FF;
-      color: #0F165A;
+      background-color: #eff0ff;
+      color: #0f165a;
       font-size: 24px;
       font-weight: bold;
       line-height: 24px;
@@ -21,7 +21,7 @@
       margin: 18px 0;
       padding: 0 24px;
 
-      @media (max-width: 799px){
+      @media (max-width: 799px) {
         flex-direction: column-reverse;
       }
 
@@ -30,7 +30,7 @@
       }
 
       &__right-column {
-        @media (min-width: 800px){
+        @media (min-width: 800px) {
           width: 400px;
         }
       }
@@ -46,11 +46,11 @@
       display: flex;
       margin: 16px 0;
 
-      @media (max-width: 799px){
+      @media (max-width: 799px) {
         justify-content: center;
       }
 
-      @media (min-width: 800px){
+      @media (min-width: 800px) {
         justify-content: flex-start;
         margin-left: 20px;
       }
@@ -95,8 +95,8 @@
         }
 
         &.active {
-          border-color: #A5A5BF;
-          box-shadow: 0 0 2px #A5A5BF;
+          border-color: #a5a5bf;
+          box-shadow: 0 0 2px #a5a5bf;
           opacity: 1;
         }
       }

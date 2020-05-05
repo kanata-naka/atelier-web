@@ -14,7 +14,7 @@
     "preserve": "npm run build && npm run copy-resources && npm run install-dependencies",
     "serve": "cross-env NODE_ENV=production firebase serve",
     "deploy": "firebase deploy --only functions:app,hosting",
-    "prettier": "prettier {src,functions}/**/*.js --write"
+    "prettier": "prettier {src,functions}/**/*.{js,scss} --write"
   },
   "author": "",
   "license": "ISC",
