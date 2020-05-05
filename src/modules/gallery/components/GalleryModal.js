@@ -87,7 +87,7 @@ const Description = ({ children }) => {
 // 投稿日時
 const PostedDate = ({ timestamp }) => {
   return (
-    <div className="gallery-modal-date">
+    <div className="gallery-modal-posted-date">
       <i className="far fa-clock"></i>
       &nbsp;
       {formatDateFromUnixTimestamp(timestamp)}

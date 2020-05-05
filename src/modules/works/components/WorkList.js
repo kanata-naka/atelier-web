@@ -23,7 +23,7 @@ const WorkListItem = ({ baseUrl, item }) => {
   return (
     <article id={item.id} className="work-list-item">
       <WorkListItemTitle>{item.title}</WorkListItemTitle>
-      <WorkListItemPostedDate timestamp={item.publishedDate} />
+      <WorkListItemPublishedDate timestamp={item.publishedDate} />
       <div className="work-list-item-row">
         <div className="work-list-item-row__left-column">
           <WorkListItemDescription>
@@ -54,9 +54,9 @@ const WorkListItemTitle = ({ children }) => {
   return <h3 className="work-list-item-title">{children}</h3>
 }
 
-const WorkListItemPostedDate = ({ timestamp }) => {
+const WorkListItemPublishedDate = ({ timestamp }) => {
   return (
-    <div className="work-list-item-date">
+    <div className="work-list-item-published-date">
       <i className="far fa-clock"></i>
       &nbsp;
       {formatDateFromUnixTimestamp(timestamp)}
