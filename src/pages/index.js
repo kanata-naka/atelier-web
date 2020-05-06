@@ -1,7 +1,7 @@
 import React from "react"
 import Head from "next/head"
 import { callFunction } from "../common/firebase"
-import { SITE_NAME, SITE_DESCRIPTION } from "../common/models"
+import { Globals, SITE_NAME, SITE_DESCRIPTION } from "../common/models"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import OgpTags from "../common/components/OgpTags"
@@ -12,20 +12,14 @@ import About from "../modules/home/components/About"
 import RecentWorks from "../modules/home/components/RecentWorks"
 import RecentArts from "../modules/home/components/RecentArts"
 
-const Component = ({
-  globals: { env },
-  topImages,
-  latestArticles,
-  recentWorks,
-  recentArts
-}) => {
+const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
   return (
     <div>
       <Head>
         <title>{SITE_NAME}</title>
       </Head>
       <OgpTags
-        url={`${env.BASE_URL}/`}
+        url={`${Globals.env.BASE_URL}/`}
         ogType="website"
         title={SITE_NAME}
         description={SITE_DESCRIPTION}
@@ -33,15 +27,15 @@ const Component = ({
         twitterCard="summary_large_image"
         twitterImage="/images/ogp-twitter-image.png"
       />
-      <Header blogUrl={env.BLOG_URL} />
+      <Header />
       <TopCarousel items={topImages} />
       <div className="dashboard">
         <About />
-        <LatestArticles url={env.BLOG_URL} items={latestArticles} />
+        <LatestArticles items={latestArticles} />
       </div>
-      <RecentArts baseUrl={env.BASE_URL} items={recentArts} />
+      <RecentArts items={recentArts} />
       <RecentWorks items={recentWorks} />
-      <ShareButtons url={`${env.BASE_URL}/`} />
+      <ShareButtons url={`${Globals.env.BASE_URL}/`} />
       <Footer />
     </div>
   )

@@ -5,7 +5,7 @@ import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
 import OgpTags from "../common/components/OgpTags"
 
-const Component = ({ globals: { env } }) => {
+const Component = () => {
   return (
     <div>
       <Head>
@@ -17,7 +17,7 @@ const Component = ({ globals: { env } }) => {
         title={`CONTACT - ${SITE_NAME}`}
         twitterCard="summary_card"
       />
-      <Header blogUrl={env.BLOG_URL} />
+      <Header />
       <div className="under-construction">{"UNDER CONSTRUCTION"}</div>
       <Footer />
     </div>

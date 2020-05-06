@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { callFunction } from "../common/firebase"
-import { SITE_NAME } from "../common/models"
+import { Globals, SITE_NAME } from "../common/models"
 import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
@@ -15,7 +15,7 @@ import {
   PAGE_NUMBER_DISPLAY_MAX_RANGE
 } from "../modules/works/models"
 
-const Component = ({ globals: { env }, id, items }) => {
+const Component = ({ id, items }) => {
   const [itemsByPage, setItemsByPage] = useState([])
   const [pagination, setPagination] = useState(null)
   const router = useRouter()
@@ -39,7 +39,7 @@ const Component = ({ globals: { env }, id, items }) => {
       </Head>
       {id ? (
         <OgpTags
-          url={`${env.BASE_URL}/works/${id}`}
+          url={`${Globals.env.BASE_URL}/works/${id}`}
           ogType="article"
           title={`${items[0].title} - ${SITE_NAME}`}
           description={items[0].description}
@@ -51,15 +51,15 @@ const Component = ({ globals: { env }, id, items }) => {
         />
       ) : (
         <OgpTags
-          url={`${env.BASE_URL}/works`}
+          url={`${Globals.env.BASE_URL}/works`}
           ogType="blog"
           title={`WORKS - ${SITE_NAME}`}
           twitterCard="summary_card"
         />
       )}
-      <Header blogUrl={env.BLOG_URL} />
+      <Header />
       <PageHeading>WORKS</PageHeading>
-      <WorkList baseUrl={env.BASE_URL} items={itemsByPage} />
+      <WorkList items={itemsByPage} />
       {pagination && (
         <Pagination
           pagination={pagination}

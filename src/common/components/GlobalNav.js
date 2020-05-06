@@ -1,11 +1,12 @@
 import { useState, useCallback } from "react"
 import Link from "next/link"
 import { useMediaQuery } from "../hooks"
+import { Globals } from "../models"
 
 /**
  * グローバルナビゲーション
  */
-export default ({ blogUrl }) => {
+export default () => {
   const [isToggleMenuActive, setToggleMenuActive] = useState(false)
   // ウィンドウの幅が一定以下ならトグルメニューを有効にする
   const enableToggleMenu = useMediaQuery("(max-width: 899px)")
@@ -29,7 +30,7 @@ export default ({ blogUrl }) => {
           visibility: (!enableToggleMenu || isToggleMenuActive) && "visible"
         }}>
         <GlobalNavItem id="about" title="ABOUT" path="/#about" />
-        <GlobalNavItem id="blog" title="BLOG" url={blogUrl} />
+        <GlobalNavItem id="blog" title="BLOG" url={Globals.env.BLOG_URL} />
         <GlobalNavItem id="works" title="WORKS" path="/works" />
         <GlobalNavItem id="gallery" title="GALLERY" path="/gallery" />
         <GlobalNavItem id="contact" title="CONTACT" path="/contact" />

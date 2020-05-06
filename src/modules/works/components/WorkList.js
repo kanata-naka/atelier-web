@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react"
+import { Globals } from "../../../common/models"
 import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
 import { renderMarkdown } from "../../../utils/domUtil"
 
-export default ({ baseUrl, items }) => {
+export default ({ items }) => {
   return (
     <section className="work-list">
       {items.map((item, index) => (
-        <WorkListItem key={index} baseUrl={baseUrl} item={item} />
+        <WorkListItem key={index} item={item} />
       ))}
     </section>
   )
 }
 
-const WorkListItem = ({ baseUrl, item }) => {
+const WorkListItem = ({ item }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const WorkListItem = ({ baseUrl, item }) => {
             {renderMarkdown(item.description)}
           </WorkListItemDescription>
           <ShareButtons
-            url={`${baseUrl}/works/${item.id}`}
+            url={`${Globals.env.BASE_URL}/works/${item.id}`}
             title={item.title}
             classPrefix="work-list-item-"
           />

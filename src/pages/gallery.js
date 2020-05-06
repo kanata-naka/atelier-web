@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from "react"
 import Head from "next/head"
 import Router from "next/router"
 import { callFunction } from "../common/firebase"
-import { SITE_NAME } from "../common/models"
+import { Globals, SITE_NAME } from "../common/models"
 import { PageHeading } from "../common/components/elements"
 import Header from "../common/components/Header"
 import Footer from "../common/components/Footer"
@@ -39,7 +39,7 @@ const Component = ({
       </Head>
       {item ? (
         <OgpTags
-          url={`${env.BASE_URL}/gallery/${id}`}
+          url={`${Globals.env.BASE_URL}/gallery/${id}`}
           ogType="article"
           title={`${item.title} - ${SITE_NAME}`}
           description={item.description}
@@ -49,13 +49,13 @@ const Component = ({
         />
       ) : (
         <OgpTags
-          url={`${env.BASE_URL}/gallery`}
+          url={`${Globals.env.BASE_URL}/gallery`}
           ogType="blog"
           title={`GALLERY - ${SITE_NAME}`}
           twitterCard="summary_card"
         />
       )}
-      <Header blogUrl={env.BLOG_URL} />
+      <Header />
       <PageHeading>GALLERY</PageHeading>
       {tagInfo && <TagInfo tagInfo={tagInfo} />}
       {item && <GalleryModal.Component onClose={onClose} />}

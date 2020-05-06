@@ -1,12 +1,13 @@
+import { Globals } from "../../../common/models"
 import { formatDateFromIsoDate } from "../../../utils/dateUtil"
 
-export default ({ url, items }) => {
+export default ({ items }) => {
   return (
     <section className="latest-articles">
       {items.map((item, index) => (
         <Article key={index} item={item} />
       ))}
-      <Footer url={url} />
+      <Footer />
     </section>
   )
 }
@@ -50,10 +51,13 @@ const ArticleTitle = ({ children }) => {
   return <h3 className="latest-articles-item-title">{children}</h3>
 }
 
-const Footer = ({ url }) => {
+const Footer = () => {
   return (
     <footer className="latest-articles-footer">
-      <a className="latest-articles-more__link" href={url} target="_blank">
+      <a
+        className="latest-articles-more__link"
+        href={Globals.env.BLOG_URL}
+        target="_blank">
         {"more ＞"}
       </a>
     </footer>

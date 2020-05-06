@@ -4,7 +4,7 @@ import GlobalNav from "./GlobalNav"
 /**
  * ヘッダー
  */
-export default ({ blogUrl }) => {
+export default () => {
   return (
     <header className="site-header">
       <h1 className="title">
@@ -12,7 +12,7 @@ export default ({ blogUrl }) => {
           <a className="title__link"></a>
         </Link>
       </h1>
-      <GlobalNav blogUrl={blogUrl} />
+      <GlobalNav />
     </header>
   )
 }
