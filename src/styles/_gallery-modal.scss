@@ -63,6 +63,22 @@
     margin: 18px 0;
   }
 
+  &-tag-list {
+    &-item {
+      display: inline-block;
+      margin-right: 6px;
+
+      a {
+        color: #3396f6;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
   &-description {
     padding: 18px 0;
   }

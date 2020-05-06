@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react"
 import Modal from "react-modal"
+import Router from 'next/router'
 import { Globals } from "../../../common/models"
 import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
@@ -20,12 +21,13 @@ const Component = ({ onClose }) => {
       setCurrentImageIndex(0)
       setOpen(true)
     }
+    // モーダルを閉じる
+    GalleryModal.close = () => setOpen(false)
   }, [])
 
-  // モーダルを閉じる
-  const close = useCallback(() => {
+  const handleClose = useCallback(() => {
     if (onClose) {
-      onClose(item)
+      onClose()
     }
     setOpen(false)
   })
@@ -33,15 +35,16 @@ const Component = ({ onClose }) => {
   return (
     <Modal
       isOpen={isOpen}
-      onRequestClose={close}
+      onRequestClose={handleClose}
       className="gallery-modal"
       bodyOpenClassName="gallery-modal--open"
       style={{ overlay: { zIndex: 2 } }}>
-      <Overlay onClick={close} />
+      <Overlay onClick={handleClose} />
       <div className="gallery-modal-container">
         <Background image={item.images[currentImageIndex]} />
         <div className="gallery-modal-foreground">
           <Title>{item.title}</Title>
+          <TagList tags={item.tags} />
           <Description>{renderMarkdown(item.description)}</Description>
           <ShareButtons
             url={`${Globals.env.BASE_URL}/gallery/${item.id}`}
@@ -56,7 +59,7 @@ const Component = ({ onClose }) => {
           onSelect={index => setCurrentImageIndex(index)}
         />
       </div>
-      <CloseButton onClick={close} />
+      <CloseButton onClick={handleClose} />
     </Modal>
   )
 }
@@ -78,6 +81,32 @@ const Background = ({ image }) => {
 
 const Title = ({ children }) => {
   return <h3 className="gallery-modal-title">{children}</h3>
+}
+
+const TagList = ({ tags = [] }) => {
+  return (
+    <ul className="gallery-modal-tag-list">
+      {tags.map((tag, index) => (
+        <TagListItem key={index} tag={tag} />
+      ))}
+    </ul>
+  )
+}
+
+const TagListItem = ({ tag }) => {
+  return (
+    <li className="gallery-modal-tag-list-item">
+      <a href={`/gallery?tag=${tag}`} onClick={(e) => {
+          // ※同一ページ間の遷移だとモーダルがそのままになってしまうため、
+          // 　手動でモーダルを閉じる
+          e.preventDefault()
+          Router.push(`/gallery?tag=${tag}`)
+          GalleryModal.close()
+        }}>
+        {`#${tag}`}
+      </a>
+    </li>
+  )
 }
 
 const Description = ({ children }) => {
