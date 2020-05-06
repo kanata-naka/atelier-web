@@ -13,7 +13,6 @@ import GalleryModal from "../modules/gallery/components/GalleryModal"
 import { LIMIT } from "../modules/gallery/models"
 
 const Component = ({
-  globals: { env },
   id,
   item,
   tagInfo,
