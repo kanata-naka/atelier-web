@@ -1,5 +1,6 @@
 import App from "next/app"
 import Head from "next/head"
+import getConfig from 'next/config'
 import { initializeFirebase } from "../common/firebase"
 import { Globals } from "../common/models"
 import RoutingEffect from "../common/components/RoutingEffect"
@@ -12,7 +13,7 @@ export default class extends App {
     let globals
     if (isServer) {
       globals = {
-        env: ctx.req.env
+        env: getConfig().serverRuntimeConfig
       }
     } else {
       globals = Object.assign({}, Globals)
