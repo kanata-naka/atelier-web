@@ -12,22 +12,16 @@ import ArtScroll from "../modules/gallery/components/ArtScroll"
 import GalleryModal from "../modules/gallery/components/GalleryModal"
 import { LIMIT } from "../modules/gallery/models"
 
-const Component = ({
-  id,
-  item,
-  tagInfo,
-  tag,
-  items,
-  fetchedAll
-}) => {
+const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
   useEffect(() => {
     if (item) {
+      // モーダルを開く
       GalleryModal.open(item)
     }
-  }, [item])
+    scrollTo(0, 0)
+  }, [item, items])
 
   const onClose = useCallback(() => {
-    // history.replaceState('','','/gallery')
     Router.push("/gallery")
   })
 

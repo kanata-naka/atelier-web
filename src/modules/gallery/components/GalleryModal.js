@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react"
 import Modal from "react-modal"
-import Router from 'next/router'
+import Router from "next/router"
 import { Globals } from "../../../common/models"
 import ShareButtons from "../../../common/components/ShareButtons"
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
@@ -96,12 +96,14 @@ const TagList = ({ tags = [] }) => {
 const TagListItem = ({ tag }) => {
   return (
     <li className="gallery-modal-tag-list-item">
-      <a href={`/gallery?tag=${tag}`} onClick={(e) => {
+      <a
+        href={`/gallery?tag=${tag}`}
+        onClick={e => {
           // ※同一ページ間の遷移だとモーダルがそのままになってしまうため、
           // 　手動でモーダルを閉じる
           e.preventDefault()
-          Router.push(`/gallery?tag=${tag}`)
           GalleryModal.close()
+          Router.push(`/gallery?tag=${tag}`)
         }}>
         {`#${tag}`}
       </a>

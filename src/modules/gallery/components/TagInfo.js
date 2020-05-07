@@ -18,7 +18,8 @@ export default ({ tagInfo }) => {
   const tagListRef = useRef(null)
 
   // トグルボタンを押下した際の処理
-  const handleClickToggleButton = useCallback(() => {
+  const handleClickToggleButton = useCallback((e) => {
+    e.preventDefault()
     setHeight(tagListRef.current.clientHeight)
     setCollasped(!collasped)
   }, [collasped])

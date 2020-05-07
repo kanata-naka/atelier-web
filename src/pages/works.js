@@ -30,7 +30,7 @@ const Component = ({ id, items }) => {
       setPagination(createPagination(page, PER_PAGE, items.length))
     }
     scrollTo(0, 0)
-  }, [id, items, router.query.page])
+  }, [id, router.query.page])
 
   return (
     <div>

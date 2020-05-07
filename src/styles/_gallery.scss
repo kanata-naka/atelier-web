@@ -122,7 +122,7 @@
     &-background {
       background-position: center;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: contain;
       bottom: 0;
       left: 0;
       position: absolute;
@@ -137,6 +137,7 @@
       position: absolute;
       right: 0;
       top: 0;
+      transition: background 250ms;
 
       &:hover {
         background: rgba(255, 255, 255, 0.2);
