@@ -27,7 +27,7 @@ const Component = () => {
       }}>
       {state => (
         <div className="page-loading" style={transitionStyle[state]}>
-          <img className="loading-image" src="/images/loading.png" />
+          <img className="loading-image" src="/images/loading.svg" />
         </div>
       )}
     </Transition>

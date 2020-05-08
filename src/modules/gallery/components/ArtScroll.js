@@ -55,7 +55,7 @@ export default ({
         ))}
       </div>
       <div className="loading">
-        {loading && <img className="loading-image" src="/images/loading.png" />}
+        {loading && <img className="loading-image" src="/images/loading.svg" />}
       </div>
       <GalleryModal.Component />
     </section>
