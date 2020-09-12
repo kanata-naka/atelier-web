@@ -3,25 +3,24 @@
 .work-list {
   &-item {
     &-title {
+      padding: 12px 24px;
       background-color: #eff0ff;
       color: #0f165a;
       font-size: 24px;
       font-weight: bold;
       line-height: 24px;
-      padding: 12px 24px;
     }
 
     &-published-date {
-      margin: 18px 28px;
+      padding: 18px 28px 0;
       text-align: right;
     }
 
     &-row {
       display: flex;
-      margin: 18px 0;
-      padding: 0 24px;
+      padding: 18px 24px;
 
-      @media (max-width: 799px) {
+      @media (max-width: $responsive-boundary-width) {
         flex-direction: column-reverse;
       }
 
@@ -30,7 +29,7 @@
       }
 
       &__right-column {
-        @media (min-width: 800px) {
+        @media (min-width: $responsive-boundary-width + 1) {
           width: 400px;
         }
       }
@@ -42,54 +41,45 @@
     }
 
     &-share-buttons {
-      align-items: flex-start;
       display: flex;
-      margin: 16px 0;
+      align-items: flex-start;
+      padding: 16px 0;
 
-      @media (max-width: 799px) {
+      @media (max-width: $responsive-boundary-width) {
         justify-content: center;
       }
 
-      @media (min-width: 800px) {
+      @media (min-width: $responsive-boundary-width + 1) {
         justify-content: flex-start;
-        margin-left: 20px;
+        padding-left: 20px;
       }
 
-      &-item {
-        margin: 0 5px;
+      &-item:not(:first-child) {
+        margin-left: 10px;
       }
     }
 
     &-image {
-      border: 1px solid lightgray;
       width: 100%;
+      border: 1px solid $frame-border-color;
     }
 
     .diff-list {
-      margin: 8px 0;
       display: flex;
+      padding: 8px 0;
 
       &-item {
+        width: 64px;
+        height: 64px;
+        position: relative;
+        margin-right: 6px;
+        padding: 4px;
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
-        width: 64px;
-        height: 64px;
-        border: 1px solid #cdcdcd;
-        padding: 4px;
-        margin-right: 6px;
+        border: 1px solid $frame-border-color;
         opacity: 0.8;
-        position: relative;
         transition: opacity 250ms;
-
-        &__link {
-          display: block;
-          bottom: 0;
-          left: 0;
-          position: absolute;
-          right: 0;
-          top: 0;
-        }
 
         &:hover {
           opacity: 1;
@@ -99,6 +89,15 @@
           border-color: #a5a5bf;
           box-shadow: 0 0 2px #a5a5bf;
           opacity: 1;
+        }
+
+        &__link {
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
         }
       }
     }

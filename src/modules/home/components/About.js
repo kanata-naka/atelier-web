@@ -58,7 +58,7 @@ const SocialIcons = ({ items }) => {
 const SocialIcon = ({ item }) => {
   return (
     <li className="social-icons-item">
-      <a className="social-icons-item__link" href={item.url}>
+      <a href={item.url}>
         <img
           className="social-icons-item__image"
           alt={item.name}

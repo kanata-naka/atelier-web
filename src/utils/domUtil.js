@@ -10,6 +10,9 @@ export const matchesMediaQuery = mediaQuery => {
   return window.matchMedia(mediaQuery).matches
 }
 
+/**
+ * Markdown形式のテキストを整形する
+ */
 export const renderMarkdown = src => {
   if (!src) {
     return <span />

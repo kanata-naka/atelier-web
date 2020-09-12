@@ -21,21 +21,14 @@ export default ({ items }) => {
 const RecentWorkItem = ({ item, isLast }) => {
   return (
     <div className="recent-works-item">
-      <RecentWorkItemBackground image={item.images && item.images[0]} />
-      <RecentWorkItemForeground
-        className={
-          isLast
-            ? "recent-works-item-foreground--more"
-            : "recent-works-item-foreground"
-        }
-        isLast={isLast}
-        id={item.id}>
-        {isLast ? (
-          <div className="recent-works-more">{"more ＞"}</div>
-        ) : (
-          <RecentWorkItemTitle>{item.title}</RecentWorkItemTitle>
-        )}
-      </RecentWorkItemForeground>
+      <Link
+        href={`/works${isLast ? "" : `?id=${item.id}`}`}
+        as={`/works${isLast ? "" : `/${item.id}`}`}>
+        <a className="recent-works-item__link">
+          <RecentWorkItemBackground image={item.images && item.images[0]} />
+          <RecentWorkItemForeground isLast={isLast} title={item.title} />
+        </a>
+      </Link>
     </div>
   )
 }
@@ -45,22 +38,26 @@ const RecentWorkItemBackground = ({ image }) => {
     <div
       className="recent-works-item-background"
       style={{
-        backgroundImage: `url(${image ? image.url : "/images/no-image.png"})`
+        backgroundImage: `url(${image ? image.url : "/images/no-image.png"})`,
+        backgroundSize: image ? "cover" : "contain"
       }}></div>
   )
 }
 
-const RecentWorkItemForeground = ({ isLast, id, children, ...props }) => {
+const RecentWorkItemForeground = ({ isLast, title }) => {
   return (
-    <Link
-      href={`/works${isLast ? "" : `?id=${id}`}`}
-      as={`/works${isLast ? "" : `/${id}`}`}>
-      <a className="recent-works-item__link">
-        <div className="recent-works-item-foreground" {...props}>
-          {children}
-        </div>
-      </a>
-    </Link>
+    <div
+      className={
+        isLast
+          ? "recent-works-item-foreground--more"
+          : "recent-works-item-foreground"
+      }>
+      {isLast ? (
+        <div className="recent-works-more">{"more ＞"}</div>
+      ) : (
+        <RecentWorkItemTitle>{title}</RecentWorkItemTitle>
+      )}
+    </div>
   )
 }
 

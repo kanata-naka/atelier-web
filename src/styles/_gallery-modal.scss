@@ -1,66 +1,72 @@
-@import "mixins";
+// レスポンシブ：横幅の境界値
+// ※iPhone 11に準拠
+$gallery-modal-responsive-boundary-width: 414px;
 
 .gallery-modal {
+  position: absolute;
+  top: 0;
+  right: 0;
   bottom: 0;
   left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
 
   &--open {
     // bodyに指定してスクロールを固定する
     overflow: hidden;
   }
 
+  // オーバレイ
   &-overlay {
-    background-color: black;
+    position: absolute;
+    top: 0;
+    right: 0;
     bottom: 0;
     left: 0;
+    background-color: black;
     opacity: 0.8;
-    position: absolute;
-    right: 0;
-    top: 0;
   }
 
   &-container {
-    height: 80%;
-    left: 10%;
     position: absolute;
-    top: 10%;
-    width: 80%;
 
-    @media (max-width: 599px) {
+    @media (max-width: $gallery-modal-responsive-boundary-width) {
+      width: 100%;
       height: 100%;
       left: 0;
       top: 0;
-      width: 100%;
+    }
+
+    @media (min-width: $gallery-modal-responsive-boundary-width + 1) {
+      width: 80%;
+      height: 80%;
+      left: 10%;
+      top: 10%;
     }
   }
 
   &-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    position: absolute;
-    top: 0;
   }
 
   &-foreground {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-    bottom: 0;
-    color: white;
-    left: 0;
-    padding: 36px 12px 12px;
     position: absolute;
     right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 36px 12px 12px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+    color: white;
   }
 
   &-title {
-    font-size: 24px;
     margin: 18px 0;
+    font-size: 24px;
   }
 
   &-tag-list {
@@ -68,7 +74,7 @@
       display: inline-block;
       margin-right: 6px;
 
-      a {
+      &__link {
         color: #3396f6;
         text-decoration: none;
 
@@ -89,15 +95,15 @@
   }
 
   &-share-buttons {
-    align-items: flex-start;
     display: flex;
+    align-items: flex-start;
     justify-content: flex-start;
 
-    @media (max-width: 599px) {
-      margin-bottom: 8px;
+    @media (max-width: $gallery-modal-responsive-boundary-width) {
+      padding-bottom: 8px;
     }
 
-    @media (min-width: 600px) {
+    @media (min-width: $gallery-modal-responsive-boundary-width + 1) {
       float: left;
     }
 
@@ -107,31 +113,31 @@
   }
 
   .diff-list {
-    left: 12px;
-    top: 12px;
-    position: absolute;
     display: flex;
+    position: absolute;
+    top: 12px;
+    left: 12px;
 
     &-item {
+      width: 64px;
+      height: 64px;
+      position: relative;
+      margin-right: 6px;
+      padding: 4px;
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
-      width: 64px;
-      height: 64px;
-      border: 1px solid #cdcdcd;
-      padding: 4px;
-      margin-right: 6px;
+      border: 1px solid $frame-border-color;
       opacity: 0.8;
-      position: relative;
       transition: opacity 250ms;
 
       &__link {
         display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
         bottom: 0;
         left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
       }
 
       &:hover {
@@ -146,13 +152,14 @@
   }
 
   &-close-button {
-    cursor: pointer;
+    width: 32px;
     height: 32px;
     position: absolute;
+    top: 24px;
     right: 24px;
     text-align: center;
-    top: 24px;
-    width: 32px;
+    cursor: pointer;
+    transition: text-shadow 250ms;
 
     &__icon {
       color: white;

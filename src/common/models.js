@@ -24,6 +24,9 @@ export const SOCIAL_ACCOUNTS = [
 /** グローバル変数 */
 export const Globals = {}
 
+/**
+ * ページネーションを生成する
+ */
 export const createPagination = (page, perPage, total) => {
   return { page, perPage, total }
 }

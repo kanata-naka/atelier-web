@@ -9,15 +9,15 @@ import { Globals } from "../models"
 export default () => {
   const [isToggleMenuActive, setToggleMenuActive] = useState(false)
   // ウィンドウの幅が一定以下ならトグルメニューを有効にする
-  const enableToggleMenu = useMediaQuery("(max-width: 899px)")
+  const enableToggleMenu = useMediaQuery("(max-width: 834px)")
 
-  // ハンバーガーボタンを押下した際の処理
   const handleHamburgerButtonClick = useCallback(() => {
+    // トグルメニューを切り替える
     setToggleMenuActive(!isToggleMenuActive)
   }, [isToggleMenuActive])
 
   return (
-    <nav className="global-nav-container" role="navigation">
+    <nav className="global-nav">
       {enableToggleMenu && (
         <HamburgerButton
           isActive={isToggleMenuActive}
@@ -25,7 +25,8 @@ export default () => {
         />
       )}
       <ul
-        className="global-nav"
+        className="global-nav-list"
+        role="navigation"
         style={{
           visibility: (!enableToggleMenu || isToggleMenuActive) && "visible"
         }}>
@@ -44,15 +45,15 @@ export default () => {
  */
 const HamburgerButton = ({ isActive, onClick }) => {
   return (
-    <div className="global-nav-hamburger-button" onClick={onClick}>
-      <i
-        className={`fas fa-bars global-nav-hamburger-button__icon ${isActive &&
-          "active"}`}></i>
+    <div
+      className={`global-nav-hamburger-button ${isActive && "active"}`}
+      onClick={onClick}>
+      <i className="fas fa-bars global-nav-hamburger-button__icon"></i>
     </div>
   )
 }
 
-const GlobalNavItem = ({ title, id, url, path }) => {
+const GlobalNavItem = ({ title, id, path, url }) => {
   return (
     <li key={id} className="global-nav-item">
       {path ? (

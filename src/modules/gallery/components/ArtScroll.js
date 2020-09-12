@@ -65,15 +65,17 @@ export default ({
 const ArtScrollItem = ({ item }) => {
   return (
     <div className="art-scroll-item">
-      <ArtScrollItemBackground image={item.images[0]} />
-      <ArtScrollItemForeground
-        className="art-scroll-item-foreground"
-        id={item.id}
-        onClick={e => {
-          e.preventDefault()
-          // モーダルを開く
-          GalleryModal.open(item)
-        }}></ArtScrollItemForeground>
+      <Link href={`/gallery?id=${item.id}`} as={`/gallery/${item.id}`}>
+        <a
+          className="art-scroll-item__link"
+          onClick={e => {
+            e.preventDefault()
+            // モーダルを開く
+            GalleryModal.open(item)
+          }}>
+          <ArtScrollItemBackground image={item.images[0]} />
+        </a>
+      </Link>
     </div>
   )
 }
@@ -85,15 +87,5 @@ const ArtScrollItemBackground = ({ image }) => {
       style={{
         backgroundImage: `url(${image.url})`
       }}></div>
-  )
-}
-
-const ArtScrollItemForeground = ({ id, onClick, children, ...props }) => {
-  return (
-    <Link href={`/gallery?id=${id}`} as={`/gallery/${id}`}>
-      <a className="art-scroll-item__link" onClick={onClick}>
-        <div {...props}>{children}</div>
-      </a>
-    </Link>
   )
 }

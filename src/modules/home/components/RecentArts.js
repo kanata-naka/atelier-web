@@ -23,25 +23,23 @@ export default ({ items }) => {
 const RecentArtItem = ({ item, isLast }) => {
   return (
     <div className="recent-arts-item">
-      <RecentArtItemBackground image={item.images[0]} />
-      <RecentArtItemForeground
-        className={
-          isLast
-            ? "recent-arts-item-foreground--more"
-            : "recent-arts-item-foreground"
-        }
-        isLast={isLast}
-        id={item.id}
-        onClick={e => {
-          if (isLast) {
-            return
-          }
-          e.preventDefault()
-          // モーダルを開く
-          GalleryModal.open(item)
-        }}>
-        {isLast && <div className="recent-arts-more">{"more ＞"}</div>}
-      </RecentArtItemForeground>
+      <Link
+        href={`/gallery${isLast ? "" : `?id=${item.id}`}`}
+        as={`/gallery${isLast ? "" : `/${item.id}`}`}>
+        <a
+          className="recent-arts-item__link"
+          onClick={e => {
+            if (isLast) {
+              return
+            }
+            e.preventDefault()
+            // モーダルを開く
+            GalleryModal.open(item)
+          }}>
+          <RecentArtItemBackground image={item.images[0]} />
+          <RecentArtItemForeground isLast={isLast} />
+        </a>
+      </Link>
     </div>
   )
 }
@@ -51,25 +49,21 @@ const RecentArtItemBackground = ({ image }) => {
     <div
       className="recent-arts-item-background"
       style={{
-        backgroundImage: `url(${image.url})`
+        backgroundImage: `url(${image.url})`,
+        backgroundSize: "cover"
       }}></div>
   )
 }
 
-const RecentArtItemForeground = ({
-  isLast,
-  id,
-  onClick,
-  children,
-  ...props
-}) => {
+const RecentArtItemForeground = ({ isLast }) => {
   return (
-    <Link
-      href={`/gallery${isLast ? "" : `?id=${id}`}`}
-      as={`/gallery${isLast ? "" : `/${id}`}`}>
-      <a className="recent-arts-item__link" onClick={onClick}>
-        <div {...props}>{children}</div>
-      </a>
-    </Link>
+    <div
+      className={
+        isLast
+          ? "recent-arts-item-foreground--more"
+          : "recent-arts-item-foreground"
+      }>
+      {isLast && <div className="recent-arts-more">{"more ＞"}</div>}
+    </div>
   )
 }

@@ -13,7 +13,9 @@ export default ({ pagination, maxRange }) => {
   const handlePageNumberButtonClick = (e, page) => {
     e.preventDefault()
     // ドキュメントの読み取り量を減らすため、shallow routingを使用する
-    Router.push(`/works?page=${page}`, `/works?page=${page}`, { shallow: true })
+    Router.push(`/works?page=${page}`, `/works?page=${page}`, {
+      shallow: true
+    })
   }
 
   const renderPageNumberButtons = () => {
@@ -64,7 +66,7 @@ export default ({ pagination, maxRange }) => {
 
 const PagePrevButton = ({ page, disabled, onClick }) => {
   return (
-    <li className={`pagination-item--prev ${disabled && "disabled"}`}>
+    <li className={`pagination-item--prev ${disabled ? "disabled" : ""}`}>
       {!disabled && (
         <a
           className="pagination-item__link"
@@ -79,7 +81,7 @@ const PagePrevButton = ({ page, disabled, onClick }) => {
 
 const PageNumberButton = ({ page, isActive, onClick }) => {
   return (
-    <li className={`pagination-item ${isActive && "active"}`}>
+    <li className={`pagination-item ${isActive ? "active" : ""}`}>
       <a
         className="pagination-item__link"
         href={`/works?page=${page}`}
@@ -92,7 +94,7 @@ const PageNumberButton = ({ page, isActive, onClick }) => {
 
 const PageNextButton = ({ page, disabled, onClick }) => {
   return (
-    <li className={`pagination-item--next ${disabled && "disabled"}`}>
+    <li className={`pagination-item--next ${disabled ? "disabled" : ""}`}>
       {!disabled && (
         <a
           className="pagination-item__link"

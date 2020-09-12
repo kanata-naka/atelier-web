@@ -1,70 +1,69 @@
-@import "mixins";
-
+/* カルーセル */
 .top-carousel {
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 
   &.enable-transition {
-    .top-carousel-list-item {
+    .top-carousel-item {
       transition: opacity 1s;
     }
   }
 
   &:before {
-    content: "";
     display: block;
     padding-top: 60%;
+    content: "";
   }
 
-  &-list {
-    &-item {
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      bottom: 0;
-      left: 0;
-      opacity: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
+  &-item {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
   }
 
   &-nav {
-    align-items: center;
-    display: flex;
-    position: absolute;
+    &-list {
+      display: flex;
+      align-items: center;
+      position: absolute;
 
-    @media (max-width: 899px) {
-      bottom: 9px;
-      left: 9px;
-    }
+      @media (max-width: $responsive-boundary-width) {
+        bottom: 9px;
+        left: 9px;
+      }
 
-    @media (min-width: 900px) {
-      bottom: 18px;
-      left: 18px;
+      @media (min-width: $responsive-boundary-width + 1) {
+        bottom: 18px;
+        left: 18px;
+      }
     }
 
     &-item {
+      padding: 2px;
       background-position: center;
       background-repeat: no-repeat;
       background-size: calc(100% - 4px);
       border: 1px solid white;
       border-radius: 5px;
-      cursor: pointer;
       opacity: 0.5;
-      padding: 2px;
+      cursor: pointer;
       transition-property: box-shadow, opacity;
       transition-duration: 250ms;
 
-      @media (max-width: 899px) {
-        height: 24px;
+      @media (max-width: $responsive-boundary-width) {
         width: 24px;
+        height: 24px;
       }
 
-      @media (min-width: 900px) {
-        height: 32px;
+      @media (min-width: $responsive-boundary-width + 1) {
         width: 32px;
+        height: 32px;
       }
 
       &:not(:first-child) {
@@ -72,8 +71,8 @@
       }
 
       &:hover {
-        box-shadow: 0 0 5px white;
         opacity: 0.8;
+        box-shadow: 0 0 5px white;
       }
 
       &.active {
@@ -83,19 +82,21 @@
   }
 }
 
+/* ダッシュボード */
 .dashboard {
   display: flex;
 
-  @media (max-width: 900px) {
+  @media (max-width: $responsive-boundary-width) {
     flex-direction: column-reverse;
   }
 }
 
+// セクションの見出し
 .section-heading {
-  color: gray;
+  padding: 24px 0;
+  color: #4c4c4c;
   font-size: 28px;
   line-height: 28px;
-  margin: 24px 0;
   text-align: center;
 }
 
@@ -106,82 +107,75 @@
 
   &-item {
     flex-grow: 1;
-    margin-top: 8px;
-    overflow: hidden;
     position: relative;
+    margin-top: 6px;
+    overflow: hidden;
+    transition: opacity 250ms;
+
+    &:hover {
+      opacity: 0.8;
+    }
 
     &:not(:first-child) {
       flex-grow: 0.5;
+      border-top: 1px solid $frame-border-color;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: $responsive-boundary-width) {
       &:before {
-        content: "";
         display: block;
         padding-top: 50%;
+        content: "";
       }
-    }
-
-    &-background {
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      bottom: 0;
-      left: 0;
-      position: absolute;
-      top: 0;
-      right: 0;
     }
 
     &__link {
-      bottom: 0;
       display: block;
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-      transition: background 250ms;
+    }
 
-      &:hover {
-        background: rgba(255, 255, 255, 0.2);
-      }
+    &-background {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      // background-size: cover;
     }
 
     &-foreground {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 36px 12px 12px;
       background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0),
         rgba(5, 0, 30, 1)
       );
-      bottom: 0;
       color: white;
-      left: 0;
-      padding: 36px 12px 12px;
-      position: absolute;
-      right: 0;
-    }
-
-    &-posted-date {
     }
 
     &-title {
+      padding: 12px 0;
       font-size: 18px;
       font-weight: bold;
-      margin: 12px 0;
     }
   }
 
   &-footer {
-    background-color: black;
     height: 48px;
+    padding-right: 24px;
+    background-color: black;
     text-align: right;
   }
 
-  &-more__link {
+  &-more {
     color: white;
     font-size: 18px;
     line-height: 48px;
-    margin-right: 24px;
     transition: text-shadow 250ms;
 
     &:hover {
@@ -193,23 +187,23 @@
 .about {
   text-align: center;
 
-  @media (min-width: 900px) {
-    margin: 0 8px;
-    width: 472px;
+  @media (min-width: $responsive-boundary-width + 1) {
+    width: 414px;
+    padding: 0 8px;
   }
 
   .description {
+    padding: 0 12px 24px;
     font-size: 14px;
-    padding: 12px;
   }
 
   .profile-image {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
     border: 1px solid lightgray;
     border-radius: 50%;
-    height: 100px;
-    margin: 24px auto;
     overflow: hidden;
-    width: 100px;
 
     &__image {
       width: 100%;
@@ -217,30 +211,31 @@
   }
 
   .author-name {
+    padding: 24px 0 0;
     font-size: 24px;
     line-height: 24px;
-    margin: 24px 0;
   }
 
   .social-icons {
     display: flex;
     justify-content: center;
-    margin: 24px 0;
+    padding: 24px 0;
 
     &-item {
+      width: 24px;
+      height: 24px;
+      transition: opacity 250ms;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
       &:not(:first-child) {
         margin-left: 12px;
       }
 
-      &__link {
+      a {
         display: block;
-        height: 24px;
-        width: 24px;
-        transition: opacity 250ms;
-
-        &:hover {
-          opacity: 0.8;
-        }
       }
 
       &__image {
@@ -250,17 +245,17 @@
   }
 
   .introduction {
+    padding: 24px 12px;
     background-color: #ecf0ff;
     font-size: 14px;
-    padding: 24px 12px;
   }
 
   .twitter-widgets {
-    border: 1px solid lightgray;
-    border-radius: 10px;
+    width: 300px;
     margin: 24px auto;
     padding: 0 12px;
-    width: 300px;
+    border: 1px solid $frame-border-color;
+    border-radius: 10px;
   }
 }
 
@@ -268,28 +263,28 @@
   padding-bottom: 24px;
 
   &:before {
-    content: "";
     display: block;
-    height: 2px;
     width: 100%;
+    height: 2px;
     background: linear-gradient(to right, lightgray, gray);
+    content: "";
   }
 
   &-container {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 8px;
+    padding: 0 8px;
   }
 
   &-item {
-    border: 1px solid lightgray;
-    flex: 0 1 calc(50% - 10px);
     height: auto; // 正方形にする
-    margin: 4px;
-    overflow: hidden;
+    flex: 0 1 calc(50% - 10px);
     position: relative;
+    margin: 4px;
+    border: 1px solid $frame-border-color;
+    overflow: hidden;
 
-    @media (min-width: 800px) {
+    @media (min-width: $responsive-boundary-width + 1) {
       flex: 0 1 calc(33.3% - 10px);
     }
 
@@ -298,57 +293,52 @@
       display: block;
     }
 
-    &-background {
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      bottom: 0;
-      left: 0;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-
-    &__link {
-      bottom: 0;
-      display: block;
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-
-    &:not(:last-child) &__link {
-      transition: background 250ms;
+    &:not(:last-child) {
+      transition: opacity 250ms;
 
       &:hover {
-        background: rgba(255, 255, 255, 0.2);
+        opacity: 0.8;
       }
     }
 
-    &-foreground {
+    &__link {
+      display: block;
+    }
+
+    &-background {
+      position: absolute;
+      top: 0;
+      right: 0;
       bottom: 0;
       left: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      // background-size: cover;
+    }
+
+    &-foreground {
       position: absolute;
       right: 0;
+      bottom: 0;
+      left: 0;
     }
 
     &-title {
+      padding: 12px 0;
       font-size: 18px;
       font-weight: bold;
-      margin: 12px 0;
     }
 
     &-foreground--more {
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.8);
-      bottom: 0;
       display: flex;
+      align-items: center;
       justify-content: center;
-      left: 0;
       position: absolute;
-      right: 0;
       top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.8);
       transition: text-shadow 250ms;
 
       &:hover {
@@ -380,24 +370,13 @@
     }
 
     &-item-foreground {
+      padding: 36px 12px 12px;
       background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0),
         rgba(5, 0, 30, 1)
       );
       color: white;
-      padding: 36px 12px 12px;
     }
-  }
-}
-
-.share-buttons {
-  align-items: flex-start;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 12px;
-
-  &-item {
-    margin: 0 5px;
   }
 }

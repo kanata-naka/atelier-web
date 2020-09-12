@@ -17,12 +17,14 @@ export default ({ tagInfo }) => {
   const [height, setHeight] = useState(48)
   const tagListRef = useRef(null)
 
-  // トグルボタンを押下した際の処理
-  const handleClickToggleButton = useCallback((e) => {
-    e.preventDefault()
-    setHeight(tagListRef.current.clientHeight)
-    setCollasped(!collasped)
-  }, [collasped])
+  const handleClickToggleButton = useCallback(
+    e => {
+      e.preventDefault()
+      setHeight(tagListRef.current.clientHeight)
+      setCollasped(!collasped)
+    },
+    [collasped]
+  )
 
   // タグの最大件数
   const maxCount = tagInfo.reduce(
@@ -31,7 +33,7 @@ export default ({ tagInfo }) => {
   )
 
   return (
-    <Transition in={!collasped} timeout={500}>
+    <Transition in={!collasped} timeout={250}>
       {state => {
         const transitionStyle = {
           entering: { height: `${height}px` },
@@ -56,8 +58,11 @@ export default ({ tagInfo }) => {
                 )
               })}
             </ul>
-            <TagInfoForeground />
-            <TagInfoSlideButton onClick={handleClickToggleButton} />
+            {state !== "entered" && <TagInfoForeground />}
+            <TagInfoSlideButton
+              state={state}
+              onClick={handleClickToggleButton}
+            />
           </div>
         )
       }}
@@ -74,6 +79,7 @@ const TagListItem = ({ tag, count, rate }) => {
             className="tag-name"
             style={{
               fontSize: `${0.8 + rate}em`,
+              // 件数が多いほど文字色を濃くする
               color: `rgba(${Math.max(0, 88 - 80 * rate)},${Math.max(
                 0,
                 88 - 80 * rate
@@ -92,13 +98,14 @@ const TagInfoForeground = () => {
   return <div className="tag-info-foreground" />
 }
 
-const TagInfoSlideButton = ({ onClick }) => {
+const TagInfoSlideButton = ({ state, onClick }) => {
   return (
-    <div className="tag-info-slide-button">
-      <a href="#" className="tag-info-slide-button__link" onClick={onClick}>
+    <div className="tag-info-slide-button" onClick={onClick}>
+      {state === "entering" || state === "exited" ? (
         <i className="fas fa-chevron-down tag-info-slide-button__down"></i>
+      ) : (
         <i className="fas fa-chevron-up tag-info-slide-button__up"></i>
-      </a>
+      )}
     </div>
   )
 }

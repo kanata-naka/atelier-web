@@ -15,8 +15,8 @@ export default ({ items }) => {
 const Article = ({ item }) => {
   return (
     <article className="latest-articles-item">
-      <ArticleBackground item={item} />
       <a className="latest-articles-item__link" href={item.url} target="_blank">
+        <ArticleBackground item={item} />
         <div className="latest-articles-item-foreground">
           <ArticlePostedDate timestamp={item.createdAt} />
           <ArticleTitle>{item.title}</ArticleTitle>
@@ -32,7 +32,8 @@ const ArticleBackground = ({ item }) => {
       className="latest-articles-item-background"
       style={{
         backgroundImage: `url(${(item.topImage && item.topImage.url) ||
-          "/images/no-image.png"})`
+          "/images/no-image.png"})`,
+        backgroundSize: item.topImage ? "cover" : "contain"
       }}></div>
   )
 }
@@ -55,7 +56,7 @@ const Footer = () => {
   return (
     <footer className="latest-articles-footer">
       <a
-        className="latest-articles-more__link"
+        className="latest-articles-more"
         href={Globals.env.BLOG_URL}
         target="_blank">
         {"more ＞"}

@@ -6,6 +6,9 @@ import {
 } from "../../utils/vendorUtil"
 import { SITE_NAME, TWITTER_USERNAME } from "../models"
 
+/**
+ * シェアボタン
+ */
 export default ({ url, title, classPrefix = "" }) => {
   return (
     <ul className={`${classPrefix}share-buttons`}>
@@ -21,6 +24,7 @@ const TwitterShareButton = ({ classPrefix, url, title }) => {
     if (!element) {
       return
     }
+    // コンポーネントが変更されたらリロードする
     reloadTwitterWidgets(element)
   }, [])
 
@@ -48,6 +52,7 @@ const FacebookShareButton = ({ classPrefix, url }) => {
     if (!element) {
       return
     }
+    // コンポーネントが変更されたらリロードする
     reloadFacebookWidgets(element)
   }, [])
 
@@ -73,6 +78,7 @@ const LINEShareButton = ({ classPrefix, url }) => {
     if (!element) {
       return
     }
+    // コンポーネントが変更されたらリロードする
     reloadLINEItButtons()
   }, [])
 
@@ -91,12 +97,6 @@ const LINEShareButton = ({ classPrefix, url }) => {
         data-size="small"
         data-count="false"
         style={{ display: "none" }}></div>
-      {/** <div
-      className="line-it-button"
-      data-lang="ja"
-      data-type="like"
-      data-url="https://social-plugins.line.me/ja/how_to_install#lineitbutton"
-      style={{ display: "none" }}></div> */}
     </li>
   )
 }

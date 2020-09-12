@@ -6,22 +6,7 @@ import Footer from "../common/components/Footer"
 import OgpTags from "../common/components/OgpTags"
 
 const Component = () => {
-  return (
-    <div>
-      <Head>
-        <title>BLOG - {SITE_NAME}</title>
-      </Head>
-      <OgpTags
-        path="/blog"
-        ogType="blog"
-        title={`BLOG - ${SITE_NAME}`}
-        twitterCard="summary_card"
-      />
-      <Header blogUrl={Globals.env.BLOG_URL} />
-      <div className="under-construction">{"UNDER CONSTRUCTION"}</div>
-      <Footer />
-    </div>
-  )
+  return null
 }
 
 Component.getInitialProps = async ({ globals: { env }, res }) => {

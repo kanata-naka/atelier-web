@@ -36,16 +36,16 @@ const WorkListItem = ({ item }) => {
             classPrefix="work-list-item-"
           />
         </div>
-        <div className="work-list-item-row__right-column">
-          <DiffList
-            images={item.images}
-            currentImageIndex={currentImageIndex}
-            onSelect={index => setCurrentImageIndex(index)}
-          />
-          <WorkListItemImage
-            image={item.images && item.images[currentImageIndex]}
-          />
-        </div>
+        {item.images && !!item.images.length && (
+          <div className="work-list-item-row__right-column">
+            <DiffList
+              images={item.images}
+              currentImageIndex={currentImageIndex}
+              onSelect={index => setCurrentImageIndex(index)}
+            />
+            <WorkListItemImage image={item.images[currentImageIndex]} />
+          </div>
+        )}
       </div>
     </article>
   )
@@ -70,16 +70,11 @@ const WorkListItemDescription = ({ children }) => {
 }
 
 const WorkListItemImage = ({ image }) => {
-  return (
-    <img
-      className="work-list-item-image"
-      src={image ? image.url : "/images/no-image.png"}
-    />
-  )
+  return <img className="work-list-item-image" src={image.url} />
 }
 
 const DiffList = ({ images, currentImageIndex, onSelect }) => {
-  if (!images || images.length <= 1) {
+  if (images.length < 2) {
     // 画像が2つ以上なければ表示しない
     return null
   }

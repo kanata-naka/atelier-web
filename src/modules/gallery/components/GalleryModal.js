@@ -97,6 +97,7 @@ const TagListItem = ({ tag }) => {
   return (
     <li className="gallery-modal-tag-list-item">
       <a
+        className="gallery-modal-tag-list-item__link"
         href={`/gallery?tag=${tag}`}
         onClick={e => {
           // ※同一ページ間の遷移だとモーダルがそのままになってしまうため、

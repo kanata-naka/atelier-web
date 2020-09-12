@@ -4,10 +4,18 @@ import { useStateRef } from "../../../common/hooks"
 // 画像を切り替える間隔（ミリ秒）
 const SWITCH_ITEM_INTERVAL = 7000
 
+/**
+ * カルーセル
+ */
 export default ({ items }) => {
   const [preloading, preloadingRef, setPreloading] = useStateRef(true)
   const [currentIndex, currntIndexRef, setCurrentIndex] = useStateRef(0)
   const currentIntervalIdRef = useRef(null)
+
+  if (!items || !items.length) {
+    // トップ画像が1件もなければ表示しない
+    return null
+  }
 
   // 画像を切り替える処理
   const handleSwitchItem = () => {
@@ -66,7 +74,7 @@ const TopCarouselList = ({ items, currentIndex }) => {
   return (
     <ul className="top-carousel-list">
       {items.map((item, index) => (
-        <TopCarouselListItem
+        <TopCarouselItem
           key={index}
           item={item}
           isActive={index === currentIndex}
@@ -76,10 +84,10 @@ const TopCarouselList = ({ items, currentIndex }) => {
   )
 }
 
-const TopCarouselListItem = ({ item, isActive }) => {
+const TopCarouselItem = ({ item, isActive }) => {
   return (
     <li
-      className="top-carousel-list-item"
+      className="top-carousel-item"
       style={{
         backgroundImage: `url(${item.image.url})`,
         ...(isActive ? { opacity: 1 } : {})
@@ -89,7 +97,7 @@ const TopCarouselListItem = ({ item, isActive }) => {
 
 const Navigation = ({ items, currentIndex, onSelect }) => {
   return (
-    <ul className="top-carousel-nav">
+    <ul className="top-carousel-nav-list">
       {items.map((item, index) => (
         <NavigationItem
           key={index}

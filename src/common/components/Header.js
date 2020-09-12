@@ -7,11 +7,11 @@ import GlobalNav from "./GlobalNav"
 export default () => {
   return (
     <header className="site-header">
-      <h1 className="title">
-        <Link href="/">
-          <a className="title__link"></a>
-        </Link>
-      </h1>
+      <Link href="/">
+        <a>
+          <h1 className="site-logo"></h1>
+        </a>
+      </Link>
       <GlobalNav />
     </header>
   )
