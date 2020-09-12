@@ -154,7 +154,7 @@ const DiffListItem = ({ image, isActive, onClick }) => {
     <li
       className={`diff-list-item ${isActive ? "active" : ""}`}
       style={{
-        backgroundImage: `url(${image.url})`
+        backgroundImage: `url(${image.thumbnailUrl.small})`
       }}>
       <a
         className="diff-list-item__link"

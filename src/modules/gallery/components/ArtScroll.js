@@ -85,7 +85,7 @@ const ArtScrollItemBackground = ({ image }) => {
     <div
       className="art-scroll-item-background"
       style={{
-        backgroundImage: `url(${image.url})`
+        backgroundImage: `url(${image.thumbnailUrl.medium})`
       }}></div>
   );
 };
