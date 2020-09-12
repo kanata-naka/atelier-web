@@ -1,12 +1,12 @@
-import React, { useCallback } from "react"
+import React, { useCallback } from "react";
 import {
   AUTHOR_NAME,
   SITE_DESCRIPTION,
   SOCIAL_ACCOUNTS,
   TWITTER_USERNAME
-} from "../../../common/models"
-import { SectionHeading } from "../../../common/components/elements"
-import { reloadTwitterWidgets } from "../../../utils/vendorUtil"
+} from "../../../common/models";
+import { SectionHeading } from "../../../common/components/elements";
+import { reloadTwitterWidgets } from "../../../utils/vendorUtil";
 
 export default () => {
   return (
@@ -23,12 +23,12 @@ export default () => {
       </Introduction>
       <TwitterWidgets id={TWITTER_USERNAME} />
     </section>
-  )
-}
+  );
+};
 
 const Description = ({ children }) => {
-  return <p className="description">{children}</p>
-}
+  return <p className="description">{children}</p>;
+};
 
 /**
  * プロフィール画像
@@ -38,12 +38,12 @@ const ProfileImage = ({ url }) => {
     <figure className="profile-image">
       <img className="profile-image__image" alt="プロフィール画像" src={url} />
     </figure>
-  )
-}
+  );
+};
 
 const AuthorName = ({ children }) => {
-  return <h3 className="author-name">{children}</h3>
-}
+  return <h3 className="author-name">{children}</h3>;
+};
 
 const SocialIcons = ({ items }) => {
   return (
@@ -52,8 +52,8 @@ const SocialIcons = ({ items }) => {
         <SocialIcon key={index} item={item} />
       ))}
     </ul>
-  )
-}
+  );
+};
 
 const SocialIcon = ({ item }) => {
   return (
@@ -66,23 +66,23 @@ const SocialIcon = ({ item }) => {
         />
       </a>
     </li>
-  )
-}
+  );
+};
 
 /**
  * 自己紹介
  */
 const Introduction = ({ children }) => {
-  return <p className="introduction">{children}</p>
-}
+  return <p className="introduction">{children}</p>;
+};
 
 const TwitterWidgets = ({ id }) => {
   const elementRef = useCallback(element => {
     if (!element) {
-      return
+      return;
     }
-    reloadTwitterWidgets(element)
-  }, [])
+    reloadTwitterWidgets(element);
+  }, []);
 
   return (
     <div className="twitter-widgets" ref={elementRef}>
@@ -94,5 +94,5 @@ const TwitterWidgets = ({ id }) => {
         {`Tweets by ${id}`}
       </a>
     </div>
-  )
-}
+  );
+};

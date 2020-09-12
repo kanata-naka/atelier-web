@@ -1,59 +1,59 @@
-import React, { useRef, useEffect, useCallback } from "react"
-import { useStateRef } from "../../../common/hooks"
+import React, { useRef, useEffect, useCallback } from "react";
+import { useStateRef } from "../../../common/hooks";
 
 // 画像を切り替える間隔（ミリ秒）
-const SWITCH_ITEM_INTERVAL = 7000
+const SWITCH_ITEM_INTERVAL = 7000;
 
 /**
  * カルーセル
  */
 export default ({ items }) => {
-  const [preloading, preloadingRef, setPreloading] = useStateRef(true)
-  const [currentIndex, currntIndexRef, setCurrentIndex] = useStateRef(0)
-  const currentIntervalIdRef = useRef(null)
+  const [preloading, preloadingRef, setPreloading] = useStateRef(true);
+  const [currentIndex, currntIndexRef, setCurrentIndex] = useStateRef(0);
+  const currentIntervalIdRef = useRef(null);
 
   if (!items || !items.length) {
     // トップ画像が1件もなければ表示しない
-    return null
+    return null;
   }
 
   // 画像を切り替える処理
   const handleSwitchItem = () => {
     if (preloadingRef.current) {
-      setPreloading(false)
+      setPreloading(false);
     }
-    let nextIndex = currntIndexRef.current + 1
+    let nextIndex = currntIndexRef.current + 1;
     if (nextIndex === items.length) {
       // 最初に戻る
-      nextIndex = 0
+      nextIndex = 0;
     }
-    setCurrentIndex(nextIndex)
-  }
+    setCurrentIndex(nextIndex);
+  };
 
   useEffect(() => {
     // 一定時間ごとに画像を切り替える
     currentIntervalIdRef.current = setInterval(
       handleSwitchItem,
       SWITCH_ITEM_INTERVAL
-    )
+    );
     return () => {
       // componentWillUnmount と同じタイミングで実行する
-      clearInterval(currentIntervalIdRef.current)
-    }
-  }, [])
+      clearInterval(currentIntervalIdRef.current);
+    };
+  }, []);
 
   // ナビゲーションのアイコンをクリックした際の処理
   const handleNavItemClick = useCallback(index => {
     if (currentIntervalIdRef.current) {
-      clearInterval(currentIntervalIdRef.current)
+      clearInterval(currentIntervalIdRef.current);
     }
-    setPreloading(false)
-    setCurrentIndex(index)
+    setPreloading(false);
+    setCurrentIndex(index);
     currentIntervalIdRef.current = setInterval(
       handleSwitchItem,
       SWITCH_ITEM_INTERVAL
-    )
-  })
+    );
+  });
 
   // Chromeではページを読み込んだ際もtransitionが効いてしまうので、
   // DOMの読み込みが完了するまでtransitionを無効にする
@@ -67,8 +67,8 @@ export default ({ items }) => {
         onSelect={handleNavItemClick}
       />
     </section>
-  )
-}
+  );
+};
 
 const TopCarouselList = ({ items, currentIndex }) => {
   return (
@@ -81,8 +81,8 @@ const TopCarouselList = ({ items, currentIndex }) => {
         />
       ))}
     </ul>
-  )
-}
+  );
+};
 
 const TopCarouselItem = ({ item, isActive }) => {
   return (
@@ -92,8 +92,8 @@ const TopCarouselItem = ({ item, isActive }) => {
         backgroundImage: `url(${item.image.url})`,
         ...(isActive ? { opacity: 1 } : {})
       }}></li>
-  )
-}
+  );
+};
 
 const Navigation = ({ items, currentIndex, onSelect }) => {
   return (
@@ -107,8 +107,8 @@ const Navigation = ({ items, currentIndex, onSelect }) => {
         />
       ))}
     </ul>
-  )
-}
+  );
+};
 
 const NavigationItem = ({ item, isActive, onClick }) => {
   return (
@@ -118,5 +118,5 @@ const NavigationItem = ({ item, isActive, onClick }) => {
       style={{
         backgroundImage: `url(${item.thumbnailImage.url})`
       }}></li>
-  )
-}
+  );
+};

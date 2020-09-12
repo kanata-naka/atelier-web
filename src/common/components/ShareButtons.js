@@ -1,10 +1,10 @@
-import React, { useCallback } from "react"
+import React, { useCallback } from "react";
 import {
   reloadTwitterWidgets,
   reloadFacebookWidgets,
   reloadLINEItButtons
-} from "../../utils/vendorUtil"
-import { SITE_NAME, TWITTER_USERNAME } from "../models"
+} from "../../utils/vendorUtil";
+import { SITE_NAME, TWITTER_USERNAME } from "../models";
 
 /**
  * シェアボタン
@@ -16,17 +16,17 @@ export default ({ url, title, classPrefix = "" }) => {
       <FacebookShareButton classPrefix={classPrefix} url={url} />
       <LINEShareButton classPrefix={classPrefix} url={url} />
     </ul>
-  )
-}
+  );
+};
 
 const TwitterShareButton = ({ classPrefix, url, title }) => {
   const elementRef = useCallback(element => {
     if (!element) {
-      return
+      return;
     }
     // コンポーネントが変更されたらリロードする
-    reloadTwitterWidgets(element)
-  }, [])
+    reloadTwitterWidgets(element);
+  }, []);
 
   return (
     <li
@@ -44,17 +44,17 @@ const TwitterShareButton = ({ classPrefix, url, title }) => {
         Tweet
       </a>
     </li>
-  )
-}
+  );
+};
 
 const FacebookShareButton = ({ classPrefix, url }) => {
   const elementRef = useCallback(element => {
     if (!element) {
-      return
+      return;
     }
     // コンポーネントが変更されたらリロードする
-    reloadFacebookWidgets(element)
-  }, [])
+    reloadFacebookWidgets(element);
+  }, []);
 
   return (
     <li
@@ -70,17 +70,17 @@ const FacebookShareButton = ({ classPrefix, url }) => {
         data-size="small"
         data-share="false"></div>
     </li>
-  )
-}
+  );
+};
 
 const LINEShareButton = ({ classPrefix, url }) => {
   const elementRef = useCallback(element => {
     if (!element) {
-      return
+      return;
     }
     // コンポーネントが変更されたらリロードする
-    reloadLINEItButtons()
-  }, [])
+    reloadLINEItButtons();
+  }, []);
 
   return (
     <li
@@ -98,5 +98,5 @@ const LINEShareButton = ({ classPrefix, url }) => {
         data-count="false"
         style={{ display: "none" }}></div>
     </li>
-  )
-}
+  );
+};

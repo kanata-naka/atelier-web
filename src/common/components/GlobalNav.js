@@ -1,20 +1,20 @@
-import { useState, useCallback } from "react"
-import Link from "next/link"
-import { useMediaQuery } from "../hooks"
-import { Globals } from "../models"
+import { useState, useCallback } from "react";
+import Link from "next/link";
+import { useMediaQuery } from "../hooks";
+import { Globals } from "../models";
 
 /**
  * グローバルナビゲーション
  */
 export default () => {
-  const [isToggleMenuActive, setToggleMenuActive] = useState(false)
+  const [isToggleMenuActive, setToggleMenuActive] = useState(false);
   // ウィンドウの幅が一定以下ならトグルメニューを有効にする
-  const enableToggleMenu = useMediaQuery("(max-width: 834px)")
+  const enableToggleMenu = useMediaQuery("(max-width: 834px)");
 
   const handleHamburgerButtonClick = useCallback(() => {
     // トグルメニューを切り替える
-    setToggleMenuActive(!isToggleMenuActive)
-  }, [isToggleMenuActive])
+    setToggleMenuActive(!isToggleMenuActive);
+  }, [isToggleMenuActive]);
 
   return (
     <nav className="global-nav">
@@ -37,8 +37,8 @@ export default () => {
         <GlobalNavItem id="contact" title="CONTACT" path="/contact" />
       </ul>
     </nav>
-  )
-}
+  );
+};
 
 /**
  * ハンバーガーボタン
@@ -50,8 +50,8 @@ const HamburgerButton = ({ isActive, onClick }) => {
       onClick={onClick}>
       <i className="fas fa-bars global-nav-hamburger-button__icon"></i>
     </div>
-  )
-}
+  );
+};
 
 const GlobalNavItem = ({ title, id, path, url }) => {
   return (
@@ -68,5 +68,5 @@ const GlobalNavItem = ({ title, id, path, url }) => {
         { title }
       )}
     </li>
-  )
-}
+  );
+};

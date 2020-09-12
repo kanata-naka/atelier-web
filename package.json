@@ -30,7 +30,6 @@
     "prettier": "^1.19.1"
   },
   "prettier": {
-    "semi": false,
     "jsxBracketSameLine": true
   }
 }

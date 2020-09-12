@@ -1,50 +1,50 @@
-import App from "next/app"
-import Head from "next/head"
-import getConfig from "next/config"
-import { initializeFirebase } from "../common/firebase"
-import { Globals } from "../common/models"
-import RoutingEffect from "../common/components/RoutingEffect"
-import "../styles/style.scss"
+import App from "next/app";
+import Head from "next/head";
+import getConfig from "next/config";
+import { initializeFirebase } from "../common/firebase";
+import { Globals } from "../common/models";
+import RoutingEffect from "../common/components/RoutingEffect";
+import "../styles/style.scss";
 
 export default class extends App {
   static async getInitialProps({ Component, ctx }) {
-    const isServer = !!ctx.req
+    const isServer = !!ctx.req;
     // グローバル変数を初期化する
-    let globals
+    let globals;
     if (isServer) {
       globals = {
         env: getConfig().serverRuntimeConfig
-      }
+      };
     } else {
-      globals = Object.assign({}, Globals)
+      globals = Object.assign({}, Globals);
     }
-    initializeFirebase(globals.env)
+    initializeFirebase(globals.env);
     // ページを初期化する
-    let pageProps = {}
+    let pageProps = {};
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({
         ...ctx,
         isServer,
         globals
-      })
+      });
     }
     return {
       isServer,
       globals,
       pageProps
-    }
+    };
   }
 
   constructor(props) {
-    super(props)
-    const { globals } = props
+    super(props);
+    const { globals } = props;
     // グローバル変数をマージする
-    Object.assign(Globals, globals)
-    initializeFirebase(Globals.env)
+    Object.assign(Globals, globals);
+    initializeFirebase(Globals.env);
   }
 
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps } = this.props;
     return (
       <div>
         <Head>
@@ -69,6 +69,6 @@ export default class extends App {
         </div>
         <RoutingEffect.Component />
       </div>
-    )
+    );
   }
 }

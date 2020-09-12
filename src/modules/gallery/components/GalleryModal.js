@@ -1,36 +1,36 @@
-import { useState, useEffect, useCallback } from "react"
-import Modal from "react-modal"
-import Router from "next/router"
-import { Globals } from "../../../common/models"
-import ShareButtons from "../../../common/components/ShareButtons"
-import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
-import { renderMarkdown } from "../../../utils/domUtil"
+import { useState, useEffect, useCallback } from "react";
+import Modal from "react-modal";
+import Router from "next/router";
+import { Globals } from "../../../common/models";
+import ShareButtons from "../../../common/components/ShareButtons";
+import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
+import { renderMarkdown } from "../../../utils/domUtil";
 
-Modal.setAppElement("#__next")
+Modal.setAppElement("#__next");
 
 // モーダルの実体
 const Component = ({ onClose }) => {
-  const [isOpen, setOpen] = useState(false)
-  const [item, setItem] = useState({ images: [] })
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isOpen, setOpen] = useState(false);
+  const [item, setItem] = useState({ images: [] });
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     // モーダルを開く
     GalleryModal.open = item => {
-      setItem(item)
-      setCurrentImageIndex(0)
-      setOpen(true)
-    }
+      setItem(item);
+      setCurrentImageIndex(0);
+      setOpen(true);
+    };
     // モーダルを閉じる
-    GalleryModal.close = () => setOpen(false)
-  }, [])
+    GalleryModal.close = () => setOpen(false);
+  }, []);
 
   const handleClose = useCallback(() => {
     if (onClose) {
-      onClose()
+      onClose();
     }
-    setOpen(false)
-  })
+    setOpen(false);
+  });
 
   return (
     <Modal
@@ -61,13 +61,13 @@ const Component = ({ onClose }) => {
       </div>
       <CloseButton onClick={handleClose} />
     </Modal>
-  )
-}
+  );
+};
 
 // オーバーレイ
 const Overlay = ({ onClick }) => {
-  return <div className="gallery-modal-overlay" onClick={onClick}></div>
-}
+  return <div className="gallery-modal-overlay" onClick={onClick}></div>;
+};
 
 const Background = ({ image }) => {
   return (
@@ -76,12 +76,12 @@ const Background = ({ image }) => {
       style={{
         backgroundImage: image && `url(${image.url})`
       }}></div>
-  )
-}
+  );
+};
 
 const Title = ({ children }) => {
-  return <h3 className="gallery-modal-title">{children}</h3>
-}
+  return <h3 className="gallery-modal-title">{children}</h3>;
+};
 
 const TagList = ({ tags = [] }) => {
   return (
@@ -90,8 +90,8 @@ const TagList = ({ tags = [] }) => {
         <TagListItem key={index} tag={tag} />
       ))}
     </ul>
-  )
-}
+  );
+};
 
 const TagListItem = ({ tag }) => {
   return (
@@ -102,19 +102,19 @@ const TagListItem = ({ tag }) => {
         onClick={e => {
           // ※同一ページ間の遷移だとモーダルがそのままになってしまうため、
           // 　手動でモーダルを閉じる
-          e.preventDefault()
-          GalleryModal.close()
-          Router.push(`/gallery?tag=${tag}`)
+          e.preventDefault();
+          GalleryModal.close();
+          Router.push(`/gallery?tag=${tag}`);
         }}>
         {`#${tag}`}
       </a>
     </li>
-  )
-}
+  );
+};
 
 const Description = ({ children }) => {
-  return <p className="gallery-modal-description">{children}</p>
-}
+  return <p className="gallery-modal-description">{children}</p>;
+};
 
 // 投稿日時
 const PostedDate = ({ timestamp }) => {
@@ -124,13 +124,13 @@ const PostedDate = ({ timestamp }) => {
       &nbsp;
       {formatDateFromUnixTimestamp(timestamp)}
     </div>
-  )
-}
+  );
+};
 
 // 差分リスト
 const DiffList = ({ images, currentImageIndex, onSelect }) => {
   if (!images || !images.length) {
-    return null
+    return null;
   }
   return (
     <ul className="diff-list">
@@ -140,14 +140,14 @@ const DiffList = ({ images, currentImageIndex, onSelect }) => {
           image={image}
           isActive={index === currentImageIndex}
           onClick={e => {
-            e.preventDefault()
-            onSelect(index)
+            e.preventDefault();
+            onSelect(index);
           }}
         />
       ))}
     </ul>
-  )
-}
+  );
+};
 
 const DiffListItem = ({ image, isActive, onClick }) => {
   return (
@@ -161,8 +161,8 @@ const DiffListItem = ({ image, isActive, onClick }) => {
         href={image.url}
         onClick={onClick}></a>
     </li>
-  )
-}
+  );
+};
 
 // 閉じるボタン
 const CloseButton = ({ onClick }) => {
@@ -170,11 +170,11 @@ const CloseButton = ({ onClick }) => {
     <div className="gallery-modal-close-button" onClick={onClick}>
       <i className="fas fa-times gallery-modal-close-button__icon"></i>
     </div>
-  )
-}
+  );
+};
 
 const GalleryModal = {
   Component
-}
+};
 
-export default GalleryModal
+export default GalleryModal;

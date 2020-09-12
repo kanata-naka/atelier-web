@@ -1,6 +1,6 @@
-import Link from "next/link"
-import { SectionHeading } from "../../../common/components/elements"
-import GalleryModal from "../../gallery/components/GalleryModal"
+import Link from "next/link";
+import { SectionHeading } from "../../../common/components/elements";
+import GalleryModal from "../../gallery/components/GalleryModal";
 
 export default ({ items }) => {
   return (
@@ -17,8 +17,8 @@ export default ({ items }) => {
       </div>
       <GalleryModal.Component />
     </section>
-  )
-}
+  );
+};
 
 const RecentArtItem = ({ item, isLast }) => {
   return (
@@ -30,19 +30,19 @@ const RecentArtItem = ({ item, isLast }) => {
           className="recent-arts-item__link"
           onClick={e => {
             if (isLast) {
-              return
+              return;
             }
-            e.preventDefault()
+            e.preventDefault();
             // モーダルを開く
-            GalleryModal.open(item)
+            GalleryModal.open(item);
           }}>
           <RecentArtItemBackground image={item.images[0]} />
           <RecentArtItemForeground isLast={isLast} />
         </a>
       </Link>
     </div>
-  )
-}
+  );
+};
 
 const RecentArtItemBackground = ({ image }) => {
   return (
@@ -52,8 +52,8 @@ const RecentArtItemBackground = ({ image }) => {
         backgroundImage: `url(${image.url})`,
         backgroundSize: "cover"
       }}></div>
-  )
-}
+  );
+};
 
 const RecentArtItemForeground = ({ isLast }) => {
   return (
@@ -65,5 +65,5 @@ const RecentArtItemForeground = ({ isLast }) => {
       }>
       {isLast && <div className="recent-arts-more">{"more ＞"}</div>}
     </div>
-  )
-}
+  );
+};

@@ -1,5 +1,5 @@
-import { Globals } from "../../../common/models"
-import { formatDateFromIsoDate } from "../../../utils/dateUtil"
+import { Globals } from "../../../common/models";
+import { formatDateFromIsoDate } from "../../../utils/dateUtil";
 
 export default ({ items }) => {
   return (
@@ -9,8 +9,8 @@ export default ({ items }) => {
       ))}
       <Footer />
     </section>
-  )
-}
+  );
+};
 
 const Article = ({ item }) => {
   return (
@@ -23,8 +23,8 @@ const Article = ({ item }) => {
         </div>
       </a>
     </article>
-  )
-}
+  );
+};
 
 const ArticleBackground = ({ item }) => {
   return (
@@ -35,8 +35,8 @@ const ArticleBackground = ({ item }) => {
           "/images/no-image.png"})`,
         backgroundSize: item.topImage ? "cover" : "contain"
       }}></div>
-  )
-}
+  );
+};
 
 const ArticlePostedDate = ({ timestamp }) => {
   return (
@@ -45,12 +45,12 @@ const ArticlePostedDate = ({ timestamp }) => {
       &nbsp;
       {formatDateFromIsoDate(timestamp)}
     </div>
-  )
-}
+  );
+};
 
 const ArticleTitle = ({ children }) => {
-  return <h3 className="latest-articles-item-title">{children}</h3>
-}
+  return <h3 className="latest-articles-item-title">{children}</h3>;
+};
 
 const Footer = () => {
   return (
@@ -62,5 +62,5 @@ const Footer = () => {
         {"more ＞"}
       </a>
     </footer>
-  )
-}
+  );
+};

@@ -1,5 +1,5 @@
-import Link from "next/link"
-import GlobalNav from "./GlobalNav"
+import Link from "next/link";
+import GlobalNav from "./GlobalNav";
 
 /**
  * ヘッダー
@@ -14,5 +14,5 @@ export default () => {
       </Link>
       <GlobalNav />
     </header>
-  )
-}
+  );
+};

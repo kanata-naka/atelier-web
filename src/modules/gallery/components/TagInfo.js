@@ -1,36 +1,36 @@
-import { useState, useCallback, useRef } from "react"
-import Link from "next/link"
-import { Transition } from "react-transition-group"
+import { useState, useCallback, useRef } from "react";
+import Link from "next/link";
+import { Transition } from "react-transition-group";
 
 const transitionClasses = {
   entering: "slide-entering",
   entered: "slide-entered",
   exiting: "slide-exiting",
   exited: "slide-exited"
-}
+};
 
 /**
  * タグ一覧
  */
 export default ({ tagInfo }) => {
-  const [collasped, setCollasped] = useState(true)
-  const [height, setHeight] = useState(48)
-  const tagListRef = useRef(null)
+  const [collasped, setCollasped] = useState(true);
+  const [height, setHeight] = useState(48);
+  const tagListRef = useRef(null);
 
   const handleClickToggleButton = useCallback(
     e => {
-      e.preventDefault()
-      setHeight(tagListRef.current.clientHeight)
-      setCollasped(!collasped)
+      e.preventDefault();
+      setHeight(tagListRef.current.clientHeight);
+      setCollasped(!collasped);
     },
     [collasped]
-  )
+  );
 
   // タグの最大件数
   const maxCount = tagInfo.reduce(
     (_maxCount, tag) => Math.max(_maxCount, tag.count),
     1
-  )
+  );
 
   return (
     <Transition in={!collasped} timeout={250}>
@@ -40,14 +40,14 @@ export default ({ tagInfo }) => {
           entered: { height: `${height}px` },
           exiting: { height: "48px" },
           exited: { height: "48px" }
-        }
+        };
         return (
           <div
             className={`tag-info ${transitionClasses[state] || ""}`}
             style={transitionStyle[state]}>
             <ul className="tag-list" ref={tagListRef}>
               {tagInfo.map((tag, index) => {
-                const rate = tag.count / maxCount
+                const rate = tag.count / maxCount;
                 return (
                   <TagListItem
                     key={index}
@@ -55,7 +55,7 @@ export default ({ tagInfo }) => {
                     count={tag.count}
                     rate={rate}
                   />
-                )
+                );
               })}
             </ul>
             {state !== "entered" && <TagInfoForeground />}
@@ -64,11 +64,11 @@ export default ({ tagInfo }) => {
               onClick={handleClickToggleButton}
             />
           </div>
-        )
+        );
       }}
     </Transition>
-  )
-}
+  );
+};
 
 const TagListItem = ({ tag, count, rate }) => {
   return (
@@ -91,12 +91,12 @@ const TagListItem = ({ tag, count, rate }) => {
         </a>
       </Link>
     </li>
-  )
-}
+  );
+};
 
 const TagInfoForeground = () => {
-  return <div className="tag-info-foreground" />
-}
+  return <div className="tag-info-foreground" />;
+};
 
 const TagInfoSlideButton = ({ state, onClick }) => {
   return (
@@ -107,5 +107,5 @@ const TagInfoSlideButton = ({ state, onClick }) => {
         <i className="fas fa-chevron-up tag-info-slide-button__up"></i>
       )}
     </div>
-  )
-}
+  );
+};

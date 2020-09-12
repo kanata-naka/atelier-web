@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react"
-import { Globals } from "../../../common/models"
-import ShareButtons from "../../../common/components/ShareButtons"
-import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil"
-import { renderMarkdown } from "../../../utils/domUtil"
+import { useState, useEffect } from "react";
+import { Globals } from "../../../common/models";
+import ShareButtons from "../../../common/components/ShareButtons";
+import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
+import { renderMarkdown } from "../../../utils/domUtil";
 
 export default ({ items }) => {
   return (
@@ -11,15 +11,15 @@ export default ({ items }) => {
         <WorkListItem key={index} item={item} />
       ))}
     </section>
-  )
-}
+  );
+};
 
 const WorkListItem = ({ item }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    setCurrentImageIndex(0)
-  }, [item])
+    setCurrentImageIndex(0);
+  }, [item]);
 
   return (
     <article id={item.id} className="work-list-item">
@@ -48,12 +48,12 @@ const WorkListItem = ({ item }) => {
         )}
       </div>
     </article>
-  )
-}
+  );
+};
 
 const WorkListItemTitle = ({ children }) => {
-  return <h3 className="work-list-item-title">{children}</h3>
-}
+  return <h3 className="work-list-item-title">{children}</h3>;
+};
 
 const WorkListItemPublishedDate = ({ timestamp }) => {
   return (
@@ -62,21 +62,21 @@ const WorkListItemPublishedDate = ({ timestamp }) => {
       &nbsp;
       {formatDateFromUnixTimestamp(timestamp)}
     </div>
-  )
-}
+  );
+};
 
 const WorkListItemDescription = ({ children }) => {
-  return <p className="work-list-item-description">{children}</p>
-}
+  return <p className="work-list-item-description">{children}</p>;
+};
 
 const WorkListItemImage = ({ image }) => {
-  return <img className="work-list-item-image" src={image.url} />
-}
+  return <img className="work-list-item-image" src={image.url} />;
+};
 
 const DiffList = ({ images, currentImageIndex, onSelect }) => {
   if (images.length < 2) {
     // 画像が2つ以上なければ表示しない
-    return null
+    return null;
   }
   return (
     <ul className="diff-list">
@@ -86,14 +86,14 @@ const DiffList = ({ images, currentImageIndex, onSelect }) => {
           image={image}
           isActive={index === currentImageIndex}
           onClick={e => {
-            e.preventDefault()
-            onSelect(index)
+            e.preventDefault();
+            onSelect(index);
           }}
         />
       ))}
     </ul>
-  )
-}
+  );
+};
 
 const DiffListItem = ({ image, isActive, onClick }) => {
   return (
@@ -107,5 +107,5 @@ const DiffListItem = ({ image, isActive, onClick }) => {
         href={image.url}
         onClick={onClick}></a>
     </li>
-  )
-}
+  );
+};

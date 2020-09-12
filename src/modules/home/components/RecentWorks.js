@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { SectionHeading } from "../../../common/components/elements"
+import Link from "next/link";
+import { SectionHeading } from "../../../common/components/elements";
 
 export default ({ items }) => {
   return (
@@ -15,8 +15,8 @@ export default ({ items }) => {
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
 const RecentWorkItem = ({ item, isLast }) => {
   return (
@@ -30,8 +30,8 @@ const RecentWorkItem = ({ item, isLast }) => {
         </a>
       </Link>
     </div>
-  )
-}
+  );
+};
 
 const RecentWorkItemBackground = ({ image }) => {
   return (
@@ -41,8 +41,8 @@ const RecentWorkItemBackground = ({ image }) => {
         backgroundImage: `url(${image ? image.url : "/images/no-image.png"})`,
         backgroundSize: image ? "cover" : "contain"
       }}></div>
-  )
-}
+  );
+};
 
 const RecentWorkItemForeground = ({ isLast, title }) => {
   return (
@@ -58,9 +58,9 @@ const RecentWorkItemForeground = ({ isLast, title }) => {
         <RecentWorkItemTitle>{title}</RecentWorkItemTitle>
       )}
     </div>
-  )
-}
+  );
+};
 
 const RecentWorkItemTitle = ({ children }) => {
-  return <h3 className="recent-works-item-title">{children}</h3>
-}
+  return <h3 className="recent-works-item-title">{children}</h3>;
+};

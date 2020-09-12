@@ -1,39 +1,39 @@
-import React from "react"
-import Router from "next/router"
+import React from "react";
+import Router from "next/router";
 
 /**
  * ページネーション
  */
 export default ({ pagination, maxRange }) => {
   // 現在のページ
-  const currentPage = pagination.page
+  const currentPage = pagination.page;
   // 最後のページ
-  const lastPage = Math.ceil(pagination.total / pagination.perPage)
+  const lastPage = Math.ceil(pagination.total / pagination.perPage);
 
   const handlePageNumberButtonClick = (e, page) => {
-    e.preventDefault()
+    e.preventDefault();
     // ドキュメントの読み取り量を減らすため、shallow routingを使用する
     Router.push(`/works?page=${page}`, `/works?page=${page}`, {
       shallow: true
-    })
-  }
+    });
+  };
 
   const renderPageNumberButtons = () => {
-    let first, last
+    let first, last;
     if (lastPage < maxRange) {
-      first = 1
-      last = lastPage
+      first = 1;
+      last = lastPage;
     } else if (currentPage <= Math.floor(maxRange / 2) + 1) {
-      first = 1
-      last = Math.min(maxRange, lastPage)
+      first = 1;
+      last = Math.min(maxRange, lastPage);
     } else if (currentPage >= lastPage - Math.floor(maxRange / 2)) {
-      first = Math.max(1, lastPage - maxRange + 1)
-      last = lastPage
+      first = Math.max(1, lastPage - maxRange + 1);
+      last = lastPage;
     } else {
-      first = currentPage - Math.floor(maxRange / 2)
-      last = currentPage + Math.floor(maxRange / 2)
+      first = currentPage - Math.floor(maxRange / 2);
+      last = currentPage + Math.floor(maxRange / 2);
     }
-    const pageNumberButtons = []
+    const pageNumberButtons = [];
     for (let page = first; page <= last; page++) {
       pageNumberButtons.push(
         <PageNumberButton
@@ -42,10 +42,10 @@ export default ({ pagination, maxRange }) => {
           isActive={page === currentPage}
           onClick={handlePageNumberButtonClick}
         />
-      )
+      );
     }
-    return pageNumberButtons
-  }
+    return pageNumberButtons;
+  };
 
   return (
     <ul className="pagination">
@@ -61,8 +61,8 @@ export default ({ pagination, maxRange }) => {
         onClick={handlePageNumberButtonClick}
       />
     </ul>
-  )
-}
+  );
+};
 
 const PagePrevButton = ({ page, disabled, onClick }) => {
   return (
@@ -76,8 +76,8 @@ const PagePrevButton = ({ page, disabled, onClick }) => {
         </a>
       )}
     </li>
-  )
-}
+  );
+};
 
 const PageNumberButton = ({ page, isActive, onClick }) => {
   return (
@@ -89,8 +89,8 @@ const PageNumberButton = ({ page, isActive, onClick }) => {
         {page}
       </a>
     </li>
-  )
-}
+  );
+};
 
 const PageNextButton = ({ page, disabled, onClick }) => {
   return (
@@ -104,5 +104,5 @@ const PageNextButton = ({ page, disabled, onClick }) => {
         </a>
       )}
     </li>
-  )
-}
+  );
+};

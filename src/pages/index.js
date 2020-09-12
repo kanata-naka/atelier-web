@@ -1,16 +1,16 @@
-import React from "react"
-import Head from "next/head"
-import { callFunction } from "../common/firebase"
-import { Globals, SITE_NAME, SITE_DESCRIPTION } from "../common/models"
-import Header from "../common/components/Header"
-import Footer from "../common/components/Footer"
-import OgpTags from "../common/components/OgpTags"
-import ShareButtons from "../common/components/ShareButtons"
-import TopCarousel from "../modules/home/components/TopCarousel"
-import LatestArticles from "../modules/home/components/LatestArticles"
-import About from "../modules/home/components/About"
-import RecentWorks from "../modules/home/components/RecentWorks"
-import RecentArts from "../modules/home/components/RecentArts"
+import React from "react";
+import Head from "next/head";
+import { callFunction } from "../common/firebase";
+import { Globals, SITE_NAME, SITE_DESCRIPTION } from "../common/models";
+import Header from "../common/components/Header";
+import Footer from "../common/components/Footer";
+import OgpTags from "../common/components/OgpTags";
+import ShareButtons from "../common/components/ShareButtons";
+import TopCarousel from "../modules/home/components/TopCarousel";
+import LatestArticles from "../modules/home/components/LatestArticles";
+import About from "../modules/home/components/About";
+import RecentWorks from "../modules/home/components/RecentWorks";
+import RecentArts from "../modules/home/components/RecentArts";
 
 const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
   return (
@@ -38,8 +38,8 @@ const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
       <ShareButtons url={`${Globals.env.BASE_URL}/`} />
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 Component.getInitialProps = async ({ globals }) => {
   const result = await Promise.all([
@@ -49,11 +49,11 @@ Component.getInitialProps = async ({ globals }) => {
       globals
     })
       .then(response => {
-        return response.data.result
+        return response.data.result;
       })
       .catch(error => {
-        console.error(error)
-        return []
+        console.error(error);
+        return [];
       }),
     // 最新記事の一覧を取得する
     callFunction({
@@ -62,11 +62,11 @@ Component.getInitialProps = async ({ globals }) => {
       globals
     })
       .then(response => {
-        return response.data.result
+        return response.data.result;
       })
       .catch(error => {
-        console.error(error)
-        return []
+        console.error(error);
+        return [];
       }),
     // 最近のイラスト一覧を取得する
     callFunction({
@@ -75,11 +75,11 @@ Component.getInitialProps = async ({ globals }) => {
       globals
     })
       .then(response => {
-        return response.data.result
+        return response.data.result;
       })
       .catch(error => {
-        console.error(error)
-        return []
+        console.error(error);
+        return [];
       }),
     // 最近の作品一覧を取得する
     callFunction({
@@ -96,19 +96,19 @@ Component.getInitialProps = async ({ globals }) => {
       globals
     })
       .then(response => {
-        return response.data.result
+        return response.data.result;
       })
       .catch(error => {
-        console.error(error)
-        return []
+        console.error(error);
+        return [];
       })
-  ])
+  ]);
   return {
     topImages: result[0],
     latestArticles: result[1],
     recentArts: result[2],
     recentWorks: result[3]
-  }
-}
+  };
+};
 
-export default Component
+export default Component;

@@ -1,18 +1,18 @@
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { callFunction } from "../../../common/firebase"
-import { useScroll } from "../../../common/hooks"
-import { Globals } from "../../../common/models"
-import GalleryModal from "./GalleryModal"
-import { LIMIT } from "../models"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { callFunction } from "../../../common/firebase";
+import { useScroll } from "../../../common/hooks";
+import { Globals } from "../../../common/models";
+import GalleryModal from "./GalleryModal";
+import { LIMIT } from "../models";
 
 export default ({
   tag,
   items: initinalItems,
   fetchedAll: initialFetchedAll
 }) => {
-  const [items, setItems] = useState([...initinalItems])
-  const [fetchedAll, setFetchedAll] = useState(initialFetchedAll)
+  const [items, setItems] = useState([...initinalItems]);
+  const [fetchedAll, setFetchedAll] = useState(initialFetchedAll);
 
   // 無限スクロールを使用する
   const [loading, setLoading] = useScroll(
@@ -27,25 +27,25 @@ export default ({
             tag: tag
           },
           globals: Globals
-        })
-        setItems([...items, ...response.data.result])
-        setFetchedAll(response.data.fetchedAll)
+        });
+        setItems([...items, ...response.data.result]);
+        setFetchedAll(response.data.fetchedAll);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     },
     100,
     fetchedAll,
     [items]
-  )
+  );
 
   useEffect(() => {
     // 同じページ間の遷移（例：タグのリンクを押下した）場合、ComponentやStateはリセットされない模様。
     // →データをリセットする
-    setItems(initinalItems)
-    setLoading(false)
-    setFetchedAll(initialFetchedAll)
-  }, [initinalItems])
+    setItems(initinalItems);
+    setLoading(false);
+    setFetchedAll(initialFetchedAll);
+  }, [initinalItems]);
 
   return (
     <section className="art-scroll">
@@ -59,8 +59,8 @@ export default ({
       </div>
       <GalleryModal.Component />
     </section>
-  )
-}
+  );
+};
 
 const ArtScrollItem = ({ item }) => {
   return (
@@ -69,16 +69,16 @@ const ArtScrollItem = ({ item }) => {
         <a
           className="art-scroll-item__link"
           onClick={e => {
-            e.preventDefault()
+            e.preventDefault();
             // モーダルを開く
-            GalleryModal.open(item)
+            GalleryModal.open(item);
           }}>
           <ArtScrollItemBackground image={item.images[0]} />
         </a>
       </Link>
     </div>
-  )
-}
+  );
+};
 
 const ArtScrollItemBackground = ({ image }) => {
   return (
@@ -87,5 +87,5 @@ const ArtScrollItemBackground = ({ image }) => {
       style={{
         backgroundImage: `url(${image.url})`
       }}></div>
-  )
-}
+  );
+};

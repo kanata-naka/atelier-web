@@ -1,9 +1,9 @@
-import React from "react"
-import Head from "next/head"
-import { SITE_NAME } from "../common/models"
-import Header from "../common/components/Header"
-import Footer from "../common/components/Footer"
-import OgpTags from "../common/components/OgpTags"
+import React from "react";
+import Head from "next/head";
+import { SITE_NAME } from "../common/models";
+import Header from "../common/components/Header";
+import Footer from "../common/components/Footer";
+import OgpTags from "../common/components/OgpTags";
 
 const Component = () => {
   return (
@@ -21,7 +21,7 @@ const Component = () => {
       <div className="under-construction">{"UNDER CONSTRUCTION"}</div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Component
+export default Component;
