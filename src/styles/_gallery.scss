@@ -1,7 +1,7 @@
 /* タグ一覧 */
 .tag-info {
-  height: 48px;
   position: relative;
+  height: 48px;
   margin: 12px;
   overflow: hidden;
   border: 1px solid $frame-border-color;
@@ -22,9 +22,9 @@
   }
 
   &-slide-button {
-    width: 100%;
     position: absolute;
     bottom: 0;
+    width: 100%;
     padding-top: 12px;
     color: #5f569a;
     text-align: center;
@@ -67,8 +67,8 @@
 
   &-item {
     flex: 0 1 calc(50% - 10px);
-    height: auto;
     position: relative;
+    height: auto;
     margin: 4px;
     overflow: hidden;
     border: 1px solid $frame-border-color;

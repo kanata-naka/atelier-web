@@ -29,17 +29,17 @@ $gallery-modal-responsive-boundary-width: 414px;
     position: absolute;
 
     @media (max-width: $gallery-modal-responsive-boundary-width) {
-      width: 100%;
-      height: 100%;
       left: 0;
       top: 0;
+      width: 100%;
+      height: 100%;
     }
 
     @media (min-width: $gallery-modal-responsive-boundary-width + 1) {
-      width: 80%;
-      height: 80%;
       left: 10%;
       top: 10%;
+      width: 80%;
+      height: 80%;
     }
   }
 
@@ -119,9 +119,9 @@ $gallery-modal-responsive-boundary-width: 414px;
     left: 12px;
 
     &-item {
+      position: relative;
       width: 64px;
       height: 64px;
-      position: relative;
       margin-right: 6px;
       padding: 4px;
       background-position: center;
@@ -152,11 +152,11 @@ $gallery-modal-responsive-boundary-width: 414px;
   }
 
   &-close-button {
-    width: 32px;
-    height: 32px;
     position: absolute;
     top: 24px;
     right: 24px;
+    width: 32px;
+    height: 32px;
     text-align: center;
     cursor: pointer;
     transition: text-shadow 250ms;
