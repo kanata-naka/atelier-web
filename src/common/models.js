@@ -6,7 +6,7 @@ export const AUTHOR_NAME = "彼方ノナメ";
 export const SITE_DESCRIPTION =
   "イラストレーター・漫画家志望の同人作家「彼方ノナメ」のホームページです。";
 /** Twitterアカウントのユーザ名 */
-export const TWITTER_USERNAME = "kanata_x2";
+export const TWITTER_USERNAME = "kanata_noname";
 /** SNSのアカウント一覧 */
 export const SOCIAL_ACCOUNTS = [
   {
