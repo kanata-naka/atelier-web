@@ -3,14 +3,13 @@ const config = require("config")
 
 module.exports = {
   ...withSass(),
-  serverRuntimeConfig: {
+  publicRuntimeConfig: {
     ENVIRONMENT: process.env.NODE_ENV,
     BASE_URL: config.get("baseUrl"),
-    API_BASE_URL: config.get("api.baseUrl"),
-    FIREBASE_API_KEY: config.get("firebase.apiKey"),
-    FIREBASE_AUTH_DOMAIN: config.get("firebase.authDomain"),
-    FIREBASE_PROJECT_ID: config.get("firebase.projectId"),
+    FIREBASE_CONFIG: config.get("firebase.config"),
     FIREBASE_REGION: config.get("firebase.region"),
-    BLOG_URL: config.get("blog.url")
+    BLOG_URL: config.get("blog.url"),
+    TWITTER_USERNAME: config.get("twitter.username"),
+    PIXIV_ID: config.get("pixiv.id")
   }
 }

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { callFunction } from "../../../common/firebase";
 import { useScroll } from "../../../common/hooks";
-import { Globals } from "../../../common/models";
 import GalleryModal from "./GalleryModal";
 import { LIMIT } from "../models";
 
@@ -25,8 +24,7 @@ export default ({
             lastId: items[items.length - 1].id,
             limit: LIMIT,
             tag: tag
-          },
-          globals: Globals
+          }
         });
         setItems([...items, ...response.data.result]);
         setFetchedAll(response.data.fetchedAll);

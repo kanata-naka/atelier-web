@@ -1,10 +1,13 @@
 import React, { useCallback } from "react";
+import getConfig from "next/config";
 import {
   reloadTwitterWidgets,
   reloadFacebookWidgets,
   reloadLINEItButtons
 } from "../../utils/vendorUtil";
 import { SITE_NAME, TWITTER_USERNAME } from "../models";
+
+const { publicRuntimeConfig } = getConfig();
 
 /**
  * シェアボタン
@@ -38,7 +41,7 @@ const TwitterShareButton = ({ classPrefix, url, title }) => {
         className="twitter-hashtag-button"
         data-text={title ? `${title} - ${SITE_NAME}` : SITE_NAME}
         data-url={url}
-        data-related={TWITTER_USERNAME}
+        data-related={publicRuntimeConfig.TWITTER_USERNAME}
         data-lang="ja"
         data-show-count="false">
         Tweet

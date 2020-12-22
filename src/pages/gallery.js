@@ -1,8 +1,9 @@
 import React, { useEffect, useCallback } from "react";
 import Head from "next/head";
 import Router from "next/router";
+import getConfig from "next/config";
 import { callFunction } from "../common/firebase";
-import { Globals, SITE_NAME } from "../common/models";
+import { SITE_NAME } from "../common/models";
 import { PageHeading } from "../common/components/elements";
 import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
@@ -11,6 +12,8 @@ import TagInfo from "../modules/gallery/components/TagInfo";
 import ArtScroll from "../modules/gallery/components/ArtScroll";
 import GalleryModal from "../modules/gallery/components/GalleryModal";
 import { LIMIT } from "../modules/gallery/models";
+
+const { publicRuntimeConfig } = getConfig();
 
 const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
   useEffect(() => {
@@ -32,7 +35,7 @@ const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
       </Head>
       {item ? (
         <OgpTags
-          url={`${Globals.env.BASE_URL}/gallery/${id}`}
+          url={`${publicRuntimeConfig.BASE_URL}/gallery/${id}`}
           ogType="article"
           title={`${item.title} - ${SITE_NAME}`}
           description={item.description}
@@ -42,7 +45,7 @@ const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
         />
       ) : (
         <OgpTags
-          url={`${Globals.env.BASE_URL}/gallery`}
+          url={`${publicRuntimeConfig.BASE_URL}/gallery`}
           ogType="blog"
           title={`GALLERY - ${SITE_NAME}`}
           twitterCard="summary_card"
@@ -58,14 +61,13 @@ const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
   );
 };
 
-Component.getInitialProps = async ({ query, globals }) => {
+Component.getInitialProps = async ({ query }) => {
   if (query.id) {
     const response = await callFunction({
       name: "api-arts-getById",
       data: {
         id: query.id
-      },
-      globals
+      }
     });
     return {
       id: query.id,
@@ -77,8 +79,7 @@ Component.getInitialProps = async ({ query, globals }) => {
     try {
       const response = await callFunction({
         name: "api-tagInfo-getById",
-        data: { id: "arts" },
-        globals
+        data: { id: "arts" }
       });
       tagInfo = response.data.info;
     } catch (error) {
@@ -93,8 +94,7 @@ Component.getInitialProps = async ({ query, globals }) => {
         data: {
           limit: LIMIT,
           tag: query.tag
-        },
-        globals
+        }
       });
       items = response.data.result;
       fetchedAll = response.data.fetchedAll;

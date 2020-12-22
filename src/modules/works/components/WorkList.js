@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { Globals } from "../../../common/models";
+import getConfig from "next/config";
 import ShareButtons from "../../../common/components/ShareButtons";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
+
+const { publicRuntimeConfig } = getConfig();
 
 export default ({ items }) => {
   return (
@@ -31,7 +33,7 @@ const WorkListItem = ({ item }) => {
             {renderMarkdown(item.description)}
           </WorkListItemDescription>
           <ShareButtons
-            url={`${Globals.env.BASE_URL}/works/${item.id}`}
+            url={`${publicRuntimeConfig.BASE_URL}/works/${item.id}`}
             title={item.title}
             classPrefix="work-list-item-"
           />

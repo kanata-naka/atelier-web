@@ -1,46 +1,27 @@
 import App from "next/app";
 import Head from "next/head";
-import getConfig from "next/config";
 import { initializeFirebase } from "../common/firebase";
-import { Globals } from "../common/models";
 import RoutingEffect from "../common/components/RoutingEffect";
 import "../styles/style.scss";
 
 export default class extends App {
   static async getInitialProps({ Component, ctx }) {
-    const isServer = !!ctx.req;
-    // グローバル変数を初期化する
-    let globals;
-    if (isServer) {
-      globals = {
-        env: getConfig().serverRuntimeConfig
-      };
-    } else {
-      globals = Object.assign({}, Globals);
-    }
-    initializeFirebase(globals.env);
-    // ページを初期化する
     let pageProps = {};
+    const isServer = !!ctx.req;
     if (Component.getInitialProps) {
+      initializeFirebase(isServer);
       pageProps = await Component.getInitialProps({
         ...ctx,
-        isServer,
-        globals
+        isServer
       });
     }
-    return {
-      isServer,
-      globals,
-      pageProps
-    };
+    return { isServer, pageProps };
   }
 
   constructor(props) {
     super(props);
-    const { globals } = props;
-    // グローバル変数をマージする
-    Object.assign(Globals, globals);
-    initializeFirebase(Globals.env);
+    const { isServer } = props;
+    initializeFirebase(isServer);
   }
 
   render() {

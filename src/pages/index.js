@@ -1,7 +1,8 @@
 import React from "react";
 import Head from "next/head";
+import getConfig from "next/config";
 import { callFunction } from "../common/firebase";
-import { Globals, SITE_NAME, SITE_DESCRIPTION } from "../common/models";
+import { SITE_NAME, SITE_DESCRIPTION } from "../common/models";
 import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
 import OgpTags from "../common/components/OgpTags";
@@ -12,6 +13,8 @@ import About from "../modules/home/components/About";
 import RecentWorks from "../modules/home/components/RecentWorks";
 import RecentArts from "../modules/home/components/RecentArts";
 
+const { publicRuntimeConfig } = getConfig();
+
 const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
   return (
     <div>
@@ -19,7 +22,7 @@ const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
         <title>{SITE_NAME}</title>
       </Head>
       <OgpTags
-        url={`${Globals.env.BASE_URL}/`}
+        url={`${publicRuntimeConfig.BASE_URL}/`}
         ogType="website"
         title={SITE_NAME}
         description={SITE_DESCRIPTION}
@@ -35,18 +38,17 @@ const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
       </div>
       <RecentArts items={recentArts} />
       <RecentWorks items={recentWorks} />
-      <ShareButtons url={`${Globals.env.BASE_URL}/`} />
+      <ShareButtons url={`${publicRuntimeConfig.BASE_URL}/`} />
       <Footer />
     </div>
   );
 };
 
-Component.getInitialProps = async ({ globals }) => {
+Component.getInitialProps = async () => {
   const result = await Promise.all([
     // トップ画像の一覧を取得する
     callFunction({
-      name: "api-topImages-get",
-      globals
+      name: "api-topImages-get"
     })
       .then(response => {
         return response.data.result;
@@ -58,8 +60,7 @@ Component.getInitialProps = async ({ globals }) => {
     // 最新記事の一覧を取得する
     callFunction({
       name: "api-blog-getArticles",
-      data: { page: 1, limit: 3 },
-      globals
+      data: { page: 1, limit: 3 }
     })
       .then(response => {
         return response.data.result;
@@ -71,8 +72,7 @@ Component.getInitialProps = async ({ globals }) => {
     // 最近のイラスト一覧を取得する
     callFunction({
       name: "api-arts-get",
-      data: { limit: 6, pickupFlag: true },
-      globals
+      data: { limit: 6, pickupFlag: true }
     })
       .then(response => {
         return response.data.result;
@@ -92,8 +92,7 @@ Component.getInitialProps = async ({ globals }) => {
           column: "publishedDate",
           order: "desc"
         }
-      },
-      globals
+      }
     })
       .then(response => {
         return response.data.result;

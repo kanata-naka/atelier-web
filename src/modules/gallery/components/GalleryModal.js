@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import Modal from "react-modal";
 import Router from "next/router";
-import { Globals } from "../../../common/models";
+import getConfig from "next/config";
 import ShareButtons from "../../../common/components/ShareButtons";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
+
+const { publicRuntimeConfig } = getConfig();
 
 Modal.setAppElement("#__next");
 
@@ -47,7 +49,7 @@ const Component = ({ onClose }) => {
           <TagList tags={item.tags} />
           <Description>{renderMarkdown(item.description)}</Description>
           <ShareButtons
-            url={`${Globals.env.BASE_URL}/gallery/${item.id}`}
+            url={`${publicRuntimeConfig.BASE_URL}/gallery/${item.id}`}
             title={item.title}
             classPrefix="gallery-modal-"
           />

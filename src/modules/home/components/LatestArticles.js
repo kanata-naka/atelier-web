@@ -1,5 +1,7 @@
-import { Globals } from "../../../common/models";
+import getConfig from "next/config";
 import { formatDateFromIsoDate } from "../../../utils/dateUtil";
+
+const { publicRuntimeConfig } = getConfig();
 
 export default ({ items }) => {
   return (
@@ -57,7 +59,7 @@ const Footer = () => {
     <footer className="latest-articles-footer">
       <a
         className="latest-articles-more"
-        href={Globals.env.BLOG_URL}
+        href={publicRuntimeConfig.BLOG_URL}
         target="_blank">
         {"more ＞"}
       </a>

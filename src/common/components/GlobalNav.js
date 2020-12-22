@@ -1,7 +1,9 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
+import getConfig from "next/config";
 import { useMediaQuery } from "../hooks";
-import { Globals } from "../models";
+
+const { publicRuntimeConfig } = getConfig();
 
 /**
  * グローバルナビゲーション
@@ -31,7 +33,7 @@ export default () => {
           visibility: (!enableToggleMenu || isToggleMenuActive) && "visible"
         }}>
         <GlobalNavItem id="about" title="ABOUT" path="/#about" />
-        <GlobalNavItem id="blog" title="BLOG" url={Globals.env.BLOG_URL} />
+        <GlobalNavItem id="blog" title="BLOG" url={publicRuntimeConfig.BLOG_URL} />
         <GlobalNavItem id="works" title="WORKS" path="/works" />
         <GlobalNavItem id="gallery" title="GALLERY" path="/gallery" />
         <GlobalNavItem id="contact" title="CONTACT" path="/contact" />

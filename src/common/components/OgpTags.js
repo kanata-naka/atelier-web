@@ -1,5 +1,8 @@
 import Head from "next/head";
-import { SITE_NAME, TWITTER_USERNAME } from "../models";
+import getConfig from "next/config";
+import { SITE_NAME } from "../models";
+
+const { publicRuntimeConfig } = getConfig();
 
 /**
  * OGPタグ
@@ -22,7 +25,7 @@ export default ({
       {description && <meta property="og:description" content={description} />}
       {ogImage && <meta property="og:image" content={ogImage} />}
       <meta property="twitter:card" content={twitterCard} />
-      <meta property="twitter:site" content={`@${TWITTER_USERNAME}`} />
+      <meta property="twitter:site" content={`@${publicRuntimeConfig.TWITTER_USERNAME}`} />
       <meta property="twitter:url" content={url} />
       <meta property="twitter:title" content={title} />
       {description && (

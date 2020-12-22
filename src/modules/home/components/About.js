@@ -1,12 +1,14 @@
 import React, { useCallback } from "react";
+import getConfig from "next/config";
 import {
   AUTHOR_NAME,
   SITE_DESCRIPTION,
-  SOCIAL_ACCOUNTS,
-  TWITTER_USERNAME
+  SOCIAL_ACCOUNTS
 } from "../../../common/models";
 import { SectionHeading } from "../../../common/components/elements";
 import { reloadTwitterWidgets } from "../../../utils/vendorUtil";
+
+const { publicRuntimeConfig } = getConfig();
 
 export default () => {
   return (
@@ -21,7 +23,7 @@ export default () => {
         <br />
         一次創作オンリーのサークル「old dear place」で活動しています。
       </Introduction>
-      <TwitterWidgets id={TWITTER_USERNAME} />
+      <TwitterWidgets id={publicRuntimeConfig.TWITTER_USERNAME} />
     </section>
   );
 };
