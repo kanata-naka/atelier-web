@@ -1,18 +1,15 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
-import getConfig from "next/config";
 import { useMediaQuery } from "../hooks";
+import { BLOG_URL } from "../models";
 
-const { publicRuntimeConfig } = getConfig();
-
-/**
- * グローバルナビゲーション
- */
+/** グローバルナビゲーション */
 export default () => {
   const [isToggleMenuActive, setToggleMenuActive] = useState(false);
   // ウィンドウの幅が一定以下ならトグルメニューを有効にする
   const enableToggleMenu = useMediaQuery("(max-width: 834px)");
 
+  /** ハンバーガーボタンをクリックした際の処理 */
   const handleHamburgerButtonClick = useCallback(() => {
     // トグルメニューを切り替える
     setToggleMenuActive(!isToggleMenuActive);
@@ -33,7 +30,7 @@ export default () => {
           visibility: (!enableToggleMenu || isToggleMenuActive) && "visible"
         }}>
         <GlobalNavItem id="about" title="ABOUT" path="/#about" />
-        <GlobalNavItem id="blog" title="BLOG" url={publicRuntimeConfig.BLOG_URL} />
+        <GlobalNavItem id="blog" title="BLOG" url={BLOG_URL} />
         <GlobalNavItem id="works" title="WORKS" path="/works" />
         <GlobalNavItem id="gallery" title="GALLERY" path="/gallery" />
         <GlobalNavItem id="contact" title="CONTACT" path="/contact" />

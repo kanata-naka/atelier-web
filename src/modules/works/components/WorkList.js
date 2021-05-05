@@ -4,6 +4,7 @@ import ShareButtons from "../../../common/components/ShareButtons";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
 
+// 環境設定を読み込む
 const { publicRuntimeConfig } = getConfig();
 
 export default ({ items }) => {

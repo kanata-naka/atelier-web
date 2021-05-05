@@ -1,14 +1,13 @@
 import React, { useCallback } from "react";
-import getConfig from "next/config";
 import {
   AUTHOR_NAME,
   SITE_DESCRIPTION,
+  INTRODUCTION,
+  TWITTER_USERNAME,
   SOCIAL_ACCOUNTS
 } from "../../../common/models";
 import { SectionHeading } from "../../../common/components/elements";
 import { reloadTwitterWidgets } from "../../../utils/vendorUtil";
-
-const { publicRuntimeConfig } = getConfig();
 
 export default () => {
   return (
@@ -18,12 +17,8 @@ export default () => {
       <ProfileImage url="/images/profile-image.png" />
       <AuthorName>{AUTHOR_NAME}</AuthorName>
       <SocialIcons items={SOCIAL_ACCOUNTS} />
-      <Introduction>
-        版権メインの個人サークル「カナタノアトリエ」、
-        <br />
-        一次創作オンリーのサークル「old dear place」で活動しています。
-      </Introduction>
-      <TwitterWidgets id={publicRuntimeConfig.TWITTER_USERNAME} />
+      <Introduction>{INTRODUCTION}</Introduction>
+      <TwitterWidgets id={TWITTER_USERNAME} />
     </section>
   );
 };
@@ -75,7 +70,14 @@ const SocialIcon = ({ item }) => {
  * 自己紹介
  */
 const Introduction = ({ children }) => {
-  return <p className="introduction">{children}</p>;
+  return (
+    <p
+      className="introduction"
+      dangerouslySetInnerHTML={{
+        __html: children.replace(/\n/g, "<br />")
+      }}
+    />
+  );
 };
 
 const TwitterWidgets = ({ id }) => {

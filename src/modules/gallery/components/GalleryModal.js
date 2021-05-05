@@ -6,24 +6,25 @@ import ShareButtons from "../../../common/components/ShareButtons";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
 
+// 環境設定を取得する
 const { publicRuntimeConfig } = getConfig();
 
 Modal.setAppElement("#__next");
 
-// モーダルの実体
+/**
+ * モーダルの実体
+ */
 const Component = ({ onClose }) => {
   const [isOpen, setOpen] = useState(false);
   const [item, setItem] = useState({ images: [] });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    // モーダルを開く
     GalleryModal.open = item => {
       setItem(item);
       setCurrentImageIndex(0);
       setOpen(true);
     };
-    // モーダルを閉じる
     GalleryModal.close = () => setOpen(false);
   }, []);
 
@@ -66,11 +67,16 @@ const Component = ({ onClose }) => {
   );
 };
 
-// オーバーレイ
+/**
+ * オーバーレイ
+ */
 const Overlay = ({ onClick }) => {
   return <div className="gallery-modal-overlay" onClick={onClick}></div>;
 };
 
+/**
+ * モーダルの背景
+ */
 const Background = ({ image }) => {
   return (
     <div
@@ -81,10 +87,16 @@ const Background = ({ image }) => {
   );
 };
 
+/**
+ * タイトル
+ */
 const Title = ({ children }) => {
   return <h3 className="gallery-modal-title">{children}</h3>;
 };
 
+/**
+ * タグ一覧
+ */
 const TagList = ({ tags = [] }) => {
   return (
     <ul className="gallery-modal-tag-list">
@@ -118,7 +130,9 @@ const Description = ({ children }) => {
   return <p className="gallery-modal-description">{children}</p>;
 };
 
-// 投稿日時
+/**
+ * 投稿日時
+ */
 const PostedDate = ({ timestamp }) => {
   return (
     <div className="gallery-modal-posted-date">
@@ -129,7 +143,9 @@ const PostedDate = ({ timestamp }) => {
   );
 };
 
-// 差分リスト
+/**
+ * 差分リスト
+ */
 const DiffList = ({ images, currentImageIndex, onSelect }) => {
   if (!images || !images.length) {
     return null;
@@ -166,7 +182,9 @@ const DiffListItem = ({ image, isActive, onClick }) => {
   );
 };
 
-// 閉じるボタン
+/**
+ * 閉じるボタン
+ */
 const CloseButton = ({ onClick }) => {
   return (
     <div className="gallery-modal-close-button" onClick={onClick}>

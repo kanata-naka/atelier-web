@@ -1,7 +1,6 @@
 import getConfig from "next/config";
+import { BLOG_URL } from "../../../common/models";
 import { formatDateFromIsoDate } from "../../../utils/dateUtil";
-
-const { publicRuntimeConfig } = getConfig();
 
 export default ({ items }) => {
   return (
@@ -57,10 +56,7 @@ const ArticleTitle = ({ children }) => {
 const Footer = () => {
   return (
     <footer className="latest-articles-footer">
-      <a
-        className="latest-articles-more"
-        href={publicRuntimeConfig.BLOG_URL}
-        target="_blank">
+      <a className="latest-articles-more" href={BLOG_URL} target="_blank">
         {"more ＞"}
       </a>
     </footer>

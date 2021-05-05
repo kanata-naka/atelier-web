@@ -1,10 +1,10 @@
-/**
- * フッター
- */
+import { COPYRIGHT } from "../models";
+
+/** フッター */
 export default () => {
   return (
     <footer className="site-footer">
-      <div className="copyright">{"© 2020 Noname Kanata."}</div>
+      <div className="copyright">{COPYRIGHT}</div>
     </footer>
   );
 };

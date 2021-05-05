@@ -1,14 +1,15 @@
 import firebase from "firebase/app";
-import 'firebase/analytics';
+import "firebase/analytics";
 import "firebase/functions";
 import getConfig from "next/config";
 
+// 環境設定を取得する
 const { publicRuntimeConfig } = getConfig();
 
 /**
  * Firebaseを初期化する
  */
-export const initializeFirebase = (isServer) => {
+export const initializeFirebase = isServer => {
   if (firebase.apps.length) {
     return;
   }

@@ -16,6 +16,7 @@ import {
   PAGE_NUMBER_DISPLAY_MAX_RANGE
 } from "../modules/works/models";
 
+// 環境設定を読み込む
 const { publicRuntimeConfig } = getConfig();
 
 const Component = ({ id, items }) => {

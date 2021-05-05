@@ -13,6 +13,7 @@ import ArtScroll from "../modules/gallery/components/ArtScroll";
 import GalleryModal from "../modules/gallery/components/GalleryModal";
 import { LIMIT } from "../modules/gallery/models";
 
+// 環境設定を読み込む
 const { publicRuntimeConfig } = getConfig();
 
 const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {

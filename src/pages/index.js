@@ -13,6 +13,7 @@ import About from "../modules/home/components/About";
 import RecentWorks from "../modules/home/components/RecentWorks";
 import RecentArts from "../modules/home/components/RecentArts";
 
+// 環境設定を読み込む
 const { publicRuntimeConfig } = getConfig();
 
 const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
