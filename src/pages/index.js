@@ -73,7 +73,7 @@ Component.getInitialProps = async () => {
     // 最近のイラスト一覧を取得する
     callFunction({
       name: "api-arts-get",
-      data: { limit: 6, pickupFlag: true }
+      data: { limit: 6, restrict: [ '0' ] }
     })
       .then(response => {
         return response.data.result;
@@ -87,7 +87,7 @@ Component.getInitialProps = async () => {
       name: "api-works-get",
       data: {
         limit: 6,
-        pickupFlag: true,
+        restrict: [ '0' ],
         sort: {
           // 出版日の降順
           column: "publishedDate",

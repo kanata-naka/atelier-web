@@ -94,6 +94,7 @@ Component.getInitialProps = async ({ query }) => {
       const response = await callFunction({
         name: "api-works-get",
         data: {
+          restrict: [ '0', '1' ],
           sort: {
             // 出版日の降順
             column: "publishedDate",

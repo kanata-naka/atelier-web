@@ -1,17 +1,17 @@
 /** サイト名 */
 export const SITE_NAME = "カナタノアトリエ";
 /** 作者名 */
-export const AUTHOR_NAME = "彼方ナカ";
+export const AUTHOR_NAME = "かなた なか";
 /** サイトの説明 */
 export const SITE_DESCRIPTION =
-  "イラストレーター・漫画家志望の同人作家「彼方ナカ」のホームページです。";
+  "イラストレーター・漫画家志望の同人作家「かなた なか」のホームページです。";
 /** 自己紹介 */
 export const INTRODUCTION = `版権メインの個人サークル「カナタノアトリエ」、
 一次創作オンリーのサークル「old dear place」で活動しています。`;
 /** ブログのURL */
 export const BLOG_URL = "https://note.com/kanata_noname";
 /** Twitterのユーザ名 */
-export const TWITTER_USERNAME = "kanata_noname";
+export const TWITTER_USERNAME = "kanata_inside";
 /** SNSのアカウント一覧 */
 export const SOCIAL_ACCOUNTS = [
   {

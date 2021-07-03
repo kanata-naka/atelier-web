@@ -94,7 +94,8 @@ Component.getInitialProps = async ({ query }) => {
         name: "api-arts-get",
         data: {
           limit: LIMIT,
-          tag: query.tag
+          tag: query.tag,
+          restrict: [ '0', '1' ]
         }
       });
       items = response.data.result;
