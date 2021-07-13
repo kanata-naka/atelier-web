@@ -3,7 +3,7 @@ import Head from "next/head";
 import Router from "next/router";
 import getConfig from "next/config";
 import { callFunction } from "../common/firebase";
-import { SITE_NAME } from "../common/models";
+import { SITE_NAME, RESTRICT_ALL, RESTRICT_LIMITED } from "../common/models";
 import { PageHeading } from "../common/components/elements";
 import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
@@ -64,11 +64,8 @@ const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
 
 Component.getInitialProps = async ({ query }) => {
   if (query.id) {
-    const response = await callFunction({
-      name: "api-arts-getById",
-      data: {
-        id: query.id
-      }
+    const response = await callFunction("api-arts-getById", {
+      id: query.id
     });
     return {
       id: query.id,
@@ -78,9 +75,8 @@ Component.getInitialProps = async ({ query }) => {
     // 全てのタグとその件数を取得する
     let tagInfo = {};
     try {
-      const response = await callFunction({
-        name: "api-tagInfo-getById",
-        data: { id: "arts" }
+      const response = await callFunction("api-tagInfo-getById", {
+        id: "arts"
       });
       tagInfo = response.data.info;
     } catch (error) {
@@ -90,13 +86,10 @@ Component.getInitialProps = async ({ query }) => {
     let items = [];
     let fetchedAll = false;
     try {
-      const response = await callFunction({
-        name: "api-arts-get",
-        data: {
-          limit: LIMIT,
-          tag: query.tag,
-          restrict: [ '0', '1' ]
-        }
+      const response = await callFunction("api-arts-get", {
+        limit: LIMIT,
+        tag: query.tag,
+        restrict: [RESTRICT_ALL, RESTRICT_LIMITED]
       });
       items = response.data.result;
       fetchedAll = response.data.fetchedAll;

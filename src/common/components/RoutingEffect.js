@@ -34,6 +34,9 @@ const Component = () => {
   );
 };
 
+/**
+ * ルーティングエフェクト
+ */
 const RoutingEffect = {
   Component,
   show: () => Component.setLoading(true),

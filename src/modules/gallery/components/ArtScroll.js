@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { callFunction } from "../../../common/firebase";
 import { useScroll } from "../../../common/hooks";
+import { RESTRICT_ALL, RESTRICT_LIMITED } from "../../../common/models";
 import GalleryModal from "./GalleryModal";
 import { LIMIT } from "../models";
 
@@ -18,13 +19,11 @@ export default ({
     async () => {
       try {
         // 次の${LIMIT}件を取得する
-        const response = await callFunction({
-          name: "api-arts-get",
-          data: {
-            lastId: items[items.length - 1].id,
-            limit: LIMIT,
-            tag: tag
-          }
+        const response = await callFunction("api-arts-get", {
+          lastId: items[items.length - 1].id,
+          limit: LIMIT,
+          tag: tag,
+          restrict: [RESTRICT_ALL, RESTRICT_LIMITED]
         });
         setItems([...items, ...response.data.result]);
         setFetchedAll(response.data.fetchedAll);

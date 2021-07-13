@@ -7,7 +7,7 @@ import {
 
 /**
  * ステートとそのRefを作成する
- * ※非同期処理（setTimeout、）から最新の値を参照できるようにする
+ * ※非同期処理（setTimeoutなど）から最新の値を参照できるようにする
  */
 export const useStateRef = (initialValue = null) => {
   const [value, setValue] = useState(initialValue);

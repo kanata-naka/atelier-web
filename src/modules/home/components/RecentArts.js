@@ -51,7 +51,7 @@ const RecentArtItemBackground = ({ image }) => {
       style={{
         backgroundImage: `url(${image.thumbnailUrl.medium})`,
         backgroundSize: "cover",
-        backgroundPosition: "top",
+        backgroundPosition: "top"
       }}></div>
   );
 };

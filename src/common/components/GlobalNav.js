@@ -3,13 +3,14 @@ import Link from "next/link";
 import { useMediaQuery } from "../hooks";
 import { BLOG_URL } from "../models";
 
-/** グローバルナビゲーション */
+/**
+ * グローバルナビゲーション
+ */
 export default () => {
   const [isToggleMenuActive, setToggleMenuActive] = useState(false);
   // ウィンドウの幅が一定以下ならトグルメニューを有効にする
   const enableToggleMenu = useMediaQuery("(max-width: 834px)");
 
-  /** ハンバーガーボタンをクリックした際の処理 */
   const handleHamburgerButtonClick = useCallback(() => {
     // トグルメニューを切り替える
     setToggleMenuActive(!isToggleMenuActive);

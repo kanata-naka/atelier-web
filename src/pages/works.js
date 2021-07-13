@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import getConfig from "next/config";
 import { callFunction } from "../common/firebase";
-import { SITE_NAME } from "../common/models";
+import { SITE_NAME, RESTRICT_ALL, RESTRICT_LIMITED } from "../common/models";
 import { PageHeading } from "../common/components/elements";
 import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
@@ -77,11 +77,8 @@ const Component = ({ id, items }) => {
 
 Component.getInitialProps = async ({ query }) => {
   if (query.id) {
-    const response = await callFunction({
-      name: "api-works-getById",
-      data: {
-        id: query.id
-      }
+    const response = await callFunction("api-works-getById", {
+      id: query.id
     });
     return {
       id: query.id,
@@ -91,15 +88,12 @@ Component.getInitialProps = async ({ query }) => {
     try {
       // 全件取得する
       // ※shallow routingで再読み込みを行わずにページングを実現するため
-      const response = await callFunction({
-        name: "api-works-get",
-        data: {
-          restrict: [ '0', '1' ],
-          sort: {
-            // 出版日の降順
-            column: "publishedDate",
-            order: "desc"
-          }
+      const response = await callFunction("api-works-get", {
+        restrict: [RESTRICT_ALL, RESTRICT_LIMITED],
+        sort: {
+          // 出版日の降順
+          column: "publishedDate",
+          order: "desc"
         }
       });
       return {

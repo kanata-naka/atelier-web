@@ -26,7 +26,7 @@ export const initializeFirebase = isServer => {
 /**
  * Firebase Functionsの関数を実行する
  */
-export const callFunction = async ({ name, data }) => {
+export const callFunction = async (name, data) => {
   try {
     const callable = firebase
       .app()
