@@ -9,9 +9,9 @@ export const SITE_DESCRIPTION =
 export const INTRODUCTION = `版権メインの個人サークル「カナタノアトリエ」、
 一次創作オンリーのサークル「old dear place」で活動しています。`;
 /** ブログのURL */
-export const BLOG_URL = "https://note.com/kanata_noname";
+export const BLOG_URL = "https://note.com/kanata_naka";
 /** Twitterのユーザ名 */
-export const TWITTER_USERNAME = "kanata_inside";
+export const TWITTER_USERNAME = "atelier_kanata";
 /** SNSのアカウント一覧 */
 export const SOCIAL_ACCOUNTS = [
   {
