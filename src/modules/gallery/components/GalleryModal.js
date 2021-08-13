@@ -18,6 +18,7 @@ const Component = ({ onClose }) => {
   const [isOpen, setOpen] = useState(false);
   const [item, setItem] = useState({ images: [] });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isForegroundActive, setForegroundActive] = useState(true);
 
   useEffect(() => {
     GalleryModal.open = item => {
@@ -27,6 +28,10 @@ const Component = ({ onClose }) => {
     };
     GalleryModal.close = () => setOpen(false);
   }, []);
+
+  const handleClick = useCallback(() => {
+    setForegroundActive(!isForegroundActive);
+  }, [isForegroundActive]);
 
   const handleClose = useCallback(() => {
     if (onClose) {
@@ -43,9 +48,10 @@ const Component = ({ onClose }) => {
       bodyOpenClassName="gallery-modal--open"
       style={{ overlay: { zIndex: 2 } }}>
       <Overlay onClick={handleClose} />
-      <div className="gallery-modal-container">
+      <div className="gallery-modal-container" onClick={handleClick}>
         <Background image={item.images[currentImageIndex]} />
-        <div className="gallery-modal-foreground">
+        <div className="gallery-modal-foreground"
+          style={{ display: isForegroundActive ? "block" : "none" }}>
           <Title>{item.title}</Title>
           <TagList tags={item.tags} />
           <Description>{renderMarkdown(item.description)}</Description>
