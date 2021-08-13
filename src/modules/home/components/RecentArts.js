@@ -49,9 +49,7 @@ const RecentArtItemBackground = ({ image }) => {
     <div
       className="recent-arts-item-background"
       style={{
-        backgroundImage: `url(${image.thumbnailUrl.medium})`,
-        backgroundSize: "cover",
-        backgroundPosition: "top"
+        backgroundImage: `url(${image.thumbnailUrl.medium})`
       }}></div>
   );
 };

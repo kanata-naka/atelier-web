@@ -16,7 +16,7 @@ import RecentArts from "../modules/home/components/RecentArts";
 // 環境設定を読み込む
 const { publicRuntimeConfig } = getConfig();
 
-const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
+const Component = ({ topImages, /* latestArticles, recentWorks, */ recentArts }) => {
   return (
     <div>
       <Head>
@@ -35,10 +35,10 @@ const Component = ({ topImages, latestArticles, recentWorks, recentArts }) => {
       <TopCarousel items={topImages} />
       <div className="dashboard">
         <About />
-        <LatestArticles items={latestArticles} />
+        {/* <LatestArticles items={latestArticles} /> */}
+        <RecentArts items={recentArts} />
       </div>
-      <RecentArts items={recentArts} />
-      <RecentWorks items={recentWorks} />
+      {/* <RecentWorks items={recentWorks} /> */}
       <ShareButtons url={`${publicRuntimeConfig.BASE_URL}/`} />
       <Footer />
     </div>
@@ -56,21 +56,21 @@ Component.getInitialProps = async () => {
         console.error(error);
         return [];
       }),
-    // 最新記事の一覧を取得する
-    callFunction("api-blog-getArticles", {
-      page: 1,
-      limit: 3
-    })
-      .then(response => {
-        return response.data.result;
-      })
-      .catch(error => {
-        console.error(error);
-        return [];
-      }),
+    // // 最新記事の一覧を取得する
+    // callFunction("api-blog-getArticles", {
+    //   page: 1,
+    //   limit: 3
+    // })
+    //   .then(response => {
+    //     return response.data.result;
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //     return [];
+    //   }),
     // 最近のイラスト一覧を取得する
     callFunction("api-arts-get", {
-      limit: 6,
+      limit: 10,
       restrict: [RESTRICT_ALL]
     })
       .then(response => {
@@ -80,29 +80,29 @@ Component.getInitialProps = async () => {
         console.error(error);
         return [];
       }),
-    // 最近の作品一覧を取得する
-    callFunction("api-works-get", {
-      limit: 6,
-      restrict: [RESTRICT_ALL],
-      sort: {
-        // 出版日の降順
-        column: "publishedDate",
-        order: "desc"
-      }
-    })
-      .then(response => {
-        return response.data.result;
-      })
-      .catch(error => {
-        console.error(error);
-        return [];
-      })
+    // // 最近の作品一覧を取得する
+    // callFunction("api-works-get", {
+    //   limit: 6,
+    //   restrict: [RESTRICT_ALL],
+    //   sort: {
+    //     // 出版日の降順
+    //     column: "publishedDate",
+    //     order: "desc"
+    //   }
+    // })
+    //   .then(response => {
+    //     return response.data.result;
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //     return [];
+    //   })
   ]);
   return {
     topImages: result[0],
-    latestArticles: result[1],
-    recentArts: result[2],
-    recentWorks: result[3]
+    // latestArticles: result[1],
+    recentArts: result[1],
+    // recentWorks: result[3]
   };
 };
 
