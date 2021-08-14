@@ -13,6 +13,17 @@ export default class extends Document {
         <body>
           <Main />
           <NextScript />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-R0VQ384CHL" />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-R0VQ384CHL');
+              `
+            }}
+          />
           <script
             async
             src="https://platform.twitter.com/widgets.js"
