@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import Modal from "react-modal";
 import Router from "next/router";
 import getConfig from "next/config";
+import { sendEvent } from "../../../common/gtag";
 import ShareButtons from "../../../common/components/ShareButtons";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
@@ -25,6 +26,14 @@ const Component = ({ onClose }) => {
       setItem(item);
       setCurrentImageIndex(0);
       setOpen(true);
+      sendEvent({
+        action: 'open',
+        category: 'gallery_modal',
+        label: {
+          id: item.id,
+          title: item.title
+        },
+      });
     };
     GalleryModal.close = () => setOpen(false);
   }, []);
@@ -65,7 +74,18 @@ const Component = ({ onClose }) => {
         <DiffList
           images={item.images}
           currentImageIndex={currentImageIndex}
-          onSelect={index => setCurrentImageIndex(index)}
+          onSelect={index => {
+            setCurrentImageIndex(index);
+            sendEvent({
+              action: 'switch_diff',
+              category: 'gallery_modal',
+              label: {
+                id: item.id,
+                title: item.title,
+                index
+              },
+            });
+          }}
         />
       </div>
       <CloseButton onClick={handleClose} />

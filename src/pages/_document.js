@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import { MEASUREMENT_ID } from "../common/gtag";
 
 export default class extends Document {
   static async getInitialProps(ctx) {
@@ -9,21 +10,22 @@ export default class extends Document {
   render() {
     return (
       <Html>
-        <Head />
-        <body>
-          <Main />
-          <NextScript />
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-R0VQ384CHL" />
+        <Head>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`} />
           <script
             dangerouslySetInnerHTML={{
               __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', 'G-R0VQ384CHL');
+                gtag('config', '${MEASUREMENT_ID}');
               `
             }}
           />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
           <script
             async
             src="https://platform.twitter.com/widgets.js"

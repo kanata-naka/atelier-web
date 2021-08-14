@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import Router from "next/router";
+import { sendPageview } from "./gtag";
 import {
   matchesMediaQuery,
   getOffsetScrolledToBottom,
@@ -36,6 +38,19 @@ export const useMediaQuery = mediaQuery => {
   }, []);
 
   return matches;
+};
+
+/**
+ * ページビューを測定する
+ */
+export const usePageview = () => {
+  useEffect(() => {
+    const handleRouteChangeComplete = (path) => sendPageview(path);
+    Router.events.on('routeChangeComplete', handleRouteChangeComplete);
+    return () => {
+      Router.events.off('routeChangeComplete', handleRouteChangeComplete);
+    }
+  }, [Router.events]);
 };
 
 /**
