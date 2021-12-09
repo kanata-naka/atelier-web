@@ -45,11 +45,11 @@ export const useMediaQuery = mediaQuery => {
  */
 export const usePageview = () => {
   useEffect(() => {
-    const handleRouteChangeComplete = (path) => sendPageview(path);
-    Router.events.on('routeChangeComplete', handleRouteChangeComplete);
+    const handleRouteChangeComplete = path => sendPageview(path);
+    Router.events.on("routeChangeComplete", handleRouteChangeComplete);
     return () => {
-      Router.events.off('routeChangeComplete', handleRouteChangeComplete);
-    }
+      Router.events.off("routeChangeComplete", handleRouteChangeComplete);
+    };
   }, [Router.events]);
 };
 

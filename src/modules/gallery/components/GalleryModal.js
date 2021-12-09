@@ -27,12 +27,12 @@ const Component = ({ onClose }) => {
       setCurrentImageIndex(0);
       setOpen(true);
       sendEvent({
-        action: 'open',
-        category: 'gallery_modal',
+        action: "open",
+        category: "gallery_modal",
         label: {
           id: item.id,
           title: item.title
-        },
+        }
       });
     };
     GalleryModal.close = () => setOpen(false);
@@ -59,7 +59,8 @@ const Component = ({ onClose }) => {
       <Overlay onClick={handleClose} />
       <div className="gallery-modal-container" onClick={handleClick}>
         <Background image={item.images[currentImageIndex]} />
-        <div className="gallery-modal-foreground"
+        <div
+          className="gallery-modal-foreground"
           style={{ display: isForegroundActive ? "block" : "none" }}>
           <Title>{item.title}</Title>
           <TagList tags={item.tags} />
@@ -77,13 +78,13 @@ const Component = ({ onClose }) => {
           onSelect={index => {
             setCurrentImageIndex(index);
             sendEvent({
-              action: 'switch_diff',
-              category: 'gallery_modal',
+              action: "switch_diff",
+              category: "gallery_modal",
               label: {
                 id: item.id,
                 title: item.title,
                 index
-              },
+              }
             });
           }}
         />

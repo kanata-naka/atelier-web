@@ -19,7 +19,7 @@ export default ({
     async () => {
       try {
         // 次の${LIMIT}件を取得する
-        const response = await callFunction("api-arts-get", {
+        const response = await callFunction("arts-get", {
           lastId: items[items.length - 1].id,
           limit: LIMIT,
           tag: tag,

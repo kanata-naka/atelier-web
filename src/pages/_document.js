@@ -11,7 +11,10 @@ export default class extends Document {
     return (
       <Html>
         <Head>
-          <script async src={`https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`} />
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`}
+          />
           <script
             dangerouslySetInnerHTML={{
               __html: `

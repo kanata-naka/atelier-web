@@ -64,7 +64,7 @@ const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
 
 Component.getInitialProps = async ({ query }) => {
   if (query.id) {
-    const response = await callFunction("api-arts-getById", {
+    const response = await callFunction("arts-getById", {
       id: query.id
     });
     return {
@@ -75,7 +75,7 @@ Component.getInitialProps = async ({ query }) => {
     // 全てのタグとその件数を取得する
     let tagInfo = {};
     try {
-      const response = await callFunction("api-tagInfo-getById", {
+      const response = await callFunction("tagInfo-getById", {
         id: "arts"
       });
       tagInfo = response.data.info;
@@ -86,7 +86,7 @@ Component.getInitialProps = async ({ query }) => {
     let items = [];
     let fetchedAll = false;
     try {
-      const response = await callFunction("api-arts-get", {
+      const response = await callFunction("arts-get", {
         limit: LIMIT,
         tag: query.tag,
         restrict: [RESTRICT_ALL, RESTRICT_LIMITED]

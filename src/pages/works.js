@@ -77,7 +77,7 @@ const Component = ({ id, items }) => {
 
 Component.getInitialProps = async ({ query }) => {
   if (query.id) {
-    const response = await callFunction("api-works-getById", {
+    const response = await callFunction("works-getById", {
       id: query.id
     });
     return {
@@ -88,7 +88,7 @@ Component.getInitialProps = async ({ query }) => {
     try {
       // 全件取得する
       // ※shallow routingで再読み込みを行わずにページングを実現するため
-      const response = await callFunction("api-works-get", {
+      const response = await callFunction("works-get", {
         restrict: [RESTRICT_ALL, RESTRICT_LIMITED],
         sort: {
           // 出版日の降順

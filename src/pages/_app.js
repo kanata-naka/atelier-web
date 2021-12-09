@@ -5,16 +5,13 @@ import { usePageview } from "../common/hooks";
 import RoutingEffect from "../common/components/RoutingEffect";
 import "../styles/style.scss";
 
-const App = ({Component, isServer, pageProps}) => {
+const App = ({ Component, isServer, pageProps }) => {
   initializeFirebase(isServer);
   usePageview();
   return (
     <div>
       <Head>
-        <meta
-          name="viewport"
-          content="initial-scale=1.0, width=device-width"
-        />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <link
           rel="stylesheet"
@@ -37,15 +34,15 @@ const App = ({Component, isServer, pageProps}) => {
 
 App.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
-    const isServer = !!ctx.req;
-    if (Component.getInitialProps) {
-      initializeFirebase(isServer);
-      pageProps = await Component.getInitialProps({
-        ...ctx,
-        isServer
-      });
-    }
-    return { isServer, pageProps };
+  const isServer = !!ctx.req;
+  if (Component.getInitialProps) {
+    initializeFirebase(isServer);
+    pageProps = await Component.getInitialProps({
+      ...ctx,
+      isServer
+    });
+  }
+  return { isServer, pageProps };
 };
 
 export default App;

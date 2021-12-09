@@ -30,7 +30,11 @@ export const callFunction = async (name, data) => {
   try {
     const callable = firebase
       .app()
-      .functions(publicRuntimeConfig.FIREBASE_REGION)
+      .functions(
+        publicRuntimeConfig.ENVIRONMENT !== "production"
+          ? undefined
+          : publicRuntimeConfig.FIREBASE_REGION
+      )
       .httpsCallable(name);
     return await callable({ ...data });
   } catch (error) {

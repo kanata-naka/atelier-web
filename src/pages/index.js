@@ -16,7 +16,10 @@ import RecentArts from "../modules/home/components/RecentArts";
 // 環境設定を読み込む
 const { publicRuntimeConfig } = getConfig();
 
-const Component = ({ topImages, /* latestArticles, recentWorks, */ recentArts }) => {
+const Component = ({
+  topImages,
+  /* latestArticles, recentWorks, */ recentArts
+}) => {
   return (
     <div>
       <Head>
@@ -48,7 +51,7 @@ const Component = ({ topImages, /* latestArticles, recentWorks, */ recentArts })
 Component.getInitialProps = async () => {
   const result = await Promise.all([
     // トップ画像の一覧を取得する
-    callFunction("api-topImages-get")
+    callFunction("topImages-get")
       .then(response => {
         return response.data.result;
       })
@@ -57,7 +60,7 @@ Component.getInitialProps = async () => {
         return [];
       }),
     // // 最新記事の一覧を取得する
-    // callFunction("api-blog-getArticles", {
+    // callFunction("blog-getArticles", {
     //   page: 1,
     //   limit: 3
     // })
@@ -69,7 +72,7 @@ Component.getInitialProps = async () => {
     //     return [];
     //   }),
     // 最近のイラスト一覧を取得する
-    callFunction("api-arts-get", {
+    callFunction("arts-get", {
       limit: 10,
       restrict: [RESTRICT_ALL]
     })
@@ -79,9 +82,9 @@ Component.getInitialProps = async () => {
       .catch(error => {
         console.error(error);
         return [];
-      }),
+      })
     // // 最近の作品一覧を取得する
-    // callFunction("api-works-get", {
+    // callFunction("works-get", {
     //   limit: 6,
     //   restrict: [RESTRICT_ALL],
     //   sort: {
@@ -101,7 +104,7 @@ Component.getInitialProps = async () => {
   return {
     topImages: result[0],
     // latestArticles: result[1],
-    recentArts: result[1],
+    recentArts: result[1]
     // recentWorks: result[3]
   };
 };
