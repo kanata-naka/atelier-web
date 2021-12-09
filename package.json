@@ -6,7 +6,7 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "cross-env NODE_ENV=production next",
-    "prettier": "prettier {src,functions}/**/*.{js,scss} --write"
+    "prettier": "prettier src/**/*.{js,scss} --write"
   },
   "author": "",
   "license": "ISC",
