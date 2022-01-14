@@ -6,7 +6,7 @@ const transitionClasses = {
   entering: "slide-entering",
   entered: "slide-entered",
   exiting: "slide-exiting",
-  exited: "slide-exited"
+  exited: "slide-exited",
 };
 
 /**
@@ -18,7 +18,7 @@ export default ({ tagInfo }) => {
   const tagListRef = useRef(null);
 
   const handleClickToggleButton = useCallback(
-    e => {
+    (e) => {
       e.preventDefault();
       setHeight(tagListRef.current.clientHeight);
       setCollasped(!collasped);
@@ -34,17 +34,18 @@ export default ({ tagInfo }) => {
 
   return (
     <Transition in={!collasped} timeout={250}>
-      {state => {
+      {(state) => {
         const transitionStyle = {
           entering: { height: `${height}px` },
           entered: { height: `${height}px` },
           exiting: { height: "48px" },
-          exited: { height: "48px" }
+          exited: { height: "48px" },
         };
         return (
           <div
             className={`tag-info ${transitionClasses[state] || ""}`}
-            style={transitionStyle[state]}>
+            style={transitionStyle[state]}
+          >
             <ul className="tag-list" ref={tagListRef}>
               {tagInfo.map((tag, index) => {
                 const rate = tag.count / maxCount;
@@ -83,8 +84,9 @@ const TagListItem = ({ tag, count, rate }) => {
               color: `rgba(${Math.max(0, 88 - 80 * rate)},${Math.max(
                 0,
                 88 - 80 * rate
-              )},${Math.max(0, 221 - 140 * rate)},1)`
-            }}>
+              )},${Math.max(0, 221 - 140 * rate)},1)`,
+            }}
+          >
             {tag}
           </span>
           <span className="tag-count">{`(${count})`}</span>

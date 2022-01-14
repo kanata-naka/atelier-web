@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import {
   reloadTwitterWidgets,
   reloadFacebookWidgets,
-  reloadLINEItButtons
+  reloadLINEItButtons,
 } from "../../utils/vendorUtil";
 import { SITE_NAME, TWITTER_USERNAME } from "../models";
 
@@ -20,7 +20,7 @@ export default ({ url, title, classPrefix = "" }) => {
 };
 
 const TwitterShareButton = ({ classPrefix, url, title }) => {
-  const elementRef = useCallback(element => {
+  const elementRef = useCallback((element) => {
     if (!element) {
       return;
     }
@@ -32,7 +32,8 @@ const TwitterShareButton = ({ classPrefix, url, title }) => {
     <li
       key={url}
       className={`${classPrefix}share-buttons-item`}
-      ref={elementRef}>
+      ref={elementRef}
+    >
       <a
         href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw"
         className="twitter-hashtag-button"
@@ -40,7 +41,8 @@ const TwitterShareButton = ({ classPrefix, url, title }) => {
         data-url={url}
         data-related={TWITTER_USERNAME}
         data-lang="ja"
-        data-show-count="false">
+        data-show-count="false"
+      >
         Tweet
       </a>
     </li>
@@ -48,7 +50,7 @@ const TwitterShareButton = ({ classPrefix, url, title }) => {
 };
 
 const FacebookShareButton = ({ classPrefix, url }) => {
-  const elementRef = useCallback(element => {
+  const elementRef = useCallback((element) => {
     if (!element) {
       return;
     }
@@ -60,7 +62,8 @@ const FacebookShareButton = ({ classPrefix, url }) => {
     <li
       key={url}
       className={`${classPrefix}share-buttons-item`}
-      ref={elementRef}>
+      ref={elementRef}
+    >
       <div
         className="fb-like"
         data-href={url}
@@ -68,13 +71,14 @@ const FacebookShareButton = ({ classPrefix, url }) => {
         data-layout="button"
         data-action="like"
         data-size="small"
-        data-share="false"></div>
+        data-share="false"
+      ></div>
     </li>
   );
 };
 
 const LINEShareButton = ({ classPrefix, url }) => {
-  const elementRef = useCallback(element => {
+  const elementRef = useCallback((element) => {
     if (!element) {
       return;
     }
@@ -86,7 +90,8 @@ const LINEShareButton = ({ classPrefix, url }) => {
     <li
       key={url}
       className={`${classPrefix}share-buttons-item`}
-      ref={elementRef}>
+      ref={elementRef}
+    >
       <div
         className="line-it-button"
         data-lang="ja"
@@ -96,7 +101,8 @@ const LINEShareButton = ({ classPrefix, url }) => {
         data-color="default"
         data-size="small"
         data-count="false"
-        style={{ display: "none" }}></div>
+        style={{ display: "none" }}
+      ></div>
     </li>
   );
 };

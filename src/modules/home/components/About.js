@@ -4,7 +4,7 @@ import {
   SITE_DESCRIPTION,
   INTRODUCTION,
   TWITTER_USERNAME,
-  SOCIAL_ACCOUNTS
+  SOCIAL_ACCOUNTS,
 } from "../../../common/models";
 import { SectionHeading } from "../../../common/components/elements";
 import { reloadTwitterWidgets } from "../../../utils/vendorUtil";
@@ -74,14 +74,14 @@ const Introduction = ({ children }) => {
     <p
       className="introduction"
       dangerouslySetInnerHTML={{
-        __html: children.replace(/\n/g, "<br />")
+        __html: children.replace(/\n/g, "<br />"),
       }}
     />
   );
 };
 
 const TwitterWidgets = ({ id }) => {
-  const elementRef = useCallback(element => {
+  const elementRef = useCallback((element) => {
     if (!element) {
       return;
     }
@@ -94,7 +94,8 @@ const TwitterWidgets = ({ id }) => {
         className="twitter-timeline"
         data-lang="ja"
         data-height="500"
-        href={`https://twitter.com/${id}?ref_src=twsrc%5Etfw`}>
+        href={`https://twitter.com/${id}?ref_src=twsrc%5Etfw`}
+      >
         {`Tweets by ${id}`}
       </a>
     </div>

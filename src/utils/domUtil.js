@@ -1,9 +1,9 @@
-import * as marked from "marked";
+import { marked } from "marked";
 
 /**
  * メディアクエリを判定する
  */
-export const matchesMediaQuery = mediaQuery => {
+export const matchesMediaQuery = (mediaQuery) => {
   if (typeof window === "undefined") {
     return;
   }
@@ -13,7 +13,7 @@ export const matchesMediaQuery = mediaQuery => {
 /**
  * Markdown形式のテキストを整形する
  */
-export const renderMarkdown = src => {
+export const renderMarkdown = (src) => {
   if (!src) {
     return <span />;
   }
@@ -21,8 +21,9 @@ export const renderMarkdown = src => {
     <span
       className="markdown-body"
       dangerouslySetInnerHTML={{
-        __html: marked(src, { breaks: true })
-      }}></span>
+        __html: marked(src, { breaks: true }),
+      }}
+    ></span>
   );
 };
 

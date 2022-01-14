@@ -32,10 +32,12 @@ const ArticleBackground = ({ item }) => {
     <div
       className="latest-articles-item-background"
       style={{
-        backgroundImage: `url(${(item.topImage && item.topImage.url) ||
-          "/images/no-image.png"})`,
-        backgroundSize: item.topImage ? "cover" : "contain"
-      }}></div>
+        backgroundImage: `url(${
+          (item.topImage && item.topImage.url) || "/images/no-image.png"
+        })`,
+        backgroundSize: item.topImage ? "cover" : "contain",
+      }}
+    ></div>
   );
 };
 

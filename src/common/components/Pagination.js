@@ -14,7 +14,7 @@ export default ({ pagination, maxRange }) => {
     e.preventDefault();
     // ドキュメントの読み取り量を減らすため、shallow routingを使用する
     Router.push(`/works?page=${page}`, `/works?page=${page}`, {
-      shallow: true
+      shallow: true,
     });
   };
 
@@ -71,7 +71,8 @@ const PagePrevButton = ({ page, disabled, onClick }) => {
         <a
           className="pagination-item__link"
           href={`/works?page=${page}`}
-          onClick={e => onClick(e, page)}>
+          onClick={(e) => onClick(e, page)}
+        >
           &lt;
         </a>
       )}
@@ -85,7 +86,8 @@ const PageNumberButton = ({ page, isActive, onClick }) => {
       <a
         className="pagination-item__link"
         href={`/works?page=${page}`}
-        onClick={e => onClick(e, page)}>
+        onClick={(e) => onClick(e, page)}
+      >
         {page}
       </a>
     </li>
@@ -99,7 +101,8 @@ const PageNextButton = ({ page, disabled, onClick }) => {
         <a
           className="pagination-item__link"
           href={`/works?page=${page}`}
-          onClick={e => onClick(e, page)}>
+          onClick={(e) => onClick(e, page)}
+        >
           &gt;
         </a>
       )}

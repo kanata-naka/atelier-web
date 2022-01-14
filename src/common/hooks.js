@@ -4,7 +4,7 @@ import { sendPageview } from "./gtag";
 import {
   matchesMediaQuery,
   getOffsetScrolledToBottom,
-  getCurrentScrollTop
+  getCurrentScrollTop,
 } from "../utils/domUtil";
 
 /**
@@ -23,7 +23,7 @@ export const useStateRef = (initialValue = null) => {
 /**
  * メディアクエリを使用する
  */
-export const useMediaQuery = mediaQuery => {
+export const useMediaQuery = (mediaQuery) => {
   const [matches, setMatches] = useState(false);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export const useMediaQuery = mediaQuery => {
  */
 export const usePageview = () => {
   useEffect(() => {
-    const handleRouteChangeComplete = path => sendPageview(path);
+    const handleRouteChangeComplete = (path) => sendPageview(path);
     Router.events.on("routeChangeComplete", handleRouteChangeComplete);
     return () => {
       Router.events.off("routeChangeComplete", handleRouteChangeComplete);
@@ -64,7 +64,7 @@ export const useScroll = (callback, delay, finished, deps) => {
   const _callback = useCallback(async () => {
     setLoading(true);
     await callback();
-    setTimeout(function() {
+    setTimeout(function () {
       setLoading(false);
     }, delay);
   }, [...deps]);

@@ -22,7 +22,7 @@ const Component = ({ onClose }) => {
   const [isForegroundActive, setForegroundActive] = useState(true);
 
   useEffect(() => {
-    GalleryModal.open = item => {
+    GalleryModal.open = (item) => {
       setItem(item);
       setCurrentImageIndex(0);
       setOpen(true);
@@ -31,8 +31,8 @@ const Component = ({ onClose }) => {
         category: "gallery_modal",
         label: {
           id: item.id,
-          title: item.title
-        }
+          title: item.title,
+        },
       });
     };
     GalleryModal.close = () => setOpen(false);
@@ -55,13 +55,15 @@ const Component = ({ onClose }) => {
       onRequestClose={handleClose}
       className="gallery-modal"
       bodyOpenClassName="gallery-modal--open"
-      style={{ overlay: { zIndex: 2 } }}>
+      style={{ overlay: { zIndex: 2 } }}
+    >
       <Overlay onClick={handleClose} />
       <div className="gallery-modal-container" onClick={handleClick}>
         <Background image={item.images[currentImageIndex]} />
         <div
           className="gallery-modal-foreground"
-          style={{ display: isForegroundActive ? "block" : "none" }}>
+          style={{ display: isForegroundActive ? "block" : "none" }}
+        >
           <Title>{item.title}</Title>
           <TagList tags={item.tags} />
           <Description>{renderMarkdown(item.description)}</Description>
@@ -75,7 +77,7 @@ const Component = ({ onClose }) => {
         <DiffList
           images={item.images}
           currentImageIndex={currentImageIndex}
-          onSelect={index => {
+          onSelect={(index) => {
             setCurrentImageIndex(index);
             sendEvent({
               action: "switch_diff",
@@ -83,8 +85,8 @@ const Component = ({ onClose }) => {
               label: {
                 id: item.id,
                 title: item.title,
-                index
-              }
+                index,
+              },
             });
           }}
         />
@@ -109,8 +111,9 @@ const Background = ({ image }) => {
     <div
       className="gallery-modal-background"
       style={{
-        backgroundImage: image && `url(${image.url})`
-      }}></div>
+        backgroundImage: image && `url(${image.url})`,
+      }}
+    ></div>
   );
 };
 
@@ -140,13 +143,14 @@ const TagListItem = ({ tag }) => {
       <a
         className="gallery-modal-tag-list-item__link"
         href={`/gallery?tag=${tag}`}
-        onClick={e => {
+        onClick={(e) => {
           // ※同一ページ間の遷移だとモーダルがそのままになってしまうため、
           // 　手動でモーダルを閉じる
           e.preventDefault();
           GalleryModal.close();
           Router.push(`/gallery?tag=${tag}`);
-        }}>
+        }}
+      >
         {`#${tag}`}
       </a>
     </li>
@@ -184,7 +188,7 @@ const DiffList = ({ images, currentImageIndex, onSelect }) => {
           key={index}
           image={image}
           isActive={index === currentImageIndex}
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             onSelect(index);
           }}
@@ -199,12 +203,14 @@ const DiffListItem = ({ image, isActive, onClick }) => {
     <li
       className={`diff-list-item ${isActive ? "active" : ""}`}
       style={{
-        backgroundImage: `url(${image.thumbnailUrl.small})`
-      }}>
+        backgroundImage: `url(${image.thumbnailUrl.small})`,
+      }}
+    >
       <a
         className="diff-list-item__link"
         href={image.url}
-        onClick={onClick}></a>
+        onClick={onClick}
+      ></a>
     </li>
   );
 };
@@ -221,7 +227,7 @@ const CloseButton = ({ onClick }) => {
 };
 
 const GalleryModal = {
-  Component
+  Component,
 };
 
 export default GalleryModal;

@@ -44,7 +44,7 @@ const WorkListItem = ({ item }) => {
             <DiffList
               images={item.images}
               currentImageIndex={currentImageIndex}
-              onSelect={index => setCurrentImageIndex(index)}
+              onSelect={(index) => setCurrentImageIndex(index)}
             />
             <WorkListItemImage image={item.images[currentImageIndex]} />
           </div>
@@ -88,7 +88,7 @@ const DiffList = ({ images, currentImageIndex, onSelect }) => {
           key={index}
           image={image}
           isActive={index === currentImageIndex}
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             onSelect(index);
           }}
@@ -103,12 +103,14 @@ const DiffListItem = ({ image, isActive, onClick }) => {
     <li
       className={`diff-list-item ${isActive ? "active" : ""}`}
       style={{
-        backgroundImage: `url(${image.thumbnailUrl.small})`
-      }}>
+        backgroundImage: `url(${image.thumbnailUrl.small})`,
+      }}
+    >
       <a
         className="diff-list-item__link"
         href={image.url}
-        onClick={onClick}></a>
+        onClick={onClick}
+      ></a>
     </li>
   );
 };

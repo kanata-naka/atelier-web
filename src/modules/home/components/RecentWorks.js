@@ -23,7 +23,8 @@ const RecentWorkItem = ({ item, isLast }) => {
     <div className="recent-works-item">
       <Link
         href={`/works${isLast ? "" : `?id=${item.id}`}`}
-        as={`/works${isLast ? "" : `/${item.id}`}`}>
+        as={`/works${isLast ? "" : `/${item.id}`}`}
+      >
         <a className="recent-works-item__link">
           <RecentWorkItemBackground image={item.images && item.images[0]} />
           <RecentWorkItemForeground isLast={isLast} title={item.title} />
@@ -39,8 +40,9 @@ const RecentWorkItemBackground = ({ image }) => {
       className="recent-works-item-background"
       style={{
         backgroundImage: `url(${image ? image.url : "/images/no-image.png"})`,
-        backgroundSize: image ? "cover" : "contain"
-      }}></div>
+        backgroundSize: image ? "cover" : "contain",
+      }}
+    ></div>
   );
 };
 
@@ -51,7 +53,8 @@ const RecentWorkItemForeground = ({ isLast, title }) => {
         isLast
           ? "recent-works-item-foreground--more"
           : "recent-works-item-foreground"
-      }>
+      }
+    >
       {isLast ? (
         <div className="recent-works-more">{"more ＞"}</div>
       ) : (

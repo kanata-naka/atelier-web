@@ -25,17 +25,19 @@ const RecentArtItem = ({ item, isLast }) => {
     <div className="recent-arts-item">
       <Link
         href={`/gallery${isLast ? "" : `?id=${item.id}`}`}
-        as={`/gallery${isLast ? "" : `/${item.id}`}`}>
+        as={`/gallery${isLast ? "" : `/${item.id}`}`}
+      >
         <a
           className="recent-arts-item__link"
-          onClick={e => {
+          onClick={(e) => {
             if (isLast) {
               return;
             }
             e.preventDefault();
             // モーダルを開く
             GalleryModal.open(item);
-          }}>
+          }}
+        >
           <RecentArtItemBackground image={item.images[0]} />
           <RecentArtItemForeground isLast={isLast} />
         </a>
@@ -49,8 +51,9 @@ const RecentArtItemBackground = ({ image }) => {
     <div
       className="recent-arts-item-background"
       style={{
-        backgroundImage: `url(${image.thumbnailUrl.medium})`
-      }}></div>
+        backgroundImage: `url(${image.thumbnailUrl.medium})`,
+      }}
+    ></div>
   );
 };
 
@@ -61,7 +64,8 @@ const RecentArtItemForeground = ({ isLast }) => {
         isLast
           ? "recent-arts-item-foreground--more"
           : "recent-arts-item-foreground"
-      }>
+      }
+    >
       {isLast && <div className="recent-arts-more">{"more ＞"}</div>}
     </div>
   );

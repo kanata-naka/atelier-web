@@ -11,7 +11,7 @@ export default ({
   description,
   ogImage,
   twitterCard,
-  twitterImage
+  twitterImage,
 }) => {
   return (
     <Head>

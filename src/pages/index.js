@@ -18,7 +18,7 @@ const { publicRuntimeConfig } = getConfig();
 
 const Component = ({
   topImages,
-  /* latestArticles, recentWorks, */ recentArts
+  /* latestArticles, recentWorks, */ recentArts,
 }) => {
   return (
     <div>
@@ -52,10 +52,10 @@ Component.getInitialProps = async () => {
   const result = await Promise.all([
     // トップ画像の一覧を取得する
     callFunction("topImages-get")
-      .then(response => {
+      .then((response) => {
         return response.data.result;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         return [];
       }),
@@ -74,15 +74,15 @@ Component.getInitialProps = async () => {
     // 最近のイラスト一覧を取得する
     callFunction("arts-get", {
       limit: 10,
-      restrict: [RESTRICT_ALL]
+      restrict: [RESTRICT_ALL],
     })
-      .then(response => {
+      .then((response) => {
         return response.data.result;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         return [];
-      })
+      }),
     // // 最近の作品一覧を取得する
     // callFunction("works-get", {
     //   limit: 6,
@@ -104,7 +104,7 @@ Component.getInitialProps = async () => {
   return {
     topImages: result[0],
     // latestArticles: result[1],
-    recentArts: result[1]
+    recentArts: result[1],
     // recentWorks: result[3]
   };
 };

@@ -43,7 +43,7 @@ export default ({ items }) => {
   }, []);
 
   // ナビゲーションのアイコンをクリックした際の処理
-  const handleNavItemClick = useCallback(index => {
+  const handleNavItemClick = useCallback((index) => {
     if (currentIntervalIdRef.current) {
       clearInterval(currentIntervalIdRef.current);
     }
@@ -59,7 +59,8 @@ export default ({ items }) => {
   // DOMの読み込みが完了するまでtransitionを無効にする
   return (
     <section
-      className={`top-carousel ${!preloading ? "enable-transition" : ""}`}>
+      className={`top-carousel ${!preloading ? "enable-transition" : ""}`}
+    >
       <TopCarouselList items={items} currentIndex={currentIndex} />
       <Navigation
         items={items}
@@ -90,8 +91,9 @@ const TopCarouselItem = ({ item, isActive }) => {
       className="top-carousel-item"
       style={{
         backgroundImage: `url(${item.image.url})`,
-        ...(isActive ? { opacity: 1 } : {})
-      }}></li>
+        ...(isActive ? { opacity: 1 } : {}),
+      }}
+    ></li>
   );
 };
 
@@ -116,7 +118,8 @@ const NavigationItem = ({ item, isActive, onClick }) => {
       className={"top-carousel-nav-item " + (isActive ? "active" : "")}
       onClick={onClick}
       style={{
-        backgroundImage: `url(${item.thumbnailImage.url})`
-      }}></li>
+        backgroundImage: `url(${item.thumbnailImage.url})`,
+      }}
+    ></li>
   );
 };

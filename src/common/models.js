@@ -17,13 +17,13 @@ export const SOCIAL_ACCOUNTS = [
   {
     name: "Twitter",
     url: `https://twitter.com/${TWITTER_USERNAME}`,
-    imageUrl: "/images/twitter-icon.png"
+    imageUrl: "/images/twitter-icon.png",
   },
   {
     name: "pixiv",
     url: `https://www.pixiv.net/users/204608`,
-    imageUrl: "/images/pixiv-icon.png"
-  }
+    imageUrl: "/images/pixiv-icon.png",
+  },
 ];
 /** コピーライト */
 export const COPYRIGHT = "© 2021 Naka Kanata.";

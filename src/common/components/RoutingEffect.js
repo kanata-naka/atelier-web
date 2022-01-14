@@ -6,7 +6,7 @@ const transitionStyle = {
   entering: { opacity: 1 },
   entered: { opacity: 1 },
   exiting: { opacity: 0 },
-  exited: { opacity: 0, visibility: "hidden" }
+  exited: { opacity: 0, visibility: "hidden" },
 };
 
 const Component = () => {
@@ -24,8 +24,9 @@ const Component = () => {
       onExit={() => {
         // スクロールを有効にする
         document.body.style.overflow = null;
-      }}>
-      {state => (
+      }}
+    >
+      {(state) => (
         <div className="page-loading" style={transitionStyle[state]}>
           <img className="loading-image" src="/images/loading.svg" />
         </div>
@@ -40,7 +41,7 @@ const Component = () => {
 const RoutingEffect = {
   Component,
   show: () => Component.setLoading(true),
-  hide: () => Component.setLoading(false)
+  hide: () => Component.setLoading(false),
 };
 
 Router.events.on("routeChangeStart", () => RoutingEffect.show());

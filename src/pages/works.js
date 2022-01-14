@@ -13,7 +13,7 @@ import { createPagination, getItemsByPage } from "../common/models";
 import WorkList from "../modules/works/components/WorkList";
 import {
   PER_PAGE,
-  PAGE_NUMBER_DISPLAY_MAX_RANGE
+  PAGE_NUMBER_DISPLAY_MAX_RANGE,
 } from "../modules/works/models";
 
 // 環境設定を読み込む
@@ -78,11 +78,11 @@ const Component = ({ id, items }) => {
 Component.getInitialProps = async ({ query }) => {
   if (query.id) {
     const response = await callFunction("works-getById", {
-      id: query.id
+      id: query.id,
     });
     return {
       id: query.id,
-      items: [response.data]
+      items: [response.data],
     };
   } else {
     try {
@@ -93,11 +93,11 @@ Component.getInitialProps = async ({ query }) => {
         sort: {
           // 出版日の降順
           column: "publishedDate",
-          order: "desc"
-        }
+          order: "desc",
+        },
       });
       return {
-        items: response.data.result
+        items: response.data.result,
       };
     } catch (error) {
       console.error(error);

@@ -1,4 +1,6 @@
 // import App from "next/app";
+import React from "react"
+import type { AppProps } from 'next/app'
 import Head from "next/head";
 import { initializeFirebase } from "../common/firebase";
 import { usePageview } from "../common/hooks";
@@ -8,8 +10,9 @@ import "../styles/style.scss";
 const App = ({ Component, isServer, pageProps }) => {
   initializeFirebase(isServer);
   usePageview();
+  console.log("aaaaa");
   return (
-    <div>
+    <React.Fragment>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
@@ -28,7 +31,7 @@ const App = ({ Component, isServer, pageProps }) => {
         <Component {...pageProps} />
       </div>
       <RoutingEffect.Component />
-    </div>
+    </React.Fragment>
   );
 };
 

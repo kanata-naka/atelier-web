@@ -1,7 +1,7 @@
 /**
  * Twitterのウィジェットを初期化する
  */
-export const reloadTwitterWidgets = element => {
+export const reloadTwitterWidgets = (element) => {
   try {
     if (typeof twttr !== "undefined") {
       twttr.widgets.load(element);
@@ -15,7 +15,7 @@ export const reloadTwitterWidgets = element => {
 /**
  * Facebookのウィジェットを初期化する
  */
-export const reloadFacebookWidgets = element => {
+export const reloadFacebookWidgets = (element) => {
   try {
     if (typeof FB !== "undefined") {
       FB.XFBML.parse(element);

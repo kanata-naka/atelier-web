@@ -9,7 +9,7 @@ import { LIMIT } from "../models";
 export default ({
   tag,
   items: initinalItems,
-  fetchedAll: initialFetchedAll
+  fetchedAll: initialFetchedAll,
 }) => {
   const [items, setItems] = useState([...initinalItems]);
   const [fetchedAll, setFetchedAll] = useState(initialFetchedAll);
@@ -23,7 +23,7 @@ export default ({
           lastId: items[items.length - 1].id,
           limit: LIMIT,
           tag: tag,
-          restrict: [RESTRICT_ALL, RESTRICT_LIMITED]
+          restrict: [RESTRICT_ALL, RESTRICT_LIMITED],
         });
         setItems([...items, ...response.data.result]);
         setFetchedAll(response.data.fetchedAll);
@@ -65,11 +65,12 @@ const ArtScrollItem = ({ item }) => {
       <Link href={`/gallery?id=${item.id}`} as={`/gallery/${item.id}`}>
         <a
           className="art-scroll-item__link"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             // モーダルを開く
             GalleryModal.open(item);
-          }}>
+          }}
+        >
           <ArtScrollItemBackground image={item.images[0]} />
         </a>
       </Link>
@@ -82,7 +83,8 @@ const ArtScrollItemBackground = ({ image }) => {
     <div
       className="art-scroll-item-background"
       style={{
-        backgroundImage: `url(${image.thumbnailUrl.medium})`
-      }}></div>
+        backgroundImage: `url(${image.thumbnailUrl.medium})`,
+      }}
+    ></div>
   );
 };

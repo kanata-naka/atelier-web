@@ -22,7 +22,7 @@ export default class extends Document {
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${MEASUREMENT_ID}');
-              `
+              `,
             }}
           />
         </Head>
@@ -39,11 +39,13 @@ export default class extends Document {
             async
             defer
             crossOrigin="anonymous"
-            src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v6.0"></script>
+            src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v6.0"
+          ></script>
           <script
             async
             src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js"
-            defer></script>
+            defer
+          ></script>
         </body>
       </Html>
     );

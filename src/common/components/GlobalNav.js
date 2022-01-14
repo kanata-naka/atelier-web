@@ -28,8 +28,9 @@ export default () => {
         className="global-nav-list"
         role="navigation"
         style={{
-          visibility: (!enableToggleMenu || isToggleMenuActive) && "visible"
-        }}>
+          visibility: (!enableToggleMenu || isToggleMenuActive) && "visible",
+        }}
+      >
         <GlobalNavItem id="about" title="ABOUT" path="/#about" />
         <GlobalNavItem id="blog" title="BLOG" url={BLOG_URL} />
         <GlobalNavItem id="works" title="WORKS" path="/works" />
@@ -47,7 +48,8 @@ const HamburgerButton = ({ isActive, onClick }) => {
   return (
     <div
       className={`global-nav-hamburger-button ${isActive && "active"}`}
-      onClick={onClick}>
+      onClick={onClick}
+    >
       <i className="fas fa-bars global-nav-hamburger-button__icon"></i>
     </div>
   );

@@ -65,18 +65,18 @@ const Component = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
 Component.getInitialProps = async ({ query }) => {
   if (query.id) {
     const response = await callFunction("arts-getById", {
-      id: query.id
+      id: query.id,
     });
     return {
       id: query.id,
-      item: response.data
+      item: response.data,
     };
   } else {
     // 全てのタグとその件数を取得する
     let tagInfo = {};
     try {
       const response = await callFunction("tagInfo-getById", {
-        id: "arts"
+        id: "arts",
       });
       tagInfo = response.data.info;
     } catch (error) {
@@ -89,7 +89,7 @@ Component.getInitialProps = async ({ query }) => {
       const response = await callFunction("arts-get", {
         limit: LIMIT,
         tag: query.tag,
-        restrict: [RESTRICT_ALL, RESTRICT_LIMITED]
+        restrict: [RESTRICT_ALL, RESTRICT_LIMITED],
       });
       items = response.data.result;
       fetchedAll = response.data.fetchedAll;
@@ -100,7 +100,7 @@ Component.getInitialProps = async ({ query }) => {
       tagInfo,
       tag: query.tag,
       items,
-      fetchedAll
+      fetchedAll,
     };
   }
 };

@@ -1,6 +1,10 @@
-import firebase from "firebase/app";
-import "firebase/analytics";
-import "firebase/functions";
+import { getApps, getApp, initializeApp } from "firebase/app";
+import { initializeAnalytics } from "firebase/analytics";
+import {
+  getFunctions,
+  connectFunctionsEmulator,
+  httpsCallable,
+} from "firebase/functions";
 import getConfig from "next/config";
 
 // 環境設定を取得する
@@ -9,17 +13,18 @@ const { publicRuntimeConfig } = getConfig();
 /**
  * Firebaseを初期化する
  */
-export const initializeFirebase = isServer => {
-  if (firebase.apps.length) {
+export const initializeFirebase = (isServer) => {
+  if (getApps().length) {
     return;
   }
-  firebase.initializeApp(publicRuntimeConfig.FIREBASE_CONFIG);
+  initializeApp(publicRuntimeConfig.FIREBASE_CONFIG);
   if (!isServer) {
-    firebase.analytics();
+    initializeAnalytics(getApp());
   }
+
   if (publicRuntimeConfig.ENVIRONMENT !== "production") {
     // ローカル環境の場合
-    firebase.functions().useFunctionsEmulator("http://localhost:5000");
+    connectFunctionsEmulator(getFunctions(getApp()), "localhost", 5000);
   }
 };
 
@@ -28,14 +33,10 @@ export const initializeFirebase = isServer => {
  */
 export const callFunction = async (name, data) => {
   try {
-    const callable = firebase
-      .app()
-      .functions(
-        publicRuntimeConfig.ENVIRONMENT !== "production"
-          ? undefined
-          : publicRuntimeConfig.FIREBASE_REGION
-      )
-      .httpsCallable(name);
+    const callable = httpsCallable(
+      getFunctions(getApp(), publicRuntimeConfig.FIREBASE_REGION),
+      name
+    );
     return await callable({ ...data });
   } catch (error) {
     throw error;
