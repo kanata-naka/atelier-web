@@ -38,6 +38,7 @@ const GalleryModal: {
       GalleryModal.open = (item) => {
         setItem(item);
         setCurrentImageIndex(0);
+        setForegroundActive(true);
         setOpen(true);
         sendEvent({
           action: "open",
@@ -149,9 +150,9 @@ const TagListItem = ({ tag }: { tag: string }) => {
         className="gallery-modal-tag-list-item__link"
         href={`/gallery?tag=${tag}`}
         onClick={(event) => {
+          event.preventDefault();
           // ※同一ページ間の遷移だとモーダルがそのままになってしまうため、
           //   手動でモーダルを閉じる
-          event.preventDefault();
           GalleryModal.close();
           Router.push(`/gallery?tag=${tag}`);
         }}>
@@ -200,6 +201,8 @@ const DiffList = ({
           isActive={index === currentImageIndex}
           onClick={(event) => {
             event.preventDefault();
+            // 親要素のonclickイベントが実行されないようにする
+            event.stopPropagation();
             onSelect(index);
           }}
         />
