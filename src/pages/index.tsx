@@ -5,7 +5,7 @@ import { callFunction } from "../common/firebase";
 import { SITE_NAME, SITE_DESCRIPTION, RESTRICT_ALL } from "../common/models";
 import {
   Response,
-  /** BlogGetArticlesData, WorkGetData */
+  /** GetListData, WorkGetData */
   ArtGetData,
   TopImageItem,
   /* ArticleItem, WorkItem, */ ArtItem,
@@ -72,7 +72,7 @@ Component.getInitialProps = async () => {
         return [];
       }),
     // // 最新記事の一覧を取得する
-    // callFunction<BlogGetArticlesData, Response<ArticleItem>>("blog-getArticles", {
+    // callFunction<GetListData, Response<ArticleItem>>("blog-getArticles", {
     //   page: 1,
     //   limit: 3
     // })

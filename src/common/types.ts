@@ -1,15 +1,17 @@
 import { RESTRICT_ALL, RESTRICT_LIMITED, RESTRICT_PRIVATE } from "./models";
 
-export type SocialAccount = {
-  name: string;
-  url: string;
-  imageUrl: string;
+export type Pagination = {
+  /** 現在のページ番号 */
+  page: number;
+  /** 1ページに表示する最大件数 */
+  perPage: number;
+  /** 総件数 */
+  total: number;
 };
 
-export type Pagination = {
-  page: number;
-  perPage: number;
-  total: number;
+export type GetListData = {
+  /** 一度に取得する最大件数 */
+  limit?: number;
 };
 
 export type GetByIdData = {
@@ -28,7 +30,12 @@ export type Image = {
   /** 画像のURL */
   url: string;
   /** サムネイル画像のURL */
-  thumbnailUrl?: { small?: string; medium?: string };
+  thumbnailUrl?: {
+    /** サムネイル画像（小）のURL */
+    small?: string;
+    /** サムネイル画像（中）のURL */
+    medium?: string;
+  };
 };
 
 export type TopImageItem = {
@@ -43,14 +50,18 @@ export type TopImageItem = {
   /** 表示順 */
   order: number;
   /** 作成日時 */
-  createdAt?: number;
+  createdAt: number;
   /** 更新日時 */
-  updatedAt?: number;
+  updatedAt: number;
 };
 
-export type BlogGetArticlesData = {
-  /** 一度に取得する最大件数 */
-  limit?: number;
+export type SocialAccount = {
+  /** SNS名 */
+  name: string;
+  /** SNSアカウントのURL */
+  url: string;
+  /** SNSのロゴ画像のURL */
+  imageUrl: string;
 };
 
 export type ArticleItem = {
@@ -83,15 +94,13 @@ const restrictList = [
 /** 公開範囲 */
 export type Restrict = typeof restrictList[number];
 
-export type ArtGetData = {
+export type ArtGetData = GetListData & {
   /** タグ */
   tag?: string;
   /** 公開範囲 */
   restrict?: Restrict[];
   /** 最後のID（自動スクロールで使用） */
   lastId?: string;
-  /** 一度に取得する最大件数 */
-  limit?: number;
 };
 
 export type ArtGetResponse = Response<ArtItem> & {
@@ -111,24 +120,22 @@ export type ArtItem = {
   /** 説明 */
   description?: string;
   /** 公開範囲 */
-  restrict?: Restrict;
+  restrict: Restrict;
   /** 作成日時 */
-  createdAt?: number;
+  createdAt: number;
   /** 更新日時 */
-  updatedAt?: number;
+  updatedAt: number;
 };
 
-export type WorkGetData = {
+export type WorkGetData = GetListData & {
   /** 公開範囲 */
   restrict?: Restrict[];
-  /** 一度に取得する最大件数 */
-  limit?: number;
   /** ソート */
   sort?: {
     /** ソート対象のカラム */
-    column: "publishedDate" | "createdAt";
+    column?: "publishedDate" | "createdAt";
     /** ソートの方向 */
-    order: "asc" | "desc";
+    order?: "asc" | "desc";
   };
 };
 
@@ -144,9 +151,9 @@ export type WorkItem = {
   /** 説明 */
   description?: string;
   /** 公開範囲 */
-  restrict?: Restrict;
+  restrict: Restrict;
   /** 作成日時 */
-  createdAt?: number;
+  createdAt: number;
   /** 更新日時 */
-  updatedAt?: number;
+  updatedAt: number;
 };

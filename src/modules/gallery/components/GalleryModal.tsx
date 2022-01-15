@@ -20,17 +20,13 @@ const { publicRuntimeConfig } = getConfig();
 Modal.setAppElement("#__next");
 
 const GalleryModal: {
-  Component: (args: { onClose?: () => void }) => ReactElement;
+  Component: (args: { onClose?: () => void }) => ReactElement | null;
   open: (item: ArtItem) => void;
   close: () => void;
 } = {
   Component: ({ onClose }) => {
     const [isOpen, setOpen] = useState(false);
-    const [item, setItem] = useState<ArtItem>({
-      id: "",
-      images: [],
-      title: "",
-    });
+    const [item, setItem] = useState<ArtItem | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isForegroundActive, setForegroundActive] = useState(true);
 
@@ -63,6 +59,10 @@ const GalleryModal: {
       setOpen(false);
     }, []);
 
+    if (!item) {
+      return null;
+    }
+
     return (
       <Modal
         isOpen={isOpen}
@@ -84,7 +84,7 @@ const GalleryModal: {
               title={item.title}
               classPrefix="gallery-modal-"
             />
-            {item.createdAt && <PostedDate timestamp={item.createdAt} />}
+            <PostedDate timestamp={item.createdAt} />
           </div>
           <DiffList
             images={item.images}
