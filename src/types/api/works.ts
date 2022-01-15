@@ -20,7 +20,7 @@ export type WorkItem = {
   /** タイトル */
   title: string;
   /** 出版日 */
-  publishedDate?: number;
+  publishedDate: number;
   /** 画像の一覧 */
   images?: WorkItem.Image[];
   /** 説明 */

@@ -29,9 +29,7 @@ const WorkListItem = ({ item }: { item: WorkItem }) => {
   return (
     <article id={item.id} className="work-list-item">
       <WorkListItemTitle>{item.title}</WorkListItemTitle>
-      {item.publishedDate && (
-        <WorkListItemPublishedDate timestamp={item.publishedDate} />
-      )}
+      <WorkListItemPublishedDate timestamp={item.publishedDate} />
       <div className="work-list-item-row">
         <div className="work-list-item-row__left-column">
           <WorkListItemDescription>
