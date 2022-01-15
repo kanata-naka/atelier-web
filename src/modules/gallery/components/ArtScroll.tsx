@@ -4,11 +4,10 @@ import { callFunction } from "../../../common/firebase";
 import { useScroll } from "../../../common/hooks";
 import { RESTRICT_ALL, RESTRICT_LIMITED } from "../../../common/models";
 import {
-  ArtGetData,
-  ArtGetResponse,
+  ArtGetListData,
+  ArtGetListResponse,
   ArtItem,
-  Image,
-} from "../../../common/types";
+} from "../../../types/api/arts";
 import GalleryModal from "./GalleryModal";
 
 export default ({
@@ -30,7 +29,7 @@ export default ({
     async () => {
       try {
         // 次の${LIMIT}件を取得する
-        const response = await callFunction<ArtGetData, ArtGetResponse>(
+        const response = await callFunction<ArtGetListData, ArtGetListResponse>(
           "arts-get",
           {
             lastId: items[items.length - 1].id,
@@ -91,12 +90,12 @@ const ArtScrollItem = ({ item }: { item: ArtItem }) => {
   );
 };
 
-const ArtScrollItemBackground = ({ image }: { image: Image }) => {
+const ArtScrollItemBackground = ({ image }: { image: ArtItem.Image }) => {
   return (
     <div
       className="art-scroll-item-background"
       style={{
-        backgroundImage: `url(${image.thumbnailUrl!.medium})`,
+        backgroundImage: `url(${image.thumbnailUrl.medium})`,
       }}></div>
   );
 };

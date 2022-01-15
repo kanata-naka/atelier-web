@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 import Link from "next/link";
 import { Transition, TransitionStatus } from "react-transition-group";
-import { TagInfoItem } from "../../../common/types";
+import { TagInfoItem } from "../../../types/api/tagInfo";
 
 const transitionClasses: { [state in TransitionStatus]?: string } = {
   entering: "slide-entering",

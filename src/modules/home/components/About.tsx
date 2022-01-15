@@ -6,7 +6,7 @@ import {
   TWITTER_USERNAME,
   SOCIAL_ACCOUNTS,
 } from "../../../common/models";
-import { SocialAccount } from "../../../common/types";
+import { SocialAccount } from "../../../types";
 import { SectionHeading } from "../../../common/components/elements";
 import { reloadTwitterWidgets } from "../../../utils/vendorUtil";
 

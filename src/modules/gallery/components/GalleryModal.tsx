@@ -9,7 +9,7 @@ import Modal from "react-modal";
 import Router from "next/router";
 import getConfig from "next/config";
 import { sendEvent } from "../../../common/gtag";
-import { Image, ArtItem } from "../../../common/types";
+import { ArtItem } from "../../../types/api/arts";
 import ShareButtons from "../../../common/components/ShareButtons";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
@@ -117,7 +117,7 @@ const Overlay = ({ onClick }: { onClick: () => void }) => {
 };
 
 /** モーダルの背景 */
-const Background = ({ image }: { image?: Image }) => {
+const Background = ({ image }: { image?: ArtItem.Image }) => {
   return (
     <div
       className="gallery-modal-background"
@@ -177,15 +177,13 @@ const PostedDate = ({ timestamp }: { timestamp: number }) => {
   );
 };
 
-/**
- * 差分リスト
- */
+/** 差分リスト */
 const DiffList = ({
   images,
   currentImageIndex,
   onSelect,
 }: {
-  images: Image[];
+  images: ArtItem.Image[];
   currentImageIndex: number;
   onSelect: (index: number) => void;
 }) => {
@@ -216,7 +214,7 @@ const DiffListItem = ({
   isActive,
   onClick,
 }: {
-  image: Image;
+  image: ArtItem.Image;
   isActive: boolean;
   onClick: (event: React.MouseEvent) => void;
 }) => {
@@ -224,7 +222,7 @@ const DiffListItem = ({
     <li
       className={`diff-list-item ${isActive ? "active" : ""}`}
       style={{
-        backgroundImage: `url(${image.thumbnailUrl!.small})`,
+        backgroundImage: `url(${image.thumbnailUrl.small})`,
       }}>
       <a
         className="diff-list-item__link"
@@ -234,9 +232,7 @@ const DiffListItem = ({
   );
 };
 
-/**
- * 閉じるボタン
- */
+/** 閉じるボタン */
 const CloseButton = ({ onClick }: { onClick: () => void }) => {
   return (
     <div className="gallery-modal-close-button" onClick={onClick}>

@@ -1,4 +1,4 @@
-import { SocialAccount } from "./types";
+import { SocialAccount } from "../types";
 
 /** サイト名 */
 export const SITE_NAME = "カナタノアトリエ";

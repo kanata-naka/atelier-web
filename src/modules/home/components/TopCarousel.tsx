@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import { useStateRef } from "../../../common/hooks";
-import { TopImageItem } from "../../../common/types";
+import { TopImageItem } from "../../../types/api/topImages";
 
 /**
  * カルーセル

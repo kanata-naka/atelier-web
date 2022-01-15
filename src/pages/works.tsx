@@ -10,7 +10,13 @@ import {
   RESTRICT_LIMITED,
   getItemsByPage,
 } from "../common/models";
-import { GetByIdData, Pagination, WorkGetData } from "../common/types";
+import { Pagination } from "../types";
+import { GetByIdData } from "../types/api";
+import {
+  WorkGetListData,
+  WorkGetListResponse,
+  WorkItem,
+} from "../types/api/works";
 import { PageHeading } from "../common/components/elements";
 import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
@@ -21,7 +27,6 @@ import {
   PER_PAGE,
   PAGE_NUMBER_DISPLAY_MAX_RANGE,
 } from "../modules/works/models";
-import { WorkItem } from "../common/types";
 
 // 環境設定を読み込む
 const { publicRuntimeConfig } = getConfig();
@@ -100,7 +105,7 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
     try {
       // 全件取得する
       // ※shallow routingで再読み込みを行わずにページングを実現するため
-      const response = await callFunction<WorkGetData, { result: WorkItem[] }>(
+      const response = await callFunction<WorkGetListData, WorkGetListResponse>(
         "works-get",
         {
           restrict: [RESTRICT_ALL, RESTRICT_LIMITED],

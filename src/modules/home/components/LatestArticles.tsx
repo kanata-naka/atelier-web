@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { BLOG_URL } from "../../../common/models";
-import { ArticleItem } from "../../../common/types";
+import { ArticleItem } from "../../../types/api/blog";
 import { formatDateFromIsoDate } from "../../../utils/dateUtil";
 
 export default ({ items }: { items: ArticleItem[] }) => {

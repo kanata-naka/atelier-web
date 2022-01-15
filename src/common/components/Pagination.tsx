@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import Router from "next/router";
-import { Pagination } from "../types";
+import { Pagination } from "../../types";
 
 /** ページネーション */
 export default ({

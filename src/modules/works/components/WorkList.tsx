@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useState, useEffect } from "react";
 import getConfig from "next/config";
-import { Image, WorkItem } from "../../../common/types";
+import { WorkItem } from "../../../types/api/works";
 import ShareButtons from "../../../common/components/ShareButtons";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
@@ -76,7 +76,7 @@ const WorkListItemDescription: FC = ({ children }) => {
   return <p className="work-list-item-description">{children}</p>;
 };
 
-const WorkListItemImage = ({ image }: { image: Image }) => {
+const WorkListItemImage = ({ image }: { image: WorkItem.Image }) => {
   return <img className="work-list-item-image" src={image.url} />;
 };
 
@@ -85,7 +85,7 @@ const DiffList = ({
   currentImageIndex,
   onSelect,
 }: {
-  images: Image[];
+  images: WorkItem.Image[];
   currentImageIndex: number;
   onSelect: (index: number) => void;
 }) => {
@@ -115,7 +115,7 @@ const DiffListItem = ({
   isActive,
   onClick,
 }: {
-  image: Image;
+  image: WorkItem.Image;
   isActive: boolean;
   onClick: (event: React.MouseEvent) => void;
 }) => {
@@ -123,7 +123,7 @@ const DiffListItem = ({
     <li
       className={`diff-list-item ${isActive ? "active" : ""}`}
       style={{
-        backgroundImage: `url(${image.thumbnailUrl!.small})`,
+        backgroundImage: `url(${image.thumbnailUrl.small})`,
       }}>
       <a
         className="diff-list-item__link"

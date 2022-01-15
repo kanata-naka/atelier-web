@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Image, ArtItem } from "../../../common/types";
+import { ArtItem } from "../../../types/api/arts";
 import { SectionHeading } from "../../../common/components/elements";
 import GalleryModal from "../../gallery/components/GalleryModal";
 
@@ -52,12 +52,12 @@ const RecentArtItem = ({
   );
 };
 
-const RecentArtItemBackground = ({ image }: { image: Image }) => {
+const RecentArtItemBackground = ({ image }: { image: ArtItem.Image }) => {
   return (
     <div
       className="recent-arts-item-background"
       style={{
-        backgroundImage: `url(${image.thumbnailUrl!.medium})`,
+        backgroundImage: `url(${image.thumbnailUrl.medium})`,
       }}></div>
   );
 };

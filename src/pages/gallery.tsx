@@ -4,7 +4,9 @@ import Router from "next/router";
 import getConfig from "next/config";
 import { callFunction } from "../common/firebase";
 import { SITE_NAME, RESTRICT_ALL, RESTRICT_LIMITED } from "../common/models";
-import { ArtGetData, ArtItem, GetByIdData, TagInfoItem } from "../common/types";
+import { GetByIdData } from "../types/api";
+import { ArtGetListData, ArtGetListResponse, ArtItem } from "../types/api/arts";
+import { TagInfoGetResponse, TagInfoItem } from "../types/api/tagInfo";
 import { PageHeading } from "../common/components/elements";
 import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
@@ -98,7 +100,7 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
     // 全てのタグとその件数を取得する
     let tagInfo: TagInfoItem[] = [];
     try {
-      const response = await callFunction<GetByIdData, { info: TagInfoItem[] }>(
+      const response = await callFunction<GetByIdData, TagInfoGetResponse>(
         "tagInfo-getById",
         {
           id: "arts",
@@ -112,17 +114,14 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
     let items: ArtItem[] = [];
     let fetchedAll = false;
     try {
-      const response = await callFunction<
-        ArtGetData,
+      const response = await callFunction<ArtGetListData, ArtGetListResponse>(
+        "arts-get",
         {
-          result: ArtItem[];
-          fetchedAll: boolean;
+          tag: query.tag && String(query.tag),
+          restrict: [RESTRICT_ALL, RESTRICT_LIMITED],
+          limit: FETCH_LIMIT,
         }
-      >("arts-get", {
-        tag: query.tag && String(query.tag),
-        restrict: [RESTRICT_ALL, RESTRICT_LIMITED],
-        limit: FETCH_LIMIT,
-      });
+      );
       items = response.data.result;
       fetchedAll = response.data.fetchedAll;
     } catch (error) {
@@ -130,8 +129,7 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
     }
     return {
       tagInfo,
-      tag:
-        query.tag && (typeof query.tag == "string" ? query.tag : query.tag[0]),
+      tag: query.tag && String(query.tag),
       items,
       fetchedAll,
     };
