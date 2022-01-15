@@ -1,4 +1,4 @@
-import { Pagination, SocialAccount } from "./types";
+import { SocialAccount } from "./types";
 
 /** サイト名 */
 export const SITE_NAME = "カナタノアトリエ";
@@ -36,14 +36,6 @@ export const RESTRICT_ALL = "0";
 export const RESTRICT_LIMITED = "1";
 /** 公開範囲: 非公開 */
 export const RESTRICT_PRIVATE = "2";
-
-export const createPagination = (
-  page: number,
-  perPage: number,
-  total: number
-): Pagination => {
-  return { page, perPage, total };
-};
 
 export const getItemsByPage = <T>(
   items: T[],

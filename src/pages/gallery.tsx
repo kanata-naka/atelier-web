@@ -88,7 +88,7 @@ const Component = ({
 Component.getInitialProps = async ({ query }: NextPageContext) => {
   if (query.id) {
     const response = await callFunction<GetByIdData, ArtItem>("arts-getById", {
-      id: typeof query.id == "string" ? query.id : query.id[0],
+      id: String(query.id),
     });
     return {
       id: response.data.id,
@@ -119,9 +119,7 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
           fetchedAll: boolean;
         }
       >("arts-get", {
-        tag:
-          query.tag &&
-          (typeof query.tag == "string" ? query.tag : query.tag[0]),
+        tag: query.tag && String(query.tag),
         restrict: [RESTRICT_ALL, RESTRICT_LIMITED],
         limit: FETCH_LIMIT,
       });

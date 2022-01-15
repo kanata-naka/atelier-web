@@ -4,14 +4,18 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import getConfig from "next/config";
 import { callFunction } from "../common/firebase";
-import { SITE_NAME, RESTRICT_ALL, RESTRICT_LIMITED } from "../common/models";
+import {
+  SITE_NAME,
+  RESTRICT_ALL,
+  RESTRICT_LIMITED,
+  getItemsByPage,
+} from "../common/models";
 import { GetByIdData, Pagination, WorkGetData } from "../common/types";
 import { PageHeading } from "../common/components/elements";
 import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
 import OgpTags from "../common/components/OgpTags";
 import { default as PaginationComponent } from "../common/components/Pagination";
-import { createPagination, getItemsByPage } from "../common/models";
 import WorkList from "../modules/works/components/WorkList";
 import {
   PER_PAGE,
@@ -34,7 +38,7 @@ const Component = ({ id, items }: { id?: string; items: WorkItem[] }) => {
     } else {
       const page = +Number(router.query.page) || 1;
       setItemsByPage(getItemsByPage(items, page, PER_PAGE));
-      setPagination(createPagination(page, PER_PAGE, items.length));
+      setPagination({ page, perPage: PER_PAGE, total: items.length });
     }
     scrollTo(0, 0);
   }, [id, router.query.page]);
@@ -85,7 +89,7 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
     const response = await callFunction<GetByIdData, WorkItem>(
       "works-getById",
       {
-        id: typeof query.id == "string" ? query.id : query.id[0],
+        id: String(query.id),
       }
     );
     return {
