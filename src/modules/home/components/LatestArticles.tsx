@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { BLOG_URL } from "../../../common/models";
 import { ArticleItem } from "../../../common/types";
 import { formatDateFromIsoDate } from "../../../utils/dateUtil";
@@ -55,7 +55,7 @@ const ArticlePostedDate = ({ dateString }: { dateString: string }) => {
   );
 };
 
-const ArticleTitle = ({ children }) => {
+const ArticleTitle: FC = ({ children }) => {
   return <h3 className="latest-articles-item-title">{children}</h3>;
 };
 

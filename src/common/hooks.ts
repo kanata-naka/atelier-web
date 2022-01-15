@@ -12,7 +12,7 @@ import {
  * ※非同期処理（setTimeoutなど）から最新の値を参照できるようにする
  */
 export const useStateRef = <T>(
-  initialValue: T = null
+  initialValue: T
 ): [T, React.MutableRefObject<T>, React.Dispatch<React.SetStateAction<T>>] => {
   const [value, setValue] = useState(initialValue);
   const valueRef = useRef(value);
@@ -64,9 +64,10 @@ export const useScroll = <T>(
   finished: boolean,
   deps: T[][]
 ): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
-  const [offsetScrolledToBottom, setOffsetScrolledToBottom] =
-    useState<number>(null);
-  const [currentScrollTop, setCurrentScrollTop] = useState<number>(null);
+  const [offsetScrolledToBottom, setOffsetScrolledToBottom] = useState<
+    number | null
+  >(null);
+  const [currentScrollTop, setCurrentScrollTop] = useState<number | null>(null);
   const [timer, setTimer] = useState(0);
   const [loading, setLoading] = useState(false);
   const _callback = useCallback(async () => {

@@ -44,5 +44,5 @@ export const callFunction = async <
     getFunctions(getApp(), publicRuntimeConfig.FIREBASE_REGION),
     name
   );
-  return await callable({ ...data });
+  return await callable(data);
 };

@@ -29,7 +29,7 @@ export default () => {
         role="navigation"
         style={{
           visibility:
-            !enableToggleMenu || isToggleMenuActive ? "visible" : null,
+            !enableToggleMenu || isToggleMenuActive ? "visible" : undefined,
         }}>
         <GlobalNavItem id="about" title="ABOUT" path="/#about" />
         <GlobalNavItem id="blog" title="BLOG" url={BLOG_URL} />

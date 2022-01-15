@@ -14,7 +14,7 @@ export default ({
 }) => {
   const [preloading, preloadingRef, setPreloading] = useStateRef(true);
   const [currentIndex, currntIndexRef, setCurrentIndex] = useStateRef(0);
-  const currentIntervalIdRef = useRef<number>(null);
+  const currentIntervalIdRef = useRef(0);
 
   if (!items.length) {
     // トップ画像が1件もなければ表示しない

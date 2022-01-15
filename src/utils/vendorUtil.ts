@@ -1,10 +1,18 @@
+declare global {
+  interface Window {
+    twttr: any;
+    FB: any;
+    LineIt: any;
+  }
+}
+
 /**
  * Twitterのウィジェットを初期化する
  */
 export const reloadTwitterWidgets = (element: Element) => {
   try {
-    if (typeof twttr !== "undefined") {
-      twttr.widgets.load(element);
+    if (typeof window?.twttr !== "undefined") {
+      window.twttr.widgets.load(element);
       console.debug("Reloaded Twitter widgets.");
     }
   } catch (error) {
@@ -17,8 +25,8 @@ export const reloadTwitterWidgets = (element: Element) => {
  */
 export const reloadFacebookWidgets = (element: Element) => {
   try {
-    if (typeof FB !== "undefined") {
-      FB.XFBML.parse(element);
+    if (typeof window?.FB !== "undefined") {
+      window.FB.XFBML.parse(element);
       console.debug("Reloaded Facebook widgets.");
     }
   } catch (error) {
@@ -31,8 +39,8 @@ export const reloadFacebookWidgets = (element: Element) => {
  */
 export const reloadLINEItButtons = () => {
   try {
-    if (typeof LineIt !== "undefined") {
-      LineIt.loadButton();
+    if (typeof window?.LineIt !== "undefined") {
+      window.LineIt.loadButton();
       console.debug("Reloaded LINE widgets.");
     }
   } catch (error) {

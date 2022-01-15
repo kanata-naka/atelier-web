@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Link from "next/link";
 import { Image, WorkItem } from "../../../common/types";
 import { SectionHeading } from "../../../common/components/elements";
@@ -41,7 +41,7 @@ const RecentWorkItem = ({
   );
 };
 
-const RecentWorkItemBackground = ({ image }: { image: Image }) => {
+const RecentWorkItemBackground = ({ image }: { image?: Image }) => {
   return (
     <div
       className="recent-works-item-background"
@@ -75,6 +75,6 @@ const RecentWorkItemForeground = ({
   );
 };
 
-const RecentWorkItemTitle = ({ children }) => {
+const RecentWorkItemTitle: FC = ({ children }) => {
   return <h3 className="recent-works-item-title">{children}</h3>;
 };

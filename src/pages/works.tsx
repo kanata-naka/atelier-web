@@ -24,7 +24,7 @@ const { publicRuntimeConfig } = getConfig();
 
 const Component = ({ id, items }: { id?: string; items: WorkItem[] }) => {
   const [itemsByPage, setItemsByPage] = useState<WorkItem[]>([]);
-  const [pagination, setPagination] = useState<Pagination>(null);
+  const [pagination, setPagination] = useState<Pagination | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -50,11 +50,13 @@ const Component = ({ id, items }: { id?: string; items: WorkItem[] }) => {
           ogType="article"
           title={`${items[0].title} - ${SITE_NAME}`}
           description={items[0].description}
-          ogImage={items[0].images.length && items[0].images[0].url}
+          ogImage={items[0].images?.length ? items[0].images[0].url : undefined}
           twitterCard={
-            items[0].images.length ? "summary_large_image" : "summary_card"
+            items[0].images?.length ? "summary_large_image" : "summary_card"
           }
-          twitterImage={items[0].images.length && items[0].images[0].url}
+          twitterImage={
+            items[0].images?.length ? items[0].images[0].url : undefined
+          }
         />
       ) : (
         <OgpTags

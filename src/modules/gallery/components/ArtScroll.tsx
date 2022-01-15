@@ -17,7 +17,7 @@ export default ({
   fetchedAll: initialFetchedAll,
   fetchLimit,
 }: {
-  tag: string;
+  tag?: string;
   items: ArtItem[];
   fetchedAll: boolean;
   fetchLimit: number;
@@ -40,7 +40,7 @@ export default ({
           }
         );
         setItems([...items, ...response.data.result]);
-        setFetchedAll(response.data.fetchedAll);
+        setFetchedAll(response.data.fetchedAll!);
       } catch (error) {
         console.error(error);
       }
@@ -96,7 +96,7 @@ const ArtScrollItemBackground = ({ image }: { image: Image }) => {
     <div
       className="art-scroll-item-background"
       style={{
-        backgroundImage: `url(${image.thumbnailUrl.medium})`,
+        backgroundImage: `url(${image.thumbnailUrl!.medium})`,
       }}></div>
   );
 };

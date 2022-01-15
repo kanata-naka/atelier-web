@@ -24,6 +24,8 @@ module.exports = {
     ],
     "rules": {
         "react/display-name": "off",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
     }
 };

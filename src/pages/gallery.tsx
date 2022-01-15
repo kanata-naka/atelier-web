@@ -76,7 +76,7 @@ const Component = ({
         <ArtScroll
           tag={tag}
           items={items}
-          fetchedAll={fetchedAll}
+          fetchedAll={fetchedAll!}
           fetchLimit={FETCH_LIMIT}
         />
       )}
@@ -132,7 +132,8 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
     }
     return {
       tagInfo,
-      tag: query.tag,
+      tag:
+        query.tag && (typeof query.tag == "string" ? query.tag : query.tag[0]),
       items,
       fetchedAll,
     };

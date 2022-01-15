@@ -19,7 +19,7 @@ export default ({ tagInfo }: { tagInfo: TagInfoItem[] }) => {
   const handleClickToggleButton = useCallback(
     (event: React.MouseEvent) => {
       event.preventDefault();
-      setHeight(tagListRef.current.clientHeight);
+      setHeight(tagListRef.current!.clientHeight);
       setCollasped(!collasped);
     },
     [collasped]

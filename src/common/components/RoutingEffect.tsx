@@ -13,8 +13,8 @@ const transitionStyle: { [state in TransitionStatus]?: React.CSSProperties } = {
 /** ルーティングエフェクト */
 const RoutingEffect: {
   Component: () => ReactElement;
-  show?: () => void;
-  hide?: () => void;
+  show: () => void;
+  hide: () => void;
 } = {
   Component: () => {
     const [loading, setLoading] = useState(false);
@@ -31,7 +31,7 @@ const RoutingEffect: {
         }}
         onExit={() => {
           // スクロールを有効にする
-          document.body.style.overflow = null;
+          document.body.style.overflow = "scroll";
         }}>
         {(state) => (
           <div className="page-loading" style={transitionStyle[state]}>
@@ -41,6 +41,8 @@ const RoutingEffect: {
       </Transition>
     );
   },
+  show: () => {},
+  hide: () => {},
 };
 
 Router.events.on("routeChangeStart", () => RoutingEffect.show());

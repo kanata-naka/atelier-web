@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback, ReactElement } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  ReactElement,
+  FC,
+} from "react";
 import Modal from "react-modal";
 import Router from "next/router";
 import getConfig from "next/config";
@@ -15,16 +21,15 @@ Modal.setAppElement("#__next");
 
 const GalleryModal: {
   Component: (args: { onClose?: () => void }) => ReactElement;
-  open?: (item: ArtItem) => void;
-  close?: () => void;
+  open: (item: ArtItem) => void;
+  close: () => void;
 } = {
   Component: ({ onClose }) => {
     const [isOpen, setOpen] = useState(false);
     const [item, setItem] = useState<ArtItem>({
-      id: null,
+      id: "",
       images: [],
-      title: null,
-      tags: [],
+      title: "",
     });
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isForegroundActive, setForegroundActive] = useState(true);
@@ -71,14 +76,14 @@ const GalleryModal: {
             className="gallery-modal-foreground"
             style={{ display: isForegroundActive ? "block" : "none" }}>
             <Title>{item.title}</Title>
-            <TagList tags={item.tags} />
+            {item.tags && <TagList tags={item.tags} />}
             <Description>{renderMarkdown(item.description)}</Description>
             <ShareButtons
               url={`${publicRuntimeConfig.BASE_URL}/gallery/${item.id}`}
               title={item.title}
               classPrefix="gallery-modal-"
             />
-            <PostedDate timestamp={item.createdAt} />
+            {item.createdAt && <PostedDate timestamp={item.createdAt} />}
           </div>
           <DiffList
             images={item.images}
@@ -101,6 +106,8 @@ const GalleryModal: {
       </Modal>
     );
   },
+  open: () => {},
+  close: () => {},
 };
 
 /** オーバーレイ */
@@ -120,7 +127,7 @@ const Background = ({ image }: { image?: Image }) => {
 };
 
 /** タイトル */
-const Title = ({ children }) => {
+const Title: FC = ({ children }) => {
   return <h3 className="gallery-modal-title">{children}</h3>;
 };
 
@@ -154,7 +161,7 @@ const TagListItem = ({ tag }: { tag: string }) => {
   );
 };
 
-const Description = ({ children }) => {
+const Description: FC = ({ children }) => {
   return <p className="gallery-modal-description">{children}</p>;
 };
 
@@ -214,7 +221,7 @@ const DiffListItem = ({
     <li
       className={`diff-list-item ${isActive ? "active" : ""}`}
       style={{
-        backgroundImage: `url(${image.thumbnailUrl.small})`,
+        backgroundImage: `url(${image.thumbnailUrl!.small})`,
       }}>
       <a
         className="diff-list-item__link"

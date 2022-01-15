@@ -6,7 +6,7 @@ import { marked } from "marked";
  */
 export const matchesMediaQuery = (mediaQuery: string) => {
   if (typeof window === "undefined") {
-    return;
+    return false;
   }
   return window.matchMedia(mediaQuery).matches;
 };
@@ -14,7 +14,7 @@ export const matchesMediaQuery = (mediaQuery: string) => {
 /**
  * Markdown形式のテキストを整形する
  */
-export const renderMarkdown = (src: string) => {
+export const renderMarkdown = (src?: string) => {
   if (!src) {
     return <span />;
   }
@@ -32,7 +32,7 @@ export const renderMarkdown = (src: string) => {
  */
 export const getOffsetScrolledToBottom = () => {
   if (typeof window === "undefined") {
-    return;
+    return null;
   }
   // ページ全体の高さを取得する
   // ※ブラウザ間の差異をカバーする
@@ -52,7 +52,7 @@ export const getOffsetScrolledToBottom = () => {
  */
 export const getCurrentScrollTop = () => {
   if (typeof window === "undefined") {
-    return;
+    return null;
   }
   return window.pageYOffset || document.documentElement.scrollTop;
 };

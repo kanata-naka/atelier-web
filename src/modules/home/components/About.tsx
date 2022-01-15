@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { FC, useCallback } from "react";
 import {
   AUTHOR_NAME,
   SITE_DESCRIPTION,
@@ -18,13 +18,13 @@ export default () => {
       <ProfileImage url="/images/profile-image.png" />
       <AuthorName>{AUTHOR_NAME}</AuthorName>
       <SocialIcons accounts={SOCIAL_ACCOUNTS} />
-      <Introduction>{INTRODUCTION}</Introduction>
+      <Introduction content={INTRODUCTION} />
       <TwitterWidgets id={TWITTER_USERNAME} />
     </section>
   );
 };
 
-const Description = ({ children }) => {
+const Description: FC = ({ children }) => {
   return <p className="description">{children}</p>;
 };
 
@@ -39,7 +39,7 @@ const ProfileImage = ({ url }: { url: string }) => {
   );
 };
 
-const AuthorName = ({ children }) => {
+const AuthorName: FC = ({ children }) => {
   return <h3 className="author-name">{children}</h3>;
 };
 
@@ -70,12 +70,12 @@ const SocialIcon = ({ account }: { account: SocialAccount }) => {
 /**
  * 自己紹介
  */
-const Introduction = ({ children }) => {
+const Introduction = ({ content }: { content: string }) => {
   return (
     <p
       className="introduction"
       dangerouslySetInnerHTML={{
-        __html: children.replace(/\n/g, "<br />"),
+        __html: content.replace(/\n/g, "<br />"),
       }}
     />
   );

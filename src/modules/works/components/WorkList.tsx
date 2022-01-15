@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useState, useEffect } from "react";
 import getConfig from "next/config";
 import { Image, WorkItem } from "../../../common/types";
@@ -29,7 +29,9 @@ const WorkListItem = ({ item }: { item: WorkItem }) => {
   return (
     <article id={item.id} className="work-list-item">
       <WorkListItemTitle>{item.title}</WorkListItemTitle>
-      <WorkListItemPublishedDate timestamp={item.publishedDate} />
+      {item.publishedDate && (
+        <WorkListItemPublishedDate timestamp={item.publishedDate} />
+      )}
       <div className="work-list-item-row">
         <div className="work-list-item-row__left-column">
           <WorkListItemDescription>
@@ -56,7 +58,7 @@ const WorkListItem = ({ item }: { item: WorkItem }) => {
   );
 };
 
-const WorkListItemTitle = ({ children }) => {
+const WorkListItemTitle: FC = ({ children }) => {
   return <h3 className="work-list-item-title">{children}</h3>;
 };
 
@@ -70,7 +72,7 @@ const WorkListItemPublishedDate = ({ timestamp }: { timestamp: number }) => {
   );
 };
 
-const WorkListItemDescription = ({ children }) => {
+const WorkListItemDescription: FC = ({ children }) => {
   return <p className="work-list-item-description">{children}</p>;
 };
 
@@ -121,7 +123,7 @@ const DiffListItem = ({
     <li
       className={`diff-list-item ${isActive ? "active" : ""}`}
       style={{
-        backgroundImage: `url(${image.thumbnailUrl.small})`,
+        backgroundImage: `url(${image.thumbnailUrl!.small})`,
       }}>
       <a
         className="diff-list-item__link"

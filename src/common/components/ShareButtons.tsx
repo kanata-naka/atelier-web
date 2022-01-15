@@ -34,7 +34,7 @@ const TwitterShareButton = ({
   title?: string;
   classPrefix?: string;
 }) => {
-  const elementRef = useCallback((element?: Element) => {
+  const elementRef = useCallback((element: Element | null) => {
     if (!element) {
       return;
     }
@@ -68,7 +68,7 @@ const FacebookShareButton = ({
   url: string;
   classPrefix?: string;
 }) => {
-  const elementRef = useCallback((element?: Element) => {
+  const elementRef = useCallback((element: Element | null) => {
     if (!element) {
       return;
     }
@@ -100,7 +100,7 @@ const LINEShareButton = ({
   url: string;
   classPrefix?: string;
 }) => {
-  const elementRef = useCallback((element?: Element) => {
+  const elementRef = useCallback((element: Element | null) => {
     if (!element) {
       return;
     }
