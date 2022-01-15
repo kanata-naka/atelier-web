@@ -1,9 +1,7 @@
-// const withSass = require("@zeit/next-sass")
 const config = require("config")
 const path = require('path')
 
 module.exports = {
-  // ...withSass(),
   sassOptions: {
     includePaths: [path.join(__dirname, 'src/styles')],
   },

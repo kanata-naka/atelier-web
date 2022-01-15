@@ -1,16 +1,19 @@
-// import App from "next/app";
-import React from "react"
-import type { AppProps } from 'next/app'
+import React from "react";
+import { NextComponentType, NextPageContext } from "next";
+import { AppProps } from "next/app";
 import Head from "next/head";
 import { initializeFirebase } from "../common/firebase";
 import { usePageview } from "../common/hooks";
 import RoutingEffect from "../common/components/RoutingEffect";
 import "../styles/style.scss";
 
-const App = ({ Component, isServer, pageProps }) => {
+const App = ({
+  Component,
+  isServer,
+  pageProps,
+}: AppProps & { isServer: boolean }) => {
   initializeFirebase(isServer);
   usePageview();
-  console.log("aaaaa");
   return (
     <React.Fragment>
       <Head>
@@ -35,14 +38,20 @@ const App = ({ Component, isServer, pageProps }) => {
   );
 };
 
-App.getInitialProps = async ({ Component, ctx }) => {
+App.getInitialProps = async ({
+  Component,
+  ctx,
+}: {
+  Component: NextComponentType<NextPageContext & { isServer: boolean }>;
+  ctx: NextPageContext;
+}) => {
   let pageProps = {};
   const isServer = !!ctx.req;
   if (Component.getInitialProps) {
     initializeFirebase(isServer);
     pageProps = await Component.getInitialProps({
       ...ctx,
-      isServer
+      isServer,
     });
   }
   return { isServer, pageProps };

@@ -23,5 +23,7 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        "react/display-name": "off",
+        "react/prop-types": "off"
     }
 };
