@@ -5,8 +5,12 @@ import getConfig from "next/config";
 import { callFunction } from "../common/api";
 import { SITE_NAME } from "../common/models";
 import { Restrict } from "../types";
-import { GetByIdData } from "../types/api";
-import { ArtGetListData, ArtGetListResponse, ArtItem } from "../types/api/arts";
+import { GetByIdRequest } from "../types/api";
+import {
+  ArtGetListRequest,
+  ArtGetListResponse,
+  ArtItem,
+} from "../types/api/arts";
 import { TagInfoGetResponse, TagInfoItem } from "../types/api/tagInfo";
 import { PageHeading } from "../common/components/elements";
 import Header from "../common/components/Header";
@@ -90,9 +94,12 @@ const Component = ({
 
 Component.getInitialProps = async ({ query }: NextPageContext) => {
   if (query.id) {
-    const response = await callFunction<GetByIdData, ArtItem>("arts-getById", {
-      id: String(query.id),
-    });
+    const response = await callFunction<GetByIdRequest, ArtItem>(
+      "arts-getById",
+      {
+        id: String(query.id),
+      }
+    );
     return {
       id: response.data.id,
       item: response.data,
@@ -101,7 +108,7 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
     // 全てのタグとその件数を取得する
     let tagInfo: TagInfoItem[] = [];
     try {
-      const response = await callFunction<GetByIdData, TagInfoGetResponse>(
+      const response = await callFunction<GetByIdRequest, TagInfoGetResponse>(
         "tagInfo-getById",
         {
           id: "arts",
@@ -115,14 +122,14 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
     let items: ArtItem[] = [];
     let fetchedAll = false;
     try {
-      const response = await callFunction<ArtGetListData, ArtGetListResponse>(
-        "arts-get",
-        {
-          tag: query.tag && String(query.tag),
-          restrict: [Restrict.ALL, Restrict.LIMITED],
-          limit: FETCH_LIMIT,
-        }
-      );
+      const response = await callFunction<
+        ArtGetListRequest,
+        ArtGetListResponse
+      >("arts-get", {
+        tag: query.tag && String(query.tag),
+        restrict: [Restrict.ALL, Restrict.LIMITED],
+        limit: FETCH_LIMIT,
+      });
       items = response.data.result;
       fetchedAll = response.data.fetchedAll;
     } catch (error) {

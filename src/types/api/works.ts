@@ -1,7 +1,7 @@
 import { Restrict } from "../";
-import { GetListData, GetListResponse } from ".";
+import { GetListRequest, GetListResponse } from ".";
 
-export type WorkGetListData = GetListData & {
+export type WorkGetListRequest = GetListRequest & {
   /** 公開範囲 */
   restrict?: Restrict[];
   /** ソート */

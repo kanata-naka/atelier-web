@@ -6,9 +6,9 @@ import getConfig from "next/config";
 import { callFunction } from "../common/api";
 import { SITE_NAME } from "../common/models";
 import { Pagination, Restrict } from "../types";
-import { GetByIdData } from "../types/api";
+import { GetByIdRequest } from "../types/api";
 import {
-  WorkGetListData,
+  WorkGetListRequest,
   WorkGetListResponse,
   WorkItem,
 } from "../types/api/works";
@@ -87,7 +87,7 @@ const Component = ({ id, items }: { id?: string; items: WorkItem[] }) => {
 
 Component.getInitialProps = async ({ query }: NextPageContext) => {
   if (query.id) {
-    const response = await callFunction<GetByIdData, WorkItem>(
+    const response = await callFunction<GetByIdRequest, WorkItem>(
       "works-getById",
       {
         id: String(query.id),
@@ -101,17 +101,17 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
     try {
       // 全件取得する
       // ※shallow routingで再読み込みを行わずにページングを実現するため
-      const response = await callFunction<WorkGetListData, WorkGetListResponse>(
-        "works-get",
-        {
-          restrict: [Restrict.ALL, Restrict.LIMITED],
-          sort: {
-            // 出版日の降順
-            column: "publishedDate",
-            order: "desc",
-          },
-        }
-      );
+      const response = await callFunction<
+        WorkGetListRequest,
+        WorkGetListResponse
+      >("works-get", {
+        restrict: [Restrict.ALL, Restrict.LIMITED],
+        sort: {
+          // 出版日の降順
+          column: "publishedDate",
+          order: "desc",
+        },
+      });
       return {
         items: response.data.result,
       };

@@ -4,7 +4,7 @@ import { callFunction } from "../../../common/api";
 import { useScroll } from "../../../common/hooks";
 import { Restrict } from "../../../types";
 import {
-  ArtGetListData,
+  ArtGetListRequest,
   ArtGetListResponse,
   ArtItem,
 } from "../../../types/api/arts";
@@ -29,15 +29,15 @@ export default ({
     async () => {
       try {
         // 次の${LIMIT}件を取得する
-        const response = await callFunction<ArtGetListData, ArtGetListResponse>(
-          "arts-get",
-          {
-            lastId: items[items.length - 1].id,
-            limit: fetchLimit,
-            tag: tag,
-            restrict: [Restrict.ALL, Restrict.LIMITED],
-          }
-        );
+        const response = await callFunction<
+          ArtGetListRequest,
+          ArtGetListResponse
+        >("arts-get", {
+          lastId: items[items.length - 1].id,
+          limit: fetchLimit,
+          tag: tag,
+          restrict: [Restrict.ALL, Restrict.LIMITED],
+        });
         setItems([...items, ...response.data.result]);
         setFetchedAll(response.data.fetchedAll!);
       } catch (error) {

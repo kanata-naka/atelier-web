@@ -1,9 +1,9 @@
-export type GetListData = {
+export type GetListRequest = {
   /** 一度に取得する最大件数 */
   limit?: number;
 };
 
-export type GetByIdData = {
+export type GetByIdRequest = {
   /** ID */
   id: string;
 };

@@ -1,7 +1,7 @@
 import { Restrict } from "../";
-import { GetListResponse, GetListData } from ".";
+import { GetListResponse, GetListRequest } from ".";
 
-export type ArtGetListData = GetListData & {
+export type ArtGetListRequest = GetListRequest & {
   /** タグ */
   tag?: string;
   /** 公開範囲 */

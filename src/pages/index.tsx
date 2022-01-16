@@ -4,10 +4,14 @@ import getConfig from "next/config";
 import { callFunction } from "../common/api";
 import { SITE_NAME, SITE_DESCRIPTION } from "../common/models";
 import { Restrict } from "../types";
-import { ArtGetListData, ArtGetListResponse, ArtItem } from "../types/api/arts";
+import {
+  ArtGetListRequest,
+  ArtGetListResponse,
+  ArtItem,
+} from "../types/api/arts";
 import { TopImageGetListResponse, TopImageItem } from "../types/api/topImages";
 import {
-  WorkGetListData,
+  WorkGetListRequest,
   WorkGetListResponse,
   WorkItem,
 } from "../types/api/works";
@@ -74,7 +78,7 @@ Component.getInitialProps = async () => {
         return [];
       }),
     // // 最新記事の一覧を取得する
-    // callFunction<GetListData, Response<ArticleItem>>("blog-getArticles", {
+    // callFunction<GetListRequest, Response<ArticleItem>>("blog-getArticles", {
     //   page: 1,
     //   limit: 3
     // })
@@ -86,7 +90,7 @@ Component.getInitialProps = async () => {
     //     return [];
     //   }),
     // 最近のイラスト一覧を取得する
-    callFunction<ArtGetListData, ArtGetListResponse>("arts-get", {
+    callFunction<ArtGetListRequest, ArtGetListResponse>("arts-get", {
       restrict: [Restrict.ALL],
       limit: 10,
     })
@@ -98,7 +102,7 @@ Component.getInitialProps = async () => {
         return [];
       }),
     // 最近の作品一覧を取得する
-    callFunction<WorkGetListData, WorkGetListResponse>("works-get", {
+    callFunction<WorkGetListRequest, WorkGetListResponse>("works-get", {
       limit: 6,
       restrict: [Restrict.ALL],
       sort: {
