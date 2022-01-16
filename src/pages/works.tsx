@@ -12,7 +12,7 @@ import {
   WorkGetListResponse,
   WorkGetResponse,
 } from "../types/api/works";
-import { getItemsByPage } from "../utils/pageUtil";
+import { createPagination, getItemsByPage } from "../utils/pageUtil";
 import { PageHeading } from "../common/components/elements";
 import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
@@ -45,7 +45,7 @@ const Component = ({
     } else {
       const page = +Number(router.query.page) || 1;
       setItemsByPage(getItemsByPage(items, page, PER_PAGE));
-      setPagination({ page, perPage: PER_PAGE, total: items.length });
+      setPagination(createPagination(page, PER_PAGE, items.length));
     }
     scrollTo(0, 0);
   }, [id, router.query.page]);
