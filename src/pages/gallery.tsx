@@ -9,9 +9,9 @@ import { GetByIdRequest } from "../types/api";
 import {
   ArtGetListRequest,
   ArtGetListResponse,
-  ArtItem,
+  ArtGetResponse,
 } from "../types/api/arts";
-import { TagInfoGetResponse, TagInfoItem } from "../types/api/tagInfo";
+import { TagInfoGetResponse } from "../types/api/tagInfo";
 import { PageHeading } from "../common/components/elements";
 import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
@@ -34,10 +34,10 @@ const Component = ({
   fetchedAll,
 }: {
   id?: string;
-  item?: ArtItem;
-  tagInfo?: TagInfoItem[];
+  item?: ArtGetResponse;
+  tagInfo?: TagInfoGetResponse.TagInfo[];
   tag?: string;
-  items?: ArtItem[];
+  items?: ArtGetResponse[];
   fetchedAll?: boolean;
 }) => {
   useEffect(() => {
@@ -94,7 +94,7 @@ const Component = ({
 
 Component.getInitialProps = async ({ query }: NextPageContext) => {
   if (query.id) {
-    const response = await callFunction<GetByIdRequest, ArtItem>(
+    const response = await callFunction<GetByIdRequest, ArtGetResponse>(
       "arts-getById",
       {
         id: String(query.id),
@@ -106,7 +106,7 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
     };
   } else {
     // 全てのタグとその件数を取得する
-    let tagInfo: TagInfoItem[] = [];
+    let tagInfo: TagInfoGetResponse.TagInfo[] = [];
     try {
       const response = await callFunction<GetByIdRequest, TagInfoGetResponse>(
         "tagInfo-getById",
@@ -119,7 +119,7 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
       console.error(error);
     }
     // イラスト一覧（最初の${FETCH_LIMIT}件）を取得する
-    let items: ArtItem[] = [];
+    let items: ArtGetResponse[] = [];
     let fetchedAll = false;
     try {
       const response = await callFunction<

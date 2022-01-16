@@ -10,12 +10,12 @@ export type ArtGetListRequest = GetListRequest & {
   lastId?: string;
 };
 
-export type ArtGetListResponse = GetListResponse<ArtItem> & {
+export type ArtGetListResponse = GetListResponse<ArtGetResponse> & {
   /** 最後まで取得されたか */
   fetchedAll: boolean;
 };
 
-export type ArtItem = {
+export type ArtGetResponse = {
   /** ID */
   id: string;
   /** タイトル */
@@ -23,7 +23,7 @@ export type ArtItem = {
   /** タグの一覧 */
   tags?: string[];
   /** 画像の一覧 */
-  images: ArtItem.Image[];
+  images: ArtGetResponse.Image[];
   /** 説明 */
   description?: string;
   /** 公開範囲 */
@@ -34,7 +34,7 @@ export type ArtItem = {
   updatedAt: number;
 };
 
-export namespace ArtItem {
+export namespace ArtGetResponse {
   export type Image = {
     /** ストレージ上のパス */
     name: string;

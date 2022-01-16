@@ -4,16 +4,21 @@ import getConfig from "next/config";
 import { callFunction } from "../common/api";
 import { SITE_NAME, SITE_DESCRIPTION } from "../common/models";
 import { Restrict } from "../types";
+// import { GetListRequest } from "../types/api";
 import {
   ArtGetListRequest,
   ArtGetListResponse,
-  ArtItem,
+  ArtGetResponse,
 } from "../types/api/arts";
-import { TopImageGetListResponse, TopImageItem } from "../types/api/topImages";
+// import { BlogGetArticleListResponse } from "../types/api/blog";
+import {
+  TopImageGetListResponse,
+  TopImageGetResponse,
+} from "../types/api/topImages";
 import {
   WorkGetListRequest,
   WorkGetListResponse,
-  WorkItem,
+  WorkGetResponse,
 } from "../types/api/works";
 import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
@@ -34,9 +39,9 @@ const Component = ({
   /* latestArticles, */ recentWorks,
   recentArts,
 }: {
-  topImages: TopImageItem[];
-  /* latestArticles: ArticleItem[], */ recentWorks: WorkItem[];
-  recentArts: ArtItem[];
+  topImages: TopImageGetResponse[];
+  /* latestArticles: BlogGetArticleListResponse.Article[], */ recentWorks: WorkGetResponse[];
+  recentArts: ArtGetResponse[];
 }) => {
   return (
     <div>
@@ -73,19 +78,21 @@ Component.getInitialProps = async () => {
       .then((response) => {
         return response.data.result;
       })
-      .catch((error): TopImageItem[] => {
+      .catch((error): TopImageGetResponse[] => {
         console.error(error);
         return [];
       }),
-    // // 最新記事の一覧を取得する
-    // callFunction<GetListRequest, Response<ArticleItem>>("blog-getArticles", {
-    //   page: 1,
-    //   limit: 3
-    // })
-    //   .then(response => {
+    // 最新記事の一覧を取得する
+    // callFunction<GetListRequest, BlogGetArticleListResponse>(
+    //   "blog-getArticles",
+    //   {
+    //     limit: 3,
+    //   }
+    // )
+    //   .then((response) => {
     //     return response.data.result;
     //   })
-    //   .catch((error): ArticleItem[] => {
+    //   .catch((error): BlogGetArticleListResponse.Article[] => {
     //     console.error(error);
     //     return [];
     //   }),
@@ -97,7 +104,7 @@ Component.getInitialProps = async () => {
       .then((response) => {
         return response.data.result;
       })
-      .catch((error): ArtItem[] => {
+      .catch((error): ArtGetResponse[] => {
         console.error(error);
         return [];
       }),
@@ -114,7 +121,7 @@ Component.getInitialProps = async () => {
       .then((response) => {
         return response.data.result;
       })
-      .catch((error): WorkItem[] => {
+      .catch((error): WorkGetResponse[] => {
         console.error(error);
         return [];
       }),

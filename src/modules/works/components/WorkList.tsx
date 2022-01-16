@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useState, useEffect } from "react";
 import getConfig from "next/config";
-import { WorkItem } from "../../../types/api/works";
+import { WorkGetResponse } from "../../../types/api/works";
 import ShareButtons from "../../../common/components/ShareButtons";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
@@ -9,7 +9,7 @@ import { renderMarkdown } from "../../../utils/domUtil";
 // 環境設定を読み込む
 const { publicRuntimeConfig } = getConfig();
 
-export default ({ items }: { items: WorkItem[] }) => {
+export default ({ items }: { items: WorkGetResponse[] }) => {
   return (
     <section className="work-list">
       {items.map((item, index) => (
@@ -19,7 +19,7 @@ export default ({ items }: { items: WorkItem[] }) => {
   );
 };
 
-const WorkListItem = ({ item }: { item: WorkItem }) => {
+const WorkListItem = ({ item }: { item: WorkGetResponse }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const WorkListItemDescription: FC = ({ children }) => {
   return <p className="work-list-item-description">{children}</p>;
 };
 
-const WorkListItemImage = ({ image }: { image: WorkItem.Image }) => {
+const WorkListItemImage = ({ image }: { image: WorkGetResponse.Image }) => {
   return <img className="work-list-item-image" src={image.url} />;
 };
 
@@ -83,7 +83,7 @@ const DiffList = ({
   currentImageIndex,
   onSelect,
 }: {
-  images: WorkItem.Image[];
+  images: WorkGetResponse.Image[];
   currentImageIndex: number;
   onSelect: (index: number) => void;
 }) => {
@@ -113,7 +113,7 @@ const DiffListItem = ({
   isActive,
   onClick,
 }: {
-  image: WorkItem.Image;
+  image: WorkGetResponse.Image;
   isActive: boolean;
   onClick: (event: React.MouseEvent) => void;
 }) => {

@@ -6,7 +6,7 @@ import { Restrict } from "../../../types";
 import {
   ArtGetListRequest,
   ArtGetListResponse,
-  ArtItem,
+  ArtGetResponse,
 } from "../../../types/api/arts";
 import GalleryModal from "./GalleryModal";
 
@@ -17,7 +17,7 @@ export default ({
   fetchLimit,
 }: {
   tag?: string;
-  items: ArtItem[];
+  items: ArtGetResponse[];
   fetchedAll: boolean;
   fetchLimit: number;
 }) => {
@@ -72,7 +72,7 @@ export default ({
   );
 };
 
-const ArtScrollItem = ({ item }: { item: ArtItem }) => {
+const ArtScrollItem = ({ item }: { item: ArtGetResponse }) => {
   return (
     <div className="art-scroll-item">
       <Link href={`/gallery?id=${item.id}`} as={`/gallery/${item.id}`}>
@@ -90,7 +90,11 @@ const ArtScrollItem = ({ item }: { item: ArtItem }) => {
   );
 };
 
-const ArtScrollItemBackground = ({ image }: { image: ArtItem.Image }) => {
+const ArtScrollItemBackground = ({
+  image,
+}: {
+  image: ArtGetResponse.Image;
+}) => {
   return (
     <div
       className="art-scroll-item-background"

@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
-import { ArtItem } from "../../../types/api/arts";
+import { ArtGetResponse } from "../../../types/api/arts";
 import { SectionHeading } from "../../../common/components/elements";
 import GalleryModal from "../../gallery/components/GalleryModal";
 
-export default ({ items }: { items: ArtItem[] }) => {
+export default ({ items }: { items: ArtGetResponse[] }) => {
   return (
     <section className="recent-arts">
       <SectionHeading>RECENT ARTS</SectionHeading>
@@ -26,7 +26,7 @@ const RecentArtItem = ({
   item,
   isLast,
 }: {
-  item: ArtItem;
+  item: ArtGetResponse;
   isLast: boolean;
 }) => {
   return (
@@ -52,7 +52,11 @@ const RecentArtItem = ({
   );
 };
 
-const RecentArtItemBackground = ({ image }: { image: ArtItem.Image }) => {
+const RecentArtItemBackground = ({
+  image,
+}: {
+  image: ArtGetResponse.Image;
+}) => {
   return (
     <div
       className="recent-arts-item-background"

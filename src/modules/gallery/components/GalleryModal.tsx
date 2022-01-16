@@ -9,7 +9,7 @@ import Modal from "react-modal";
 import Router from "next/router";
 import getConfig from "next/config";
 import { sendEvent } from "../../../common/gtag";
-import { ArtItem } from "../../../types/api/arts";
+import { ArtGetResponse } from "../../../types/api/arts";
 import ShareButtons from "../../../common/components/ShareButtons";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
@@ -21,12 +21,12 @@ Modal.setAppElement("#__next");
 
 const GalleryModal: {
   Component: (args: { onClose?: () => void }) => ReactElement | null;
-  open: (item: ArtItem) => void;
+  open: (item: ArtGetResponse) => void;
   close: () => void;
 } = {
   Component: ({ onClose }) => {
     const [isOpen, setOpen] = useState(false);
-    const [item, setItem] = useState<ArtItem | null>(null);
+    const [item, setItem] = useState<ArtGetResponse | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isForegroundActive, setForegroundActive] = useState(true);
 
@@ -117,7 +117,7 @@ const Overlay = ({ onClick }: { onClick: () => void }) => {
 };
 
 /** モーダルの背景 */
-const Background = ({ image }: { image?: ArtItem.Image }) => {
+const Background = ({ image }: { image?: ArtGetResponse.Image }) => {
   return (
     <div
       className="gallery-modal-background"
@@ -183,7 +183,7 @@ const DiffList = ({
   currentImageIndex,
   onSelect,
 }: {
-  images: ArtItem.Image[];
+  images: ArtGetResponse.Image[];
   currentImageIndex: number;
   onSelect: (index: number) => void;
 }) => {
@@ -214,7 +214,7 @@ const DiffListItem = ({
   isActive,
   onClick,
 }: {
-  image: ArtItem.Image;
+  image: ArtGetResponse.Image;
   isActive: boolean;
   onClick: (event: React.MouseEvent) => void;
 }) => {

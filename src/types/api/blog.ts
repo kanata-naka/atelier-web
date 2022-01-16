@@ -1,17 +1,20 @@
 import { GetListResponse } from ".";
 
-export type BlogGetArticleListResponse = GetListResponse<ArticleItem>;
+export type BlogGetArticleListResponse =
+  GetListResponse<BlogGetArticleListResponse.Article>;
 
-export type ArticleItem = {
-  /** URL */
-  url: string;
-  /** タイトル */
-  title: string;
-  /** 画像の一覧 */
-  topImage?: {
-    /** 画像のURL */
+export namespace BlogGetArticleListResponse {
+  export type Article = {
+    /** URL */
     url: string;
+    /** タイトル */
+    title: string;
+    /** 画像の一覧 */
+    topImage?: {
+      /** 画像のURL */
+      url: string;
+    };
+    /** 作成日時 */
+    createdAt: string;
   };
-  /** 作成日時 */
-  createdAt: string;
-};
+}

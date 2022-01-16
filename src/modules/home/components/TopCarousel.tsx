@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import { useStateRef } from "../../../common/hooks";
-import { TopImageItem } from "../../../types/api/topImages";
+import { TopImageGetResponse } from "../../../types/api/topImages";
 
 /**
  * カルーセル
@@ -9,7 +9,7 @@ export default ({
   items,
   switchInterval,
 }: {
-  items: TopImageItem[];
+  items: TopImageGetResponse[];
   switchInterval: number;
 }) => {
   const [preloading, preloadingRef, setPreloading] = useStateRef(true);
@@ -81,7 +81,7 @@ const TopCarouselList = ({
   items,
   currentIndex,
 }: {
-  items: TopImageItem[];
+  items: TopImageGetResponse[];
   currentIndex: number;
 }) => {
   return (
@@ -101,7 +101,7 @@ const TopCarouselItem = ({
   item,
   isActive,
 }: {
-  item: TopImageItem;
+  item: TopImageGetResponse;
   isActive: boolean;
 }) => {
   return (
@@ -119,7 +119,7 @@ const Navigation = ({
   currentIndex,
   onSelect,
 }: {
-  items: TopImageItem[];
+  items: TopImageGetResponse[];
   currentIndex: number;
   onSelect: (index: number) => void;
 }) => {
@@ -142,7 +142,7 @@ const NavigationItem = ({
   isActive,
   onClick,
 }: {
-  item: TopImageItem;
+  item: TopImageGetResponse;
   isActive: boolean;
   onClick: () => void;
 }) => {

@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 import Link from "next/link";
 import { Transition, TransitionStatus } from "react-transition-group";
-import { TagInfoItem } from "../../../types/api/tagInfo";
+import { TagInfoGetResponse } from "../../../types/api/tagInfo";
 
 const transitionClasses: { [state in TransitionStatus]?: string } = {
   entering: "slide-entering",
@@ -11,7 +11,7 @@ const transitionClasses: { [state in TransitionStatus]?: string } = {
 };
 
 /** タグ一覧 */
-export default ({ tagInfo }: { tagInfo: TagInfoItem[] }) => {
+export default ({ tagInfo }: { tagInfo: TagInfoGetResponse.TagInfo[] }) => {
   const [collasped, setCollasped] = useState(true);
   const [height, setHeight] = useState(48);
   const tagListRef = useRef<HTMLUListElement>(null);

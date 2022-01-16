@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { BLOG_URL } from "../../../common/models";
-import { ArticleItem } from "../../../types/api/blog";
+import { BlogGetArticleListResponse } from "../../../types/api/blog";
 import { formatDateFromIsoDate } from "../../../utils/dateUtil";
 
-export default ({ items }: { items: ArticleItem[] }) => {
+export default ({ items }: { items: BlogGetArticleListResponse.Article[] }) => {
   return (
     <section className="latest-articles">
       {items.map((item, index) => (
@@ -14,7 +14,7 @@ export default ({ items }: { items: ArticleItem[] }) => {
   );
 };
 
-const Article = ({ item }: { item: ArticleItem }) => {
+const Article = ({ item }: { item: BlogGetArticleListResponse.Article }) => {
   return (
     <article className="latest-articles-item">
       <a
@@ -32,7 +32,11 @@ const Article = ({ item }: { item: ArticleItem }) => {
   );
 };
 
-const ArticleBackground = ({ item }: { item: ArticleItem }) => {
+const ArticleBackground = ({
+  item,
+}: {
+  item: BlogGetArticleListResponse.Article;
+}) => {
   return (
     <div
       className="latest-articles-item-background"

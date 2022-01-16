@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import { WorkItem } from "../../../types/api/works";
+import { WorkGetResponse } from "../../../types/api/works";
 import { SectionHeading } from "../../../common/components/elements";
 
-export default ({ items }: { items: WorkItem[] }) => {
+export default ({ items }: { items: WorkGetResponse[] }) => {
   return (
     <section className="recent-works">
       <SectionHeading>RECENT WORKS</SectionHeading>
@@ -24,7 +24,7 @@ const RecentWorkItem = ({
   item,
   isLast,
 }: {
-  item: WorkItem;
+  item: WorkGetResponse;
   isLast: boolean;
 }) => {
   return (
@@ -41,7 +41,11 @@ const RecentWorkItem = ({
   );
 };
 
-const RecentWorkItemBackground = ({ image }: { image?: WorkItem.Image }) => {
+const RecentWorkItemBackground = ({
+  image,
+}: {
+  image?: WorkGetResponse.Image;
+}) => {
   return (
     <div
       className="recent-works-item-background"

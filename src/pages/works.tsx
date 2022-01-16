@@ -10,7 +10,7 @@ import { GetByIdRequest } from "../types/api";
 import {
   WorkGetListRequest,
   WorkGetListResponse,
-  WorkItem,
+  WorkGetResponse,
 } from "../types/api/works";
 import { getItemsByPage } from "../utils/pageUtil";
 import { PageHeading } from "../common/components/elements";
@@ -27,8 +27,14 @@ import {
 // 環境設定を読み込む
 const { publicRuntimeConfig } = getConfig();
 
-const Component = ({ id, items }: { id?: string; items: WorkItem[] }) => {
-  const [itemsByPage, setItemsByPage] = useState<WorkItem[]>([]);
+const Component = ({
+  id,
+  items,
+}: {
+  id?: string;
+  items: WorkGetResponse[];
+}) => {
+  const [itemsByPage, setItemsByPage] = useState<WorkGetResponse[]>([]);
   const [pagination, setPagination] = useState<Pagination | null>(null);
   const router = useRouter();
 
@@ -87,7 +93,7 @@ const Component = ({ id, items }: { id?: string; items: WorkItem[] }) => {
 
 Component.getInitialProps = async ({ query }: NextPageContext) => {
   if (query.id) {
-    const response = await callFunction<GetByIdRequest, WorkItem>(
+    const response = await callFunction<GetByIdRequest, WorkGetResponse>(
       "works-getById",
       {
         id: String(query.id),

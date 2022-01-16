@@ -1,14 +1,14 @@
 import { GetListResponse } from ".";
 
-export type TopImageGetListResponse = GetListResponse<TopImageItem>;
+export type TopImageGetListResponse = GetListResponse<TopImageGetResponse>;
 
-export type TopImageItem = {
+export type TopImageGetResponse = {
   /** ID */
   id: string;
   /** 画像 */
-  image: TopImageItem.Image;
+  image: TopImageGetResponse.Image;
   /** サムネイル画像 */
-  thumbnailImage: TopImageItem.Image;
+  thumbnailImage: TopImageGetResponse.Image;
   /** 説明 */
   description?: string;
   /** 表示順 */
@@ -19,7 +19,7 @@ export type TopImageItem = {
   updatedAt: number;
 };
 
-export namespace TopImageItem {
+export namespace TopImageGetResponse {
   export type Image = {
     /** ストレージ上のパス */
     name: string;

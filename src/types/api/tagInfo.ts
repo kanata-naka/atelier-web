@@ -1,11 +1,13 @@
 export type TagInfoGetResponse = {
   /** タグ情報 */
-  info: TagInfoItem[];
+  info: TagInfoGetResponse.TagInfo[];
 };
 
-export type TagInfoItem = {
-  /** タグ名 */
-  name: string;
-  /** 件数 */
-  count: number;
-};
+export namespace TagInfoGetResponse {
+  export type TagInfo = {
+    /** タグ名 */
+    name: string;
+    /** 件数 */
+    count: number;
+  };
+}

@@ -13,9 +13,9 @@ export type WorkGetListRequest = GetListRequest & {
   };
 };
 
-export type WorkGetListResponse = GetListResponse<WorkItem>;
+export type WorkGetListResponse = GetListResponse<WorkGetResponse>;
 
-export type WorkItem = {
+export type WorkGetResponse = {
   /** ID */
   id: string;
   /** タイトル */
@@ -23,7 +23,7 @@ export type WorkItem = {
   /** 出版日 */
   publishedDate: number;
   /** 画像の一覧 */
-  images?: WorkItem.Image[];
+  images?: WorkGetResponse.Image[];
   /** 説明 */
   description?: string;
   /** 公開範囲 */
@@ -34,7 +34,7 @@ export type WorkItem = {
   updatedAt: number;
 };
 
-export namespace WorkItem {
+export namespace WorkGetResponse {
   export type Image = {
     /** ストレージ上のパス */
     name: string;
