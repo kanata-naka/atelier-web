@@ -2,7 +2,7 @@ import React from "react";
 import { NextComponentType, NextPageContext } from "next";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { initializeFirebase } from "../common/firebase";
+import { initializeFirebase } from "../common/api";
 import { usePageview } from "../common/hooks";
 import RoutingEffect from "../common/components/RoutingEffect";
 import "../styles/style.scss";

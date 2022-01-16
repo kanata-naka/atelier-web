@@ -1,7 +1,11 @@
+// グローバル変数を定義する
 declare global {
   interface Window {
+    // Twitter
     twttr: any;
+    // Facebook
     FB: any;
+    // LINE
     LineIt: any;
   }
 }

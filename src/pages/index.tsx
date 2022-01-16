@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import getConfig from "next/config";
-import { callFunction } from "../common/firebase";
+import { callFunction } from "../common/api";
 import { SITE_NAME, SITE_DESCRIPTION } from "../common/models";
 import { Restrict } from "../types";
 import { ArtGetListData, ArtGetListResponse, ArtItem } from "../types/api/arts";

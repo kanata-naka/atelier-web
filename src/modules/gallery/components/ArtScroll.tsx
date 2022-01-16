@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { callFunction } from "../../../common/firebase";
+import { callFunction } from "../../../common/api";
 import { useScroll } from "../../../common/hooks";
 import { Restrict } from "../../../types";
 import {

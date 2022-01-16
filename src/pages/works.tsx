@@ -3,7 +3,7 @@ import { NextPageContext } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import getConfig from "next/config";
-import { callFunction } from "../common/firebase";
+import { callFunction } from "../common/api";
 import { SITE_NAME } from "../common/models";
 import { Pagination, Restrict } from "../types";
 import { GetByIdData } from "../types/api";
