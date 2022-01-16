@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { callFunction } from "../../../common/firebase";
 import { useScroll } from "../../../common/hooks";
-import { RESTRICT_ALL, RESTRICT_LIMITED } from "../../../common/models";
+import { Restrict } from "../../../types";
 import {
   ArtGetListData,
   ArtGetListResponse,
@@ -35,7 +35,7 @@ export default ({
             lastId: items[items.length - 1].id,
             limit: fetchLimit,
             tag: tag,
-            restrict: [RESTRICT_ALL, RESTRICT_LIMITED],
+            restrict: [Restrict.ALL, Restrict.LIMITED],
           }
         );
         setItems([...items, ...response.data.result]);

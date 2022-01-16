@@ -29,20 +29,3 @@ export const SOCIAL_ACCOUNTS: SocialAccount[] = [
 ];
 /** コピーライト */
 export const COPYRIGHT = "© 2021 Naka Kanata.";
-
-/** 公開範囲: 全体公開 */
-export const RESTRICT_ALL = "0";
-/** 公開範囲: サブページのみ */
-export const RESTRICT_LIMITED = "1";
-/** 公開範囲: 非公開 */
-export const RESTRICT_PRIVATE = "2";
-
-export const getItemsByPage = <T>(
-  items: T[],
-  page: number,
-  perPage: number
-) => {
-  const offset = perPage * (page - 1);
-  const itemsByPage = items.slice(offset, offset + perPage);
-  return [...itemsByPage];
-};

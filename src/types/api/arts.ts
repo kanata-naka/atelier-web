@@ -1,4 +1,5 @@
-import { GetListResponse, GetListData, Restrict } from ".";
+import { Restrict } from "../";
+import { GetListResponse, GetListData } from ".";
 
 export type ArtGetListData = GetListData & {
   /** タグ */

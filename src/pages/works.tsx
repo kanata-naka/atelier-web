@@ -4,19 +4,15 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import getConfig from "next/config";
 import { callFunction } from "../common/firebase";
-import {
-  SITE_NAME,
-  RESTRICT_ALL,
-  RESTRICT_LIMITED,
-  getItemsByPage,
-} from "../common/models";
-import { Pagination } from "../types";
+import { SITE_NAME } from "../common/models";
+import { Pagination, Restrict } from "../types";
 import { GetByIdData } from "../types/api";
 import {
   WorkGetListData,
   WorkGetListResponse,
   WorkItem,
 } from "../types/api/works";
+import { getItemsByPage } from "../utils/pageUtil";
 import { PageHeading } from "../common/components/elements";
 import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
@@ -108,7 +104,7 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
       const response = await callFunction<WorkGetListData, WorkGetListResponse>(
         "works-get",
         {
-          restrict: [RESTRICT_ALL, RESTRICT_LIMITED],
+          restrict: [Restrict.ALL, Restrict.LIMITED],
           sort: {
             // 出版日の降順
             column: "publishedDate",

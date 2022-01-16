@@ -2,7 +2,8 @@ import React from "react";
 import Head from "next/head";
 import getConfig from "next/config";
 import { callFunction } from "../common/firebase";
-import { SITE_NAME, SITE_DESCRIPTION, RESTRICT_ALL } from "../common/models";
+import { SITE_NAME, SITE_DESCRIPTION } from "../common/models";
+import { Restrict } from "../types";
 import { ArtGetListData, ArtGetListResponse, ArtItem } from "../types/api/arts";
 import { TopImageGetListResponse, TopImageItem } from "../types/api/topImages";
 import {
@@ -86,7 +87,7 @@ Component.getInitialProps = async () => {
     //   }),
     // 最近のイラスト一覧を取得する
     callFunction<ArtGetListData, ArtGetListResponse>("arts-get", {
-      restrict: [RESTRICT_ALL],
+      restrict: [Restrict.ALL],
       limit: 10,
     })
       .then((response) => {
@@ -99,7 +100,7 @@ Component.getInitialProps = async () => {
     // 最近の作品一覧を取得する
     callFunction<WorkGetListData, WorkGetListResponse>("works-get", {
       limit: 6,
-      restrict: [RESTRICT_ALL],
+      restrict: [Restrict.ALL],
       sort: {
         // 出版日の降順
         column: "publishedDate",

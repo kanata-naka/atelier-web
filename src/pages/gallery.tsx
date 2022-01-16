@@ -3,7 +3,8 @@ import Head from "next/head";
 import Router from "next/router";
 import getConfig from "next/config";
 import { callFunction } from "../common/firebase";
-import { SITE_NAME, RESTRICT_ALL, RESTRICT_LIMITED } from "../common/models";
+import { SITE_NAME } from "../common/models";
+import { Restrict } from "../types";
 import { GetByIdData } from "../types/api";
 import { ArtGetListData, ArtGetListResponse, ArtItem } from "../types/api/arts";
 import { TagInfoGetResponse, TagInfoItem } from "../types/api/tagInfo";
@@ -118,7 +119,7 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
         "arts-get",
         {
           tag: query.tag && String(query.tag),
-          restrict: [RESTRICT_ALL, RESTRICT_LIMITED],
+          restrict: [Restrict.ALL, Restrict.LIMITED],
           limit: FETCH_LIMIT,
         }
       );
