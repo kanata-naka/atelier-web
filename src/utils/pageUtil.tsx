@@ -1,13 +1,3 @@
-import { Pagination } from "../types";
-
-export const createPagination = (
-  page: number,
-  perPage: number,
-  total: number
-): Pagination => {
-  return { page, perPage, total };
-};
-
 export const getItemsByPage = <T,>(
   items: T[],
   page: number,
