@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useMediaQuery } from "../hooks";
 import { BLOG_URL } from "../models";
 
-/** グローバルナビゲーション */
 export default () => {
   const [isToggleMenuActive, setToggleMenuActive] = useState(false);
 
@@ -41,7 +40,6 @@ export default () => {
   );
 };
 
-/** ハンバーガーボタン */
 const HamburgerButton = ({
   isActive,
   onClick,

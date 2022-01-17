@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import { SITE_NAME, TWITTER_USERNAME } from "../models";
 
-/** OGPタグ */
 export default ({
   url,
   ogType,

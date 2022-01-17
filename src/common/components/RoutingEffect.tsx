@@ -10,7 +10,6 @@ const transitionStyle: { [state in TransitionStatus]?: React.CSSProperties } = {
   exited: { opacity: 0, visibility: "hidden" },
 };
 
-/** ルーティングエフェクト */
 const RoutingEffect: {
   Component: () => ReactElement;
   show: () => void;

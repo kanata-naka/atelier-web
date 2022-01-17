@@ -2,9 +2,6 @@ import React, { useRef, useEffect, useCallback } from "react";
 import { useStateRef } from "../../../common/hooks";
 import { TopImageGetResponse } from "../../../types/api/topImages";
 
-/**
- * カルーセル
- */
 export default ({
   items,
   switchInterval,

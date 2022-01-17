@@ -10,7 +10,6 @@ const transitionClasses: { [state in TransitionStatus]?: string } = {
   exited: "slide-exited",
 };
 
-/** タグ一覧 */
 export default ({ tagInfo }: { tagInfo: TagInfoGetResponse.TagInfo[] }) => {
   const [collasped, setCollasped] = useState(true);
   const [height, setHeight] = useState(48);

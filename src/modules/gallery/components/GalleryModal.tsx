@@ -111,12 +111,10 @@ const GalleryModal: {
   close: () => {},
 };
 
-/** オーバーレイ */
 const Overlay = ({ onClick }: { onClick: () => void }) => {
   return <div className="gallery-modal-overlay" onClick={onClick}></div>;
 };
 
-/** モーダルの背景 */
 const Background = ({ image }: { image?: ArtGetResponse.Image }) => {
   return (
     <div
@@ -127,12 +125,10 @@ const Background = ({ image }: { image?: ArtGetResponse.Image }) => {
   );
 };
 
-/** タイトル */
 const Title: FC = ({ children }) => {
   return <h3 className="gallery-modal-title">{children}</h3>;
 };
 
-/** タグ一覧 */
 const TagList = ({ tags = [] }: { tags: string[] }) => {
   return (
     <ul className="gallery-modal-tag-list">
@@ -166,7 +162,6 @@ const Description: FC = ({ children }) => {
   return <p className="gallery-modal-description">{children}</p>;
 };
 
-/** 投稿日時 */
 const PostedDate = ({ timestamp }: { timestamp: number }) => {
   return (
     <div className="gallery-modal-posted-date">
@@ -177,7 +172,6 @@ const PostedDate = ({ timestamp }: { timestamp: number }) => {
   );
 };
 
-/** 差分リスト */
 const DiffList = ({
   images,
   currentImageIndex,
@@ -232,7 +226,6 @@ const DiffListItem = ({
   );
 };
 
-/** 閉じるボタン */
 const CloseButton = ({ onClick }: { onClick: () => void }) => {
   return (
     <div className="gallery-modal-close-button" onClick={onClick}>

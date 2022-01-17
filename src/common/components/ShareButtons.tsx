@@ -6,7 +6,6 @@ import {
 } from "../../utils/vendorUtil";
 import { SITE_NAME, TWITTER_USERNAME } from "../models";
 
-/** シェアボタン */
 export default ({
   url,
   title,
