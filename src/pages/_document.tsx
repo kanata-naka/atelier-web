@@ -6,7 +6,6 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document";
-import { MEASUREMENT_ID } from "../common/gtag";
 
 export default class extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -20,7 +19,7 @@ export default class extends Document {
         <Head>
           <script
             async
-            src={`https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID}`}
           />
           <script
             dangerouslySetInnerHTML={{
@@ -28,7 +27,7 @@ export default class extends Document {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${MEASUREMENT_ID}');
+                gtag('config', '${process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID}');
               `,
             }}
           />
