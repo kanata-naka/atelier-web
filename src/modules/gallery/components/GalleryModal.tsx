@@ -7,15 +7,11 @@ import React, {
 } from "react";
 import Modal from "react-modal";
 import Router from "next/router";
-import getConfig from "next/config";
 import { sendEvent } from "../../../common/gtag";
 import { ArtGetResponse } from "../../../types/api/arts";
 import ShareButtons from "../../../common/components/ShareButtons";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
-
-// 環境設定を取得する
-const { publicRuntimeConfig } = getConfig();
 
 Modal.setAppElement("#__next");
 
@@ -80,7 +76,7 @@ const GalleryModal: {
             {item.tags && <TagList tags={item.tags} />}
             <Description>{renderMarkdown(item.description)}</Description>
             <ShareButtons
-              url={`${publicRuntimeConfig.BASE_URL}/gallery/${item.id}`}
+              url={`${process.env.NEXT_PUBLIC_BASE_URL}/gallery/${item.id}`}
               title={item.title}
               classPrefix="gallery-modal-"
             />

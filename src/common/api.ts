@@ -6,10 +6,6 @@ import {
   httpsCallable,
   HttpsCallableResult,
 } from "firebase/functions";
-import getConfig from "next/config";
-
-// 環境設定を取得する
-const { publicRuntimeConfig } = getConfig();
 
 /**
  * Firebaseを初期化する
@@ -18,13 +14,23 @@ export const initializeFirebase = (isServer: boolean) => {
   if (getApps().length) {
     return;
   }
-  initializeApp(publicRuntimeConfig.FIREBASE_CONFIG);
+  initializeApp({
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_AUTH_DOMAIN,
+    databaseURL: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_DATABASE_URL,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_STORAGE_BUCKET,
+    messagingSenderId:
+      process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID,
+  });
 
   if (!isServer) {
     initializeAnalytics(getApp());
   }
 
-  if (publicRuntimeConfig.ENVIRONMENT !== "production") {
+  if (process.env.NEXT_PUBLIC_ENV !== "production") {
     // ローカル環境の場合
     connectFunctionsEmulator(getFunctions(getApp()), "localhost", 5000);
   }
@@ -41,7 +47,7 @@ export const callFunction = async <
   data?: T
 ): Promise<HttpsCallableResult<R>> => {
   const callable = httpsCallable<T, R>(
-    getFunctions(getApp(), publicRuntimeConfig.FIREBASE_REGION),
+    getFunctions(getApp(), process.env.NEXT_PUBLIC_FIREBASE_REGION),
     name
   );
   return await callable(data);

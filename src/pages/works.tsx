@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NextPageContext } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import getConfig from "next/config";
 import { callFunction } from "../common/api";
 import { SITE_NAME } from "../common/models";
 import { Pagination, Restrict } from "../types";
@@ -23,9 +22,6 @@ import {
   PER_PAGE,
   PAGE_NUMBER_DISPLAY_MAX_RANGE,
 } from "../modules/works/models";
-
-// 環境設定を読み込む
-const { publicRuntimeConfig } = getConfig();
 
 const Component = ({
   id,
@@ -57,7 +53,7 @@ const Component = ({
       </Head>
       {id ? (
         <OgpTags
-          url={`${publicRuntimeConfig.BASE_URL}/works/${id}`}
+          url={`${process.env.NEXT_PUBLIC_BASE_URL}/works/${id}`}
           ogType="article"
           title={`${items[0].title} - ${SITE_NAME}`}
           description={items[0].description}
@@ -71,7 +67,7 @@ const Component = ({
         />
       ) : (
         <OgpTags
-          url={`${publicRuntimeConfig.BASE_URL}/works`}
+          url={`${process.env.NEXT_PUBLIC_BASE_URL}/works`}
           ogType="blog"
           title={`WORKS - ${SITE_NAME}`}
           twitterCard="summary_card"

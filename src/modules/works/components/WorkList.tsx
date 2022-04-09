@@ -1,13 +1,9 @@
 import React, { FC } from "react";
 import { useState, useEffect } from "react";
-import getConfig from "next/config";
 import { WorkGetResponse } from "../../../types/api/works";
 import ShareButtons from "../../../common/components/ShareButtons";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
-
-// 環境設定を読み込む
-const { publicRuntimeConfig } = getConfig();
 
 export default ({ items }: { items: WorkGetResponse[] }) => {
   return (
@@ -36,7 +32,7 @@ const WorkListItem = ({ item }: { item: WorkGetResponse }) => {
             {renderMarkdown(item.description)}
           </WorkListItemDescription>
           <ShareButtons
-            url={`${publicRuntimeConfig.BASE_URL}/works/${item.id}`}
+            url={`${process.env.NEXT_PUBLIC_BASE_URL}/works/${item.id}`}
             title={item.title}
             classPrefix="work-list-item-"
           />

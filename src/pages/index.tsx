@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import getConfig from "next/config";
 import { callFunction } from "../common/api";
 import { SITE_NAME, SITE_DESCRIPTION } from "../common/models";
 import { Restrict } from "../types";
@@ -31,9 +30,6 @@ import About from "../modules/home/components/About";
 import RecentWorks from "../modules/home/components/RecentWorks";
 import RecentArts from "../modules/home/components/RecentArts";
 
-// 環境設定を読み込む
-const { publicRuntimeConfig } = getConfig();
-
 const Component = ({
   topImages,
   /* latestArticles, */ recentWorks,
@@ -49,7 +45,7 @@ const Component = ({
         <title>{SITE_NAME}</title>
       </Head>
       <OgpTags
-        url={`${publicRuntimeConfig.BASE_URL}/`}
+        url={`${process.env.NEXT_PUBLIC_BASE_URL}/`}
         ogType="website"
         title={SITE_NAME}
         description={SITE_DESCRIPTION}
@@ -65,7 +61,7 @@ const Component = ({
         <RecentArts items={recentArts} />
       </div>
       <RecentWorks items={recentWorks} />
-      <ShareButtons url={`${publicRuntimeConfig.BASE_URL}/`} />
+      <ShareButtons url={`${process.env.NEXT_PUBLIC_BASE_URL}/`} />
       <Footer />
     </div>
   );

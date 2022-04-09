@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback } from "react";
 import Head from "next/head";
 import Router from "next/router";
-import getConfig from "next/config";
 import { callFunction } from "../common/api";
 import { SITE_NAME } from "../common/models";
 import { Restrict } from "../types";
@@ -21,9 +20,6 @@ import ArtScroll from "../modules/gallery/components/ArtScroll";
 import GalleryModal from "../modules/gallery/components/GalleryModal";
 import { FETCH_LIMIT } from "../modules/gallery/models";
 import { NextPageContext } from "next";
-
-// 環境設定を読み込む
-const { publicRuntimeConfig } = getConfig();
 
 const Component = ({
   id,
@@ -59,7 +55,7 @@ const Component = ({
       </Head>
       {item ? (
         <OgpTags
-          url={`${publicRuntimeConfig.BASE_URL}/gallery/${id}`}
+          url={`${process.env.NEXT_PUBLIC_BASE_URL}/gallery/${id}`}
           ogType="article"
           title={`${item.title} - ${SITE_NAME}`}
           description={item.description}
@@ -69,7 +65,7 @@ const Component = ({
         />
       ) : (
         <OgpTags
-          url={`${publicRuntimeConfig.BASE_URL}/gallery`}
+          url={`${process.env.NEXT_PUBLIC_BASE_URL}/gallery`}
           ogType="blog"
           title={`GALLERY - ${SITE_NAME}`}
           twitterCard="summary_card"
