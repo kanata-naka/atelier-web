@@ -29,7 +29,8 @@ const RoutingEffect: FC = () => {
       onExit={() => {
         // スクロールを有効にする
         document.body.style.overflow = "scroll";
-      }}>
+      }}
+    >
       {(state) => (
         <div className="page-loading" style={transitionStyle[state]}>
           <img className="loading-image" src="/images/loading.svg" />

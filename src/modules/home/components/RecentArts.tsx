@@ -38,7 +38,8 @@ const RecentArtItem: FC<{
             event.preventDefault();
             // モーダルを開く
             GalleryModal.open(item);
-          }}>
+          }}
+        >
           <RecentArtItemBackground image={item.images[0]} />
           <RecentArtItemForeground isLast={isLast} />
         </a>
@@ -55,7 +56,8 @@ const RecentArtItemBackground: FC<{
       className="recent-arts-item-background"
       style={{
         backgroundImage: `url(${image.thumbnailUrl.medium})`,
-      }}></div>
+      }}
+    ></div>
   );
 };
 
@@ -66,7 +68,8 @@ const RecentArtItemForeground: FC<{ isLast: boolean }> = ({ isLast }) => {
         isLast
           ? "recent-arts-item-foreground--more"
           : "recent-arts-item-foreground"
-      }>
+      }
+    >
       {isLast && <div className="recent-arts-more">{"more ＞"}</div>}
     </div>
   );

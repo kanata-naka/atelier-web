@@ -48,7 +48,8 @@ const TagInfo: FC<{ tagInfo: TagInfoGetResponse.TagInfo[] }> = ({
         return (
           <div
             className={`tag-info ${transitionClasses[state] || ""}`}
-            style={transitionStyle[state]}>
+            style={transitionStyle[state]}
+          >
             <ul className="tag-list" ref={tagListRef}>
               {tagInfo.map((tag, index) => {
                 const rate = tag.count / maxCount;
@@ -92,7 +93,8 @@ const TagListItem: FC<{
                 0,
                 88 - 80 * rate
               )},${Math.max(0, 221 - 140 * rate)},1)`,
-            }}>
+            }}
+          >
             {tag}
           </span>
           <span className="tag-count">{`(${count})`}</span>

@@ -45,7 +45,8 @@ const RecentWorkItemBackground: FC<{
       style={{
         backgroundImage: `url(${image ? image.url : "/images/no-image.png"})`,
         backgroundSize: image ? "cover" : "contain",
-      }}></div>
+      }}
+    ></div>
   );
 };
 
@@ -59,7 +60,8 @@ const RecentWorkItemForeground: FC<{
         isLast
           ? "recent-works-item-foreground--more"
           : "recent-works-item-foreground"
-      }>
+      }
+    >
       {isLast ? (
         <div className="recent-works-more">{"more ＞"}</div>
       ) : (

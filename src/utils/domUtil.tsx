@@ -23,7 +23,8 @@ export const renderMarkdown = (src?: string) => {
       className="markdown-body"
       dangerouslySetInnerHTML={{
         __html: marked(src, { breaks: true }),
-      }}></span>
+      }}
+    ></span>
   );
 };
 

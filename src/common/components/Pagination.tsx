@@ -58,7 +58,8 @@ const PagePrevButton: FC<{
         <a
           className="pagination-item__link"
           href={`/works?page=${page}`}
-          onClick={(e) => onClick(e, page)}>
+          onClick={(e) => onClick(e, page)}
+        >
           &lt;
         </a>
       )}
@@ -76,7 +77,8 @@ const PageNumberButton: FC<{
       <a
         className="pagination-item__link"
         href={`/works?page=${page}`}
-        onClick={(e) => onClick(e, page)}>
+        onClick={(e) => onClick(e, page)}
+      >
         {page}
       </a>
     </li>
@@ -94,7 +96,8 @@ const PageNextButton: FC<{
         <a
           className="pagination-item__link"
           href={`/works?page=${page}`}
-          onClick={(e) => onClick(e, page)}>
+          onClick={(e) => onClick(e, page)}
+        >
           &gt;
         </a>
       )}

@@ -28,7 +28,8 @@ const GlobalNav: FC = () => {
         style={{
           visibility:
             !enableToggleMenu || isToggleMenuActive ? "visible" : undefined,
-        }}>
+        }}
+      >
         <GlobalNavItem id="about" title="ABOUT" path="/#about" />
         <GlobalNavItem id="blog" title="BLOG" url={BLOG_URL} />
         <GlobalNavItem id="works" title="WORKS" path="/works" />
@@ -46,7 +47,8 @@ const HamburgerButton: FC<{
   return (
     <div
       className={`global-nav-hamburger-button ${isActive && "active"}`}
-      onClick={onClick}>
+      onClick={onClick}
+    >
       <i className="fas fa-bars global-nav-hamburger-button__icon"></i>
     </div>
   );
@@ -69,7 +71,8 @@ const GlobalNavItem: FC<{
           className="global-nav-item__link"
           href={url}
           target="_blank"
-          rel="noreferrer">
+          rel="noreferrer"
+        >
           {title}
         </a>
       ) : (

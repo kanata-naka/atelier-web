@@ -84,7 +84,8 @@ const TwitterWidgets: FC<{ id: string }> = ({ id }) => {
         className="twitter-timeline"
         data-lang="ja"
         data-height="500"
-        href={`https://twitter.com/${id}?ref_src=twsrc%5Etfw`}>
+        href={`https://twitter.com/${id}?ref_src=twsrc%5Etfw`}
+      >
         {`Tweets by ${id}`}
       </a>
     </div>

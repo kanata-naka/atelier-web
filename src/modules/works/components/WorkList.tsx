@@ -112,11 +112,13 @@ const DiffListItem: FC<{
       className={`diff-list-item ${isActive ? "active" : ""}`}
       style={{
         backgroundImage: `url(${image.thumbnailUrl.small})`,
-      }}>
+      }}
+    >
       <a
         className="diff-list-item__link"
         href={image.url}
-        onClick={onClick}></a>
+        onClick={onClick}
+      ></a>
     </li>
   );
 };

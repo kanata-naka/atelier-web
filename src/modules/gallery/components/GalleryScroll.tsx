@@ -82,7 +82,8 @@ const GalleryScrollItem: FC<{ item: ArtGetResponse }> = ({ item }) => {
             event.preventDefault();
             // モーダルを開く
             GalleryModal.open(item);
-          }}>
+          }}
+        >
           <GalleryScrollItemBackground image={item.images[0]} />
         </a>
       </Link>
@@ -98,7 +99,8 @@ const GalleryScrollItemBackground: FC<{
       className="art-scroll-item-background"
       style={{
         backgroundImage: `url(${image.thumbnailUrl.medium})`,
-      }}></div>
+      }}
+    ></div>
   );
 };
 

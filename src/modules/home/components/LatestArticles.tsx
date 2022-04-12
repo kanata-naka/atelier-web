@@ -25,7 +25,8 @@ const Article: FC<{ item: BlogGetArticleListResponse.Article }> = ({
         className="latest-articles-item__link"
         href={item.url}
         target="_blank"
-        rel="noreferrer">
+        rel="noreferrer"
+      >
         <ArticleBackground item={item} />
         <div className="latest-articles-item-foreground">
           <ArticlePostedDate dateString={item.createdAt} />
@@ -47,7 +48,8 @@ const ArticleBackground: FC<{
           (item.topImage && item.topImage.url) || "/images/no-image.png"
         })`,
         backgroundSize: item.topImage ? "cover" : "contain",
-      }}></div>
+      }}
+    ></div>
   );
 };
 
@@ -72,7 +74,8 @@ const Footer: FC = () => {
         className="latest-articles-more"
         href={BLOG_URL}
         target="_blank"
-        rel="noreferrer">
+        rel="noreferrer"
+      >
         {"more ＞"}
       </a>
     </footer>
