@@ -1,14 +1,12 @@
-@import "mixins";
-
 .work-list {
   &-item {
     &-title {
       padding: 12px 24px;
-      background-color: #eff0ff;
-      color: #0f165a;
       font-size: 24px;
       font-weight: bold;
       line-height: 24px;
+      color: #0f165a;
+      background-color: #eff0ff;
     }
 
     &-published-date {
@@ -29,7 +27,7 @@
       }
 
       &__right-column {
-        @media (min-width: $responsive-boundary-width + 1) {
+        @media (min-width: ($responsive-boundary-width + 1)) {
           width: 400px;
         }
       }
@@ -49,7 +47,7 @@
         justify-content: center;
       }
 
-      @media (min-width: $responsive-boundary-width + 1) {
+      @media (min-width: ($responsive-boundary-width + 1)) {
         justify-content: flex-start;
         padding-left: 20px;
       }
@@ -72,10 +70,10 @@
         position: relative;
         width: 64px;
         height: 64px;
-        margin-right: 6px;
         padding: 4px;
-        background-position: center;
+        margin-right: 6px;
         background-repeat: no-repeat;
+        background-position: center;
         background-size: contain;
         border: 1px solid $frame-border-color;
         opacity: 0.8;
@@ -92,12 +90,12 @@
         }
 
         &__link {
-          display: block;
           position: absolute;
           top: 0;
           right: 0;
           bottom: 0;
           left: 0;
+          display: block;
         }
       }
     }

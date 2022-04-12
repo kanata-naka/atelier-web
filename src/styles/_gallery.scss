@@ -13,12 +13,12 @@
     right: 0;
     bottom: 0;
     left: 0;
+    pointer-events: none;
     background: linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0),
       rgba(255, 255, 255, 1)
     );
-    pointer-events: none;
   }
 
   &-slide-button {
@@ -29,8 +29,8 @@
     color: #5f569a;
     text-align: center;
     text-decoration: none;
-    transition: opacity 250ms;
     cursor: pointer;
+    transition: opacity 250ms;
 
     &:hover {
       opacity: 0.7;
@@ -53,8 +53,8 @@
   }
 
   .tag-count {
-    color: gray;
     font-size: 0.7em;
+    color: gray;
   }
 }
 
@@ -66,15 +66,15 @@
   }
 
   &-item {
-    flex: 0 1 calc(50% - 10px);
     position: relative;
+    flex: 0 1 calc(50% - 10px);
     height: auto;
     margin: 4px;
     overflow: hidden;
     border: 1px solid $frame-border-color;
     transition: opacity 250ms;
 
-    @media (min-width: $responsive-boundary-width + 1) {
+    @media (min-width: ($responsive-boundary-width + 1)) {
       flex: 0 1 calc(33.3% - 10px);
     }
 
@@ -98,8 +98,8 @@
       right: 0;
       bottom: 0;
       left: 0;
-      background-position: center;
       background-repeat: no-repeat;
+      background-position: center;
       background-size: contain;
     }
   }

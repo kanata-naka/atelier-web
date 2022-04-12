@@ -10,8 +10,11 @@
     "build": "next build",
     "start": "cross-env NODE_ENV=production next",
     "format": "prettier --write src/**/*.{ts,tsx}",
+    "format:style": "prettier --write src/**/*.scss",
     "lint": "eslint src/**/*.{ts,tsx}",
-    "lint:fix": "eslint --fix src/**/*.{ts,tsx}"
+    "lint:fix": "eslint --fix src/**/*.{ts,tsx}",
+    "lint:style": "stylelint src/**/*.scss",
+    "lint:style:fix": "stylelint --fix src/**/*.scss"
   },
   "dependencies": {
     "config": "^3.3.7",
@@ -42,6 +45,12 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.28.0",
     "prettier": "^2.5.1",
+    "stylelint": "^14.6.1",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-recommended-scss": "^6.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "stylelint-scss": "^4.2.0",
     "typescript": "^4.5.4"
   },
   "eslintIgnore": [

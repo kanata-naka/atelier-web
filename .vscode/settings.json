@@ -1,9 +1,21 @@
 {
   "[typescript]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
   },
   "[typescriptreact]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+  },
+  "[scss]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": true
+    },
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

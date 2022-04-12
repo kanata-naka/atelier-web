@@ -24,13 +24,13 @@ body {
 
 /* ヘッダー */
 .site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: $site-header-height;
   padding: 0 18px;
@@ -61,31 +61,31 @@ body {
     user-select: none;
 
     @media (max-width: $responsive-boundary-width) {
-      flex-direction: column;
       position: absolute;
       top: 100%;
       right: 0;
+      flex-direction: column;
       visibility: hidden;
     }
 
-    @media (min-width: $responsive-boundary-width + 1) {
+    @media (min-width: ($responsive-boundary-width + 1)) {
       align-items: center;
     }
   }
 
   &-item {
-    color: #4c4c4c;
     font-size: 20px;
     font-weight: bold;
     line-height: 20px;
+    color: #4c4c4c;
     transition: color 250ms;
 
     @media (max-width: $responsive-boundary-width) {
       width: 175px;
       padding: 10px 16px;
       overflow: hidden;
-      background-color: white;
       text-align: right;
+      background-color: white;
 
       &:not(:first-child) {
         margin-top: 1px;
@@ -96,7 +96,7 @@ body {
       }
     }
 
-    @media (min-width: $responsive-boundary-width + 1) {
+    @media (min-width: ($responsive-boundary-width + 1)) {
       &:not(:first-child) {
         margin-left: 18px;
       }
@@ -139,10 +139,10 @@ body {
 // ページの見出し
 .page-heading {
   padding: 24px 0;
-  color: #0f165a;
   font-size: 32px;
   font-weight: bold;
   line-height: 32px;
+  color: #0f165a;
   text-align: center;
 }
 
@@ -165,18 +165,33 @@ body {
       }
     }
 
-    @media (min-width: $responsive-boundary-width + 1) {
+    @media (min-width: ($responsive-boundary-width + 1)) {
       &.active {
-        background-color: #babaff;
         color: white;
+        background-color: #babaff;
+      }
+    }
+
+    &--prev,
+    &--next {
+      width: 48px;
+      font-size: 1.2em;
+      background-color: #eeeeff;
+
+      &.disabled {
+        visibility: hidden;
+      }
+
+      @media (max-width: $responsive-boundary-width) {
+        flex-grow: 2;
       }
     }
 
     &,
     &--prev,
     &--next {
-      color: #303138;
       font-weight: bold;
+      color: #303138;
       text-align: center;
       user-select: none;
 
@@ -186,7 +201,7 @@ body {
         line-height: 48px;
       }
 
-      @media (min-width: $responsive-boundary-width + 1) {
+      @media (min-width: ($responsive-boundary-width + 1)) {
         height: 32px;
         line-height: 32px;
 
@@ -197,21 +212,6 @@ body {
 
       &:hover {
         opacity: 0.8;
-      }
-    }
-
-    &--prev,
-    &--next {
-      width: 48px;
-      background-color: #eeeeff;
-      font-size: 1.2em;
-
-      &.disabled {
-        visibility: hidden;
-      }
-
-      @media (max-width: $responsive-boundary-width) {
-        flex-grow: 2;
       }
     }
 
@@ -227,8 +227,8 @@ body {
     display: block;
     width: 100%;
     height: 2px;
-    background: linear-gradient(to right, lightgray, gray);
     content: "";
+    background: linear-gradient(to right, lightgray, gray);
   }
 
   .copyright {
@@ -240,15 +240,15 @@ body {
 
 /* ローディングエフェクト */
 .page-loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   transition: opacity 250ms;
 
@@ -256,8 +256,8 @@ body {
     display: block;
     width: 64px;
     height: 64px;
-    animation: loading_image 2s linear infinite;
     transform: translate(-50%, -50%);
+    animation: loading_image 2s linear infinite;
   }
 }
 
@@ -306,8 +306,8 @@ body {
 
 .under-construction {
   padding: 24px 0;
-  color: gray;
   font-size: 1.5em;
+  color: gray;
   text-align: center;
 }
 
