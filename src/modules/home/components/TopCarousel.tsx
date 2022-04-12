@@ -1,14 +1,11 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { FC, useRef, useEffect, useCallback } from "react";
 import { useStateRef } from "../../../common/hooks";
 import { TopImageGetResponse } from "../../../types/api/topImages";
 
-export default ({
-  items,
-  switchInterval,
-}: {
+const TopCarousel: FC<{
   items: TopImageGetResponse[];
   switchInterval: number;
-}) => {
+}> = ({ items, switchInterval }) => {
   const [preloading, preloadingRef, setPreloading] = useStateRef(true);
   const [currentIndex, currntIndexRef, setCurrentIndex] = useStateRef(0);
   const currentIntervalIdRef = useRef(0);
@@ -74,13 +71,10 @@ export default ({
   );
 };
 
-const TopCarouselList = ({
-  items,
-  currentIndex,
-}: {
+const TopCarouselList: FC<{
   items: TopImageGetResponse[];
   currentIndex: number;
-}) => {
+}> = ({ items, currentIndex }) => {
   return (
     <ul className="top-carousel-list">
       {items.map((item, index) => (
@@ -94,13 +88,10 @@ const TopCarouselList = ({
   );
 };
 
-const TopCarouselItem = ({
-  item,
-  isActive,
-}: {
+const TopCarouselItem: FC<{
   item: TopImageGetResponse;
   isActive: boolean;
-}) => {
+}> = ({ item, isActive }) => {
   return (
     <li
       className="top-carousel-item"
@@ -111,15 +102,11 @@ const TopCarouselItem = ({
   );
 };
 
-const Navigation = ({
-  items,
-  currentIndex,
-  onSelect,
-}: {
+const Navigation: FC<{
   items: TopImageGetResponse[];
   currentIndex: number;
   onSelect: (index: number) => void;
-}) => {
+}> = ({ items, currentIndex, onSelect }) => {
   return (
     <ul className="top-carousel-nav-list">
       {items.map((item, index) => (
@@ -134,15 +121,11 @@ const Navigation = ({
   );
 };
 
-const NavigationItem = ({
-  item,
-  isActive,
-  onClick,
-}: {
+const NavigationItem: FC<{
   item: TopImageGetResponse;
   isActive: boolean;
   onClick: () => void;
-}) => {
+}> = ({ item, isActive, onClick }) => {
   return (
     <li
       className={"top-carousel-nav-item " + (isActive ? "active" : "")}
@@ -152,3 +135,5 @@ const NavigationItem = ({
       }}></li>
   );
 };
+
+export default TopCarousel;

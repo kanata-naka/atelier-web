@@ -1,5 +1,5 @@
-import { Restrict } from "../";
 import { GetListRequest, GetListResponse } from ".";
+import { Restrict } from "../";
 
 export type WorkGetListRequest = GetListRequest & {
   /** 公開範囲 */
@@ -22,7 +22,7 @@ export type WorkGetResponse = {
   title: string;
   /** 出版日 */
   publishedDate: number;
-  /** 画像の一覧 */
+  /** 画像一覧 */
   images?: WorkGetResponse.Image[];
   /** 説明 */
   description?: string;

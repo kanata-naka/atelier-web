@@ -9,7 +9,7 @@ export namespace BlogGetArticleListResponse {
     url: string;
     /** タイトル */
     title: string;
-    /** 画像の一覧 */
+    /** 画像一覧 */
     topImage?: {
       /** 画像のURL */
       url: string;

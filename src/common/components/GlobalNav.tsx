@@ -1,10 +1,9 @@
-import React from "react";
-import { useState, useCallback } from "react";
+import React, { FC, useState, useCallback } from "react";
 import Link from "next/link";
 import { useMediaQuery } from "../hooks";
 import { BLOG_URL } from "../models";
 
-export default () => {
+const GlobalNav: FC = () => {
   const [isToggleMenuActive, setToggleMenuActive] = useState(false);
 
   // ウィンドウの幅が一定以下ならトグルメニューを有効にする
@@ -40,13 +39,10 @@ export default () => {
   );
 };
 
-const HamburgerButton = ({
-  isActive,
-  onClick,
-}: {
+const HamburgerButton: FC<{
   isActive: boolean;
   onClick: () => void;
-}) => {
+}> = ({ isActive, onClick }) => {
   return (
     <div
       className={`global-nav-hamburger-button ${isActive && "active"}`}
@@ -56,17 +52,12 @@ const HamburgerButton = ({
   );
 };
 
-const GlobalNavItem = ({
-  title,
-  id,
-  path,
-  url,
-}: {
+const GlobalNavItem: FC<{
   title: string;
   id: string;
   path?: string;
   url?: string;
-}) => {
+}> = ({ title, id, path, url }) => {
   return (
     <li key={id} className="global-nav-item">
       {path ? (
@@ -87,3 +78,5 @@ const GlobalNavItem = ({
     </li>
   );
 };
+
+export default GlobalNav;

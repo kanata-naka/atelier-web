@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import Link from "next/link";
-import { ArtGetResponse } from "../../../types/api/arts";
 import { SectionHeading } from "../../../common/components/elements";
+import { ArtGetResponse } from "../../../types/api/arts";
 import GalleryModal from "../../gallery/components/GalleryModal";
 
-export default ({ items }: { items: ArtGetResponse[] }) => {
+const RecentArts: FC<{ items: ArtGetResponse[] }> = ({ items }) => {
   return (
     <section className="recent-arts">
       <SectionHeading>RECENT ARTS</SectionHeading>
@@ -22,13 +22,10 @@ export default ({ items }: { items: ArtGetResponse[] }) => {
   );
 };
 
-const RecentArtItem = ({
-  item,
-  isLast,
-}: {
+const RecentArtItem: FC<{
   item: ArtGetResponse;
   isLast: boolean;
-}) => {
+}> = ({ item, isLast }) => {
   return (
     <div className="recent-arts-item">
       <Link
@@ -52,11 +49,9 @@ const RecentArtItem = ({
   );
 };
 
-const RecentArtItemBackground = ({
-  image,
-}: {
+const RecentArtItemBackground: FC<{
   image: ArtGetResponse.Image;
-}) => {
+}> = ({ image }) => {
   return (
     <div
       className="recent-arts-item-background"
@@ -66,7 +61,7 @@ const RecentArtItemBackground = ({
   );
 };
 
-const RecentArtItemForeground = ({ isLast }: { isLast: boolean }) => {
+const RecentArtItemForeground: FC<{ isLast: boolean }> = ({ isLast }) => {
   return (
     <div
       className={
@@ -78,3 +73,5 @@ const RecentArtItemForeground = ({ isLast }: { isLast: boolean }) => {
     </div>
   );
 };
+
+export default RecentArts;

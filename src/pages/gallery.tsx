@@ -1,8 +1,17 @@
 import React, { useEffect, useCallback } from "react";
+import { NextPage } from "next";
 import Head from "next/head";
 import Router from "next/router";
 import { callFunction } from "../common/api";
+import { PageHeading } from "../common/components/elements";
+import Footer from "../common/components/Footer";
+import Header from "../common/components/Header";
+import OgpTags from "../common/components/OgpTags";
 import { SITE_NAME } from "../common/models";
+import GalleryModal from "../modules/gallery/components/GalleryModal";
+import GalleryScroll from "../modules/gallery/components/GalleryScroll";
+import TagInfo from "../modules/gallery/components/TagInfo";
+import { GALLERY_SCROLL_FETCH_LIMIT } from "../modules/gallery/models";
 import { Restrict } from "../types";
 import { GetByIdRequest } from "../types/api";
 import {
@@ -11,31 +20,15 @@ import {
   ArtGetResponse,
 } from "../types/api/arts";
 import { TagInfoGetResponse } from "../types/api/tagInfo";
-import { PageHeading } from "../common/components/elements";
-import Header from "../common/components/Header";
-import Footer from "../common/components/Footer";
-import OgpTags from "../common/components/OgpTags";
-import TagInfo from "../modules/gallery/components/TagInfo";
-import ArtScroll from "../modules/gallery/components/ArtScroll";
-import GalleryModal from "../modules/gallery/components/GalleryModal";
-import { FETCH_LIMIT } from "../modules/gallery/models";
-import { NextPageContext } from "next";
 
-const Component = ({
-  id,
-  item,
-  tagInfo,
-  tag,
-  items,
-  fetchedAll,
-}: {
+const Page: NextPage<{
   id?: string;
   item?: ArtGetResponse;
   tagInfo?: TagInfoGetResponse.TagInfo[];
   tag?: string;
   items?: ArtGetResponse[];
   fetchedAll?: boolean;
-}) => {
+}> = ({ id, item, tagInfo, tag, items, fetchedAll }) => {
   useEffect(() => {
     if (item) {
       // モーダルを開く
@@ -76,11 +69,11 @@ const Component = ({
       {tagInfo && <TagInfo tagInfo={tagInfo} />}
       {item && <GalleryModal.Component onClose={onClose} />}
       {items && (
-        <ArtScroll
+        <GalleryScroll
           tag={tag}
           items={items}
           fetchedAll={fetchedAll!}
-          fetchLimit={FETCH_LIMIT}
+          fetchLimit={GALLERY_SCROLL_FETCH_LIMIT}
         />
       )}
       <Footer />
@@ -88,7 +81,7 @@ const Component = ({
   );
 };
 
-Component.getInitialProps = async ({ query }: NextPageContext) => {
+Page.getInitialProps = async ({ query }) => {
   if (query.id) {
     const response = await callFunction<GetByIdRequest, ArtGetResponse>(
       "arts-getById",
@@ -114,7 +107,7 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
     } catch (error) {
       console.error(error);
     }
-    // イラスト一覧（最初の${FETCH_LIMIT}件）を取得する
+    // イラスト一覧（最初の${GALLERY_SCROLL_FETCH_LIMIT}件）を取得する
     let items: ArtGetResponse[] = [];
     let fetchedAll = false;
     try {
@@ -124,7 +117,7 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
       >("arts-get", {
         tag: query.tag && String(query.tag),
         restrict: [Restrict.ALL, Restrict.LIMITED],
-        limit: FETCH_LIMIT,
+        limit: GALLERY_SCROLL_FETCH_LIMIT,
       });
       items = response.data.result;
       fetchedAll = response.data.fetchedAll;
@@ -140,4 +133,4 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
   }
 };
 
-export default Component;
+export default Page;

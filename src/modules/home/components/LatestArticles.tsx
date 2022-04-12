@@ -3,7 +3,9 @@ import { BLOG_URL } from "../../../common/models";
 import { BlogGetArticleListResponse } from "../../../types/api/blog";
 import { formatDateFromIsoDate } from "../../../utils/dateUtil";
 
-export default ({ items }: { items: BlogGetArticleListResponse.Article[] }) => {
+const LatestArticles: FC<{ items: BlogGetArticleListResponse.Article[] }> = ({
+  items,
+}) => {
   return (
     <section className="latest-articles">
       {items.map((item, index) => (
@@ -14,7 +16,9 @@ export default ({ items }: { items: BlogGetArticleListResponse.Article[] }) => {
   );
 };
 
-const Article = ({ item }: { item: BlogGetArticleListResponse.Article }) => {
+const Article: FC<{ item: BlogGetArticleListResponse.Article }> = ({
+  item,
+}) => {
   return (
     <article className="latest-articles-item">
       <a
@@ -32,11 +36,9 @@ const Article = ({ item }: { item: BlogGetArticleListResponse.Article }) => {
   );
 };
 
-const ArticleBackground = ({
-  item,
-}: {
+const ArticleBackground: FC<{
   item: BlogGetArticleListResponse.Article;
-}) => {
+}> = ({ item }) => {
   return (
     <div
       className="latest-articles-item-background"
@@ -49,7 +51,7 @@ const ArticleBackground = ({
   );
 };
 
-const ArticlePostedDate = ({ dateString }: { dateString: string }) => {
+const ArticlePostedDate: FC<{ dateString: string }> = ({ dateString }) => {
   return (
     <div className="latest-articles-item-posted-date">
       <i className="far fa-clock"></i>
@@ -63,7 +65,7 @@ const ArticleTitle: FC = ({ children }) => {
   return <h3 className="latest-articles-item-title">{children}</h3>;
 };
 
-const Footer = () => {
+const Footer: FC = () => {
   return (
     <footer className="latest-articles-footer">
       <a
@@ -76,3 +78,5 @@ const Footer = () => {
     </footer>
   );
 };
+
+export default LatestArticles;

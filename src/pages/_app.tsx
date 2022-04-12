@@ -1,10 +1,9 @@
 import React from "react";
-import { NextComponentType, NextPageContext } from "next";
-import { AppProps } from "next/app";
+import { AppContext, AppProps } from "next/app";
 import Head from "next/head";
 import { initializeFirebase } from "../common/api";
-import { usePageview } from "../common/hooks";
 import RoutingEffect from "../common/components/RoutingEffect";
+import { usePageview } from "../common/hooks";
 import "../styles/style.scss";
 
 const App = ({
@@ -38,21 +37,12 @@ const App = ({
   );
 };
 
-App.getInitialProps = async ({
-  Component,
-  ctx,
-}: {
-  Component: NextComponentType<NextPageContext & { isServer: boolean }>;
-  ctx: NextPageContext;
-}) => {
+App.getInitialProps = async ({ Component, ctx }: AppContext) => {
   let pageProps = {};
   const isServer = !!ctx.req;
   if (Component.getInitialProps) {
     initializeFirebase(isServer);
-    pageProps = await Component.getInitialProps({
-      ...ctx,
-      isServer,
-    });
+    pageProps = await Component.getInitialProps({ ...ctx });
   }
   return { isServer, pageProps };
 };

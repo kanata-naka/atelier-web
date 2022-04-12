@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import Link from "next/link";
 import GlobalNav from "./GlobalNav";
 
-export default () => {
+const Header: FC = () => {
   return (
     <header className="site-header">
       <Link href="/">
@@ -14,3 +14,5 @@ export default () => {
     </header>
   );
 };
+
+export default Header;

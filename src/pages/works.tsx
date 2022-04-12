@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { NextPageContext } from "next";
+import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { callFunction } from "../common/api";
+import { PageHeading } from "../common/components/elements";
+import Footer from "../common/components/Footer";
+import Header from "../common/components/Header";
+import OgpTags from "../common/components/OgpTags";
+import Pagination from "../common/components/Pagination";
 import { SITE_NAME } from "../common/models";
-import { Pagination, Restrict } from "../types";
+import WorkList from "../modules/works/components/WorkList";
+import {
+  WORK_LIST_PER_PAGE,
+  WORK_LIST_PAGE_NUMBER_DISPLAY_MAX_RANGE,
+} from "../modules/works/models";
+import { PaginationState, Restrict } from "../types";
 import { GetByIdRequest } from "../types/api";
 import {
   WorkGetListRequest,
@@ -12,36 +22,28 @@ import {
   WorkGetResponse,
 } from "../types/api/works";
 import { getItemsByPage } from "../utils/pageUtil";
-import { PageHeading } from "../common/components/elements";
-import Header from "../common/components/Header";
-import Footer from "../common/components/Footer";
-import OgpTags from "../common/components/OgpTags";
-import { default as PaginationComponent } from "../common/components/Pagination";
-import WorkList from "../modules/works/components/WorkList";
-import {
-  PER_PAGE,
-  PAGE_NUMBER_DISPLAY_MAX_RANGE,
-} from "../modules/works/models";
 
-const Component = ({
-  id,
-  items,
-}: {
+const Page: NextPage<{
   id?: string;
   items: WorkGetResponse[];
-}) => {
+}> = ({ id, items }) => {
   const [itemsByPage, setItemsByPage] = useState<WorkGetResponse[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
+  const [paginationState, setPaginationState] =
+    useState<PaginationState | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     if (id) {
       setItemsByPage([...items]);
-      setPagination(null);
+      setPaginationState(null);
     } else {
       const page = +Number(router.query.page) || 1;
-      setItemsByPage(getItemsByPage(items, page, PER_PAGE));
-      setPagination({ page, perPage: PER_PAGE, total: items.length });
+      setItemsByPage(getItemsByPage(items, page, WORK_LIST_PER_PAGE));
+      setPaginationState({
+        page,
+        perPage: WORK_LIST_PER_PAGE,
+        total: items.length,
+      });
     }
     scrollTo(0, 0);
   }, [id, router.query.page]);
@@ -76,10 +78,10 @@ const Component = ({
       <Header />
       <PageHeading>WORKS</PageHeading>
       <WorkList items={itemsByPage} />
-      {pagination && (
-        <PaginationComponent
-          pagination={pagination}
-          maxRange={PAGE_NUMBER_DISPLAY_MAX_RANGE}
+      {paginationState && (
+        <Pagination
+          state={paginationState}
+          maxRange={WORK_LIST_PAGE_NUMBER_DISPLAY_MAX_RANGE}
         />
       )}
       <Footer />
@@ -87,7 +89,7 @@ const Component = ({
   );
 };
 
-Component.getInitialProps = async ({ query }: NextPageContext) => {
+Page.getInitialProps = async ({ query }) => {
   if (query.id) {
     const response = await callFunction<GetByIdRequest, WorkGetResponse>(
       "works-getById",
@@ -100,9 +102,10 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
       items: [response.data],
     };
   } else {
+    // 全件取得する
+    // ※shallow routingで再読み込みを行わずにページングを実現するため
+    let items: WorkGetResponse[] = [];
     try {
-      // 全件取得する
-      // ※shallow routingで再読み込みを行わずにページングを実現するため
       const response = await callFunction<
         WorkGetListRequest,
         WorkGetListResponse
@@ -114,13 +117,12 @@ Component.getInitialProps = async ({ query }: NextPageContext) => {
           order: "desc",
         },
       });
-      return {
-        items: response.data.result,
-      };
+      items = response.data.result;
     } catch (error) {
       console.error(error);
     }
+    return { items };
   }
 };
 
-export default Component;
+export default Page;

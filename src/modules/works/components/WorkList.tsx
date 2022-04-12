@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import { useState, useEffect } from "react";
-import { WorkGetResponse } from "../../../types/api/works";
 import ShareButtons from "../../../common/components/ShareButtons";
+import { WorkGetResponse } from "../../../types/api/works";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
 
-export default ({ items }: { items: WorkGetResponse[] }) => {
+const WorkList: FC<{ items: WorkGetResponse[] }> = ({ items }) => {
   return (
     <section className="work-list">
       {items.map((item, index) => (
@@ -15,7 +15,7 @@ export default ({ items }: { items: WorkGetResponse[] }) => {
   );
 };
 
-const WorkListItem = ({ item }: { item: WorkGetResponse }) => {
+const WorkListItem: FC<{ item: WorkGetResponse }> = ({ item }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -56,7 +56,9 @@ const WorkListItemTitle: FC = ({ children }) => {
   return <h3 className="work-list-item-title">{children}</h3>;
 };
 
-const WorkListItemPublishedDate = ({ timestamp }: { timestamp: number }) => {
+const WorkListItemPublishedDate: FC<{ timestamp: number }> = ({
+  timestamp,
+}) => {
   return (
     <div className="work-list-item-published-date">
       <i className="far fa-clock"></i>
@@ -70,19 +72,15 @@ const WorkListItemDescription: FC = ({ children }) => {
   return <p className="work-list-item-description">{children}</p>;
 };
 
-const WorkListItemImage = ({ image }: { image: WorkGetResponse.Image }) => {
+const WorkListItemImage: FC<{ image: WorkGetResponse.Image }> = ({ image }) => {
   return <img className="work-list-item-image" src={image.url} />;
 };
 
-const DiffList = ({
-  images,
-  currentImageIndex,
-  onSelect,
-}: {
+const DiffList: FC<{
   images: WorkGetResponse.Image[];
   currentImageIndex: number;
   onSelect: (index: number) => void;
-}) => {
+}> = ({ images, currentImageIndex, onSelect }) => {
   if (images.length < 2) {
     // 画像が2つ以上なければ表示しない
     return null;
@@ -104,15 +102,11 @@ const DiffList = ({
   );
 };
 
-const DiffListItem = ({
-  image,
-  isActive,
-  onClick,
-}: {
+const DiffListItem: FC<{
   image: WorkGetResponse.Image;
   isActive: boolean;
   onClick: (event: React.MouseEvent) => void;
-}) => {
+}> = ({ image, isActive, onClick }) => {
   return (
     <li
       className={`diff-list-item ${isActive ? "active" : ""}`}
@@ -126,3 +120,5 @@ const DiffListItem = ({
     </li>
   );
 };
+
+export default WorkList;

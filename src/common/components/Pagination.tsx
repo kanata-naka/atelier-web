@@ -1,18 +1,16 @@
-import React, { ReactElement } from "react";
+import React, { FC } from "react";
 import Router from "next/router";
-import { Pagination } from "../../types";
+import { PaginationState } from "../../types";
+import { getPageNumberRange } from "../../utils/pageUtil";
 
-export default ({
-  pagination,
-  maxRange,
-}: {
-  pagination: Pagination;
+const Pagination: FC<{
+  state: PaginationState;
   maxRange: number;
-}) => {
+}> = ({ state, maxRange }) => {
   // 現在のページ
-  const currentPage = pagination.page;
+  const currentPage = state.page;
   // 最後のページ
-  const lastPage = Math.ceil(pagination.total / pagination.perPage);
+  const lastPage = Math.ceil(state.total / state.perPage);
 
   const handlePageNumberButtonClick = (
     event: React.MouseEvent,
@@ -25,35 +23,6 @@ export default ({
     });
   };
 
-  const renderPageNumberButtons = () => {
-    let first: number, last: number;
-    if (lastPage < maxRange) {
-      first = 1;
-      last = lastPage;
-    } else if (currentPage <= Math.floor(maxRange / 2) + 1) {
-      first = 1;
-      last = Math.min(maxRange, lastPage);
-    } else if (currentPage >= lastPage - Math.floor(maxRange / 2)) {
-      first = Math.max(1, lastPage - maxRange + 1);
-      last = lastPage;
-    } else {
-      first = currentPage - Math.floor(maxRange / 2);
-      last = currentPage + Math.floor(maxRange / 2);
-    }
-    const pageNumberButtons: ReactElement[] = [];
-    for (let page = first; page <= last; page++) {
-      pageNumberButtons.push(
-        <PageNumberButton
-          key={page}
-          page={page}
-          isActive={page === currentPage}
-          onClick={handlePageNumberButtonClick}
-        />
-      );
-    }
-    return pageNumberButtons;
-  };
-
   return (
     <ul className="pagination">
       <PagePrevButton
@@ -61,7 +30,14 @@ export default ({
         disabled={currentPage === 1}
         onClick={handlePageNumberButtonClick}
       />
-      {renderPageNumberButtons()}
+      {getPageNumberRange(currentPage, lastPage, maxRange).map((page) => (
+        <PageNumberButton
+          key={page}
+          page={page}
+          isActive={page === currentPage}
+          onClick={handlePageNumberButtonClick}
+        />
+      ))}
       <PageNextButton
         page={currentPage + 1}
         disabled={currentPage === lastPage}
@@ -71,15 +47,11 @@ export default ({
   );
 };
 
-const PagePrevButton = ({
-  page,
-  disabled,
-  onClick,
-}: {
+const PagePrevButton: FC<{
   page: number;
   disabled: boolean;
   onClick: (e: React.MouseEvent, page: number) => void;
-}) => {
+}> = ({ page, disabled, onClick }) => {
   return (
     <li className={`pagination-item--prev ${disabled ? "disabled" : ""}`}>
       {!disabled && (
@@ -94,15 +66,11 @@ const PagePrevButton = ({
   );
 };
 
-const PageNumberButton = ({
-  page,
-  isActive,
-  onClick,
-}: {
+const PageNumberButton: FC<{
   page: number;
   isActive: boolean;
   onClick: (e: React.MouseEvent, page: number) => void;
-}) => {
+}> = ({ page, isActive, onClick }) => {
   return (
     <li className={`pagination-item ${isActive ? "active" : ""}`}>
       <a
@@ -115,15 +83,11 @@ const PageNumberButton = ({
   );
 };
 
-const PageNextButton = ({
-  page,
-  disabled,
-  onClick,
-}: {
+const PageNextButton: FC<{
   page: number;
   disabled: boolean;
   onClick: (e: React.MouseEvent, page: number) => void;
-}) => {
+}> = ({ page, disabled, onClick }) => {
   return (
     <li className={`pagination-item--next ${disabled ? "disabled" : ""}`}>
       {!disabled && (
@@ -137,3 +101,5 @@ const PageNextButton = ({
     </li>
   );
 };
+
+export default Pagination;

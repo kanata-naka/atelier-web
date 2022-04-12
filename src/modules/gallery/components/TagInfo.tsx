@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { FC, useState, useCallback, useRef } from "react";
 import Link from "next/link";
 import { Transition, TransitionStatus } from "react-transition-group";
 import { TagInfoGetResponse } from "../../../types/api/tagInfo";
@@ -10,7 +10,9 @@ const transitionClasses: { [state in TransitionStatus]?: string } = {
   exited: "slide-exited",
 };
 
-export default ({ tagInfo }: { tagInfo: TagInfoGetResponse.TagInfo[] }) => {
+const TagInfo: FC<{ tagInfo: TagInfoGetResponse.TagInfo[] }> = ({
+  tagInfo,
+}) => {
   const [collasped, setCollasped] = useState(true);
   const [height, setHeight] = useState(48);
   const tagListRef = useRef<HTMLUListElement>(null);
@@ -70,15 +72,11 @@ export default ({ tagInfo }: { tagInfo: TagInfoGetResponse.TagInfo[] }) => {
   );
 };
 
-const TagListItem = ({
-  tag,
-  count,
-  rate,
-}: {
+const TagListItem: FC<{
   tag: string;
   count: number;
   rate: number;
-}) => {
+}> = ({ tag, count, rate }) => {
   return (
     <li className="tag-list-item">
       <Link href={`/gallery?tag=${tag}`}>
@@ -102,17 +100,14 @@ const TagListItem = ({
   );
 };
 
-const TagInfoForeground = () => {
+const TagInfoForeground: FC = () => {
   return <div className="tag-info-foreground" />;
 };
 
-const TagInfoSlideButton = ({
-  state,
-  onClick,
-}: {
+const TagInfoSlideButton: FC<{
   state: TransitionStatus;
   onClick: (event: React.MouseEvent) => void;
-}) => {
+}> = ({ state, onClick }) => {
   return (
     <div className="tag-info-slide-button" onClick={onClick}>
       {state === "entering" || state === "exited" ? (
@@ -123,3 +118,5 @@ const TagInfoSlideButton = ({
     </div>
   );
 };
+
+export default TagInfo;

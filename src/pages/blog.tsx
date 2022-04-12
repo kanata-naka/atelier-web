@@ -1,11 +1,11 @@
-import { NextPageContext } from "next";
+import { NextPage } from "next";
 import { BLOG_URL } from "../common/models";
 
-const Component = () => {
+const Page: NextPage = () => {
   return null;
 };
 
-Component.getInitialProps = async ({ res }: NextPageContext) => {
+Page.getInitialProps = async ({ res }) => {
   if (res) {
     // noteにリダイレクトする
     res.writeHead(302, { Location: BLOG_URL });
@@ -13,4 +13,4 @@ Component.getInitialProps = async ({ res }: NextPageContext) => {
   }
 };
 
-export default Component;
+export default Page;

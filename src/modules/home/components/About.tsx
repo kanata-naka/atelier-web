@@ -1,16 +1,11 @@
 import React, { FC, useCallback } from "react";
-import {
-  AUTHOR_NAME,
-  SITE_DESCRIPTION,
-  INTRODUCTION,
-  TWITTER_USERNAME,
-  SOCIAL_ACCOUNTS,
-} from "../../../common/models";
-import { SocialAccount } from "../../../types";
 import { SectionHeading } from "../../../common/components/elements";
+import { SITE_DESCRIPTION, TWITTER_USERNAME } from "../../../common/models";
+import { SocialAccount } from "../../../types";
 import { reloadTwitterWidgets } from "../../../utils/vendorUtil";
+import { AUTHOR_NAME, INTRODUCTION, SOCIAL_ACCOUNTS } from "../model";
 
-export default () => {
+const About: FC = () => {
   return (
     <section id="about" className="about">
       <SectionHeading>ABOUT</SectionHeading>
@@ -28,10 +23,7 @@ const Description: FC = ({ children }) => {
   return <p className="description">{children}</p>;
 };
 
-/**
- * プロフィール画像
- */
-const ProfileImage = ({ url }: { url: string }) => {
+const ProfileImage: FC<{ url: string }> = ({ url }) => {
   return (
     <figure className="profile-image">
       <img className="profile-image__image" alt="プロフィール画像" src={url} />
@@ -43,7 +35,7 @@ const AuthorName: FC = ({ children }) => {
   return <h3 className="author-name">{children}</h3>;
 };
 
-const SocialIcons = ({ accounts }: { accounts: SocialAccount[] }) => {
+const SocialIcons: FC<{ accounts: SocialAccount[] }> = ({ accounts }) => {
   return (
     <ul className="social-icons">
       {accounts.map((account, index) => (
@@ -53,7 +45,7 @@ const SocialIcons = ({ accounts }: { accounts: SocialAccount[] }) => {
   );
 };
 
-const SocialIcon = ({ account }: { account: SocialAccount }) => {
+const SocialIcon: FC<{ account: SocialAccount }> = ({ account }) => {
   return (
     <li className="social-icons-item">
       <a href={account.url}>
@@ -67,10 +59,7 @@ const SocialIcon = ({ account }: { account: SocialAccount }) => {
   );
 };
 
-/**
- * 自己紹介
- */
-const Introduction = ({ content }: { content: string }) => {
+const Introduction: FC<{ content: string }> = ({ content }) => {
   return (
     <p
       className="introduction"
@@ -81,7 +70,7 @@ const Introduction = ({ content }: { content: string }) => {
   );
 };
 
-const TwitterWidgets = ({ id }: { id: string }) => {
+const TwitterWidgets: FC<{ id: string }> = ({ id }) => {
   const elementRef = useCallback((element: HTMLDivElement) => {
     if (!element) {
       return;
@@ -101,3 +90,5 @@ const TwitterWidgets = ({ id }: { id: string }) => {
     </div>
   );
 };
+
+export default About;

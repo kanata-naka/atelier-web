@@ -1,16 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import Head from "next/head";
 import { SITE_NAME, TWITTER_USERNAME } from "../models";
 
-export default ({
-  url,
-  ogType,
-  title,
-  description,
-  ogImage,
-  twitterCard,
-  twitterImage,
-}: {
+const OgpTags: FC<{
   url: string;
   ogType: string;
   title: string;
@@ -18,6 +10,14 @@ export default ({
   ogImage?: string;
   twitterCard: string;
   twitterImage?: string;
+}> = ({
+  url,
+  ogType,
+  title,
+  description,
+  ogImage,
+  twitterCard,
+  twitterImage,
 }) => {
   return (
     <Head>
@@ -38,3 +38,5 @@ export default ({
     </Head>
   );
 };
+
+export default OgpTags;

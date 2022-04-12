@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import Link from "next/link";
 import { callFunction } from "../../../common/api";
 import { useScroll } from "../../../common/hooks";
@@ -10,16 +10,16 @@ import {
 } from "../../../types/api/arts";
 import GalleryModal from "./GalleryModal";
 
-export default ({
-  tag,
-  items: initinalItems,
-  fetchedAll: initialFetchedAll,
-  fetchLimit,
-}: {
+const GalleryScroll: FC<{
   tag?: string;
   items: ArtGetResponse[];
   fetchedAll: boolean;
   fetchLimit: number;
+}> = ({
+  tag,
+  items: initinalItems,
+  fetchedAll: initialFetchedAll,
+  fetchLimit,
 }) => {
   const [items, setItems] = useState([...initinalItems]);
   const [fetchedAll, setFetchedAll] = useState(initialFetchedAll);
@@ -61,7 +61,7 @@ export default ({
     <section className="art-scroll">
       <div className="art-scroll-container">
         {items.map((item, index) => (
-          <ArtScrollItem key={index} item={item} />
+          <GalleryScrollItem key={index} item={item} />
         ))}
       </div>
       <div className="loading">
@@ -72,7 +72,7 @@ export default ({
   );
 };
 
-const ArtScrollItem = ({ item }: { item: ArtGetResponse }) => {
+const GalleryScrollItem: FC<{ item: ArtGetResponse }> = ({ item }) => {
   return (
     <div className="art-scroll-item">
       <Link href={`/gallery?id=${item.id}`} as={`/gallery/${item.id}`}>
@@ -83,18 +83,16 @@ const ArtScrollItem = ({ item }: { item: ArtGetResponse }) => {
             // モーダルを開く
             GalleryModal.open(item);
           }}>
-          <ArtScrollItemBackground image={item.images[0]} />
+          <GalleryScrollItemBackground image={item.images[0]} />
         </a>
       </Link>
     </div>
   );
 };
 
-const ArtScrollItemBackground = ({
-  image,
-}: {
+const GalleryScrollItemBackground: FC<{
   image: ArtGetResponse.Image;
-}) => {
+}> = ({ image }) => {
   return (
     <div
       className="art-scroll-item-background"
@@ -103,3 +101,5 @@ const ArtScrollItemBackground = ({
       }}></div>
   );
 };
+
+export default GalleryScroll;

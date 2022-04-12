@@ -1,5 +1,5 @@
-import { getApps, getApp, initializeApp } from "firebase/app";
 import { initializeAnalytics } from "firebase/analytics";
+import { getApps, getApp, initializeApp } from "firebase/app";
 import {
   getFunctions,
   connectFunctionsEmulator,

@@ -2,6 +2,9 @@
   "name": "atelier-web",
   "version": "1.0.0",
   "description": "",
+  "license": "ISC",
+  "author": "kanata-naka",
+  "repository": "https://github.com/kanata-naka/atelier-web.git",
   "scripts": {
     "dev": "ts-node server.ts",
     "build": "next build",
@@ -10,8 +13,6 @@
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint:fix": "eslint --fix src/**/*.{ts,tsx}"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "config": "^3.3.7",
     "firebase": "^9.6.2",
@@ -38,17 +39,18 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.28.0",
     "express": "^4.17.2",
     "prettier": "^2.5.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   },
-  "prettier": {
-    "jsxBracketSameLine": true
-  },
   "eslintIgnore": [
     ".eslintrc.js",
     "next.config.js"
-  ]
+  ],
+  "prettier": {
+    "jsxBracketSameLine": true
+  }
 }

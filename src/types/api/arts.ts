@@ -1,5 +1,5 @@
-import { Restrict } from "../";
 import { GetListResponse, GetListRequest } from ".";
+import { Restrict } from "../";
 
 export type ArtGetListRequest = GetListRequest & {
   /** タグ */
@@ -20,9 +20,9 @@ export type ArtGetResponse = {
   id: string;
   /** タイトル */
   title: string;
-  /** タグの一覧 */
+  /** タグ一覧 */
   tags?: string[];
-  /** 画像の一覧 */
+  /** 画像一覧 */
   images: ArtGetResponse.Image[];
   /** 説明 */
   description?: string;

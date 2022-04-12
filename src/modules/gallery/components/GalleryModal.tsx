@@ -5,11 +5,11 @@ import React, {
   ReactElement,
   FC,
 } from "react";
-import Modal from "react-modal";
 import Router from "next/router";
+import Modal from "react-modal";
+import ShareButtons from "../../../common/components/ShareButtons";
 import { sendEvent } from "../../../common/gtag";
 import { ArtGetResponse } from "../../../types/api/arts";
-import ShareButtons from "../../../common/components/ShareButtons";
 import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
 import { renderMarkdown } from "../../../utils/domUtil";
 
@@ -45,6 +45,7 @@ const GalleryModal: {
     }, []);
 
     const handleClick = useCallback(() => {
+      // キャプションの表示・非表示を切り替える
       setForegroundActive(!isForegroundActive);
     }, [isForegroundActive]);
 
@@ -107,11 +108,11 @@ const GalleryModal: {
   close: () => {},
 };
 
-const Overlay = ({ onClick }: { onClick: () => void }) => {
+const Overlay: FC<{ onClick: () => void }> = ({ onClick }) => {
   return <div className="gallery-modal-overlay" onClick={onClick}></div>;
 };
 
-const Background = ({ image }: { image?: ArtGetResponse.Image }) => {
+const Background: FC<{ image?: ArtGetResponse.Image }> = ({ image }) => {
   return (
     <div
       className="gallery-modal-background"
@@ -125,7 +126,7 @@ const Title: FC = ({ children }) => {
   return <h3 className="gallery-modal-title">{children}</h3>;
 };
 
-const TagList = ({ tags = [] }: { tags: string[] }) => {
+const TagList: FC<{ tags: string[] }> = ({ tags = [] }) => {
   return (
     <ul className="gallery-modal-tag-list">
       {tags.map((tag, index) => (
@@ -135,7 +136,7 @@ const TagList = ({ tags = [] }: { tags: string[] }) => {
   );
 };
 
-const TagListItem = ({ tag }: { tag: string }) => {
+const TagListItem: FC<{ tag: string }> = ({ tag }) => {
   return (
     <li className="gallery-modal-tag-list-item">
       <a
@@ -158,7 +159,7 @@ const Description: FC = ({ children }) => {
   return <p className="gallery-modal-description">{children}</p>;
 };
 
-const PostedDate = ({ timestamp }: { timestamp: number }) => {
+const PostedDate: FC<{ timestamp: number }> = ({ timestamp }) => {
   return (
     <div className="gallery-modal-posted-date">
       <i className="far fa-clock"></i>
@@ -168,15 +169,11 @@ const PostedDate = ({ timestamp }: { timestamp: number }) => {
   );
 };
 
-const DiffList = ({
-  images,
-  currentImageIndex,
-  onSelect,
-}: {
+const DiffList: FC<{
   images: ArtGetResponse.Image[];
   currentImageIndex: number;
   onSelect: (index: number) => void;
-}) => {
+}> = ({ images, currentImageIndex, onSelect }) => {
   if (!images || !images.length) {
     return null;
   }
@@ -199,15 +196,11 @@ const DiffList = ({
   );
 };
 
-const DiffListItem = ({
-  image,
-  isActive,
-  onClick,
-}: {
+const DiffListItem: FC<{
   image: ArtGetResponse.Image;
   isActive: boolean;
   onClick: (event: React.MouseEvent) => void;
-}) => {
+}> = ({ image, isActive, onClick }) => {
   return (
     <li
       className={`diff-list-item ${isActive ? "active" : ""}`}
@@ -222,7 +215,7 @@ const DiffListItem = ({
   );
 };
 
-const CloseButton = ({ onClick }: { onClick: () => void }) => {
+const CloseButton: FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
     <div className="gallery-modal-close-button" onClick={onClick}>
       <i className="fas fa-times gallery-modal-close-button__icon"></i>

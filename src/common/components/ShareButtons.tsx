@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { FC, useCallback } from "react";
 import {
   reloadTwitterWidgets,
   reloadFacebookWidgets,
@@ -6,15 +6,11 @@ import {
 } from "../../utils/vendorUtil";
 import { SITE_NAME, TWITTER_USERNAME } from "../models";
 
-export default ({
-  url,
-  title,
-  classPrefix = "",
-}: {
+const ShareButtons: FC<{
   url: string;
   title?: string;
   classPrefix?: string;
-}) => {
+}> = ({ url, title, classPrefix = "" }) => {
   return (
     <ul className={`${classPrefix}share-buttons`}>
       <TwitterShareButton classPrefix={classPrefix} url={url} title={title} />
@@ -24,15 +20,11 @@ export default ({
   );
 };
 
-const TwitterShareButton = ({
-  url,
-  title,
-  classPrefix,
-}: {
+const TwitterShareButton: FC<{
   url: string;
   title?: string;
   classPrefix?: string;
-}) => {
+}> = ({ url, title, classPrefix }) => {
   const elementRef = useCallback((element: Element | null) => {
     if (!element) {
       return;
@@ -60,13 +52,10 @@ const TwitterShareButton = ({
   );
 };
 
-const FacebookShareButton = ({
-  url,
-  classPrefix,
-}: {
+const FacebookShareButton: FC<{
   url: string;
   classPrefix?: string;
-}) => {
+}> = ({ url, classPrefix }) => {
   const elementRef = useCallback((element: Element | null) => {
     if (!element) {
       return;
@@ -92,13 +81,10 @@ const FacebookShareButton = ({
   );
 };
 
-const LINEShareButton = ({
-  url,
-  classPrefix,
-}: {
+const LINEShareButton: FC<{
   url: string;
   classPrefix?: string;
-}) => {
+}> = ({ url, classPrefix }) => {
   const elementRef = useCallback((element: Element | null) => {
     if (!element) {
       return;
@@ -125,3 +111,5 @@ const LINEShareButton = ({
     </li>
   );
 };
+
+export default ShareButtons;

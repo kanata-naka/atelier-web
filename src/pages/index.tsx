@@ -1,7 +1,17 @@
 import React from "react";
+import { NextPage } from "next";
 import Head from "next/head";
 import { callFunction } from "../common/api";
+import Footer from "../common/components/Footer";
+import Header from "../common/components/Header";
+import OgpTags from "../common/components/OgpTags";
+import ShareButtons from "../common/components/ShareButtons";
 import { SITE_NAME, SITE_DESCRIPTION } from "../common/models";
+import About from "../modules/home/components/About";
+import RecentArts from "../modules/home/components/RecentArts";
+import RecentWorks from "../modules/home/components/RecentWorks";
+import TopCarousel from "../modules/home/components/TopCarousel";
+import { TOP_CAROUSEL_SWITCH_INTERVAL } from "../modules/home/model";
 import { Restrict } from "../types";
 // import { GetListRequest } from "../types/api";
 import {
@@ -19,26 +29,13 @@ import {
   WorkGetListResponse,
   WorkGetResponse,
 } from "../types/api/works";
-import Header from "../common/components/Header";
-import Footer from "../common/components/Footer";
-import OgpTags from "../common/components/OgpTags";
-import ShareButtons from "../common/components/ShareButtons";
-import { SWITCH_INTERVAL } from "../modules/home/model";
-import TopCarousel from "../modules/home/components/TopCarousel";
 // import LatestArticles from "../modules/home/components/LatestArticles";
-import About from "../modules/home/components/About";
-import RecentWorks from "../modules/home/components/RecentWorks";
-import RecentArts from "../modules/home/components/RecentArts";
 
-const Component = ({
-  topImages,
-  /* latestArticles, */ recentWorks,
-  recentArts,
-}: {
+const Page: NextPage<{
   topImages: TopImageGetResponse[];
   /* latestArticles: BlogGetArticleListResponse.Article[], */ recentWorks: WorkGetResponse[];
   recentArts: ArtGetResponse[];
-}) => {
+}> = ({ topImages, /* latestArticles, */ recentWorks, recentArts }) => {
   return (
     <div>
       <Head>
@@ -54,7 +51,10 @@ const Component = ({
         twitterImage="/images/ogp-twitter-image.png"
       />
       <Header />
-      <TopCarousel items={topImages} switchInterval={SWITCH_INTERVAL} />
+      <TopCarousel
+        items={topImages}
+        switchInterval={TOP_CAROUSEL_SWITCH_INTERVAL}
+      />
       <div className="dashboard">
         <About />
         {/* <LatestArticles items={latestArticles} /> */}
@@ -67,7 +67,7 @@ const Component = ({
   );
 };
 
-Component.getInitialProps = async () => {
+Page.getInitialProps = async () => {
   const result = await Promise.all([
     // トップ画像の一覧を取得する
     callFunction<never, TopImageGetListResponse>("topImages-get")
@@ -130,4 +130,4 @@ Component.getInitialProps = async () => {
   };
 };
 
-export default Component;
+export default Page;

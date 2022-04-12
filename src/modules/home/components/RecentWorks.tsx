@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import { WorkGetResponse } from "../../../types/api/works";
 import { SectionHeading } from "../../../common/components/elements";
+import { WorkGetResponse } from "../../../types/api/works";
 
-export default ({ items }: { items: WorkGetResponse[] }) => {
+const RecentWorks: FC<{ items: WorkGetResponse[] }> = ({ items }) => {
   return (
     <section className="recent-works">
       <SectionHeading>RECENT WORKS</SectionHeading>
@@ -20,13 +20,10 @@ export default ({ items }: { items: WorkGetResponse[] }) => {
   );
 };
 
-const RecentWorkItem = ({
-  item,
-  isLast,
-}: {
+const RecentWorkItem: FC<{
   item: WorkGetResponse;
   isLast: boolean;
-}) => {
+}> = ({ item, isLast }) => {
   return (
     <div className="recent-works-item">
       <Link
@@ -41,11 +38,9 @@ const RecentWorkItem = ({
   );
 };
 
-const RecentWorkItemBackground = ({
-  image,
-}: {
+const RecentWorkItemBackground: FC<{
   image?: WorkGetResponse.Image;
-}) => {
+}> = ({ image }) => {
   return (
     <div
       className="recent-works-item-background"
@@ -56,13 +51,10 @@ const RecentWorkItemBackground = ({
   );
 };
 
-const RecentWorkItemForeground = ({
-  isLast,
-  title,
-}: {
+const RecentWorkItemForeground: FC<{
   isLast: boolean;
   title: string;
-}) => {
+}> = ({ isLast, title }) => {
   return (
     <div
       className={
@@ -82,3 +74,5 @@ const RecentWorkItemForeground = ({
 const RecentWorkItemTitle: FC = ({ children }) => {
   return <h3 className="recent-works-item-title">{children}</h3>;
 };
+
+export default RecentWorks;

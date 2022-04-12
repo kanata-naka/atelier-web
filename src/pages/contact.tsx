@@ -1,11 +1,12 @@
 import React from "react";
+import { NextPage } from "next";
 import Head from "next/head";
-import { SITE_NAME } from "../common/models";
-import Header from "../common/components/Header";
 import Footer from "../common/components/Footer";
+import Header from "../common/components/Header";
 import OgpTags from "../common/components/OgpTags";
+import { SITE_NAME } from "../common/models";
 
-const Component = () => {
+const Page: NextPage = () => {
   return (
     <div>
       <Head>
@@ -24,4 +25,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export default Page;
