@@ -1,8 +1,0 @@
-{
-  "routes": [
-    {
-      "src": "/(?<module>(works|gallery))/(?<id>[^/]*)",
-      "dest": "/$module?id=$id"
-    }
-  ]
-}
