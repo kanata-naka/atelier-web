@@ -44,5 +44,6 @@ module.exports = {
     ],
     "react/prop-types": "off",
     "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
   },
 };
