@@ -28,9 +28,7 @@ const RecentArtItem: FC<{
 }> = ({ item, isLast }) => {
   return (
     <div className="recent-arts-item">
-      <Link
-        href={`/gallery${isLast ? "" : `?id=${item.id}`}`}
-        as={`/gallery${isLast ? "" : `/${item.id}`}`}>
+      <Link href={`/gallery${isLast ? "" : `/${item.id}`}`}>
         <a
           className="recent-arts-item__link"
           onClick={(event) => {

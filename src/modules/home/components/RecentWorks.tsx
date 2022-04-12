@@ -26,9 +26,7 @@ const RecentWorkItem: FC<{
 }> = ({ item, isLast }) => {
   return (
     <div className="recent-works-item">
-      <Link
-        href={`/works${isLast ? "" : `?id=${item.id}`}`}
-        as={`/works${isLast ? "" : `/${item.id}`}`}>
+      <Link href={`/works${isLast ? "" : `/${item.id}`}`}>
         <a className="recent-works-item__link">
           <RecentWorkItemBackground image={item.images && item.images[0]} />
           <RecentWorkItemForeground isLast={isLast} title={item.title} />
