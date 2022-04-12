@@ -20,8 +20,10 @@ const TagInfo: FC<{ tagInfo: TagInfoGetResponse.TagInfo[] }> = ({
   const handleClickToggleButton = useCallback(
     (event: React.MouseEvent) => {
       event.preventDefault();
-      setHeight(tagListRef.current!.clientHeight);
-      setCollasped(!collasped);
+      if (tagListRef.current) {
+        setHeight(tagListRef.current.clientHeight);
+        setCollasped(!collasped);
+      }
     },
     [collasped]
   );

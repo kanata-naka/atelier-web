@@ -2,12 +2,15 @@
  * ページビューを送信する
  */
 export const sendPageview = (path: string) => {
-  if (typeof window === "undefined") {
+  if (
+    typeof window === "undefined" ||
+    !process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID
+  ) {
     return;
   }
   window.gtag(
     "config",
-    process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID!,
+    process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID,
     {
       page_path: path,
     }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // グローバル変数を定義する
 declare global {
   interface Window {

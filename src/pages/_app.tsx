@@ -14,7 +14,7 @@ const App = ({
   initializeFirebase(isServer);
   usePageview();
   return (
-    <React.Fragment>
+    <>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
@@ -32,8 +32,8 @@ const App = ({
       <div className="page-wrapper">
         <Component {...pageProps} />
       </div>
-      <RoutingEffect.Component />
-    </React.Fragment>
+      <RoutingEffect />
+    </>
   );
 };
 

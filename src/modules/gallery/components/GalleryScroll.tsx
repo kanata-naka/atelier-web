@@ -39,7 +39,7 @@ const GalleryScroll: FC<{
           restrict: [Restrict.ALL, Restrict.LIMITED],
         });
         setItems([...items, ...response.data.result]);
-        setFetchedAll(response.data.fetchedAll!);
+        setFetchedAll(response.data.fetchedAll);
       } catch (error) {
         console.error(error);
       }
@@ -67,7 +67,7 @@ const GalleryScroll: FC<{
       <div className="loading">
         {loading && <img className="loading-image" src="/images/loading.svg" />}
       </div>
-      <GalleryModal.Component />
+      <GalleryModal />
     </section>
   );
 };

@@ -46,7 +46,7 @@ const Page: NextPage<{
       <GalleryScroll
         tag={tag}
         items={items}
-        fetchedAll={fetchedAll!}
+        fetchedAll={fetchedAll}
         fetchLimit={GALLERY_SCROLL_FETCH_LIMIT}
       />
       <Footer />

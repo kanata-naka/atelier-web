@@ -39,7 +39,7 @@ const Page: NextPage<{ item: ArtGetResponse }> = ({ item }) => {
       />
       <Header />
       <PageHeading>GALLERY</PageHeading>
-      <GalleryModal.Component onClose={onClose} />
+      <GalleryModal onClose={onClose} />
       <Footer />
     </div>
   );

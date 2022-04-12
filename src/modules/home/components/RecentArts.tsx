@@ -17,7 +17,7 @@ const RecentArts: FC<{ items: ArtGetResponse[] }> = ({ items }) => {
           />
         ))}
       </div>
-      <GalleryModal.Component />
+      <GalleryModal />
     </section>
   );
 };

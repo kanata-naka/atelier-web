@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  ReactElement,
-  FC,
-} from "react";
+import React, { FC, useState, useCallback } from "react";
 import Router from "next/router";
 import Modal from "react-modal";
 import ShareButtons from "../../../common/components/ShareButtons";
@@ -15,97 +9,94 @@ import { renderMarkdown } from "../../../utils/domUtil";
 
 Modal.setAppElement("#__next");
 
-const GalleryModal: {
-  Component: (args: { onClose?: () => void }) => ReactElement | null;
+const GalleryModal: FC<{ onClose?: () => void }> & {
   open: (item: ArtGetResponse) => void;
   close: () => void;
-} = {
-  Component: ({ onClose }) => {
-    const [isOpen, setOpen] = useState(false);
-    const [item, setItem] = useState<ArtGetResponse | null>(null);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isForegroundActive, setForegroundActive] = useState(true);
+} = ({ onClose }) => {
+  const [isOpen, setOpen] = useState(false);
+  const [item, setItem] = useState<ArtGetResponse | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isForegroundActive, setForegroundActive] = useState(true);
 
-    useEffect(() => {
-      GalleryModal.open = (item) => {
-        setItem(item);
-        setCurrentImageIndex(0);
-        setForegroundActive(true);
-        setOpen(true);
-        sendEvent({
-          action: "open",
-          category: "gallery_modal",
-          label: {
-            id: item.id,
-            title: item.title,
-          },
-        });
-      };
-      GalleryModal.close = () => setOpen(false);
-    }, []);
+  GalleryModal.open = (item) => {
+    // モーダルを初期化する
+    setItem(item);
+    setCurrentImageIndex(0);
+    setForegroundActive(true);
+    setOpen(true);
+    sendEvent({
+      action: "open",
+      category: "gallery_modal",
+      label: {
+        id: item.id,
+        title: item.title,
+      },
+    });
+  };
 
-    const handleClick = useCallback(() => {
-      // キャプションの表示・非表示を切り替える
-      setForegroundActive(!isForegroundActive);
-    }, [isForegroundActive]);
+  GalleryModal.close = () => {
+    setOpen(false);
+  };
 
-    const handleClose = useCallback(() => {
-      if (onClose) {
-        onClose();
-      }
-      setOpen(false);
-    }, []);
+  const handleClick = useCallback(() => {
+    // キャプションの表示・非表示を切り替える
+    setForegroundActive(!isForegroundActive);
+  }, [isForegroundActive]);
 
-    if (!item) {
-      return null;
+  const handleClose = useCallback(() => {
+    if (onClose) {
+      onClose();
     }
+    setOpen(false);
+  }, []);
 
-    return (
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={handleClose}
-        className="gallery-modal"
-        bodyOpenClassName="gallery-modal--open"
-        style={{ overlay: { zIndex: 2 } }}>
-        <Overlay onClick={handleClose} />
-        <div className="gallery-modal-container" onClick={handleClick}>
-          <Background image={item.images[currentImageIndex]} />
-          <div
-            className="gallery-modal-foreground"
-            style={{ display: isForegroundActive ? "block" : "none" }}>
-            <Title>{item.title}</Title>
-            {item.tags && <TagList tags={item.tags} />}
-            <Description>{renderMarkdown(item.description)}</Description>
-            <ShareButtons
-              url={`${process.env.NEXT_PUBLIC_BASE_URL}/gallery/${item.id}`}
-              title={item.title}
-              classPrefix="gallery-modal-"
-            />
-            <PostedDate timestamp={item.createdAt} />
-          </div>
-          <DiffList
-            images={item.images}
-            currentImageIndex={currentImageIndex}
-            onSelect={(index: number) => {
-              setCurrentImageIndex(index);
-              sendEvent({
-                action: "switch_diff",
-                category: "gallery_modal",
-                label: {
-                  id: item.id,
-                  title: item.title,
-                  index,
-                },
-              });
-            }}
+  if (!item) {
+    return null;
+  }
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={handleClose}
+      className="gallery-modal"
+      bodyOpenClassName="gallery-modal--open"
+      style={{ overlay: { zIndex: 2 } }}>
+      <Overlay onClick={handleClose} />
+      <div className="gallery-modal-container" onClick={handleClick}>
+        <Background image={item.images[currentImageIndex]} />
+        <div
+          className="gallery-modal-foreground"
+          style={{ display: isForegroundActive ? "block" : "none" }}>
+          <Title>{item.title}</Title>
+          {item.tags && <TagList tags={item.tags} />}
+          <Description>{renderMarkdown(item.description)}</Description>
+          <ShareButtons
+            url={`${process.env.NEXT_PUBLIC_BASE_URL}/gallery/${item.id}`}
+            title={item.title}
+            classPrefix="gallery-modal-"
           />
+          <PostedDate timestamp={item.createdAt} />
         </div>
-        <CloseButton onClick={handleClose} />
-      </Modal>
-    );
-  },
-  open: () => {},
-  close: () => {},
+        <DiffList
+          images={item.images}
+          currentImageIndex={currentImageIndex}
+          onSelect={(index: number) => {
+            setCurrentImageIndex(index);
+            sendEvent({
+              action: "switch_diff",
+              category: "gallery_modal",
+              label: {
+                id: item.id,
+                title: item.title,
+                index,
+              },
+            });
+          }}
+        />
+      </div>
+      <CloseButton onClick={handleClose} />
+    </Modal>
+  );
 };
 
 const Overlay: FC<{ onClick: () => void }> = ({ onClick }) => {
@@ -222,5 +213,8 @@ const CloseButton: FC<{ onClick: () => void }> = ({ onClick }) => {
     </div>
   );
 };
+
+GalleryModal.open = () => ({});
+GalleryModal.close = () => ({});
 
 export default GalleryModal;
