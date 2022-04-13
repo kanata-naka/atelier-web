@@ -10,6 +10,9 @@ const transitionStyle: { [state in TransitionStatus]?: React.CSSProperties } = {
   exited: { opacity: 0, visibility: "hidden" },
 };
 
+/**
+ * ルーティングエフェクト
+ */
 const RoutingEffect: FC = () => {
   const [loading, setLoading] = useState(false);
 
@@ -29,8 +32,7 @@ const RoutingEffect: FC = () => {
       onExit={() => {
         // スクロールを有効にする
         document.body.style.overflow = "scroll";
-      }}
-    >
+      }}>
       {(state) => (
         <div className="page-loading" style={transitionStyle[state]}>
           <img className="loading-image" src="/images/loading.svg" />

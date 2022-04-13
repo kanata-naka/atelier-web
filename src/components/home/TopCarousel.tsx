@@ -2,6 +2,9 @@ import React, { FC, useRef, useEffect, useCallback } from "react";
 import { useStateRef } from "../../hooks";
 import { TopImageGetResponse } from "../../types/api/topImages";
 
+/**
+ * カルーセル
+ */
 const TopCarousel: FC<{
   items: TopImageGetResponse[];
   switchInterval: number;

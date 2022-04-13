@@ -3,6 +3,9 @@ import { BLOG_URL } from "../../constants";
 import { BlogGetArticleListResponse } from "../../types/api/blog";
 import { formatDateFromIsoDate } from "../../utils/dateUtil";
 
+/**
+ * 最新記事の一覧
+ */
 const LatestArticles: FC<{ items: BlogGetArticleListResponse.Article[] }> = ({
   items,
 }) => {

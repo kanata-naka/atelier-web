@@ -3,6 +3,9 @@ import Link from "next/link";
 import { WorkGetResponse } from "../../types/api/works";
 import { SectionHeading } from "../common/elements";
 
+/**
+ * 最近の作品一覧
+ */
 const RecentWorks: FC<{ items: WorkGetResponse[] }> = ({ items }) => {
   return (
     <section className="recent-works">

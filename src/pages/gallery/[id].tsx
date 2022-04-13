@@ -7,7 +7,7 @@ import { PageHeading } from "../../components/common/elements";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header";
 import OgpTags from "../../components/common/OgpTags";
-import GalleryModal from "../../components/gallery/GalleryModal";
+import ArtModal from "../../components/gallery/ArtModal";
 import { SITE_NAME } from "../../constants";
 import { GetByIdRequest } from "../../types/api";
 import { ArtGetResponse } from "../../types/api/arts";
@@ -15,7 +15,7 @@ import { ArtGetResponse } from "../../types/api/arts";
 const Page: NextPage<{ item: ArtGetResponse }> = ({ item }) => {
   useEffect(() => {
     // モーダルを開く
-    GalleryModal.open(item);
+    ArtModal.open(item);
     scrollTo(0, 0);
   }, [item]);
 
@@ -39,7 +39,7 @@ const Page: NextPage<{ item: ArtGetResponse }> = ({ item }) => {
       />
       <Header />
       <PageHeading>GALLERY</PageHeading>
-      <GalleryModal onClose={onClose} />
+      <ArtModal onClose={onClose} />
       <Footer />
     </div>
   );

@@ -22,7 +22,7 @@ body {
   line-height: 1.2em;
 }
 
-/* ヘッダー */
+// ヘッダー
 .site-header {
   position: fixed;
   top: 0;
@@ -53,7 +53,7 @@ body {
   }
 }
 
-/* グローバルナビゲーション */
+// グローバルナビゲーション
 .global-nav {
   &-list {
     display: flex;
@@ -128,7 +128,7 @@ body {
   }
 }
 
-/* ページ */
+// ページ
 .page-wrapper {
   position: absolute;
   top: $site-header-height;
@@ -146,7 +146,7 @@ body {
   text-align: center;
 }
 
-/* ページネーション */
+// ページネーション
 .pagination {
   display: flex;
   align-items: center;
@@ -221,7 +221,7 @@ body {
   }
 }
 
-/* フッター */
+// フッター
 .site-footer {
   &:before {
     display: block;
@@ -238,7 +238,7 @@ body {
   }
 }
 
-/* ローディングエフェクト */
+// ローディングエフェクト
 .page-loading {
   position: fixed;
   top: 0;
@@ -292,7 +292,7 @@ body {
   }
 }
 
-/* シェアボタン */
+// シェアボタン
 .share-buttons {
   display: flex;
   align-items: flex-start;

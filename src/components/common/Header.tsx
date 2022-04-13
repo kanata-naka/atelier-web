@@ -2,6 +2,9 @@ import React, { FC } from "react";
 import Link from "next/link";
 import GlobalNav from "./GlobalNav";
 
+/**
+ * ヘッダー
+ */
 const Header: FC = () => {
   return (
     <header className="site-header">

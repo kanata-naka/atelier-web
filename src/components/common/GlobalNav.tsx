@@ -3,6 +3,9 @@ import Link from "next/link";
 import { BLOG_URL } from "../../constants";
 import { useMediaQuery } from "../../hooks";
 
+/**
+ * グローバルナビゲーション
+ */
 const GlobalNav: FC = () => {
   const [isToggleMenuActive, setToggleMenuActive] = useState(false);
 
@@ -39,6 +42,9 @@ const GlobalNav: FC = () => {
   );
 };
 
+/**
+ * ハンバーガーボタン
+ */
 const HamburgerButton: FC<{
   isActive: boolean;
   onClick: () => void;

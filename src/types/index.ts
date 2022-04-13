@@ -1,3 +1,6 @@
+/**
+ * ページネーション
+ */
 export type PaginationState = {
   /** 現在のページ番号 */
   page: number;
@@ -7,6 +10,9 @@ export type PaginationState = {
   total: number;
 };
 
+/**
+ * SNSアカウント
+ */
 export type SocialAccount = {
   /** SNS名 */
   name: string;
@@ -16,6 +22,9 @@ export type SocialAccount = {
   imageUrl: string;
 };
 
+/**
+ * 公開範囲
+ */
 export const Restrict = {
   /** 全体公開 */
   ALL: "0",

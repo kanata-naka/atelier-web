@@ -5,6 +5,9 @@ import { formatDateFromUnixTimestamp } from "../../utils/dateUtil";
 import { renderMarkdown } from "../../utils/domUtil";
 import ShareButtons from "../common/ShareButtons";
 
+/**
+ * 作品一覧
+ */
 const WorkList: FC<{ items: WorkGetResponse[] }> = ({ items }) => {
   return (
     <section className="work-list">

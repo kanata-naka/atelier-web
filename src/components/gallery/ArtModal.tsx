@@ -9,7 +9,10 @@ import ShareButtons from "../common/ShareButtons";
 
 Modal.setAppElement("#__next");
 
-const GalleryModal: FC<{ onClose?: () => void }> & {
+/**
+ * イラストのモーダル
+ */
+const ArtModal: FC<{ onClose?: () => void }> & {
   open: (item: ArtGetResponse) => void;
   close: () => void;
 } = ({ onClose }) => {
@@ -18,7 +21,7 @@ const GalleryModal: FC<{ onClose?: () => void }> & {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isForegroundActive, setForegroundActive] = useState(true);
 
-  GalleryModal.open = (item) => {
+  ArtModal.open = (item) => {
     // モーダルを初期化する
     setItem(item);
     setCurrentImageIndex(0);
@@ -34,7 +37,7 @@ const GalleryModal: FC<{ onClose?: () => void }> & {
     });
   };
 
-  GalleryModal.close = () => {
+  ArtModal.close = () => {
     setOpen(false);
   };
 
@@ -137,7 +140,7 @@ const TagListItem: FC<{ tag: string }> = ({ tag }) => {
           event.preventDefault();
           // ※同一ページ間の遷移だとモーダルがそのままになってしまうため、
           //   手動でモーダルを閉じる
-          GalleryModal.close();
+          ArtModal.close();
           Router.push(`/gallery?tag=${tag}`);
         }}>
         {`#${tag}`}
@@ -214,7 +217,7 @@ const CloseButton: FC<{ onClick: () => void }> = ({ onClick }) => {
   );
 };
 
-GalleryModal.open = () => ({});
-GalleryModal.close = () => ({});
+ArtModal.open = () => ({});
+ArtModal.close = () => ({});
 
-export default GalleryModal;
+export default ArtModal;

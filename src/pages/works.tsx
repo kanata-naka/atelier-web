@@ -10,10 +10,7 @@ import OgpTags from "../components/common/OgpTags";
 import Pagination from "../components/common/Pagination";
 import WorkList from "../components/works/WorkList";
 import { SITE_NAME } from "../constants";
-import {
-  WORK_LIST_PER_PAGE,
-  WORK_LIST_PAGE_NUMBER_DISPLAY_MAX_RANGE,
-} from "../constants/works";
+import { PER_PAGE, PAGE_NUMBER_DISPLAY_MAX_RANGE } from "../constants/works";
 import { PaginationState, Restrict } from "../types";
 import {
   WorkGetListRequest,
@@ -32,10 +29,10 @@ const Page: NextPage<{
 
   useEffect(() => {
     const page = +Number(router.query.page) || 1;
-    setItemsByPage(getItemsByPage(items, page, WORK_LIST_PER_PAGE));
+    setItemsByPage(getItemsByPage(items, page, PER_PAGE));
     setPaginationState({
       page,
-      perPage: WORK_LIST_PER_PAGE,
+      perPage: PER_PAGE,
       total: items.length,
     });
     scrollTo(0, 0);
@@ -58,7 +55,7 @@ const Page: NextPage<{
       {paginationState && (
         <Pagination
           state={paginationState}
-          maxRange={WORK_LIST_PAGE_NUMBER_DISPLAY_MAX_RANGE}
+          maxRange={PAGE_NUMBER_DISPLAY_MAX_RANGE}
         />
       )}
       <Footer />

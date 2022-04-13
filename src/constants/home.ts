@@ -10,7 +10,7 @@ export const AUTHOR_NAME = "彼方なか";
 export const INTRODUCTION = `版権メインの個人サークル「カナタノアトリエ」、
 一次創作オンリーのサークル「old dear place」で活動しています。`;
 
-/** SNSのアカウント一覧 */
+/** SNSアカウント一覧 */
 export const SOCIAL_ACCOUNTS: SocialAccount[] = [
   {
     name: "Twitter",

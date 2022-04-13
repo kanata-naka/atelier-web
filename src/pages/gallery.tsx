@@ -6,10 +6,10 @@ import { PageHeading } from "../components/common/elements";
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
 import OgpTags from "../components/common/OgpTags";
-import GalleryScroll from "../components/gallery/GalleryScroll";
-import TagInfo from "../components/gallery/TagInfo";
+import ArtScroll from "../components/gallery/ArtScroll";
+import TagList from "../components/gallery/TagList";
 import { SITE_NAME } from "../constants";
-import { GALLERY_SCROLL_FETCH_LIMIT } from "../constants/gallery";
+import { ART_SCROLL_FETCH_LIMIT } from "../constants/gallery";
 import { Restrict } from "../types";
 import { GetByIdRequest } from "../types/api";
 import {
@@ -42,12 +42,12 @@ const Page: NextPage<{
       />
       <Header />
       <PageHeading>GALLERY</PageHeading>
-      <TagInfo tagInfo={tagInfo} />
-      <GalleryScroll
+      <TagList info={tagInfo} />
+      <ArtScroll
         tag={tag}
         items={items}
         fetchedAll={fetchedAll}
-        fetchLimit={GALLERY_SCROLL_FETCH_LIMIT}
+        fetchLimit={ART_SCROLL_FETCH_LIMIT}
       />
       <Footer />
     </div>
@@ -67,11 +67,11 @@ Page.getInitialProps = async ({ query }) => {
         console.error(error);
         return [];
       }),
-    // イラスト一覧（最初の${GALLERY_SCROLL_FETCH_LIMIT}件）を取得する
+    // イラスト一覧（最初の${ART_SCROLL_FETCH_LIMIT}件）を取得する
     callFunction<ArtGetListRequest, ArtGetListResponse>("arts-get", {
       tag: query.tag && String(query.tag),
       restrict: [Restrict.ALL, Restrict.LIMITED],
-      limit: GALLERY_SCROLL_FETCH_LIMIT,
+      limit: ART_SCROLL_FETCH_LIMIT,
     })
       .then((response) => {
         return response.data;

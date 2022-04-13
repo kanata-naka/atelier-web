@@ -8,9 +8,12 @@ import {
   ArtGetListResponse,
   ArtGetResponse,
 } from "../../types/api/arts";
-import GalleryModal from "./GalleryModal";
+import ArtModal from "./ArtModal";
 
-const GalleryScroll: FC<{
+/**
+ * イラストの無限スクロール
+ */
+const ArtScroll: FC<{
   tag?: string;
   items: ArtGetResponse[];
   fetchedAll: boolean;
@@ -61,18 +64,18 @@ const GalleryScroll: FC<{
     <section className="art-scroll">
       <div className="art-scroll-container">
         {items.map((item, index) => (
-          <GalleryScrollItem key={index} item={item} />
+          <ArtScrollItem key={index} item={item} />
         ))}
       </div>
       <div className="loading">
         {loading && <img className="loading-image" src="/images/loading.svg" />}
       </div>
-      <GalleryModal />
+      <ArtModal />
     </section>
   );
 };
 
-const GalleryScrollItem: FC<{ item: ArtGetResponse }> = ({ item }) => {
+const ArtScrollItem: FC<{ item: ArtGetResponse }> = ({ item }) => {
   return (
     <div className="art-scroll-item">
       <Link href={`/gallery?id=${item.id}`} as={`/gallery/${item.id}`}>
@@ -81,16 +84,16 @@ const GalleryScrollItem: FC<{ item: ArtGetResponse }> = ({ item }) => {
           onClick={(event) => {
             event.preventDefault();
             // モーダルを開く
-            GalleryModal.open(item);
+            ArtModal.open(item);
           }}>
-          <GalleryScrollItemBackground image={item.images[0]} />
+          <ArtScrollItemBackground image={item.images[0]} />
         </a>
       </Link>
     </div>
   );
 };
 
-const GalleryScrollItemBackground: FC<{
+const ArtScrollItemBackground: FC<{
   image: ArtGetResponse.Image;
 }> = ({ image }) => {
   return (
@@ -102,4 +105,4 @@ const GalleryScrollItemBackground: FC<{
   );
 };
 
-export default GalleryScroll;
+export default ArtScroll;

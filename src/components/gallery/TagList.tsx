@@ -10,9 +10,10 @@ const transitionClasses: { [state in TransitionStatus]?: string } = {
   exited: "slide-exited",
 };
 
-const TagInfo: FC<{ tagInfo: TagInfoGetResponse.TagInfo[] }> = ({
-  tagInfo,
-}) => {
+/**
+ * タグ一覧
+ */
+const TagList: FC<{ info: TagInfoGetResponse.TagInfo[] }> = ({ info }) => {
   const [collasped, setCollasped] = useState(true);
   const [height, setHeight] = useState(48);
   const tagListRef = useRef<HTMLUListElement>(null);
@@ -29,7 +30,7 @@ const TagInfo: FC<{ tagInfo: TagInfoGetResponse.TagInfo[] }> = ({
   );
 
   // タグの最大件数
-  const maxCount = tagInfo.reduce(
+  const maxCount = info.reduce(
     (_maxCount, tag) => Math.max(_maxCount, tag.count),
     1
   );
@@ -50,7 +51,7 @@ const TagInfo: FC<{ tagInfo: TagInfoGetResponse.TagInfo[] }> = ({
             className={`tag-info ${transitionClasses[state] || ""}`}
             style={transitionStyle[state]}>
             <ul className="tag-list" ref={tagListRef}>
-              {tagInfo.map((tag, index) => {
+              {info.map((tag, index) => {
                 const rate = tag.count / maxCount;
                 return (
                   <TagListItem
@@ -121,4 +122,4 @@ const TagInfoSlideButton: FC<{
   );
 };
 
-export default TagInfo;
+export default TagList;

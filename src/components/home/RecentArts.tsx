@@ -2,8 +2,11 @@ import React, { FC } from "react";
 import Link from "next/link";
 import { ArtGetResponse } from "../../types/api/arts";
 import { SectionHeading } from "../common/elements";
-import GalleryModal from "../gallery/GalleryModal";
+import ArtModal from "../gallery/ArtModal";
 
+/**
+ * 最近のイラスト一覧
+ */
 const RecentArts: FC<{ items: ArtGetResponse[] }> = ({ items }) => {
   return (
     <section className="recent-arts">
@@ -17,7 +20,7 @@ const RecentArts: FC<{ items: ArtGetResponse[] }> = ({ items }) => {
           />
         ))}
       </div>
-      <GalleryModal />
+      <ArtModal />
     </section>
   );
 };
@@ -37,7 +40,7 @@ const RecentArtItem: FC<{
             }
             event.preventDefault();
             // モーダルを開く
-            GalleryModal.open(item);
+            ArtModal.open(item);
           }}>
           <RecentArtItemBackground image={item.images[0]} />
           <RecentArtItemForeground isLast={isLast} />

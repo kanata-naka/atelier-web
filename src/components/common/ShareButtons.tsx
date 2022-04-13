@@ -6,6 +6,9 @@ import {
   reloadLINEItButtons,
 } from "../../utils/vendorUtil";
 
+/**
+ * シェアボタン
+ */
 const ShareButtons: FC<{
   url: string;
   title?: string;
