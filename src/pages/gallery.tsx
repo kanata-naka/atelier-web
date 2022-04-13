@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 import Head from "next/head";
-import { callFunction } from "../common/api";
-import { PageHeading } from "../common/components/elements";
-import Footer from "../common/components/Footer";
-import Header from "../common/components/Header";
-import OgpTags from "../common/components/OgpTags";
-import { SITE_NAME } from "../common/models";
-import GalleryScroll from "../modules/gallery/components/GalleryScroll";
-import TagInfo from "../modules/gallery/components/TagInfo";
-import { GALLERY_SCROLL_FETCH_LIMIT } from "../modules/gallery/models";
+import { callFunction } from "../api/firebase";
+import { PageHeading } from "../components/common/elements";
+import Footer from "../components/common/Footer";
+import Header from "../components/common/Header";
+import OgpTags from "../components/common/OgpTags";
+import GalleryScroll from "../components/gallery/GalleryScroll";
+import TagInfo from "../components/gallery/TagInfo";
+import { SITE_NAME } from "../constants";
+import { GALLERY_SCROLL_FETCH_LIMIT } from "../constants/gallery";
 import { Restrict } from "../types";
 import { GetByIdRequest } from "../types/api";
 import {

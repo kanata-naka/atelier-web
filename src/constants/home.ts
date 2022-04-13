@@ -1,5 +1,5 @@
-import { TWITTER_USERNAME } from "../../common/models";
-import { SocialAccount } from "../../types";
+import { TWITTER_USERNAME } from ".";
+import { SocialAccount } from "../types";
 
 /** カルーセルの画像を切り替える間隔（ミリ秒） */
 export const TOP_CAROUSEL_SWITCH_INTERVAL = 7000;

@@ -1,9 +1,9 @@
 import React from "react";
 import { AppContext, AppProps } from "next/app";
 import Head from "next/head";
-import { initializeFirebase } from "../common/api";
-import RoutingEffect from "../common/components/RoutingEffect";
-import { usePageview } from "../common/hooks";
+import { initializeFirebase } from "../api/firebase";
+import RoutingEffect from "../components/common/RoutingEffect";
+import { usePageview } from "../hooks";
 import "../styles/style.scss";
 
 const App = ({

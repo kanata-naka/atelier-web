@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 import Head from "next/head";
-import { callFunction } from "../../common/api";
-import { PageHeading } from "../../common/components/elements";
-import Footer from "../../common/components/Footer";
-import Header from "../../common/components/Header";
-import OgpTags from "../../common/components/OgpTags";
-import { SITE_NAME } from "../../common/models";
-import WorkList from "../../modules/works/components/WorkList";
+import { callFunction } from "../../api/firebase";
+import { PageHeading } from "../../components/common/elements";
+import Footer from "../../components/common/Footer";
+import Header from "../../components/common/Header";
+import OgpTags from "../../components/common/OgpTags";
+import WorkList from "../../components/works/WorkList";
+import { SITE_NAME } from "../../constants";
 import { GetByIdRequest } from "../../types/api";
 import { WorkGetResponse } from "../../types/api/works";
 

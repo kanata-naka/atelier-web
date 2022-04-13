@@ -1,6 +1,6 @@
 import React, { FC, useRef, useEffect, useCallback } from "react";
-import { useStateRef } from "../../../common/hooks";
-import { TopImageGetResponse } from "../../../types/api/topImages";
+import { useStateRef } from "../../hooks";
+import { TopImageGetResponse } from "../../types/api/topImages";
 
 const TopCarousel: FC<{
   items: TopImageGetResponse[];
@@ -60,8 +60,7 @@ const TopCarousel: FC<{
   // DOMの読み込みが完了するまでtransitionを無効にする
   return (
     <section
-      className={`top-carousel ${!preloading ? "enable-transition" : ""}`}
-    >
+      className={`top-carousel ${!preloading ? "enable-transition" : ""}`}>
       <TopCarouselList items={items} currentIndex={currentIndex} />
       <Navigation
         items={items}
@@ -99,8 +98,7 @@ const TopCarouselItem: FC<{
       style={{
         backgroundImage: `url(${item.image.url})`,
         ...(isActive ? { opacity: 1 } : {}),
-      }}
-    ></li>
+      }}></li>
   );
 };
 
@@ -134,8 +132,7 @@ const NavigationItem: FC<{
       onClick={onClick}
       style={{
         backgroundImage: `url(${item.thumbnailImage.url})`,
-      }}
-    ></li>
+      }}></li>
   );
 };
 

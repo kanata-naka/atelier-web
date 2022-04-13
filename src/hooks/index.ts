@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Router from "next/router";
+import { sendPageview } from "../api/gtag";
 import {
   matchesMediaQuery,
   getOffsetScrolledToBottom,
   getCurrentScrollTop,
 } from "../utils/domUtil";
-import { sendPageview } from "./gtag";
 
 /**
  * ステートとそのRefを作成する

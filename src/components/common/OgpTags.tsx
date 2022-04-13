@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Head from "next/head";
-import { SITE_NAME, TWITTER_USERNAME } from "../models";
+import { SITE_NAME, TWITTER_USERNAME } from "../../constants";
 
 const OgpTags: FC<{
   url: string;

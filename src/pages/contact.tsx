@@ -1,10 +1,10 @@
 import React from "react";
 import { NextPage } from "next";
 import Head from "next/head";
-import Footer from "../common/components/Footer";
-import Header from "../common/components/Header";
-import OgpTags from "../common/components/OgpTags";
-import { SITE_NAME } from "../common/models";
+import Footer from "../components/common/Footer";
+import Header from "../components/common/Header";
+import OgpTags from "../components/common/OgpTags";
+import { SITE_NAME } from "../constants";
 
 const Page: NextPage = () => {
   return (

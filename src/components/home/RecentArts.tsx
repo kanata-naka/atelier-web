@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import { SectionHeading } from "../../../common/components/elements";
-import { ArtGetResponse } from "../../../types/api/arts";
-import GalleryModal from "../../gallery/components/GalleryModal";
+import { ArtGetResponse } from "../../types/api/arts";
+import { SectionHeading } from "../common/elements";
+import GalleryModal from "../gallery/GalleryModal";
 
 const RecentArts: FC<{ items: ArtGetResponse[] }> = ({ items }) => {
   return (
@@ -38,8 +38,7 @@ const RecentArtItem: FC<{
             event.preventDefault();
             // モーダルを開く
             GalleryModal.open(item);
-          }}
-        >
+          }}>
           <RecentArtItemBackground image={item.images[0]} />
           <RecentArtItemForeground isLast={isLast} />
         </a>
@@ -56,8 +55,7 @@ const RecentArtItemBackground: FC<{
       className="recent-arts-item-background"
       style={{
         backgroundImage: `url(${image.thumbnailUrl.medium})`,
-      }}
-    ></div>
+      }}></div>
   );
 };
 
@@ -68,8 +66,7 @@ const RecentArtItemForeground: FC<{ isLast: boolean }> = ({ isLast }) => {
         isLast
           ? "recent-arts-item-foreground--more"
           : "recent-arts-item-foreground"
-      }
-    >
+      }>
       {isLast && <div className="recent-arts-more">{"more ＞"}</div>}
     </div>
   );

@@ -1,10 +1,10 @@
 import React, { FC, useCallback } from "react";
+import { SITE_NAME, TWITTER_USERNAME } from "../../constants";
 import {
   reloadTwitterWidgets,
   reloadFacebookWidgets,
   reloadLINEItButtons,
 } from "../../utils/vendorUtil";
-import { SITE_NAME, TWITTER_USERNAME } from "../models";
 
 const ShareButtons: FC<{
   url: string;
@@ -37,8 +37,7 @@ const TwitterShareButton: FC<{
     <li
       key={url}
       className={`${classPrefix}share-buttons-item`}
-      ref={elementRef}
-    >
+      ref={elementRef}>
       <a
         href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw"
         className="twitter-hashtag-button"
@@ -46,8 +45,7 @@ const TwitterShareButton: FC<{
         data-url={url}
         data-related={TWITTER_USERNAME}
         data-lang="ja"
-        data-show-count="false"
-      >
+        data-show-count="false">
         Tweet
       </a>
     </li>
@@ -70,8 +68,7 @@ const FacebookShareButton: FC<{
     <li
       key={url}
       className={`${classPrefix}share-buttons-item`}
-      ref={elementRef}
-    >
+      ref={elementRef}>
       <div
         className="fb-like"
         data-href={url}
@@ -79,8 +76,7 @@ const FacebookShareButton: FC<{
         data-layout="button"
         data-action="like"
         data-size="small"
-        data-share="false"
-      ></div>
+        data-share="false"></div>
     </li>
   );
 };
@@ -101,8 +97,7 @@ const LINEShareButton: FC<{
     <li
       key={url}
       className={`${classPrefix}share-buttons-item`}
-      ref={elementRef}
-    >
+      ref={elementRef}>
       <div
         className="line-it-button"
         data-lang="ja"
@@ -112,8 +107,7 @@ const LINEShareButton: FC<{
         data-color="default"
         data-size="small"
         data-count="false"
-        style={{ display: "none" }}
-      ></div>
+        style={{ display: "none" }}></div>
     </li>
   );
 };

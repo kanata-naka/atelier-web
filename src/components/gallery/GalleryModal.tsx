@@ -1,11 +1,11 @@
 import React, { FC, useState, useCallback } from "react";
 import Router from "next/router";
 import Modal from "react-modal";
-import ShareButtons from "../../../common/components/ShareButtons";
-import { sendEvent } from "../../../common/gtag";
-import { ArtGetResponse } from "../../../types/api/arts";
-import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
-import { renderMarkdown } from "../../../utils/domUtil";
+import { sendEvent } from "../../api/gtag";
+import { ArtGetResponse } from "../../types/api/arts";
+import { formatDateFromUnixTimestamp } from "../../utils/dateUtil";
+import { renderMarkdown } from "../../utils/domUtil";
+import ShareButtons from "../common/ShareButtons";
 
 Modal.setAppElement("#__next");
 
@@ -60,15 +60,13 @@ const GalleryModal: FC<{ onClose?: () => void }> & {
       onRequestClose={handleClose}
       className="gallery-modal"
       bodyOpenClassName="gallery-modal--open"
-      style={{ overlay: { zIndex: 2 } }}
-    >
+      style={{ overlay: { zIndex: 2 } }}>
       <Overlay onClick={handleClose} />
       <div className="gallery-modal-container" onClick={handleClick}>
         <Background image={item.images[currentImageIndex]} />
         <div
           className="gallery-modal-foreground"
-          style={{ display: isForegroundActive ? "block" : "none" }}
-        >
+          style={{ display: isForegroundActive ? "block" : "none" }}>
           <Title>{item.title}</Title>
           {item.tags && <TagList tags={item.tags} />}
           <Description>{renderMarkdown(item.description)}</Description>
@@ -111,8 +109,7 @@ const Background: FC<{ image?: ArtGetResponse.Image }> = ({ image }) => {
       className="gallery-modal-background"
       style={{
         backgroundImage: image && `url(${image.url})`,
-      }}
-    ></div>
+      }}></div>
   );
 };
 
@@ -142,8 +139,7 @@ const TagListItem: FC<{ tag: string }> = ({ tag }) => {
           //   手動でモーダルを閉じる
           GalleryModal.close();
           Router.push(`/gallery?tag=${tag}`);
-        }}
-      >
+        }}>
         {`#${tag}`}
       </a>
     </li>
@@ -201,13 +197,11 @@ const DiffListItem: FC<{
       className={`diff-list-item ${isActive ? "active" : ""}`}
       style={{
         backgroundImage: `url(${image.thumbnailUrl.small})`,
-      }}
-    >
+      }}>
       <a
         className="diff-list-item__link"
         href={image.url}
-        onClick={onClick}
-      ></a>
+        onClick={onClick}></a>
     </li>
   );
 };

@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { BLOG_URL } from "../common/models";
+import { BLOG_URL } from "../constants";
 
 const Page: NextPage = () => {
   return null;

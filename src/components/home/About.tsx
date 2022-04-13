@@ -1,9 +1,13 @@
 import React, { FC, useCallback } from "react";
-import { SectionHeading } from "../../../common/components/elements";
-import { SITE_DESCRIPTION, TWITTER_USERNAME } from "../../../common/models";
-import { SocialAccount } from "../../../types";
-import { reloadTwitterWidgets } from "../../../utils/vendorUtil";
-import { AUTHOR_NAME, INTRODUCTION, SOCIAL_ACCOUNTS } from "../model";
+import { SITE_DESCRIPTION, TWITTER_USERNAME } from "../../constants";
+import {
+  AUTHOR_NAME,
+  INTRODUCTION,
+  SOCIAL_ACCOUNTS,
+} from "../../constants/home";
+import { SocialAccount } from "../../types";
+import { reloadTwitterWidgets } from "../../utils/vendorUtil";
+import { SectionHeading } from "../common/elements";
 
 const About: FC = () => {
   return (
@@ -84,8 +88,7 @@ const TwitterWidgets: FC<{ id: string }> = ({ id }) => {
         className="twitter-timeline"
         data-lang="ja"
         data-height="500"
-        href={`https://twitter.com/${id}?ref_src=twsrc%5Etfw`}
-      >
+        href={`https://twitter.com/${id}?ref_src=twsrc%5Etfw`}>
         {`Tweets by ${id}`}
       </a>
     </div>

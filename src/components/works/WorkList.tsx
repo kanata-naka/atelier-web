@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { useState, useEffect } from "react";
-import ShareButtons from "../../../common/components/ShareButtons";
-import { WorkGetResponse } from "../../../types/api/works";
-import { formatDateFromUnixTimestamp } from "../../../utils/dateUtil";
-import { renderMarkdown } from "../../../utils/domUtil";
+import { WorkGetResponse } from "../../types/api/works";
+import { formatDateFromUnixTimestamp } from "../../utils/dateUtil";
+import { renderMarkdown } from "../../utils/domUtil";
+import ShareButtons from "../common/ShareButtons";
 
 const WorkList: FC<{ items: WorkGetResponse[] }> = ({ items }) => {
   return (
@@ -112,13 +112,11 @@ const DiffListItem: FC<{
       className={`diff-list-item ${isActive ? "active" : ""}`}
       style={{
         backgroundImage: `url(${image.thumbnailUrl.small})`,
-      }}
-    >
+      }}>
       <a
         className="diff-list-item__link"
         href={image.url}
-        onClick={onClick}
-      ></a>
+        onClick={onClick}></a>
     </li>
   );
 };

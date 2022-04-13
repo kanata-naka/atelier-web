@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { callFunction } from "../common/api";
-import { PageHeading } from "../common/components/elements";
-import Footer from "../common/components/Footer";
-import Header from "../common/components/Header";
-import OgpTags from "../common/components/OgpTags";
-import Pagination from "../common/components/Pagination";
-import { SITE_NAME } from "../common/models";
-import WorkList from "../modules/works/components/WorkList";
+import { callFunction } from "../api/firebase";
+import { PageHeading } from "../components/common/elements";
+import Footer from "../components/common/Footer";
+import Header from "../components/common/Header";
+import OgpTags from "../components/common/OgpTags";
+import Pagination from "../components/common/Pagination";
+import WorkList from "../components/works/WorkList";
+import { SITE_NAME } from "../constants";
 import {
   WORK_LIST_PER_PAGE,
   WORK_LIST_PAGE_NUMBER_DISPLAY_MAX_RANGE,
-} from "../modules/works/models";
+} from "../constants/works";
 import { PaginationState, Restrict } from "../types";
 import {
   WorkGetListRequest,

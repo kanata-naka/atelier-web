@@ -1,13 +1,13 @@
 import React, { FC, useState, useEffect } from "react";
 import Link from "next/link";
-import { callFunction } from "../../../common/api";
-import { useScroll } from "../../../common/hooks";
-import { Restrict } from "../../../types";
+import { callFunction } from "../../api/firebase";
+import { useScroll } from "../../hooks";
+import { Restrict } from "../../types";
 import {
   ArtGetListRequest,
   ArtGetListResponse,
   ArtGetResponse,
-} from "../../../types/api/arts";
+} from "../../types/api/arts";
 import GalleryModal from "./GalleryModal";
 
 const GalleryScroll: FC<{
@@ -82,8 +82,7 @@ const GalleryScrollItem: FC<{ item: ArtGetResponse }> = ({ item }) => {
             event.preventDefault();
             // モーダルを開く
             GalleryModal.open(item);
-          }}
-        >
+          }}>
           <GalleryScrollItemBackground image={item.images[0]} />
         </a>
       </Link>
@@ -99,8 +98,7 @@ const GalleryScrollItemBackground: FC<{
       className="art-scroll-item-background"
       style={{
         backgroundImage: `url(${image.thumbnailUrl.medium})`,
-      }}
-    ></div>
+      }}></div>
   );
 };
 

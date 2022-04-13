@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import { SectionHeading } from "../../../common/components/elements";
-import { WorkGetResponse } from "../../../types/api/works";
+import { WorkGetResponse } from "../../types/api/works";
+import { SectionHeading } from "../common/elements";
 
 const RecentWorks: FC<{ items: WorkGetResponse[] }> = ({ items }) => {
   return (
@@ -45,8 +45,7 @@ const RecentWorkItemBackground: FC<{
       style={{
         backgroundImage: `url(${image ? image.url : "/images/no-image.png"})`,
         backgroundSize: image ? "cover" : "contain",
-      }}
-    ></div>
+      }}></div>
   );
 };
 
@@ -60,8 +59,7 @@ const RecentWorkItemForeground: FC<{
         isLast
           ? "recent-works-item-foreground--more"
           : "recent-works-item-foreground"
-      }
-    >
+      }>
       {isLast ? (
         <div className="recent-works-more">{"more ＞"}</div>
       ) : (

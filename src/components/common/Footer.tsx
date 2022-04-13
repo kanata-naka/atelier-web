@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { COPYRIGHT } from "../models";
+import { COPYRIGHT } from "../../constants";
 
 const Footer: FC = () => {
   return (

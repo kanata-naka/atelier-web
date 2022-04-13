@@ -1,17 +1,18 @@
 import React from "react";
 import { NextPage } from "next";
 import Head from "next/head";
-import { callFunction } from "../common/api";
-import Footer from "../common/components/Footer";
-import Header from "../common/components/Header";
-import OgpTags from "../common/components/OgpTags";
-import ShareButtons from "../common/components/ShareButtons";
-import { SITE_NAME, SITE_DESCRIPTION } from "../common/models";
-import About from "../modules/home/components/About";
-import RecentArts from "../modules/home/components/RecentArts";
-import RecentWorks from "../modules/home/components/RecentWorks";
-import TopCarousel from "../modules/home/components/TopCarousel";
-import { TOP_CAROUSEL_SWITCH_INTERVAL } from "../modules/home/model";
+import { callFunction } from "../api/firebase";
+import Footer from "../components/common/Footer";
+import Header from "../components/common/Header";
+import OgpTags from "../components/common/OgpTags";
+import ShareButtons from "../components/common/ShareButtons";
+import About from "../components/home/About";
+// import LatestArticles from "../components/home/LatestArticles";
+import RecentArts from "../components/home/RecentArts";
+import RecentWorks from "../components/home/RecentWorks";
+import TopCarousel from "../components/home/TopCarousel";
+import { SITE_NAME, SITE_DESCRIPTION } from "../constants";
+import { TOP_CAROUSEL_SWITCH_INTERVAL } from "../constants/home";
 import { Restrict } from "../types";
 // import { GetListRequest } from "../types/api";
 import {
@@ -29,7 +30,6 @@ import {
   WorkGetListResponse,
   WorkGetResponse,
 } from "../types/api/works";
-// import LatestArticles from "../modules/home/components/LatestArticles";
 
 const Page: NextPage<{
   topImages: TopImageGetResponse[];

@@ -3,6 +3,7 @@ export const SITE_NAME = "カナタノアトリエ";
 /** サイトの説明 */
 export const SITE_DESCRIPTION =
   "イラストレーター・漫画家志望の同人作家「彼方なか」のホームページです。";
+
 /** ブログのURL */
 export const BLOG_URL = "https://note.com/kanata_naka";
 /** Twitterのユーザ名 */
