@@ -32,7 +32,11 @@ export const initializeFirebase = (isServer: boolean) => {
 
   if (process.env.NEXT_PUBLIC_ENV !== "production") {
     // ローカル環境の場合
-    connectFunctionsEmulator(getFunctions(getApp()), "localhost", 5000);
+    connectFunctionsEmulator(
+      getFunctions(getApp(), process.env.NEXT_PUBLIC_FIREBASE_REGION),
+      "localhost",
+      5000
+    );
   }
 };
 
