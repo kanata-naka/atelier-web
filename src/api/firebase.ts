@@ -6,6 +6,7 @@ import {
   httpsCallable,
   HttpsCallableResult,
 } from "firebase/functions";
+import { FIREBASE_REGION } from "../constants";
 
 /**
  * Firebaseを初期化する
@@ -33,7 +34,7 @@ export const initializeFirebase = (isServer: boolean) => {
   if (process.env.NEXT_PUBLIC_ENV !== "production") {
     // ローカル環境の場合
     connectFunctionsEmulator(
-      getFunctions(getApp(), process.env.NEXT_PUBLIC_FIREBASE_REGION),
+      getFunctions(getApp(), FIREBASE_REGION),
       "localhost",
       5000
     );
@@ -51,7 +52,7 @@ export const callFunction = async <
   data?: T
 ): Promise<HttpsCallableResult<R>> => {
   const callable = httpsCallable<T, R>(
-    getFunctions(getApp(), process.env.NEXT_PUBLIC_FIREBASE_REGION),
+    getFunctions(getApp(), FIREBASE_REGION),
     name
   );
   return await callable(data);

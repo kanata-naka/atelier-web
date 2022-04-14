@@ -1,3 +1,6 @@
+/** Firebaseのリージョン */
+export const FIREBASE_REGION = "asia-northeast1";
+
 /** サイト名 */
 export const SITE_NAME = "カナタノアトリエ";
 /** サイトの説明 */
