@@ -6,7 +6,7 @@ import { useMediaQuery } from "../../hooks";
 /**
  * グローバルナビゲーション
  */
-const GlobalNav: FC = () => {
+const GlobalNavigation: FC = () => {
   const [isToggleMenuActive, setToggleMenuActive] = useState(false);
 
   // ウィンドウの幅が一定以下ならトグルメニューを有効にする
@@ -18,7 +18,7 @@ const GlobalNav: FC = () => {
   }, [isToggleMenuActive]);
 
   return (
-    <nav className="global-nav">
+    <nav className="global-navigation">
       {enableToggleMenu && (
         <HamburgerButton
           isActive={isToggleMenuActive}
@@ -26,17 +26,17 @@ const GlobalNav: FC = () => {
         />
       )}
       <ul
-        className="global-nav-list"
+        className="global-navigation-list"
         role="navigation"
         style={{
           visibility:
             !enableToggleMenu || isToggleMenuActive ? "visible" : undefined,
         }}>
-        <GlobalNavItem id="about" title="ABOUT" path="/#about" />
-        <GlobalNavItem id="blog" title="BLOG" url={BLOG_URL} />
-        <GlobalNavItem id="works" title="WORKS" path="/works" />
-        <GlobalNavItem id="gallery" title="GALLERY" path="/gallery" />
-        <GlobalNavItem id="contact" title="CONTACT" path="/contact" />
+        <GlobalNavigationItem id="about" title="ABOUT" path="/#about" />
+        <GlobalNavigationItem id="blog" title="BLOG" url={BLOG_URL} />
+        <GlobalNavigationItem id="works" title="WORKS" path="/works" />
+        <GlobalNavigationItem id="gallery" title="GALLERY" path="/gallery" />
+        <GlobalNavigationItem id="contact" title="CONTACT" path="/contact" />
       </ul>
     </nav>
   );
@@ -51,28 +51,28 @@ const HamburgerButton: FC<{
 }> = ({ isActive, onClick }) => {
   return (
     <div
-      className={`global-nav-hamburger-button ${isActive && "active"}`}
+      className={`global-navigation-hamburger-button ${isActive && "active"}`}
       onClick={onClick}>
-      <i className="fas fa-bars global-nav-hamburger-button__icon"></i>
+      <i className="fas fa-bars global-navigation-hamburger-button__icon"></i>
     </div>
   );
 };
 
-const GlobalNavItem: FC<{
+const GlobalNavigationItem: FC<{
   title: string;
   id: string;
   path?: string;
   url?: string;
 }> = ({ title, id, path, url }) => {
   return (
-    <li key={id} className="global-nav-item">
+    <li key={id} className="global-navigation-item">
       {path ? (
         <Link href={path}>
-          <a className="global-nav-item__link">{title}</a>
+          <a className="global-navigation-item__link">{title}</a>
         </Link>
       ) : url ? (
         <a
-          className="global-nav-item__link"
+          className="global-navigation-item__link"
           href={url}
           target="_blank"
           rel="noreferrer">
@@ -85,4 +85,4 @@ const GlobalNavItem: FC<{
   );
 };
 
-export default GlobalNav;
+export default GlobalNavigation;

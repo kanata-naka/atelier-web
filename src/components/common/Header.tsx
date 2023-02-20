@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import GlobalNav from "./GlobalNav";
+import GlobalNavigation from "./GlobalNavigation";
 
 /**
  * ヘッダー
@@ -13,7 +13,7 @@ const Header: FC = () => {
           <h1 className="site-logo"></h1>
         </a>
       </Link>
-      <GlobalNav />
+      <GlobalNavigation />
     </header>
   );
 };
