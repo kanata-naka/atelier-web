@@ -7,7 +7,7 @@ import { PageHeading } from "../components/common/elements";
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
 import OgpTags from "../components/common/OgpTags";
-import Pagination from "../components/common/Pagination";
+import Pagination from "../components/works/Pagination";
 import WorkList from "../components/works/WorkList";
 import { SITE_NAME } from "../constants";
 import { PER_PAGE, PAGE_NUMBER_DISPLAY_MAX_RANGE } from "../constants/works";
