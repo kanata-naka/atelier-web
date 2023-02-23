@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import Router from "next/router";
 import { Transition, TransitionStatus } from "react-transition-group";
 
@@ -10,10 +10,7 @@ const transitionStyle: { [state in TransitionStatus]?: React.CSSProperties } = {
   exited: { opacity: 0, visibility: "hidden" },
 };
 
-/**
- * ルーティングエフェクト
- */
-const RoutingEffect: FC = () => {
+function RoutingEffect() {
   const [loading, setLoading] = useState(false);
 
   // ルーティングのイベントに設定する
@@ -32,14 +29,15 @@ const RoutingEffect: FC = () => {
       onExit={() => {
         // スクロールを有効にする
         document.body.style.overflow = "scroll";
-      }}>
+      }}
+    >
       {(state) => (
         <div className="page-loading" style={transitionStyle[state]}>
-          <img className="loading-image" src="/images/loading.svg" />
+          <Image className="loading-image" src="/images/loading.svg" width={64} height={64} alt="Loading..." />
         </div>
       )}
     </Transition>
   );
-};
+}
 
 export default RoutingEffect;

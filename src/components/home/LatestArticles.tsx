@@ -1,14 +1,9 @@
-import React, { FC } from "react";
-import { BLOG_URL } from "../../constants";
-import { BlogGetArticleListResponse } from "../../types/api/blog";
-import { formatDateFromIsoDate } from "../../utils/dateUtil";
+import React, { ReactNode } from "react";
+import { BLOG_URL } from "@/constants";
+import { BlogGetArticleListResponse } from "@/types/api/blog";
+import { formatDateFromIsoDate } from "@/utils/dateUtil";
 
-/**
- * 最新記事の一覧
- */
-const LatestArticles: FC<{ items: BlogGetArticleListResponse.Article[] }> = ({
-  items,
-}) => {
+function LatestArticles({ items }: { items: BlogGetArticleListResponse.Article[] }) {
   return (
     <section className="latest-articles">
       {items.map((item, index) => (
@@ -17,18 +12,12 @@ const LatestArticles: FC<{ items: BlogGetArticleListResponse.Article[] }> = ({
       <Footer />
     </section>
   );
-};
+}
 
-const Article: FC<{ item: BlogGetArticleListResponse.Article }> = ({
-  item,
-}) => {
+function Article({ item }: { item: BlogGetArticleListResponse.Article }) {
   return (
     <article className="latest-articles-item">
-      <a
-        className="latest-articles-item__link"
-        href={item.url}
-        target="_blank"
-        rel="noreferrer">
+      <a className="latest-articles-item__link" href={item.url} target="_blank" rel="noreferrer">
         <ArticleBackground item={item} />
         <div className="latest-articles-item-foreground">
           <ArticlePostedDate dateString={item.createdAt} />
@@ -37,24 +26,21 @@ const Article: FC<{ item: BlogGetArticleListResponse.Article }> = ({
       </a>
     </article>
   );
-};
+}
 
-const ArticleBackground: FC<{
-  item: BlogGetArticleListResponse.Article;
-}> = ({ item }) => {
+function ArticleBackground({ item }: { item: BlogGetArticleListResponse.Article }) {
   return (
     <div
       className="latest-articles-item-background"
       style={{
-        backgroundImage: `url(${
-          (item.topImage && item.topImage.url) || "/images/no-image.png"
-        })`,
+        backgroundImage: `url(${(item.topImage && item.topImage.url) || "/images/no-image.png"})`,
         backgroundSize: item.topImage ? "cover" : "contain",
-      }}></div>
+      }}
+    ></div>
   );
-};
+}
 
-const ArticlePostedDate: FC<{ dateString: string }> = ({ dateString }) => {
+function ArticlePostedDate({ dateString }: { dateString: string }) {
   return (
     <div className="latest-articles-item-posted-date">
       <i className="far fa-clock"></i>
@@ -62,24 +48,20 @@ const ArticlePostedDate: FC<{ dateString: string }> = ({ dateString }) => {
       {formatDateFromIsoDate(dateString)}
     </div>
   );
-};
+}
 
-const ArticleTitle: FC = ({ children }) => {
+function ArticleTitle({ children }: { children: ReactNode }) {
   return <h3 className="latest-articles-item-title">{children}</h3>;
-};
+}
 
-const Footer: FC = () => {
+function Footer() {
   return (
     <footer className="latest-articles-footer">
-      <a
-        className="latest-articles-more"
-        href={BLOG_URL}
-        target="_blank"
-        rel="noreferrer">
+      <a className="latest-articles-more" href={BLOG_URL} target="_blank" rel="noreferrer">
         {"more ＞"}
       </a>
     </footer>
   );
-};
+}
 
 export default LatestArticles;

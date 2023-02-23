@@ -1,5 +1,5 @@
-import { GetListResponse, GetListRequest } from ".";
-import { Restrict } from "../";
+import { Restrict } from "@/types";
+import { GetListResponse, GetListRequest } from "@/types/api";
 
 export type ArtGetListRequest = GetListRequest & {
   /** タグ */

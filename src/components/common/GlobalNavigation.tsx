@@ -1,12 +1,9 @@
-import React, { FC, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import Link from "next/link";
-import { BLOG_URL } from "../../constants";
-import { useMediaQuery } from "../../hooks";
+import { BLOG_URL } from "@/constants";
+import { useMediaQuery } from "@/hooks";
 
-/**
- * グローバルナビゲーション
- */
-const GlobalNavigation: FC = () => {
+function GlobalNavigation() {
   const [isToggleMenuActive, setToggleMenuActive] = useState(false);
 
   // ウィンドウの幅が一定以下ならトグルメニューを有効にする
@@ -19,19 +16,14 @@ const GlobalNavigation: FC = () => {
 
   return (
     <nav className="global-navigation">
-      {enableToggleMenu && (
-        <HamburgerButton
-          isActive={isToggleMenuActive}
-          onClick={handleHamburgerButtonClick}
-        />
-      )}
+      {enableToggleMenu && <HamburgerButton isActive={isToggleMenuActive} onClick={handleHamburgerButtonClick} />}
       <ul
         className="global-navigation-list"
         role="navigation"
         style={{
-          visibility:
-            !enableToggleMenu || isToggleMenuActive ? "visible" : undefined,
-        }}>
+          visibility: !enableToggleMenu || isToggleMenuActive ? "visible" : undefined,
+        }}
+      >
         <GlobalNavigationItem id="about" title="ABOUT" path="/#about" />
         <GlobalNavigationItem id="blog" title="BLOG" url={BLOG_URL} />
         <GlobalNavigationItem id="works" title="WORKS" path="/works" />
@@ -40,49 +32,32 @@ const GlobalNavigation: FC = () => {
       </ul>
     </nav>
   );
-};
+}
 
-/**
- * ハンバーガーボタン
- */
-const HamburgerButton: FC<{
-  isActive: boolean;
-  onClick: () => void;
-}> = ({ isActive, onClick }) => {
+function HamburgerButton({ isActive, onClick }: { isActive: boolean; onClick: () => void }) {
   return (
-    <div
-      className={`global-navigation-hamburger-button ${isActive && "active"}`}
-      onClick={onClick}>
+    <div className={`global-navigation-hamburger-button ${isActive && "active"}`} onClick={onClick}>
       <i className="fas fa-bars global-navigation-hamburger-button__icon"></i>
     </div>
   );
-};
+}
 
-const GlobalNavigationItem: FC<{
-  title: string;
-  id: string;
-  path?: string;
-  url?: string;
-}> = ({ title, id, path, url }) => {
+function GlobalNavigationItem({ title, id, path, url }: { title: string; id: string; path?: string; url?: string }) {
   return (
     <li key={id} className="global-navigation-item">
       {path ? (
-        <Link href={path}>
-          <a className="global-navigation-item__link">{title}</a>
+        <Link className="global-navigation-item__link" href={path}>
+          {title}
         </Link>
       ) : url ? (
-        <a
-          className="global-navigation-item__link"
-          href={url}
-          target="_blank"
-          rel="noreferrer">
+        <a className="global-navigation-item__link" href={url} target="_blank" rel="noreferrer">
           {title}
         </a>
       ) : (
-        { title }
+        title
       )}
     </li>
   );
-};
+}
 
 export default GlobalNavigation;

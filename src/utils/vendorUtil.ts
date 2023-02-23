@@ -12,10 +12,8 @@ declare global {
   }
 }
 
-/**
- * Twitterのウィジェットを初期化する
- */
-export const reloadTwitterWidgets = (element: Element) => {
+/** Twitterのウィジェットを初期化する */
+export function reloadTwitterWidgets(element: Element) {
   try {
     if (typeof window?.twttr !== "undefined") {
       window.twttr.widgets.load(element);
@@ -24,12 +22,10 @@ export const reloadTwitterWidgets = (element: Element) => {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-/**
- * Facebookのウィジェットを初期化する
- */
-export const reloadFacebookWidgets = (element: Element) => {
+/** Facebookのウィジェットを初期化する */
+export function reloadFacebookWidgets(element: Element) {
   try {
     if (typeof window?.FB !== "undefined") {
       window.FB.XFBML.parse(element);
@@ -38,12 +34,10 @@ export const reloadFacebookWidgets = (element: Element) => {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-/**
- * LINEのシェアボタンを初期化する
- */
-export const reloadLINEItButtons = () => {
+/** LINEのシェアボタンを初期化する */
+export function reloadLINEItButtons() {
   try {
     if (typeof window?.LineIt !== "undefined") {
       window.LineIt.loadButton();
@@ -52,4 +46,4 @@ export const reloadLINEItButtons = () => {
   } catch (error) {
     console.error(error);
   }
-};
+}

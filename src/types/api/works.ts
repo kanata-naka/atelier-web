@@ -1,5 +1,5 @@
-import { GetListRequest, GetListResponse } from ".";
-import { Restrict } from "../";
+import { Restrict } from "@/types";
+import { GetListRequest, GetListResponse } from "@/types/api";
 
 export type WorkGetListRequest = GetListRequest & {
   /** 公開範囲 */

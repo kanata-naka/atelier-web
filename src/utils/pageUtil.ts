@@ -1,11 +1,5 @@
-/**
- * 表示するページ番号の配列を取得する
- */
-export const getPageNumberRange = (
-  currentPage: number,
-  lastPage: number,
-  maxRange: number
-) => {
+/** 表示するページ番号の配列を取得する */
+export function getPageNumberRange(currentPage: number, lastPage: number, maxRange: number) {
   let first: number, last: number;
   if (lastPage < maxRange) {
     first = 1;
@@ -25,17 +19,11 @@ export const getPageNumberRange = (
     result.push(page);
   }
   return result;
-};
+}
 
-/**
- * 指定したページで表示する項目を取得する
- */
-export const getItemsByPage = <T>(
-  items: T[],
-  page: number,
-  perPage: number
-) => {
+/** 指定したページで表示する項目を取得する */
+export function getItemsByPage<T>(items: T[], page: number, perPage: number) {
   const offset = perPage * (page - 1);
   const itemsByPage = items.slice(offset, offset + perPage);
   return [...itemsByPage];
-};
+}

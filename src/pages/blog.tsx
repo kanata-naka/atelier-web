@@ -1,11 +1,11 @@
-import { NextPage } from "next";
-import { BLOG_URL } from "../constants";
+import { NextPageContext } from "next";
+import { BLOG_URL } from "@/constants";
 
-const Page: NextPage = () => {
+function Page() {
   return null;
-};
+}
 
-Page.getInitialProps = async ({ res }) => {
+Page.getInitialProps = async function ({ res }: NextPageContext) {
   if (res) {
     // noteにリダイレクトする
     res.writeHead(302, { Location: BLOG_URL });

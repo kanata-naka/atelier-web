@@ -1,7 +1,7 @@
-import React, { FC, useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, MouseEvent } from "react";
 import Link from "next/link";
 import { Transition, TransitionStatus } from "react-transition-group";
-import { TagInfoGetResponse } from "../../types/api/tagInfo";
+import { TagInfoGetResponse } from "@/types/api/tagInfo";
 
 const transitionClasses: { [state in TransitionStatus]?: string } = {
   entering: "slide-entering",
@@ -10,10 +10,7 @@ const transitionClasses: { [state in TransitionStatus]?: string } = {
   exited: "slide-exited",
 };
 
-/**
- * タグ一覧
- */
-const TagList: FC<{ info: TagInfoGetResponse.TagInfo[] }> = ({ info }) => {
+function TagList({ info }: { info: TagInfoGetResponse.TagInfo[] }) {
   const [collasped, setCollasped] = useState(true);
   const [height, setHeight] = useState(48);
   const tagListRef = useRef<HTMLUListElement>(null);
@@ -30,10 +27,7 @@ const TagList: FC<{ info: TagInfoGetResponse.TagInfo[] }> = ({ info }) => {
   );
 
   // タグの最大件数
-  const maxCount = info.reduce(
-    (_maxCount, tag) => Math.max(_maxCount, tag.count),
-    1
-  );
+  const maxCount = info.reduce((_maxCount, tag) => Math.max(_maxCount, tag.count), 1);
 
   return (
     <Transition in={!collasped} timeout={250}>
@@ -47,70 +41,50 @@ const TagList: FC<{ info: TagInfoGetResponse.TagInfo[] }> = ({ info }) => {
           exited: { height: "48px" },
         };
         return (
-          <div
-            className={`tag-info ${transitionClasses[state] || ""}`}
-            style={transitionStyle[state]}>
+          <div className={`tag-info ${transitionClasses[state] || ""}`} style={transitionStyle[state]}>
             <ul className="tag-list" ref={tagListRef}>
               {info.map((tag, index) => {
                 const rate = tag.count / maxCount;
-                return (
-                  <TagListItem
-                    key={index}
-                    tag={tag.name}
-                    count={tag.count}
-                    rate={rate}
-                  />
-                );
+                return <TagListItem key={index} tag={tag.name} count={tag.count} rate={rate} />;
               })}
             </ul>
             {state !== "entered" && <TagInfoForeground />}
-            <TagInfoSlideButton
-              state={state}
-              onClick={handleClickToggleButton}
-            />
+            <TagInfoSlideButton state={state} onClick={handleClickToggleButton} />
           </div>
         );
       }}
     </Transition>
   );
-};
+}
 
-const TagListItem: FC<{
-  tag: string;
-  count: number;
-  rate: number;
-}> = ({ tag, count, rate }) => {
+function TagListItem({ tag, count, rate }: { tag: string; count: number; rate: number }) {
   return (
     <li className="tag-list-item">
-      <Link href={`/gallery?tag=${tag}`}>
-        <a className="tag-list-item__link">
-          <span
-            className="tag-name"
-            style={{
-              fontSize: `${0.8 + rate}em`,
-              // 件数が多いほど文字色を濃くする
-              color: `rgba(${Math.max(0, 88 - 80 * rate)},${Math.max(
-                0,
-                88 - 80 * rate
-              )},${Math.max(0, 221 - 140 * rate)},1)`,
-            }}>
-            {tag}
-          </span>
-          <span className="tag-count">{`(${count})`}</span>
-        </a>
+      <Link className="tag-list-item__link" href={`/gallery?tag=${tag}`}>
+        <span
+          className="tag-name"
+          style={{
+            fontSize: `${0.8 + rate}em`,
+            // 件数が多いほど文字色を濃くする
+            color: `rgba(${Math.max(0, 88 - 80 * rate)},${Math.max(0, 88 - 80 * rate)},${Math.max(
+              0,
+              221 - 140 * rate
+            )},1)`,
+          }}
+        >
+          {tag}
+        </span>
+        <span className="tag-count">{`(${count})`}</span>
       </Link>
     </li>
   );
-};
+}
 
-const TagInfoForeground: FC = () => {
+function TagInfoForeground() {
   return <div className="tag-info-foreground" />;
-};
+}
 
-const TagInfoSlideButton: FC<{
-  state: TransitionStatus;
-  onClick: (event: React.MouseEvent) => void;
-}> = ({ state, onClick }) => {
+function TagInfoSlideButton({ state, onClick }: { state: TransitionStatus; onClick: (event: MouseEvent) => void }) {
   return (
     <div className="tag-info-slide-button" onClick={onClick}>
       {state === "entering" || state === "exited" ? (
@@ -120,6 +94,6 @@ const TagInfoSlideButton: FC<{
       )}
     </div>
   );
-};
+}
 
 export default TagList;

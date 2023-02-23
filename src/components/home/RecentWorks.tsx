@@ -1,68 +1,47 @@
-import React, { FC } from "react";
+import React, { ReactNode } from "react";
 import Link from "next/link";
-import { WorkGetResponse } from "../../types/api/works";
-import { SectionHeading } from "../common/elements";
+import SectionHeading from "@/components/common/SectionHeading";
+import { WorkGetResponse } from "@/types/api/works";
 
-/**
- * 最近の作品一覧
- */
-const RecentWorks: FC<{ items: WorkGetResponse[] }> = ({ items }) => {
+function RecentWorks({ items }: { items: WorkGetResponse[] }) {
   return (
     <section className="recent-works">
       <SectionHeading>RECENT WORKS</SectionHeading>
       <div className="recent-works-container">
         {items.map((item, index) => (
-          <RecentWorkItem
-            key={index}
-            item={item}
-            isLast={index === items.length - 1}
-          />
+          <RecentWorkItem key={index} item={item} isLast={index === items.length - 1} />
         ))}
       </div>
     </section>
   );
-};
+}
 
-const RecentWorkItem: FC<{
-  item: WorkGetResponse;
-  isLast: boolean;
-}> = ({ item, isLast }) => {
+function RecentWorkItem({ item, isLast }: { item: WorkGetResponse; isLast: boolean }) {
   return (
     <div className="recent-works-item">
-      <Link href={`/works${isLast ? "" : `/${item.id}`}`}>
-        <a className="recent-works-item__link">
-          <RecentWorkItemBackground image={item.images && item.images[0]} />
-          <RecentWorkItemForeground isLast={isLast} title={item.title} />
-        </a>
+      <Link className="recent-works-item__link" href={`/works${isLast ? "" : `/${item.id}`}`}>
+        <RecentWorkItemBackground image={item.images && item.images[0]} />
+        <RecentWorkItemForeground isLast={isLast} title={item.title} />
       </Link>
     </div>
   );
-};
+}
 
-const RecentWorkItemBackground: FC<{
-  image?: WorkGetResponse.Image;
-}> = ({ image }) => {
+function RecentWorkItemBackground({ image }: { image?: WorkGetResponse.Image }) {
   return (
     <div
       className="recent-works-item-background"
       style={{
         backgroundImage: `url(${image ? image.url : "/images/no-image.png"})`,
         backgroundSize: image ? "cover" : "contain",
-      }}></div>
+      }}
+    ></div>
   );
-};
+}
 
-const RecentWorkItemForeground: FC<{
-  isLast: boolean;
-  title: string;
-}> = ({ isLast, title }) => {
+function RecentWorkItemForeground({ isLast, title }: { isLast: boolean; title: string }) {
   return (
-    <div
-      className={
-        isLast
-          ? "recent-works-item-foreground--more"
-          : "recent-works-item-foreground"
-      }>
+    <div className={isLast ? "recent-works-item-foreground--more" : "recent-works-item-foreground"}>
       {isLast ? (
         <div className="recent-works-more">{"more ＞"}</div>
       ) : (
@@ -70,10 +49,10 @@ const RecentWorkItemForeground: FC<{
       )}
     </div>
   );
-};
+}
 
-const RecentWorkItemTitle: FC = ({ children }) => {
+function RecentWorkItemTitle({ children }: { children: ReactNode }) {
   return <h3 className="recent-works-item-title">{children}</h3>;
-};
+}
 
 export default RecentWorks;

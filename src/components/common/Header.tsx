@@ -1,21 +1,22 @@
-import React, { FC } from "react";
+import React from "react";
 import Link from "next/link";
-import GlobalNavigation from "./GlobalNavigation";
+import GlobalNavigation from "@/components/common/GlobalNavigation";
 
-/**
- * ヘッダー
- */
-const Header: FC = () => {
+function Header() {
   return (
     <header className="site-header">
-      <Link href="/">
-        <a>
-          <h1 className="site-logo"></h1>
-        </a>
-      </Link>
+      <SiteLogo />
       <GlobalNavigation />
     </header>
   );
-};
+}
+
+function SiteLogo() {
+  return (
+    <Link href="/">
+      <h1 className="site-logo"></h1>
+    </Link>
+  );
+}
 
 export default Header;

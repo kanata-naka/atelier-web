@@ -1,27 +1,28 @@
-import React, { FC, useState, useCallback } from "react";
+import React, { useState, useCallback, ReactNode } from "react";
 import Router from "next/router";
 import Modal from "react-modal";
-import { sendEvent } from "../../api/gtag";
-import { ArtGetResponse } from "../../types/api/arts";
-import { formatDateFromUnixTimestamp } from "../../utils/dateUtil";
-import { renderMarkdown } from "../../utils/domUtil";
-import ShareButtons from "../common/ShareButtons";
+import { sendEvent } from "@/api/gtag";
+import ShareButtons from "@/components/common/ShareButtons";
+import { ArtGetResponse } from "@/types/api/arts";
+import { formatDateFromUnixTimestamp } from "@/utils/dateUtil";
+import { renderMarkdown } from "@/utils/domUtil";
 
+// Next.jsのルート要素を指定する
 Modal.setAppElement("#__next");
 
-/**
- * イラストのモーダル
- */
-const ArtModal: FC<{ onClose?: () => void }> & {
-  open: (item: ArtGetResponse) => void;
-  close: () => void;
-} = ({ onClose }) => {
+const ArtModal: { Component: typeof Component; open: (item: ArtGetResponse) => void; close: () => void } = {
+  Component,
+  open: () => ({}),
+  close: () => ({}),
+};
+
+function Component({ onClose }: { onClose?: () => void }) {
   const [isOpen, setOpen] = useState(false);
   const [item, setItem] = useState<ArtGetResponse | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isForegroundActive, setForegroundActive] = useState(true);
 
-  ArtModal.open = (item) => {
+  ArtModal.open = (item: ArtGetResponse) => {
     // モーダルを初期化する
     setItem(item);
     setCurrentImageIndex(0);
@@ -46,12 +47,12 @@ const ArtModal: FC<{ onClose?: () => void }> & {
     setForegroundActive(!isForegroundActive);
   }, [isForegroundActive]);
 
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     if (onClose) {
       onClose();
     }
     setOpen(false);
-  }, []);
+  };
 
   if (!item) {
     return null;
@@ -63,13 +64,12 @@ const ArtModal: FC<{ onClose?: () => void }> & {
       onRequestClose={handleClose}
       className="gallery-modal"
       bodyOpenClassName="gallery-modal--open"
-      style={{ overlay: { zIndex: 2 } }}>
+      style={{ overlay: { zIndex: 2 } }}
+    >
       <Overlay onClick={handleClose} />
       <div className="gallery-modal-container" onClick={handleClick}>
         <Background image={item.images[currentImageIndex]} />
-        <div
-          className="gallery-modal-foreground"
-          style={{ display: isForegroundActive ? "block" : "none" }}>
+        <div className="gallery-modal-foreground" style={{ display: isForegroundActive ? "block" : "none" }}>
           <Title>{item.title}</Title>
           {item.tags && <TagList tags={item.tags} />}
           <Description>{renderMarkdown(item.description)}</Description>
@@ -100,27 +100,28 @@ const ArtModal: FC<{ onClose?: () => void }> & {
       <CloseButton onClick={handleClose} />
     </Modal>
   );
-};
+}
 
-const Overlay: FC<{ onClick: () => void }> = ({ onClick }) => {
+function Overlay({ onClick }: { onClick: () => void }) {
   return <div className="gallery-modal-overlay" onClick={onClick}></div>;
-};
+}
 
-const Background: FC<{ image?: ArtGetResponse.Image }> = ({ image }) => {
+function Background({ image }: { image?: ArtGetResponse.Image }) {
   return (
     <div
       className="gallery-modal-background"
       style={{
         backgroundImage: image && `url(${image.url})`,
-      }}></div>
+      }}
+    ></div>
   );
-};
+}
 
-const Title: FC = ({ children }) => {
+function Title({ children }: { children: ReactNode }) {
   return <h3 className="gallery-modal-title">{children}</h3>;
-};
+}
 
-const TagList: FC<{ tags: string[] }> = ({ tags = [] }) => {
+function TagList({ tags = [] }: { tags: string[] }) {
   return (
     <ul className="gallery-modal-tag-list">
       {tags.map((tag, index) => (
@@ -128,9 +129,9 @@ const TagList: FC<{ tags: string[] }> = ({ tags = [] }) => {
       ))}
     </ul>
   );
-};
+}
 
-const TagListItem: FC<{ tag: string }> = ({ tag }) => {
+function TagListItem({ tag }: { tag: string }) {
   return (
     <li className="gallery-modal-tag-list-item">
       <a
@@ -142,18 +143,19 @@ const TagListItem: FC<{ tag: string }> = ({ tag }) => {
           //   手動でモーダルを閉じる
           ArtModal.close();
           Router.push(`/gallery?tag=${tag}`);
-        }}>
+        }}
+      >
         {`#${tag}`}
       </a>
     </li>
   );
-};
+}
 
-const Description: FC = ({ children }) => {
+function Description({ children }: { children: ReactNode }) {
   return <p className="gallery-modal-description">{children}</p>;
-};
+}
 
-const PostedDate: FC<{ timestamp: number }> = ({ timestamp }) => {
+function PostedDate({ timestamp }: { timestamp: number }) {
   return (
     <div className="gallery-modal-posted-date">
       <i className="far fa-clock"></i>
@@ -161,13 +163,17 @@ const PostedDate: FC<{ timestamp: number }> = ({ timestamp }) => {
       {formatDateFromUnixTimestamp(timestamp)}
     </div>
   );
-};
+}
 
-const DiffList: FC<{
+function DiffList({
+  images,
+  currentImageIndex,
+  onSelect,
+}: {
   images: ArtGetResponse.Image[];
   currentImageIndex: number;
   onSelect: (index: number) => void;
-}> = ({ images, currentImageIndex, onSelect }) => {
+}) {
   if (!images || !images.length) {
     return null;
   }
@@ -188,36 +194,35 @@ const DiffList: FC<{
       ))}
     </ul>
   );
-};
+}
 
-const DiffListItem: FC<{
+function DiffListItem({
+  image,
+  isActive,
+  onClick,
+}: {
   image: ArtGetResponse.Image;
   isActive: boolean;
   onClick: (event: React.MouseEvent) => void;
-}> = ({ image, isActive, onClick }) => {
+}) {
   return (
     <li
       className={`diff-list-item ${isActive ? "active" : ""}`}
       style={{
         backgroundImage: `url(${image.thumbnailUrl.small})`,
-      }}>
-      <a
-        className="diff-list-item__link"
-        href={image.url}
-        onClick={onClick}></a>
+      }}
+    >
+      <a className="diff-list-item__link" href={image.url} onClick={onClick}></a>
     </li>
   );
-};
+}
 
-const CloseButton: FC<{ onClick: () => void }> = ({ onClick }) => {
+function CloseButton({ onClick }: { onClick: () => void }) {
   return (
     <div className="gallery-modal-close-button" onClick={onClick}>
       <i className="fas fa-times gallery-modal-close-button__icon"></i>
     </div>
   );
-};
-
-ArtModal.open = () => ({});
-ArtModal.close = () => ({});
+}
 
 export default ArtModal;

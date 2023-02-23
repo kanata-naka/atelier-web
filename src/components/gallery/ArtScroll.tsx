@@ -1,29 +1,23 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { callFunction } from "../../api/firebase";
-import { useScroll } from "../../hooks";
-import { Restrict } from "../../types";
-import {
-  ArtGetListRequest,
-  ArtGetListResponse,
-  ArtGetResponse,
-} from "../../types/api/arts";
-import ArtModal from "./ArtModal";
+import { callFunction } from "@/api/firebase";
+import ArtModal from "@/components/gallery/ArtModal";
+import { Restrict } from "@/constants";
+import { useScroll } from "@/hooks";
+import { ArtGetListRequest, ArtGetListResponse, ArtGetResponse } from "@/types/api/arts";
 
-/**
- * イラストの無限スクロール
- */
-const ArtScroll: FC<{
-  tag?: string;
-  items: ArtGetResponse[];
-  fetchedAll: boolean;
-  fetchLimit: number;
-}> = ({
+function ArtScroll({
   tag,
   items: initinalItems,
   fetchedAll: initialFetchedAll,
   fetchLimit,
-}) => {
+}: {
+  tag?: string;
+  items: ArtGetResponse[];
+  fetchedAll: boolean;
+  fetchLimit: number;
+}) {
   const [items, setItems] = useState([...initinalItems]);
   const [fetchedAll, setFetchedAll] = useState(initialFetchedAll);
 
@@ -32,10 +26,7 @@ const ArtScroll: FC<{
     async () => {
       try {
         // 次の${LIMIT}件を取得する
-        const response = await callFunction<
-          ArtGetListRequest,
-          ArtGetListResponse
-        >("arts-get", {
+        const response = await callFunction<ArtGetListRequest, ArtGetListResponse>("arts-get", {
           lastId: items[items.length - 1].id,
           limit: fetchLimit,
           tag: tag,
@@ -68,41 +59,43 @@ const ArtScroll: FC<{
         ))}
       </div>
       <div className="loading">
-        {loading && <img className="loading-image" src="/images/loading.svg" />}
+        {loading && (
+          <Image className="loading-image" src="/images/loading.svg" width={32} height={32} alt="Loading..." />
+        )}
       </div>
-      <ArtModal />
+      <ArtModal.Component />
     </section>
   );
-};
+}
 
-const ArtScrollItem: FC<{ item: ArtGetResponse }> = ({ item }) => {
+function ArtScrollItem({ item }: { item: ArtGetResponse }) {
   return (
     <div className="art-scroll-item">
-      <Link href={`/gallery?id=${item.id}`} as={`/gallery/${item.id}`}>
-        <a
-          className="art-scroll-item__link"
-          onClick={(event) => {
-            event.preventDefault();
-            // モーダルを開く
-            ArtModal.open(item);
-          }}>
-          <ArtScrollItemBackground image={item.images[0]} />
-        </a>
+      <Link
+        className="art-scroll-item__link"
+        href={`/gallery?id=${item.id}`}
+        as={`/gallery/${item.id}`}
+        onClick={(event) => {
+          event.preventDefault();
+          // モーダルを開く
+          ArtModal.open(item);
+        }}
+      >
+        <ArtScrollItemBackground image={item.images[0]} />
       </Link>
     </div>
   );
-};
+}
 
-const ArtScrollItemBackground: FC<{
-  image: ArtGetResponse.Image;
-}> = ({ image }) => {
+function ArtScrollItemBackground({ image }: { image: ArtGetResponse.Image }) {
   return (
     <div
       className="art-scroll-item-background"
       style={{
         backgroundImage: `url(${image.thumbnailUrl.medium})`,
-      }}></div>
+      }}
+    ></div>
   );
-};
+}
 
 export default ArtScroll;

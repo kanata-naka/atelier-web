@@ -1,20 +1,16 @@
 import React from "react";
 import { marked } from "marked";
 
-/**
- * メディアクエリを判定する
- */
-export const matchesMediaQuery = (mediaQuery: string) => {
+/** メディアクエリを判定する */
+export function matchesMediaQuery(mediaQuery: string) {
   if (typeof window === "undefined") {
     return false;
   }
   return window.matchMedia(mediaQuery).matches;
-};
+}
 
-/**
- * Markdown形式のテキストを整形する
- */
-export const renderMarkdown = (src?: string) => {
+/** Markdown形式のテキストを整形する */
+export function renderMarkdown(src?: string) {
   if (!src) {
     return <span />;
   }
@@ -26,12 +22,10 @@ export const renderMarkdown = (src?: string) => {
       }}
     ></span>
   );
-};
+}
 
-/**
- * ページの最後までスクロールした際の位置を取得する
- */
-export const getOffsetScrolledToBottom = () => {
+/** ページの最後までスクロールした際の位置を取得する */
+export function getOffsetScrolledToBottom() {
   if (typeof window === "undefined") {
     return null;
   }
@@ -46,14 +40,12 @@ export const getOffsetScrolledToBottom = () => {
     document.documentElement.clientHeight
   );
   return pageHeight - window.innerHeight;
-};
+}
 
-/**
- * 現在のスクロール位置を取得する
- */
-export const getCurrentScrollTop = () => {
+/** 現在のスクロール位置を取得する */
+export function getCurrentScrollTop() {
   if (typeof window === "undefined") {
     return null;
   }
   return window.pageYOffset || document.documentElement.scrollTop;
-};
+}

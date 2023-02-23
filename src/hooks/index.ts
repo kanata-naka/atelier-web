@@ -1,31 +1,25 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Router from "next/router";
-import { sendPageview } from "../api/gtag";
-import {
-  matchesMediaQuery,
-  getOffsetScrolledToBottom,
-  getCurrentScrollTop,
-} from "../utils/domUtil";
+import { sendPageview } from "@/api/gtag";
+import { matchesMediaQuery, getOffsetScrolledToBottom, getCurrentScrollTop } from "@/utils/domUtil";
 
 /**
  * ステートとそのRefを作成する
  * ※非同期処理（setTimeoutなど）から最新の値を参照できるようにする
  */
-export const useStateRef = <T>(
+export function useStateRef<T>(
   initialValue: T
-): [T, React.MutableRefObject<T>, React.Dispatch<React.SetStateAction<T>>] => {
+): [T, React.MutableRefObject<T>, React.Dispatch<React.SetStateAction<T>>] {
   const [value, setValue] = useState(initialValue);
   const valueRef = useRef(value);
   useEffect(() => {
     valueRef.current = value;
   }, [value]);
   return [value, valueRef, setValue];
-};
+}
 
-/**
- * メディアクエリを使用する
- */
-export const useMediaQuery = (mediaQuery: string) => {
+/** メディアクエリを使用する */
+export function useMediaQuery(mediaQuery: string) {
   const [matches, setMatches] = useState(false);
 
   useEffect(() => {
@@ -40,12 +34,10 @@ export const useMediaQuery = (mediaQuery: string) => {
   }, []);
 
   return matches;
-};
+}
 
-/**
- * ページビューを測定する
- */
-export const usePageview = () => {
+/** ページビューを測定する */
+export function usePageview() {
   useEffect(() => {
     const handleRouteChangeComplete = (path: string) => sendPageview(path);
     Router.events.on("routeChangeComplete", handleRouteChangeComplete);
@@ -53,20 +45,16 @@ export const usePageview = () => {
       Router.events.off("routeChangeComplete", handleRouteChangeComplete);
     };
   }, [Router.events]);
-};
+}
 
-/**
- * 無限スクロールを使用する
- */
-export const useScroll = <T>(
+/** 無限スクロールを使用する */
+export function useScroll<T>(
   callback: () => Promise<void>,
   delay: number,
   finished: boolean,
   deps: T[][]
-): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
-  const [offsetScrolledToBottom, setOffsetScrolledToBottom] = useState<
-    number | null
-  >(null);
+): [boolean, React.Dispatch<React.SetStateAction<boolean>>] {
+  const [offsetScrolledToBottom, setOffsetScrolledToBottom] = useState<number | null>(null);
   const [currentScrollTop, setCurrentScrollTop] = useState<number | null>(null);
   const [timer, setTimer] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -110,4 +98,4 @@ export const useScroll = <T>(
   }, [offsetScrolledToBottom, currentScrollTop]);
 
   return [loading, setLoading];
-};
+}

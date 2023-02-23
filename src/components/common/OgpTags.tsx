@@ -1,19 +1,8 @@
-import React, { FC } from "react";
+import React from "react";
 import Head from "next/head";
-import { SITE_NAME, TWITTER_USERNAME } from "../../constants";
+import { SITE_NAME, TWITTER_USERNAME } from "@/constants";
 
-/**
- * OGPタグ
- */
-const OgpTags: FC<{
-  url: string;
-  ogType: string;
-  title: string;
-  description?: string;
-  ogImage?: string;
-  twitterCard: string;
-  twitterImage?: string;
-}> = ({
+function OgpTags({
   url,
   ogType,
   title,
@@ -21,7 +10,15 @@ const OgpTags: FC<{
   ogImage,
   twitterCard,
   twitterImage,
-}) => {
+}: {
+  url: string;
+  ogType: string;
+  title: string;
+  description?: string;
+  ogImage?: string;
+  twitterCard: string;
+  twitterImage?: string;
+}) {
   return (
     <Head>
       <meta property="og:url" content={url} />
@@ -34,12 +31,10 @@ const OgpTags: FC<{
       <meta property="twitter:site" content={`@${TWITTER_USERNAME}`} />
       <meta property="twitter:url" content={url} />
       <meta property="twitter:title" content={title} />
-      {description && (
-        <meta property="twitter:description" content={description} />
-      )}
+      {description && <meta property="twitter:description" content={description} />}
       {twitterImage && <meta property="twitter:image" content={twitterImage} />}
     </Head>
   );
-};
+}
 
 export default OgpTags;

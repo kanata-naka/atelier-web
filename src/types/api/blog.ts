@@ -1,7 +1,6 @@
-import { GetListResponse } from ".";
+import { GetListResponse } from "@/types/api";
 
-export type BlogGetArticleListResponse =
-  GetListResponse<BlogGetArticleListResponse.Article>;
+export type BlogGetArticleListResponse = GetListResponse<BlogGetArticleListResponse.Article>;
 
 export namespace BlogGetArticleListResponse {
   export type Article = {

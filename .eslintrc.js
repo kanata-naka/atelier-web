@@ -1,34 +1,27 @@
+/** @type {import('eslint').Linter.Config} */
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
+    "next",
     "prettier",
   ],
   parser: "@typescript-eslint/parser",
-  parserOptions: {
-    project: "tsconfig.json",
-    sourceType: "module",
-  },
   plugins: [
     "import",
-    "react",
-    "@typescript-eslint",
   ],
-  settings: {
-    react: {
-      version: 'detect'
-    },
-  },
   rules: {
     "import/order": [
       "warn",
       {
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
         "groups": ["builtin", "external", "internal"],
+        "newlines-between": "never",
         "pathGroups": [
           {
             // Reactを先頭にする
@@ -38,12 +31,9 @@ module.exports = {
           }
         ],
         "pathGroupsExcludedImportTypes": ["react"],
-        "newlines-between": "never",
-        "alphabetize": { "order": "asc", "caseInsensitive": true },
       }
     ],
-    "react/prop-types": "off",
+    "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/no-namespace": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
   },
 };

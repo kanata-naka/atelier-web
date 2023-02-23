@@ -1,19 +1,8 @@
-import React, { FC, useCallback } from "react";
-import { SITE_NAME, TWITTER_USERNAME } from "../../constants";
-import {
-  reloadTwitterWidgets,
-  reloadFacebookWidgets,
-  reloadLINEItButtons,
-} from "../../utils/vendorUtil";
+import React, { useCallback } from "react";
+import { SITE_NAME, TWITTER_USERNAME } from "@/constants";
+import { reloadTwitterWidgets, reloadFacebookWidgets, reloadLINEItButtons } from "@/utils/vendorUtil";
 
-/**
- * シェアボタン
- */
-const ShareButtons: FC<{
-  url: string;
-  title?: string;
-  classPrefix?: string;
-}> = ({ url, title, classPrefix = "" }) => {
+function ShareButtons({ url, title, classPrefix = "" }: { url: string; title?: string; classPrefix?: string }) {
   return (
     <ul className={`${classPrefix}share-buttons`}>
       <TwitterShareButton classPrefix={classPrefix} url={url} title={title} />
@@ -21,13 +10,9 @@ const ShareButtons: FC<{
       <LINEShareButton classPrefix={classPrefix} url={url} />
     </ul>
   );
-};
+}
 
-const TwitterShareButton: FC<{
-  url: string;
-  title?: string;
-  classPrefix?: string;
-}> = ({ url, title, classPrefix }) => {
+function TwitterShareButton({ url, title, classPrefix }: { url: string; title?: string; classPrefix?: string }) {
   const elementRef = useCallback((element: Element | null) => {
     if (!element) {
       return;
@@ -37,10 +22,7 @@ const TwitterShareButton: FC<{
   }, []);
 
   return (
-    <li
-      key={url}
-      className={`${classPrefix}share-buttons-item`}
-      ref={elementRef}>
+    <li key={url} className={`${classPrefix}share-buttons-item`} ref={elementRef}>
       <a
         href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw"
         className="twitter-hashtag-button"
@@ -48,17 +30,15 @@ const TwitterShareButton: FC<{
         data-url={url}
         data-related={TWITTER_USERNAME}
         data-lang="ja"
-        data-show-count="false">
+        data-show-count="false"
+      >
         Tweet
       </a>
     </li>
   );
-};
+}
 
-const FacebookShareButton: FC<{
-  url: string;
-  classPrefix?: string;
-}> = ({ url, classPrefix }) => {
+function FacebookShareButton({ url, classPrefix }: { url: string; classPrefix?: string }) {
   const elementRef = useCallback((element: Element | null) => {
     if (!element) {
       return;
@@ -68,10 +48,7 @@ const FacebookShareButton: FC<{
   }, []);
 
   return (
-    <li
-      key={url}
-      className={`${classPrefix}share-buttons-item`}
-      ref={elementRef}>
+    <li key={url} className={`${classPrefix}share-buttons-item`} ref={elementRef}>
       <div
         className="fb-like"
         data-href={url}
@@ -79,15 +56,13 @@ const FacebookShareButton: FC<{
         data-layout="button"
         data-action="like"
         data-size="small"
-        data-share="false"></div>
+        data-share="false"
+      ></div>
     </li>
   );
-};
+}
 
-const LINEShareButton: FC<{
-  url: string;
-  classPrefix?: string;
-}> = ({ url, classPrefix }) => {
+function LINEShareButton({ url, classPrefix }: { url: string; classPrefix?: string }) {
   const elementRef = useCallback((element: Element | null) => {
     if (!element) {
       return;
@@ -97,10 +72,7 @@ const LINEShareButton: FC<{
   }, []);
 
   return (
-    <li
-      key={url}
-      className={`${classPrefix}share-buttons-item`}
-      ref={elementRef}>
+    <li key={url} className={`${classPrefix}share-buttons-item`} ref={elementRef}>
       <div
         className="line-it-button"
         data-lang="ja"
@@ -110,9 +82,10 @@ const LINEShareButton: FC<{
         data-color="default"
         data-size="small"
         data-count="false"
-        style={{ display: "none" }}></div>
+        style={{ display: "none" }}
+      ></div>
     </li>
   );
-};
+}
 
 export default ShareButtons;

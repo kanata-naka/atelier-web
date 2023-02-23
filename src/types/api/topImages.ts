@@ -1,4 +1,4 @@
-import { GetListResponse } from ".";
+import { GetListResponse } from "@/types/api";
 
 export type TopImageGetListResponse = GetListResponse<TopImageGetResponse>;
 

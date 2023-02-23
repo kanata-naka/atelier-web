@@ -1,30 +1,30 @@
 import React, { useEffect } from "react";
-import { NextPage } from "next";
+import { NextPageContext } from "next";
 import Head from "next/head";
-import { callFunction } from "../api/firebase";
-import { PageHeading } from "../components/common/elements";
-import Footer from "../components/common/Footer";
-import Header from "../components/common/Header";
-import OgpTags from "../components/common/OgpTags";
-import ArtScroll from "../components/gallery/ArtScroll";
-import TagList from "../components/gallery/TagList";
-import { SITE_NAME } from "../constants";
-import { ART_SCROLL_FETCH_LIMIT } from "../constants/gallery";
-import { Restrict } from "../types";
-import { GetByIdRequest } from "../types/api";
-import {
-  ArtGetListRequest,
-  ArtGetListResponse,
-  ArtGetResponse,
-} from "../types/api/arts";
-import { TagInfoGetResponse } from "../types/api/tagInfo";
+import { callFunction } from "@/api/firebase";
+import Footer from "@/components/common/Footer";
+import Header from "@/components/common/Header";
+import OgpTags from "@/components/common/OgpTags";
+import PageHeading from "@/components/common/PageHeading";
+import ArtScroll from "@/components/gallery/ArtScroll";
+import TagList from "@/components/gallery/TagList";
+import { ART_SCROLL_FETCH_LIMIT, SITE_NAME } from "@/constants";
+import { Restrict } from "@/constants";
+import { GetByIdRequest } from "@/types/api";
+import { ArtGetListRequest, ArtGetListResponse, ArtGetResponse } from "@/types/api/arts";
+import { TagInfoGetResponse } from "@/types/api/tagInfo";
 
-const Page: NextPage<{
+function Page({
+  tagInfo,
+  tag,
+  items,
+  fetchedAll,
+}: {
   tagInfo: TagInfoGetResponse.TagInfo[];
   tag?: string;
   items: ArtGetResponse[];
   fetchedAll: boolean;
-}> = ({ tagInfo, tag, items, fetchedAll }) => {
+}) {
   useEffect(() => {
     scrollTo(0, 0);
   }, [items]);
@@ -43,18 +43,13 @@ const Page: NextPage<{
       <Header />
       <PageHeading>GALLERY</PageHeading>
       <TagList info={tagInfo} />
-      <ArtScroll
-        tag={tag}
-        items={items}
-        fetchedAll={fetchedAll}
-        fetchLimit={ART_SCROLL_FETCH_LIMIT}
-      />
+      <ArtScroll tag={tag} items={items} fetchedAll={fetchedAll} fetchLimit={ART_SCROLL_FETCH_LIMIT} />
       <Footer />
     </div>
   );
-};
+}
 
-Page.getInitialProps = async ({ query }) => {
+Page.getInitialProps = async function ({ query }: NextPageContext) {
   const result = await Promise.all([
     // 全てのタグとその件数を取得する
     callFunction<GetByIdRequest, TagInfoGetResponse>("tagInfo-getById", {

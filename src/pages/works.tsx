@@ -1,38 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { callFunction } from "../api/firebase";
-import { PageHeading } from "../components/common/elements";
-import Footer from "../components/common/Footer";
-import Header from "../components/common/Header";
-import OgpTags from "../components/common/OgpTags";
-import Pagination from "../components/works/Pagination";
-import WorkList from "../components/works/WorkList";
-import { SITE_NAME } from "../constants";
-import { PER_PAGE, PAGE_NUMBER_DISPLAY_MAX_RANGE } from "../constants/works";
-import { PaginationState, Restrict } from "../types";
-import {
-  WorkGetListRequest,
-  WorkGetListResponse,
-  WorkGetResponse,
-} from "../types/api/works";
-import { getItemsByPage } from "../utils/pageUtil";
+import { callFunction } from "@/api/firebase";
+import Footer from "@/components/common/Footer";
+import Header from "@/components/common/Header";
+import OgpTags from "@/components/common/OgpTags";
+import PageHeading from "@/components/common/PageHeading";
+import Pagination from "@/components/works/Pagination";
+import WorkList from "@/components/works/WorkList";
+import { SITE_NAME, WORK_LIST_PER_PAGE, WORK_LIST_PAGE_NUMBER_DISPLAY_MAX_RANGE } from "@/constants";
+import { Restrict } from "@/constants";
+import { PaginationState } from "@/types";
+import { WorkGetListRequest, WorkGetListResponse, WorkGetResponse } from "@/types/api/works";
+import { getItemsByPage } from "@/utils/pageUtil";
 
-const Page: NextPage<{
-  items: WorkGetResponse[];
-}> = ({ items }) => {
+function Page({ items }: { items: WorkGetResponse[] }) {
   const [itemsByPage, setItemsByPage] = useState<WorkGetResponse[]>([]);
-  const [paginationState, setPaginationState] =
-    useState<PaginationState | null>(null);
+  const [paginationState, setPaginationState] = useState<PaginationState | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const page = +Number(router.query.page) || 1;
-    setItemsByPage(getItemsByPage(items, page, PER_PAGE));
+    setItemsByPage(getItemsByPage(items, page, WORK_LIST_PER_PAGE));
     setPaginationState({
       page,
-      perPage: PER_PAGE,
+      perPage: WORK_LIST_PER_PAGE,
       total: items.length,
     });
     scrollTo(0, 0);
@@ -52,31 +44,23 @@ const Page: NextPage<{
       <Header />
       <PageHeading>WORKS</PageHeading>
       <WorkList items={itemsByPage} />
-      {paginationState && (
-        <Pagination
-          state={paginationState}
-          maxRange={PAGE_NUMBER_DISPLAY_MAX_RANGE}
-        />
-      )}
+      {paginationState && <Pagination state={paginationState} maxRange={WORK_LIST_PAGE_NUMBER_DISPLAY_MAX_RANGE} />}
       <Footer />
     </div>
   );
-};
+}
 
-Page.getInitialProps = async () => {
+Page.getInitialProps = async function () {
   // 全件取得する
   // ※shallow routingで再読み込みを行わずにページングを実現するため
-  const response = await callFunction<WorkGetListRequest, WorkGetListResponse>(
-    "works-get",
-    {
-      restrict: [Restrict.ALL, Restrict.LIMITED],
-      sort: {
-        // 出版日の降順
-        column: "publishedDate",
-        order: "desc",
-      },
-    }
-  );
+  const response = await callFunction<WorkGetListRequest, WorkGetListResponse>("works-get", {
+    restrict: [Restrict.ALL, Restrict.LIMITED],
+    sort: {
+      // 出版日の降順
+      column: "publishedDate",
+      order: "desc",
+    },
+  });
   return { items: response.data.result };
 };
 

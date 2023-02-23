@@ -1,15 +1,16 @@
-import React, { FC } from "react";
-import { COPYRIGHT } from "../../constants";
+import React from "react";
+import { COPYRIGHT } from "@/constants";
 
-/**
- * フッター
- */
-const Footer: FC = () => {
+function Footer() {
   return (
     <footer className="site-footer">
-      <div className="copyright">{COPYRIGHT}</div>
+      <Copyright />
     </footer>
   );
-};
+}
+
+function Copyright() {
+  return <div className="copyright">{COPYRIGHT}</div>;
+}
 
 export default Footer;

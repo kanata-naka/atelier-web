@@ -1,18 +1,18 @@
 import React, { useEffect, useCallback } from "react";
-import { NextPage } from "next";
+import { NextPageContext } from "next";
 import Head from "next/head";
 import Router from "next/router";
-import { callFunction } from "../../api/firebase";
-import { PageHeading } from "../../components/common/elements";
-import Footer from "../../components/common/Footer";
-import Header from "../../components/common/Header";
-import OgpTags from "../../components/common/OgpTags";
-import ArtModal from "../../components/gallery/ArtModal";
-import { SITE_NAME } from "../../constants";
-import { GetByIdRequest } from "../../types/api";
-import { ArtGetResponse } from "../../types/api/arts";
+import { callFunction } from "@/api/firebase";
+import Footer from "@/components/common/Footer";
+import Header from "@/components/common/Header";
+import OgpTags from "@/components/common/OgpTags";
+import PageHeading from "@/components/common/PageHeading";
+import ArtModal from "@/components/gallery/ArtModal";
+import { SITE_NAME } from "@/constants";
+import { GetByIdRequest } from "@/types/api";
+import { ArtGetResponse } from "@/types/api/arts";
 
-const Page: NextPage<{ item: ArtGetResponse }> = ({ item }) => {
+function Page({ item }: { item: ArtGetResponse }) {
   useEffect(() => {
     // モーダルを開く
     ArtModal.open(item);
@@ -39,19 +39,16 @@ const Page: NextPage<{ item: ArtGetResponse }> = ({ item }) => {
       />
       <Header />
       <PageHeading>GALLERY</PageHeading>
-      <ArtModal onClose={onClose} />
+      <ArtModal.Component onClose={onClose} />
       <Footer />
     </div>
   );
-};
+}
 
-Page.getInitialProps = async ({ query }) => {
-  const response = await callFunction<GetByIdRequest, ArtGetResponse>(
-    "arts-getById",
-    {
-      id: String(query.id),
-    }
-  );
+Page.getInitialProps = async function ({ query }: NextPageContext) {
+  const response = await callFunction<GetByIdRequest, ArtGetResponse>("arts-getById", {
+    id: String(query.id),
+  });
   return { item: response.data };
 };
 

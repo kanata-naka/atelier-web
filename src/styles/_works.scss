@@ -58,6 +58,8 @@
     }
 
     &-image {
+      // next/imageのスタイルを上書きする
+      position: static !important;
       width: 100%;
       border: 1px solid $frame-border-color;
     }

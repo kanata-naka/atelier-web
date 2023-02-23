@@ -1,26 +1,15 @@
-/**
- * ページビューを送信する
- */
-export const sendPageview = (path: string) => {
-  if (
-    typeof window === "undefined" ||
-    !process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID
-  ) {
+/** ページビューを送信する */
+export function sendPageview(path: string) {
+  if (typeof window === "undefined" || !process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID) {
     return;
   }
-  window.gtag(
-    "config",
-    process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID,
-    {
-      page_path: path,
-    }
-  );
-};
+  window.gtag("config", process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID, {
+    page_path: path,
+  });
+}
 
-/**
- * イベントを送信する
- */
-export const sendEvent = ({
+/** イベントを送信する */
+export function sendEvent({
   action,
   category,
   label,
@@ -30,7 +19,7 @@ export const sendEvent = ({
   category: string;
   label: Record<string, unknown>;
   value?: string;
-}) => {
+}) {
   if (typeof window === "undefined") {
     return;
   }
@@ -39,4 +28,4 @@ export const sendEvent = ({
     event_label: JSON.stringify(label),
     value,
   });
-};
+}

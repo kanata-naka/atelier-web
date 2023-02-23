@@ -1,17 +1,10 @@
 import { initializeAnalytics } from "firebase/analytics";
 import { getApps, getApp, initializeApp } from "firebase/app";
-import {
-  getFunctions,
-  connectFunctionsEmulator,
-  httpsCallable,
-  HttpsCallableResult,
-} from "firebase/functions";
-import { FIREBASE_REGION } from "../constants";
+import { getFunctions, connectFunctionsEmulator, httpsCallable, HttpsCallableResult } from "firebase/functions";
+import { FIREBASE_REGION } from "@/constants";
 
-/**
- * Firebaseを初期化する
- */
-export const initializeFirebase = (isServer: boolean) => {
+/** Firebaseを初期化する */
+export function initializeFirebase(isServer: boolean) {
   if (getApps().length) {
     return;
   }
@@ -21,8 +14,7 @@ export const initializeFirebase = (isServer: boolean) => {
     databaseURL: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_DATABASE_URL,
     projectId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_PROJECT_ID,
     storageBucket: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_STORAGE_BUCKET,
-    messagingSenderId:
-      process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MESSAGING_SENDER_ID,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MESSAGING_SENDER_ID,
     appId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_APP_ID,
     measurementId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID,
   });
@@ -33,27 +25,15 @@ export const initializeFirebase = (isServer: boolean) => {
 
   if (process.env.NEXT_PUBLIC_ENV !== "production") {
     // ローカル環境の場合
-    connectFunctionsEmulator(
-      getFunctions(getApp(), FIREBASE_REGION),
-      "localhost",
-      5000
-    );
+    connectFunctionsEmulator(getFunctions(getApp(), FIREBASE_REGION), "localhost", 5000);
   }
-};
+}
 
-/**
- * Firebase Functionsの関数を実行する
- */
-export const callFunction = async <
-  T = Record<string, unknown>,
-  R = Record<string, unknown>
->(
+/** Firebase Functionsの関数を実行する */
+export async function callFunction<T = Record<string, unknown>, R = Record<string, unknown>>(
   name: string,
   data?: T
-): Promise<HttpsCallableResult<R>> => {
-  const callable = httpsCallable<T, R>(
-    getFunctions(getApp(), FIREBASE_REGION),
-    name
-  );
+): Promise<HttpsCallableResult<R>> {
+  const callable = httpsCallable<T, R>(getFunctions(getApp(), FIREBASE_REGION), name);
   return await callable(data);
-};
+}

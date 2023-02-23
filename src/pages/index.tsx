@@ -1,41 +1,32 @@
 import React from "react";
-import { NextPage } from "next";
 import Head from "next/head";
-import { callFunction } from "../api/firebase";
-import Footer from "../components/common/Footer";
-import Header from "../components/common/Header";
-import OgpTags from "../components/common/OgpTags";
-import ShareButtons from "../components/common/ShareButtons";
-import About from "../components/home/About";
-// import LatestArticles from "../components/home/LatestArticles";
-import RecentArts from "../components/home/RecentArts";
-import RecentWorks from "../components/home/RecentWorks";
-import TopCarousel from "../components/home/TopCarousel";
-import { SITE_NAME, SITE_DESCRIPTION } from "../constants";
-import { TOP_CAROUSEL_SWITCH_INTERVAL } from "../constants/home";
-import { Restrict } from "../types";
-// import { GetListRequest } from "../types/api";
-import {
-  ArtGetListRequest,
-  ArtGetListResponse,
-  ArtGetResponse,
-} from "../types/api/arts";
-// import { BlogGetArticleListResponse } from "../types/api/blog";
-import {
-  TopImageGetListResponse,
-  TopImageGetResponse,
-} from "../types/api/topImages";
-import {
-  WorkGetListRequest,
-  WorkGetListResponse,
-  WorkGetResponse,
-} from "../types/api/works";
+import { callFunction } from "@/api/firebase";
+import Footer from "@/components/common/Footer";
+import Header from "@/components/common/Header";
+import OgpTags from "@/components/common/OgpTags";
+import ShareButtons from "@/components/common/ShareButtons";
+import About from "@/components/home/About";
+// import LatestArticles from "@/components/home/LatestArticles";
+import RecentArts from "@/components/home/RecentArts";
+import RecentWorks from "@/components/home/RecentWorks";
+import TopCarousel from "@/components/home/TopCarousel";
+import { SITE_NAME, SITE_DESCRIPTION, TOP_CAROUSEL_SWITCH_INTERVAL } from "@/constants";
+import { Restrict } from "@/constants";
+// import { GetListRequest } from "@/types/api";
+import { ArtGetListRequest, ArtGetListResponse, ArtGetResponse } from "@/types/api/arts";
+// import { BlogGetArticleListResponse } from "@/types/api/blog";
+import { TopImageGetListResponse, TopImageGetResponse } from "@/types/api/topImages";
+import { WorkGetListRequest, WorkGetListResponse, WorkGetResponse } from "@/types/api/works";
 
-const Page: NextPage<{
+function Page({
+  topImages,
+  /* latestArticles, */ recentWorks,
+  recentArts,
+}: {
   topImages: TopImageGetResponse[];
   /* latestArticles: BlogGetArticleListResponse.Article[], */ recentWorks: WorkGetResponse[];
   recentArts: ArtGetResponse[];
-}> = ({ topImages, /* latestArticles, */ recentWorks, recentArts }) => {
+}) {
   return (
     <div>
       <Head>
@@ -51,10 +42,7 @@ const Page: NextPage<{
         twitterImage="/images/ogp-twitter-image.png"
       />
       <Header />
-      <TopCarousel
-        items={topImages}
-        switchInterval={TOP_CAROUSEL_SWITCH_INTERVAL}
-      />
+      <TopCarousel items={topImages} switchInterval={TOP_CAROUSEL_SWITCH_INTERVAL} />
       <div className="dashboard">
         <About />
         {/* <LatestArticles items={latestArticles} /> */}
@@ -65,9 +53,9 @@ const Page: NextPage<{
       <Footer />
     </div>
   );
-};
+}
 
-Page.getInitialProps = async () => {
+Page.getInitialProps = async function () {
   const result = await Promise.all([
     // トップ画像の一覧を取得する
     callFunction<never, TopImageGetListResponse>("topImages-get")

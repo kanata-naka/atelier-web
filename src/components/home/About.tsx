@@ -1,15 +1,11 @@
-import React, { FC, useCallback } from "react";
-import { SITE_DESCRIPTION, TWITTER_USERNAME } from "../../constants";
-import {
-  AUTHOR_NAME,
-  INTRODUCTION,
-  SOCIAL_ACCOUNTS,
-} from "../../constants/home";
-import { SocialAccount } from "../../types";
-import { reloadTwitterWidgets } from "../../utils/vendorUtil";
-import { SectionHeading } from "../common/elements";
+import React, { useCallback, ReactNode } from "react";
+import Image from "next/image";
+import SectionHeading from "@/components/common/SectionHeading";
+import { AUTHOR_NAME, INTRODUCTION, SITE_DESCRIPTION, SOCIAL_ACCOUNTS, TWITTER_USERNAME } from "@/constants";
+import { SocialAccount } from "@/types";
+import { reloadTwitterWidgets } from "@/utils/vendorUtil";
 
-const About: FC = () => {
+function About() {
   return (
     <section id="about" className="about">
       <SectionHeading>ABOUT</SectionHeading>
@@ -21,25 +17,25 @@ const About: FC = () => {
       <TwitterWidgets id={TWITTER_USERNAME} />
     </section>
   );
-};
+}
 
-const Description: FC = ({ children }) => {
+function Description({ children }: { children: ReactNode }) {
   return <p className="description">{children}</p>;
-};
+}
 
-const ProfileImage: FC<{ url: string }> = ({ url }) => {
+function ProfileImage({ url }: { url: string }) {
   return (
     <figure className="profile-image">
-      <img className="profile-image__image" alt="プロフィール画像" src={url} />
+      <Image className="profile-image__image" src={url} width={100} height={100} alt="プロフィール画像" />
     </figure>
   );
-};
+}
 
-const AuthorName: FC = ({ children }) => {
+function AuthorName({ children }: { children: ReactNode }) {
   return <h3 className="author-name">{children}</h3>;
-};
+}
 
-const SocialIcons: FC<{ accounts: SocialAccount[] }> = ({ accounts }) => {
+function SocialIcons({ accounts }: { accounts: SocialAccount[] }) {
   return (
     <ul className="social-icons">
       {accounts.map((account, index) => (
@@ -47,23 +43,19 @@ const SocialIcons: FC<{ accounts: SocialAccount[] }> = ({ accounts }) => {
       ))}
     </ul>
   );
-};
+}
 
-const SocialIcon: FC<{ account: SocialAccount }> = ({ account }) => {
+function SocialIcon({ account }: { account: SocialAccount }) {
   return (
     <li className="social-icons-item">
       <a href={account.url}>
-        <img
-          className="social-icons-item__image"
-          alt={account.name}
-          src={account.imageUrl}
-        />
+        <Image className="social-icons-item__image" src={account.imageUrl} width={24} height={24} alt={account.name} />
       </a>
     </li>
   );
-};
+}
 
-const Introduction: FC<{ content: string }> = ({ content }) => {
+function Introduction({ content }: { content: string }) {
   return (
     <p
       className="introduction"
@@ -72,9 +64,9 @@ const Introduction: FC<{ content: string }> = ({ content }) => {
       }}
     />
   );
-};
+}
 
-const TwitterWidgets: FC<{ id: string }> = ({ id }) => {
+function TwitterWidgets({ id }: { id: string }) {
   const elementRef = useCallback((element: HTMLDivElement) => {
     if (!element) {
       return;
@@ -88,11 +80,12 @@ const TwitterWidgets: FC<{ id: string }> = ({ id }) => {
         className="twitter-timeline"
         data-lang="ja"
         data-height="500"
-        href={`https://twitter.com/${id}?ref_src=twsrc%5Etfw`}>
+        href={`https://twitter.com/${id}?ref_src=twsrc%5Etfw`}
+      >
         {`Tweets by ${id}`}
       </a>
     </div>
   );
-};
+}
 
 export default About;
