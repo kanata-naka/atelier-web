@@ -49,7 +49,7 @@ function SocialIcon({ account }: { account: SocialAccount }) {
   return (
     <li className="social-icons-item">
       <a href={account.url}>
-        <Image className="social-icons-item__image" src={account.imageUrl} width={24} height={24} alt={account.name} />
+        <Image className="social-icons-item__image" src={account.imageUrl} fill alt={account.name} />
       </a>
     </li>
   );

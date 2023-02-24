@@ -60,7 +60,8 @@
     &-image {
       // next/imageのスタイルを上書きする
       position: static !important;
-      width: 100%;
+      width: 100% !important;
+      height: auto !important;
       border: 1px solid $frame-border-color;
     }
 

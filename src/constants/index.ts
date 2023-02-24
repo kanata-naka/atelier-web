@@ -29,6 +29,11 @@ export const SOCIAL_ACCOUNTS: SocialAccount[] = [
     imageUrl: "/images/pixiv-icon.png",
   },
   {
+    name: "YouTube",
+    url: `https://www.youtube.com/@atelier_kanata`,
+    imageUrl: "/images/youtube-icon.png",
+  },
+  {
     name: "Misskey.io",
     url: `https://misskey.io/@atelier_kanata`,
     imageUrl: "/images/misskey-io-icon.webp",

@@ -1,4 +1,3 @@
-// カルーセル
 .top-carousel {
   position: relative;
   overflow: hidden;
@@ -82,7 +81,6 @@
   }
 }
 
-// ダッシュボード
 .dashboard {
   display: flex;
 
@@ -91,7 +89,6 @@
   }
 }
 
-// セクションの見出し
 .section-heading {
   padding: 24px 0;
   font-size: 28px;
@@ -222,6 +219,8 @@
     padding: 24px 0;
 
     &-item {
+      display: flex;
+      align-items: center;
       width: 24px;
       height: 24px;
       transition: opacity 250ms;
@@ -239,7 +238,10 @@
       }
 
       &__image {
-        width: 100%;
+        // next/imageのスタイルを上書きする
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
       }
     }
   }

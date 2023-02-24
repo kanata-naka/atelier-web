@@ -22,7 +22,6 @@ body {
   line-height: 1.2em;
 }
 
-// ヘッダー
 .site-header {
   position: fixed;
   top: 0;
@@ -40,7 +39,6 @@ body {
   opacity: 0.8;
 }
 
-// ロゴ
 .site-logo {
   width: 205px;
   height: 28px;
@@ -53,7 +51,6 @@ body {
   }
 }
 
-// グローバルナビゲーション
 .global-navigation {
   &-list {
     display: flex;
@@ -107,7 +104,6 @@ body {
     }
   }
 
-  // ハンバーガーボタン
   &-hamburger-button {
     font-size: 24px;
     line-height: 24px;
@@ -128,7 +124,6 @@ body {
   }
 }
 
-// ページ
 .page-wrapper {
   position: absolute;
   top: $site-header-height;
@@ -136,7 +131,6 @@ body {
   left: 0;
 }
 
-// ページの見出し
 .page-heading {
   padding: 24px 0;
   font-size: 32px;
@@ -146,7 +140,6 @@ body {
   text-align: center;
 }
 
-// ページネーション
 .pagination {
   display: flex;
   align-items: center;
@@ -221,7 +214,6 @@ body {
   }
 }
 
-// フッター
 .site-footer {
   &:before {
     display: block;
@@ -238,7 +230,6 @@ body {
   }
 }
 
-// ローディングエフェクト
 .page-loading {
   position: fixed;
   top: 0;
@@ -261,7 +252,6 @@ body {
   }
 }
 
-// アニメーション
 @keyframes loading_image {
   0% {
     transform: rotate(0deg);
@@ -292,7 +282,6 @@ body {
   }
 }
 
-// シェアボタン
 .share-buttons {
   display: flex;
   align-items: flex-start;

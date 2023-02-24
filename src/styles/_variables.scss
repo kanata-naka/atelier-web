@@ -1,8 +1,9 @@
-// レスポンシブ：横幅の境界値
-// ※iPad (11インチ)に準拠
+/**
+ * レスポンシブ：横幅の境界値
+ * ※iPad (11インチ)に準拠
+ */
 $responsive-boundary-width: 834px;
-// ヘッダーの高さ
+
 $site-header-height: 54px;
 
-// 枠線の色
 $frame-border-color: #dbdbdb;
