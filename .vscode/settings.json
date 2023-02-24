@@ -11,12 +11,6 @@
       "source.fixAll.eslint": true
     }
   },
-  "[scss]": {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.stylelint": true
-    }
-  },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.configPath": ".prettierrc"
 }
