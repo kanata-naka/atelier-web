@@ -42,15 +42,13 @@ $gallery-modal-responsive-boundary-width: 414px;
     }
   }
 
-  &-background {
+  &-image {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    object-fit: contain;
   }
 
   &-foreground {
@@ -123,9 +121,6 @@ $gallery-modal-responsive-boundary-width: 414px;
       height: 64px;
       padding: 4px;
       margin-right: 6px;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
       border: 1px solid $frame-border-color;
       opacity: 0.8;
       transition: opacity 250ms;
@@ -137,6 +132,14 @@ $gallery-modal-responsive-boundary-width: 414px;
         bottom: 0;
         left: 0;
         display: block;
+      }
+
+      &__image {
+        // next/imageのスタイルを上書きする
+        position: static !important;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
 
       &:hover {

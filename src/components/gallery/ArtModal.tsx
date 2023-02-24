@@ -1,4 +1,5 @@
 import React, { useState, useCallback, ReactNode } from "react";
+import Image from "next/image";
 import Router from "next/router";
 import Modal from "react-modal";
 import { sendEvent } from "@/api/gtag";
@@ -62,7 +63,9 @@ function Component({ onClose }: { onClose?: () => void }) {
     >
       <Overlay onClick={handleClose} />
       <div className="gallery-modal-container" onClick={handleClick}>
-        <Background image={item.images[currentImageIndex]} />
+        {item.images[currentImageIndex] && (
+          <Image className="gallery-modal-image" src={item.images[currentImageIndex].url} fill alt={item.title} />
+        )}
         <div className="gallery-modal-foreground" style={{ display: isForegroundActive ? "block" : "none" }}>
           <Title>{item.title}</Title>
           {item.tags && <TagList tags={item.tags} />}
@@ -76,6 +79,7 @@ function Component({ onClose }: { onClose?: () => void }) {
         </div>
         <DiffList
           images={item.images}
+          title={item.title}
           currentImageIndex={currentImageIndex}
           onSelect={(index: number) => {
             setCurrentImageIndex(index);
@@ -94,17 +98,6 @@ function Component({ onClose }: { onClose?: () => void }) {
 
 function Overlay({ onClick }: { onClick: () => void }) {
   return <div className="gallery-modal-overlay" onClick={onClick}></div>;
-}
-
-function Background({ image }: { image?: ArtGetResponse.Image }) {
-  return (
-    <div
-      className="gallery-modal-background"
-      style={{
-        backgroundImage: image && `url(${image.url})`,
-      }}
-    ></div>
-  );
 }
 
 function Title({ children }: { children: ReactNode }) {
@@ -157,10 +150,12 @@ function PostedDate({ timestamp }: { timestamp: number }) {
 
 function DiffList({
   images,
+  title,
   currentImageIndex,
   onSelect,
 }: {
   images: ArtGetResponse.Image[];
+  title: string;
   currentImageIndex: number;
   onSelect: (index: number) => void;
 }) {
@@ -173,6 +168,7 @@ function DiffList({
         <DiffListItem
           key={index}
           image={image}
+          title={title}
           isActive={index === currentImageIndex}
           onClick={(event) => {
             event.preventDefault();
@@ -188,21 +184,20 @@ function DiffList({
 
 function DiffListItem({
   image,
+  title,
   isActive,
   onClick,
 }: {
   image: ArtGetResponse.Image;
+  title: string;
   isActive: boolean;
   onClick: (event: React.MouseEvent) => void;
 }) {
   return (
-    <li
-      className={`diff-list-item ${isActive ? "active" : ""}`}
-      style={{
-        backgroundImage: `url(${image.thumbnailUrl.small})`,
-      }}
-    >
-      <a className="diff-list-item__link" href={image.url} onClick={onClick}></a>
+    <li className={`diff-list-item ${isActive ? "active" : ""}`}>
+      <a className="diff-list-item__link" href={image.url} onClick={onClick}>
+        <Image className="diff-list-item__image" src={image.thumbnailUrl.small} fill alt={title} />
+      </a>
     </li>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/common/SectionHeading";
 import ArtModal from "@/components/gallery/ArtModal";
@@ -32,21 +33,10 @@ function RecentArtItem({ item, isLast }: { item: ArtGetResponse; isLast: boolean
           ArtModal.open(item);
         }}
       >
-        <RecentArtItemBackground image={item.images[0]} />
+        <Image className="recent-arts-item__image" src={item.images[0].thumbnailUrl.medium} fill alt={item.title} />
         <RecentArtItemForeground isLast={isLast} />
       </Link>
     </div>
-  );
-}
-
-function RecentArtItemBackground({ image }: { image: ArtGetResponse.Image }) {
-  return (
-    <div
-      className="recent-arts-item-background"
-      style={{
-        backgroundImage: `url(${image.thumbnailUrl.medium})`,
-      }}
-    ></div>
   );
 }
 

@@ -78,20 +78,9 @@ function ArtScrollItem({ item }: { item: ArtGetResponse }) {
           ArtModal.open(item);
         }}
       >
-        <ArtScrollItemBackground image={item.images[0]} />
+        <Image className="art-scroll-item__image" src={item.images[0].thumbnailUrl.medium} fill alt={item.title} />
       </Link>
     </div>
-  );
-}
-
-function ArtScrollItemBackground({ image }: { image: ArtGetResponse.Image }) {
-  return (
-    <div
-      className="art-scroll-item-background"
-      style={{
-        backgroundImage: `url(${image.thumbnailUrl.medium})`,
-      }}
-    ></div>
   );
 }
 

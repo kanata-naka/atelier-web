@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import Image from "next/image";
 import { useStateRef } from "@/hooks";
 import { TopImageGetResponse } from "@/types/api/topImages";
 
@@ -60,13 +61,9 @@ function TopCarouselList({ items, currentIndex }: { items: TopImageGetResponse[]
 
 function TopCarouselItem({ item, isActive }: { item: TopImageGetResponse; isActive: boolean }) {
   return (
-    <li
-      className="top-carousel-item"
-      style={{
-        backgroundImage: `url(${item.image.url})`,
-        ...(isActive ? { opacity: 1 } : {}),
-      }}
-    ></li>
+    <li className="top-carousel-item" style={isActive ? { opacity: 1, zIndex: 0 } : { zIndex: -1 }}>
+      <Image className="top-carousel-item__image" src={item.image.url} fill alt={`${item.description}`} />
+    </li>
   );
 }
 
@@ -98,13 +95,9 @@ function NavigationItem({
   onClick: () => void;
 }) {
   return (
-    <li
-      className={"top-carousel-nav-item " + (isActive ? "active" : "")}
-      onClick={onClick}
-      style={{
-        backgroundImage: `url(${item.thumbnailImage.url})`,
-      }}
-    ></li>
+    <li className={"top-carousel-nav-item " + (isActive ? "active" : "")} onClick={onClick}>
+      <Image className="top-carousel-nav-item__image" src={item.thumbnailImage.url} fill alt={`${item.description}`} />
+    </li>
   );
 }
 

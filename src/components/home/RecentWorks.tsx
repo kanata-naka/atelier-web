@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/common/SectionHeading";
 import { WorkGetResponse } from "@/types/api/works";
@@ -20,22 +21,24 @@ function RecentWorkItem({ item, isLast }: { item: WorkGetResponse; isLast: boole
   return (
     <div className="recent-works-item">
       <Link className="recent-works-item__link" href={`/works${isLast ? "" : `/${item.id}`}`}>
-        <RecentWorkItemBackground image={item.images && item.images[0]} />
+        <RecentWorkItemImage image={item.images && item.images[0]} title={item.title} />
         <RecentWorkItemForeground isLast={isLast} title={item.title} />
       </Link>
     </div>
   );
 }
 
-function RecentWorkItemBackground({ image }: { image?: WorkGetResponse.Image }) {
+function RecentWorkItemImage({ image, title }: { image?: WorkGetResponse.Image; title: string }) {
   return (
-    <div
-      className="recent-works-item-background"
+    <Image
+      className="recent-works-item__image"
+      src={image ? image.url : "/images/no-image.png"}
+      fill
+      alt={title}
       style={{
-        backgroundImage: `url(${image ? image.url : "/images/no-image.png"})`,
-        backgroundSize: image ? "cover" : "contain",
+        objectFit: image ? "cover" : "contain",
       }}
-    ></div>
+    />
   );
 }
 

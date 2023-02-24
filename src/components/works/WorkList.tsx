@@ -39,6 +39,7 @@ function WorkListItem({ item }: { item: WorkGetResponse }) {
           <div className="work-list-item-row__right-column">
             <DiffList
               images={item.images}
+              title={item.title}
               currentImageIndex={currentImageIndex}
               onSelect={(index) => setCurrentImageIndex(index)}
             />
@@ -74,10 +75,12 @@ function WorkListItemImage({ image, title }: { image: WorkGetResponse.Image; tit
 
 function DiffList({
   images,
+  title,
   currentImageIndex,
   onSelect,
 }: {
   images: WorkGetResponse.Image[];
+  title: string;
   currentImageIndex: number;
   onSelect: (index: number) => void;
 }) {
@@ -91,6 +94,7 @@ function DiffList({
         <DiffListItem
           key={index}
           image={image}
+          title={title}
           isActive={index === currentImageIndex}
           onClick={(event) => {
             event.preventDefault();
@@ -104,21 +108,20 @@ function DiffList({
 
 function DiffListItem({
   image,
+  title,
   isActive,
   onClick,
 }: {
   image: WorkGetResponse.Image;
+  title: string;
   isActive: boolean;
   onClick: (event: React.MouseEvent) => void;
 }) {
   return (
-    <li
-      className={`diff-list-item ${isActive ? "active" : ""}`}
-      style={{
-        backgroundImage: `url(${image.thumbnailUrl.small})`,
-      }}
-    >
-      <a className="diff-list-item__link" href={image.url} onClick={onClick}></a>
+    <li className={`diff-list-item ${isActive ? "active" : ""}`}>
+      <a className="diff-list-item__link" href={image.url} onClick={onClick}>
+        <Image className="diff-list-item__image" src={image.thumbnailUrl.small} fill alt={title} />
+      </a>
     </li>
   );
 }
