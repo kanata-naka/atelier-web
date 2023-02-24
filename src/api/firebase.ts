@@ -3,7 +3,6 @@ import { getApps, getApp, initializeApp } from "firebase/app";
 import { getFunctions, connectFunctionsEmulator, httpsCallable, HttpsCallableResult } from "firebase/functions";
 import { FIREBASE_REGION } from "@/constants";
 
-/** Firebaseを初期化する */
 export function initializeFirebase(isServer: boolean) {
   if (getApps().length) {
     return;
@@ -24,12 +23,10 @@ export function initializeFirebase(isServer: boolean) {
   }
 
   if (process.env.NEXT_PUBLIC_ENV !== "production") {
-    // ローカル環境の場合
     connectFunctionsEmulator(getFunctions(getApp(), FIREBASE_REGION), "localhost", 5000);
   }
 }
 
-/** Firebase Functionsの関数を実行する */
 export async function callFunction<T = Record<string, unknown>, R = Record<string, unknown>>(
   name: string,
   data?: T

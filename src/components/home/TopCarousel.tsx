@@ -13,7 +13,6 @@ function TopCarousel({ items, switchInterval }: { items: TopImageGetResponse[]; 
     }
     let nextIndex = currntIndexRef.current + 1;
     if (nextIndex === items.length) {
-      // 最初に戻る
       nextIndex = 0;
     }
     setCurrentIndex(nextIndex);
@@ -29,16 +28,13 @@ function TopCarousel({ items, switchInterval }: { items: TopImageGetResponse[]; 
   };
 
   useEffect(() => {
-    // 一定時間ごとに画像を切り替える
     currentIntervalIdRef.current = window.setInterval(handleSwitchItem, switchInterval);
     return () => {
-      // componentWillUnmount と同じタイミングで実行する
       window.clearInterval(currentIntervalIdRef.current);
     };
   }, []);
 
   if (!items.length) {
-    // トップ画像が1件もなければ表示しない
     return null;
   }
 

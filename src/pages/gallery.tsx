@@ -51,7 +51,6 @@ function Page({
 
 Page.getInitialProps = async function ({ query }: NextPageContext) {
   const result = await Promise.all([
-    // 全てのタグとその件数を取得する
     callFunction<GetByIdRequest, TagInfoGetResponse>("tagInfo-getById", {
       id: "arts",
     })
@@ -62,7 +61,6 @@ Page.getInitialProps = async function ({ query }: NextPageContext) {
         console.error(error);
         return [];
       }),
-    // イラスト一覧（最初の${ART_SCROLL_FETCH_LIMIT}件）を取得する
     callFunction<ArtGetListRequest, ArtGetListResponse>("arts-get", {
       tag: query.tag && String(query.tag),
       restrict: [Restrict.ALL, Restrict.LIMITED],

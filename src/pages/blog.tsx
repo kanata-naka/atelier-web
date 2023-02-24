@@ -7,7 +7,7 @@ function Page() {
 
 Page.getInitialProps = async function ({ res }: NextPageContext) {
   if (res) {
-    // noteにリダイレクトする
+    // 外部サイトにリダイレクトする
     res.writeHead(302, { Location: BLOG_URL });
     res.end();
   }

@@ -23,18 +23,13 @@ function Component({ onClose }: { onClose?: () => void }) {
   const [isForegroundActive, setForegroundActive] = useState(true);
 
   ArtModal.open = (item: ArtGetResponse) => {
-    // モーダルを初期化する
     setItem(item);
     setCurrentImageIndex(0);
     setForegroundActive(true);
     setOpen(true);
-    sendEvent({
-      action: "open",
-      category: "gallery_modal",
-      label: {
-        id: item.id,
-        title: item.title,
-      },
+    sendEvent("open", "gallery_modal", {
+      id: item.id,
+      title: item.title,
     });
   };
 
@@ -43,7 +38,6 @@ function Component({ onClose }: { onClose?: () => void }) {
   };
 
   const handleClick = useCallback(() => {
-    // キャプションの表示・非表示を切り替える
     setForegroundActive(!isForegroundActive);
   }, [isForegroundActive]);
 
@@ -85,14 +79,10 @@ function Component({ onClose }: { onClose?: () => void }) {
           currentImageIndex={currentImageIndex}
           onSelect={(index: number) => {
             setCurrentImageIndex(index);
-            sendEvent({
-              action: "switch_diff",
-              category: "gallery_modal",
-              label: {
-                id: item.id,
-                title: item.title,
-                index,
-              },
+            sendEvent("switch_diff", "gallery_modal", {
+              id: item.id,
+              title: item.title,
+              index,
             });
           }}
         />

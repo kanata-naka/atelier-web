@@ -1,7 +1,6 @@
 import React from "react";
 import { marked } from "marked";
 
-/** メディアクエリを判定する */
 export function matchesMediaQuery(mediaQuery: string) {
   if (typeof window === "undefined") {
     return false;
@@ -9,7 +8,6 @@ export function matchesMediaQuery(mediaQuery: string) {
   return window.matchMedia(mediaQuery).matches;
 }
 
-/** Markdown形式のテキストを整形する */
 export function renderMarkdown(src?: string) {
   if (!src) {
     return <span />;
@@ -24,7 +22,6 @@ export function renderMarkdown(src?: string) {
   );
 }
 
-/** ページの最後までスクロールした際の位置を取得する */
 export function getOffsetScrolledToBottom() {
   if (typeof window === "undefined") {
     return null;
@@ -42,7 +39,6 @@ export function getOffsetScrolledToBottom() {
   return pageHeight - window.innerHeight;
 }
 
-/** 現在のスクロール位置を取得する */
 export function getCurrentScrollTop() {
   if (typeof window === "undefined") {
     return null;

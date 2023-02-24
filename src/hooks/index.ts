@@ -18,7 +18,6 @@ export function useStateRef<T>(
   return [value, valueRef, setValue];
 }
 
-/** メディアクエリを使用する */
 export function useMediaQuery(mediaQuery: string) {
   const [matches, setMatches] = useState(false);
 
@@ -36,7 +35,6 @@ export function useMediaQuery(mediaQuery: string) {
   return matches;
 }
 
-/** ページビューを測定する */
 export function usePageview() {
   useEffect(() => {
     const handleRouteChangeComplete = (path: string) => sendPageview(path);
@@ -47,7 +45,6 @@ export function usePageview() {
   }, [Router.events]);
 }
 
-/** 無限スクロールを使用する */
 export function useScroll<T>(
   callback: () => Promise<void>,
   delay: number,
@@ -92,7 +89,6 @@ export function useScroll<T>(
       return;
     }
     // ページの最後までスクロールされていればタイマーにcallbackをセットする
-    // ※既にセットされていればタイマーをリセットする
     timer && clearTimeout(timer);
     setTimer(window.setTimeout(_callback, delay));
   }, [offsetScrolledToBottom, currentScrollTop]);

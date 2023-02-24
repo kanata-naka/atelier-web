@@ -57,7 +57,6 @@ function Page({
 
 Page.getInitialProps = async function () {
   const result = await Promise.all([
-    // トップ画像の一覧を取得する
     callFunction<never, TopImageGetListResponse>("topImages-get")
       .then((response) => {
         return response.data.result;
@@ -66,7 +65,6 @@ Page.getInitialProps = async function () {
         console.error(error);
         return [];
       }),
-    // 最新記事の一覧を取得する
     // callFunction<GetListRequest, BlogGetArticleListResponse>(
     //   "blog-getArticles",
     //   {
@@ -80,7 +78,6 @@ Page.getInitialProps = async function () {
     //     console.error(error);
     //     return [];
     //   }),
-    // 最近のイラスト一覧を取得する
     callFunction<ArtGetListRequest, ArtGetListResponse>("arts-get", {
       restrict: [Restrict.ALL],
       limit: 10,
@@ -92,7 +89,6 @@ Page.getInitialProps = async function () {
         console.error(error);
         return [];
       }),
-    // 最近の作品一覧を取得する
     callFunction<WorkGetListRequest, WorkGetListResponse>("works-get", {
       limit: 6,
       restrict: [Restrict.ALL],

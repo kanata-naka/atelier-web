@@ -4,9 +4,7 @@ import { PaginationState } from "@/types";
 import { getPageNumberRange } from "@/utils/pageUtil";
 
 function Pagination({ state, maxRange }: { state: PaginationState; maxRange: number }) {
-  // 現在のページ
   const currentPage = state.page;
-  // 最後のページ
   const lastPage = Math.ceil(state.total / state.perPage);
 
   const handlePageNumberButtonClick = (event: React.MouseEvent, page: number) => {

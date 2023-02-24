@@ -3,16 +3,12 @@
 // グローバル変数を定義する
 declare global {
   interface Window {
-    // Twitter
     twttr: any;
-    // Facebook
     FB: any;
-    // LINE
     LineIt: any;
   }
 }
 
-/** Twitterのウィジェットを初期化する */
 export function reloadTwitterWidgets(element: Element) {
   try {
     if (typeof window?.twttr !== "undefined") {
@@ -24,7 +20,6 @@ export function reloadTwitterWidgets(element: Element) {
   }
 }
 
-/** Facebookのウィジェットを初期化する */
 export function reloadFacebookWidgets(element: Element) {
   try {
     if (typeof window?.FB !== "undefined") {
@@ -36,7 +31,6 @@ export function reloadFacebookWidgets(element: Element) {
   }
 }
 
-/** LINEのシェアボタンを初期化する */
 export function reloadLINEItButtons() {
   try {
     if (typeof window?.LineIt !== "undefined") {

@@ -23,11 +23,9 @@ function RoutingEffect() {
       in={loading}
       timeout={250}
       onEntered={() => {
-        // スクロールを無効にする
         document.body.style.overflow = "hidden";
       }}
       onExit={() => {
-        // スクロールを有効にする
         document.body.style.overflow = "scroll";
       }}
     >

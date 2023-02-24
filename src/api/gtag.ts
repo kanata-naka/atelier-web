@@ -1,4 +1,3 @@
-/** ページビューを送信する */
 export function sendPageview(path: string) {
   if (typeof window === "undefined" || !process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID) {
     return;
@@ -8,18 +7,7 @@ export function sendPageview(path: string) {
   });
 }
 
-/** イベントを送信する */
-export function sendEvent({
-  action,
-  category,
-  label,
-  value,
-}: {
-  action: string;
-  category: string;
-  label: Record<string, unknown>;
-  value?: string;
-}) {
+export function sendEvent(action: string, category: string, label: Record<string, unknown>, value?: string) {
   if (typeof window === "undefined") {
     return;
   }

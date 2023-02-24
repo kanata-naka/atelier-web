@@ -14,7 +14,6 @@ import { ArtGetResponse } from "@/types/api/arts";
 
 function Page({ item }: { item: ArtGetResponse }) {
   useEffect(() => {
-    // モーダルを開く
     ArtModal.open(item);
     scrollTo(0, 0);
   }, [item]);

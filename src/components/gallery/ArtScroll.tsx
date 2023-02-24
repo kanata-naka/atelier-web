@@ -21,11 +21,9 @@ function ArtScroll({
   const [items, setItems] = useState([...initinalItems]);
   const [fetchedAll, setFetchedAll] = useState(initialFetchedAll);
 
-  // 無限スクロールを使用する
   const [loading, setLoading] = useScroll(
     async () => {
       try {
-        // 次の${LIMIT}件を取得する
         const response = await callFunction<ArtGetListRequest, ArtGetListResponse>("arts-get", {
           lastId: items[items.length - 1].id,
           limit: fetchLimit,
@@ -77,7 +75,6 @@ function ArtScrollItem({ item }: { item: ArtGetResponse }) {
         as={`/gallery/${item.id}`}
         onClick={(event) => {
           event.preventDefault();
-          // モーダルを開く
           ArtModal.open(item);
         }}
       >

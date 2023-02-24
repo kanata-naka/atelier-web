@@ -29,7 +29,6 @@ function RecentArtItem({ item, isLast }: { item: ArtGetResponse; isLast: boolean
             return;
           }
           event.preventDefault();
-          // モーダルを開く
           ArtModal.open(item);
         }}
       >

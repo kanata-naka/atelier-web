@@ -10,7 +10,6 @@ function GlobalNavigation() {
   const enableToggleMenu = useMediaQuery("(max-width: 834px)");
 
   const handleHamburgerButtonClick = useCallback(() => {
-    // トグルメニューを切り替える
     setToggleMenuActive(!isToggleMenuActive);
   }, [isToggleMenuActive]);
 

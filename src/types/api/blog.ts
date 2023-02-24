@@ -4,16 +4,11 @@ export type BlogGetArticleListResponse = GetListResponse<BlogGetArticleListRespo
 
 export namespace BlogGetArticleListResponse {
   export type Article = {
-    /** URL */
     url: string;
-    /** タイトル */
     title: string;
-    /** 画像一覧 */
     topImage?: {
-      /** 画像のURL */
       url: string;
     };
-    /** 作成日時 */
     createdAt: string;
   };
 }
