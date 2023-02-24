@@ -28,6 +28,11 @@ export const SOCIAL_ACCOUNTS: SocialAccount[] = [
     url: `https://www.pixiv.net/users/204608`,
     imageUrl: "/images/pixiv-icon.png",
   },
+  {
+    name: "Misskey.io",
+    url: `https://misskey.io/@atelier_kanata`,
+    imageUrl: "/images/misskey-io-icon.webp",
+  },
 ];
 
 export const Restrict = {
