@@ -1,6 +1,8 @@
 import React from "react";
 import { css } from "@emotion/react";
-import { marked } from "marked";
+import ReactMarkdown from "react-markdown";
+import remarkBreaks from "remark-breaks";
+import remarkGfm from "remark-gfm";
 
 export function matchesMediaQuery(mediaQuery: string) {
   if (typeof window === "undefined") {
@@ -9,16 +11,14 @@ export function matchesMediaQuery(mediaQuery: string) {
   return window.matchMedia(mediaQuery).matches;
 }
 
-export function renderMarkdown(src?: string) {
-  if (!src) {
+export function renderMarkdown(source?: string) {
+  if (!source) {
     return <span />;
   }
   return (
-    <span
+    <ReactMarkdown
       className="markdown-body"
-      dangerouslySetInnerHTML={{
-        __html: marked(src, { breaks: true }),
-      }}
+      remarkPlugins={[remarkBreaks, remarkGfm]}
       css={css`
         color: inherit !important;
 
@@ -27,7 +27,9 @@ export function renderMarkdown(src?: string) {
           list-style: initial !important;
         }
       `}
-    ></span>
+    >
+      {source}
+    </ReactMarkdown>
   );
 }
 
