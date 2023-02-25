@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { css } from "@emotion/react";
 import Image from "next/image";
 import Router from "next/router";
 import { Transition, TransitionStatus } from "react-transition-group";
+import { loadingImageKeyframes } from "@/styles";
 
 const transitionStyle: { [state in TransitionStatus]?: React.CSSProperties } = {
   entering: { opacity: 1 },
@@ -23,15 +25,40 @@ function RoutingEffect() {
       in={loading}
       timeout={250}
       onEntered={() => {
-        document.body.style.overflow = "hidden";
+        document.body.classList.add("no-scroll");
       }}
       onExit={() => {
-        document.body.style.overflow = "scroll";
+        document.body.classList.remove("no-scroll");
       }}
     >
       {(state) => (
-        <div className="page-loading" style={transitionStyle[state]}>
-          <Image className="loading-image" src="/images/loading.svg" width={64} height={64} alt="Loading..." />
+        <div
+          css={css`
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            transition: opacity 250ms;
+          `}
+          style={transitionStyle[state]}
+        >
+          <Image
+            src="/images/loading.svg"
+            width={64}
+            height={64}
+            alt="Loading..."
+            css={css`
+              display: block;
+              transform: translate(-50%, -50%);
+              animation: ${loadingImageKeyframes} 2s linear infinite;
+            `}
+          />
         </div>
       )}
     </Transition>

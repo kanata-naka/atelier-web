@@ -14,7 +14,7 @@ export type ArtGetListResponse = GetListResponse<ArtGetResponse> & {
 export type ArtGetResponse = {
   id: string;
   title: string;
-  tags?: string[];
+  tags: string[];
   images: ArtGetResponse.Image[];
   description?: string;
   restrict: Restrict;

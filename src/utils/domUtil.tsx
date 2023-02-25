@@ -1,4 +1,5 @@
 import React from "react";
+import { css } from "@emotion/react";
 import { marked } from "marked";
 
 export function matchesMediaQuery(mediaQuery: string) {
@@ -18,6 +19,14 @@ export function renderMarkdown(src?: string) {
       dangerouslySetInnerHTML={{
         __html: marked(src, { breaks: true }),
       }}
+      css={css`
+        color: inherit !important;
+
+        ul,
+        ol {
+          list-style: initial !important;
+        }
+      `}
     ></span>
   );
 }

@@ -14,6 +14,8 @@
     "lint:fix": "eslint --fix src/**/*.{ts,tsx}"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "config": "^3.3.9",
     "firebase": "^9.17.1",
     "firebase-functions": "^4.2.1",
@@ -40,7 +42,6 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",
     "prettier": "^2.8.4",
-    "sass": "^1.58.3",
     "typescript": "^4.9.5"
   },
   "eslintIgnore": [

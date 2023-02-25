@@ -1,4 +1,5 @@
 import React from "react";
+import { css } from "@emotion/react";
 import Head from "next/head";
 import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
@@ -18,7 +19,16 @@ export default function Page() {
         twitterCard="summary_card"
       />
       <Header />
-      <div className="under-construction">{"UNDER CONSTRUCTION"}</div>
+      <div
+        css={css`
+          padding: 24px 0;
+          font-size: 1.5em;
+          color: gray;
+          text-align: center;
+        `}
+      >
+        {"UNDER CONSTRUCTION"}
+      </div>
       <Footer />
     </div>
   );

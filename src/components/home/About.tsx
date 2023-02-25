@@ -1,13 +1,25 @@
 import React, { useCallback, ReactNode } from "react";
+import { css } from "@emotion/react";
 import Image from "next/image";
 import SectionHeading from "@/components/common/SectionHeading";
 import { AUTHOR_NAME, INTRODUCTION, SITE_DESCRIPTION, SOCIAL_ACCOUNTS, TWITTER_USERNAME } from "@/constants";
+import { responsiveBoundaryWidth } from "@/styles";
 import { SocialAccount } from "@/types";
 import { reloadTwitterWidgets } from "@/utils/vendorUtil";
 
 function About() {
   return (
-    <section id="about" className="about">
+    <section
+      id="about"
+      css={css`
+        text-align: center;
+
+        @media (min-width: ${responsiveBoundaryWidth + 1}px) {
+          width: 414px;
+          padding: 0 8px;
+        }
+      `}
+    >
       <SectionHeading>ABOUT</SectionHeading>
       <Description>{SITE_DESCRIPTION}</Description>
       <ProfileImage url="/images/profile-image.png" />
@@ -20,24 +32,58 @@ function About() {
 }
 
 function Description({ children }: { children: ReactNode }) {
-  return <p className="description">{children}</p>;
+  return (
+    <p
+      css={css`
+        padding: 0 12px 24px;
+        font-size: 14px;
+      `}
+    >
+      {children}
+    </p>
+  );
 }
 
 function ProfileImage({ url }: { url: string }) {
   return (
-    <figure className="profile-image">
-      <Image className="profile-image__image" src={url} width={100} height={100} alt="プロフィール画像" />
+    <figure
+      css={css`
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        overflow: hidden;
+        border: 1px solid lightgray;
+        border-radius: 50%;
+      `}
+    >
+      <Image src={url} width={100} height={100} alt="プロフィール画像" />
     </figure>
   );
 }
 
 function AuthorName({ children }: { children: ReactNode }) {
-  return <h3 className="author-name">{children}</h3>;
+  return (
+    <h3
+      css={css`
+        padding: 24px 0 0;
+        font-size: 24px;
+        line-height: 24px;
+      `}
+    >
+      {children}
+    </h3>
+  );
 }
 
 function SocialIcons({ accounts }: { accounts: SocialAccount[] }) {
   return (
-    <ul className="social-icons">
+    <ul
+      css={css`
+        display: flex;
+        justify-content: center;
+        padding: 24px 0;
+      `}
+    >
       {accounts.map((account, index) => (
         <SocialIcon key={index} account={account} />
       ))}
@@ -47,9 +93,38 @@ function SocialIcons({ accounts }: { accounts: SocialAccount[] }) {
 
 function SocialIcon({ account }: { account: SocialAccount }) {
   return (
-    <li className="social-icons-item">
-      <a href={account.url}>
-        <Image className="social-icons-item__image" src={account.imageUrl} fill alt={account.name} />
+    <li
+      css={css`
+        display: flex;
+        align-items: center;
+        transition: opacity 250ms;
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        &:not(:first-child) {
+          margin-left: 12px;
+        }
+      `}
+    >
+      <a
+        href={account.url}
+        css={css`
+          position: relative;
+          display: block;
+          width: 24px;
+          height: 24px;
+        `}
+      >
+        <Image
+          src={account.imageUrl}
+          fill
+          alt={account.name}
+          css={css`
+            object-fit: contain;
+          `}
+        />
       </a>
     </li>
   );
@@ -58,10 +133,14 @@ function SocialIcon({ account }: { account: SocialAccount }) {
 function Introduction({ content }: { content: string }) {
   return (
     <p
-      className="introduction"
       dangerouslySetInnerHTML={{
         __html: content.replace(/\n/g, "<br />"),
       }}
+      css={css`
+        padding: 24px 12px;
+        font-size: 14px;
+        background-color: #ecf0ff;
+      `}
     />
   );
 }
@@ -75,7 +154,13 @@ function TwitterWidgets({ id }: { id: string }) {
   }, []);
 
   return (
-    <div className="twitter-widgets" ref={elementRef}>
+    <div
+      ref={elementRef}
+      css={css`
+        width: 320px;
+        margin: 24px auto;
+      `}
+    >
       <a
         className="twitter-timeline"
         data-lang="ja"

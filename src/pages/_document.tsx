@@ -1,10 +1,17 @@
 import React from "react";
+import { css } from "@emotion/react";
 import NextDocument, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
 
 function Document() {
   return (
     <Html>
       <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cantarell&family=M+PLUS+Rounded+1c&display=swap"
+          rel="stylesheet"
+        />
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -30,7 +37,12 @@ function Document() {
           }}
         />
       </Head>
-      <body>
+      <body
+        css={css`
+          font-family: "Cantarell", "M PLUS Rounded 1c", sans-serif;
+          line-height: 1.2em;
+        `}
+      >
         <Main />
         <NextScript />
         <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8" />

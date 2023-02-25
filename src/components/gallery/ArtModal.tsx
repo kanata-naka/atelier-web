@@ -1,9 +1,11 @@
 import React, { useState, useCallback, ReactNode } from "react";
+import { css } from "@emotion/react";
 import Image from "next/image";
 import Router from "next/router";
 import Modal from "react-modal";
 import { sendEvent } from "@/api/gtag";
 import ShareButtons from "@/components/common/ShareButtons";
+import { frameBorderColor, galleryModalResponsiveBoundaryWidth } from "@/styles";
 import { ArtGetResponse } from "@/types/api/arts";
 import { formatDateFromUnixTimestamp } from "@/utils/dateUtil";
 import { renderMarkdown } from "@/utils/domUtil";
@@ -57,29 +59,84 @@ function Component({ onClose }: { onClose?: () => void }) {
     <Modal
       isOpen={isOpen}
       onRequestClose={handleClose}
-      className="gallery-modal"
-      bodyOpenClassName="gallery-modal--open"
+      bodyOpenClassName="no-scroll"
+      css={css`
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      `}
       style={{ overlay: { zIndex: 2 } }}
     >
       <Overlay onClick={handleClose} />
-      <div className="gallery-modal-container" onClick={handleClick}>
-        {item.images[currentImageIndex] && (
-          <Image className="gallery-modal-image" src={item.images[currentImageIndex].url} fill alt={item.title} />
-        )}
-        <div className="gallery-modal-foreground" style={{ display: isForegroundActive ? "block" : "none" }}>
+      <div
+        onClick={handleClick}
+        css={css`
+          position: absolute;
+
+          @media (max-width: ${galleryModalResponsiveBoundaryWidth}px) {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+
+          @media (min-width: ${galleryModalResponsiveBoundaryWidth + 1}px) {
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+          }
+        `}
+      >
+        <Image
+          src={item.images[currentImageIndex].url}
+          fill
+          alt={item.title}
+          css={css`
+            object-fit: contain;
+          `}
+        />
+        <div
+          style={{ display: isForegroundActive ? "block" : "none" }}
+          css={css`
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 36px 12px 12px;
+            color: white;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+          `}
+        >
           <Title>{item.title}</Title>
-          {item.tags && <TagList tags={item.tags} />}
+          <TagList tags={item.tags} />
           <Description>{renderMarkdown(item.description)}</Description>
           <ShareButtons
             url={`${process.env.NEXT_PUBLIC_BASE_URL}/gallery/${item.id}`}
             title={item.title}
-            classPrefix="gallery-modal-"
+            style={css`
+              display: flex;
+              align-items: flex-start;
+              justify-content: flex-start;
+
+              @media (max-width: ${galleryModalResponsiveBoundaryWidth}px) {
+                padding-bottom: 8px;
+              }
+
+              @media (min-width: ${galleryModalResponsiveBoundaryWidth + 1}px) {
+                float: left;
+              }
+            `}
+            buttonStyle={css`
+              margin: 0 5px;
+            `}
           />
           <PostedDate timestamp={item.createdAt} />
         </div>
         <DiffList
-          images={item.images}
-          title={item.title}
+          item={item}
           currentImageIndex={currentImageIndex}
           onSelect={(index: number) => {
             setCurrentImageIndex(index);
@@ -97,16 +154,38 @@ function Component({ onClose }: { onClose?: () => void }) {
 }
 
 function Overlay({ onClick }: { onClick: () => void }) {
-  return <div className="gallery-modal-overlay" onClick={onClick}></div>;
+  return (
+    <div
+      onClick={onClick}
+      css={css`
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: black;
+        opacity: 0.8;
+      `}
+    ></div>
+  );
 }
 
 function Title({ children }: { children: ReactNode }) {
-  return <h3 className="gallery-modal-title">{children}</h3>;
+  return (
+    <h3
+      css={css`
+        margin: 18px 0;
+        font-size: 24px;
+      `}
+    >
+      {children}
+    </h3>
+  );
 }
 
 function TagList({ tags = [] }: { tags: string[] }) {
   return (
-    <ul className="gallery-modal-tag-list">
+    <ul>
       {tags.map((tag, index) => (
         <TagListItem key={index} tag={tag} />
       ))}
@@ -116,9 +195,13 @@ function TagList({ tags = [] }: { tags: string[] }) {
 
 function TagListItem({ tag }: { tag: string }) {
   return (
-    <li className="gallery-modal-tag-list-item">
+    <li
+      css={css`
+        display: inline-block;
+        margin-right: 6px;
+      `}
+    >
       <a
-        className="gallery-modal-tag-list-item__link"
         href={`/gallery?tag=${tag}`}
         onClick={(event) => {
           event.preventDefault();
@@ -127,6 +210,14 @@ function TagListItem({ tag }: { tag: string }) {
           ArtModal.close();
           Router.push(`/gallery?tag=${tag}`);
         }}
+        css={css`
+          color: #3396f6;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        `}
       >
         {`#${tag}`}
       </a>
@@ -135,12 +226,25 @@ function TagListItem({ tag }: { tag: string }) {
 }
 
 function Description({ children }: { children: ReactNode }) {
-  return <p className="gallery-modal-description">{children}</p>;
+  return (
+    <p
+      css={css`
+        padding: 18px 0;
+      `}
+    >
+      {children}
+    </p>
+  );
 }
 
 function PostedDate({ timestamp }: { timestamp: number }) {
   return (
-    <div className="gallery-modal-posted-date">
+    <div
+      css={css`
+        text-align: right;
+        white-space: nowrap;
+      `}
+    >
       <i className="far fa-clock"></i>
       &nbsp;
       {formatDateFromUnixTimestamp(timestamp)}
@@ -149,26 +253,32 @@ function PostedDate({ timestamp }: { timestamp: number }) {
 }
 
 function DiffList({
-  images,
-  title,
+  item,
   currentImageIndex,
   onSelect,
 }: {
-  images: ArtGetResponse.Image[];
-  title: string;
+  item: ArtGetResponse;
   currentImageIndex: number;
   onSelect: (index: number) => void;
 }) {
-  if (!images || !images.length) {
+  if (!item.images || !item.images.length) {
     return null;
   }
   return (
-    <ul className="diff-list">
-      {images.map((image, index) => (
+    <ul
+      className="diff-list"
+      css={css`
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        display: flex;
+      `}
+    >
+      {item.images.map((image, index) => (
         <DiffListItem
           key={index}
           image={image}
-          title={title}
+          alt={`${item.title} ${index + 1}`}
           isActive={index === currentImageIndex}
           onClick={(event) => {
             event.preventDefault();
@@ -184,19 +294,58 @@ function DiffList({
 
 function DiffListItem({
   image,
-  title,
+  alt,
   isActive,
   onClick,
 }: {
   image: ArtGetResponse.Image;
-  title: string;
+  alt: string;
   isActive: boolean;
   onClick: (event: React.MouseEvent) => void;
 }) {
   return (
-    <li className={`diff-list-item ${isActive ? "active" : ""}`}>
-      <a className="diff-list-item__link" href={image.url} onClick={onClick}>
-        <Image className="diff-list-item__image" src={image.thumbnailUrl.small} fill alt={title} />
+    <li
+      css={css`
+        position: relative;
+        width: 64px;
+        height: 64px;
+        padding: 4px;
+        margin-right: 6px;
+        border: 1px solid ${frameBorderColor};
+        opacity: 0.8;
+        transition: opacity 250ms;
+        ${isActive &&
+        css`
+          box-shadow: 0 0 5px white;
+          opacity: 1;
+        `}
+
+        &:hover {
+          opacity: 1;
+        }
+      `}
+    >
+      <a
+        href={image.url}
+        onClick={onClick}
+        css={css`
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          display: block;
+        `}
+      >
+        <Image
+          className="diff-list-item__image"
+          src={image.thumbnailUrl.small}
+          fill
+          alt={alt}
+          css={css`
+            object-fit: contain;
+          `}
+        />
       </a>
     </li>
   );
@@ -204,8 +353,31 @@ function DiffListItem({
 
 function CloseButton({ onClick }: { onClick: () => void }) {
   return (
-    <div className="gallery-modal-close-button" onClick={onClick}>
-      <i className="fas fa-times gallery-modal-close-button__icon"></i>
+    <div
+      onClick={onClick}
+      css={css`
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        width: 32px;
+        height: 32px;
+        text-align: center;
+        cursor: pointer;
+        transition: text-shadow 250ms;
+
+        &:hover {
+          text-shadow: 0 0 5px white;
+        }
+      `}
+    >
+      <i
+        className="fas fa-times"
+        css={css`
+          font-size: 32px;
+          line-height: 32px;
+          color: white;
+        `}
+      ></i>
     </div>
   );
 }

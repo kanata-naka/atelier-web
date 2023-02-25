@@ -1,4 +1,5 @@
 import React from "react";
+import { css } from "@emotion/react";
 import Head from "next/head";
 import { callFunction } from "@/api/firebase";
 import Footer from "@/components/common/Footer";
@@ -13,6 +14,7 @@ import TopCarousel from "@/components/home/TopCarousel";
 import { SITE_NAME, SITE_DESCRIPTION, TOP_CAROUSEL_SWITCH_INTERVAL } from "@/constants";
 import { Restrict } from "@/constants";
 // import { GetListRequest } from "@/types/api";
+import { responsiveBoundaryWidth } from "@/styles";
 import { ArtGetListRequest, ArtGetListResponse, ArtGetResponse } from "@/types/api/arts";
 // import { BlogGetArticleListResponse } from "@/types/api/blog";
 import { TopImageGetListResponse, TopImageGetResponse } from "@/types/api/topImages";
@@ -43,13 +45,34 @@ function Page({
       />
       <Header />
       <TopCarousel items={topImages} switchInterval={TOP_CAROUSEL_SWITCH_INTERVAL} />
-      <div className="dashboard">
+      <div
+        css={css`
+          display: flex;
+
+          @media (max-width: ${responsiveBoundaryWidth}px) {
+            flex-direction: column; //column-reverse
+          }
+        `}
+      >
         <About />
         {/* <LatestArticles items={latestArticles} /> */}
         <RecentArts items={recentArts} />
       </div>
       <RecentWorks items={recentWorks} />
-      <ShareButtons url={`${process.env.NEXT_PUBLIC_BASE_URL}/`} />
+      <ShareButtons
+        url={`${process.env.NEXT_PUBLIC_BASE_URL}/`}
+        style={css`
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          padding-bottom: 12px;
+        `}
+        buttonStyle={css`
+          :not(:first-child) {
+            margin-left: 10px;
+          }
+        `}
+      />
       <Footer />
     </div>
   );

@@ -15,7 +15,7 @@ export type WorkGetResponse = {
   id: string;
   title: string;
   publishedDate: number;
-  images?: WorkGetResponse.Image[];
+  images: WorkGetResponse.Image[];
   description?: string;
   restrict: Restrict;
   createdAt: number;

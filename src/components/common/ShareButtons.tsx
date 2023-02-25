@@ -1,18 +1,29 @@
 import React, { useCallback } from "react";
+import { SerializedStyles } from "@emotion/react";
 import { SITE_NAME, TWITTER_USERNAME } from "@/constants";
 import { reloadTwitterWidgets, reloadFacebookWidgets, reloadLINEItButtons } from "@/utils/vendorUtil";
 
-function ShareButtons({ url, title, classPrefix = "" }: { url: string; title?: string; classPrefix?: string }) {
+function ShareButtons({
+  url,
+  title,
+  style,
+  buttonStyle,
+}: {
+  url: string;
+  title?: string;
+  style: SerializedStyles;
+  buttonStyle: SerializedStyles;
+}) {
   return (
-    <ul className={`${classPrefix}share-buttons`}>
-      <TwitterShareButton classPrefix={classPrefix} url={url} title={title} />
-      <FacebookShareButton classPrefix={classPrefix} url={url} />
-      <LINEShareButton classPrefix={classPrefix} url={url} />
+    <ul css={style}>
+      <TwitterShareButton url={url} title={title} style={buttonStyle} />
+      <FacebookShareButton url={url} style={buttonStyle} />
+      <LINEShareButton url={url} style={buttonStyle} />
     </ul>
   );
 }
 
-function TwitterShareButton({ url, title, classPrefix }: { url: string; title?: string; classPrefix?: string }) {
+function TwitterShareButton({ url, title, style }: { url: string; title?: string; style: SerializedStyles }) {
   const elementRef = useCallback((element: Element | null) => {
     if (!element) {
       return;
@@ -22,7 +33,7 @@ function TwitterShareButton({ url, title, classPrefix }: { url: string; title?: 
   }, []);
 
   return (
-    <li key={url} className={`${classPrefix}share-buttons-item`} ref={elementRef}>
+    <li key={url} ref={elementRef} css={style}>
       <a
         href="https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw"
         className="twitter-hashtag-button"
@@ -38,7 +49,7 @@ function TwitterShareButton({ url, title, classPrefix }: { url: string; title?: 
   );
 }
 
-function FacebookShareButton({ url, classPrefix }: { url: string; classPrefix?: string }) {
+function FacebookShareButton({ url, style }: { url: string; style: SerializedStyles }) {
   const elementRef = useCallback((element: Element | null) => {
     if (!element) {
       return;
@@ -48,7 +59,7 @@ function FacebookShareButton({ url, classPrefix }: { url: string; classPrefix?: 
   }, []);
 
   return (
-    <li key={url} className={`${classPrefix}share-buttons-item`} ref={elementRef}>
+    <li key={url} ref={elementRef} css={style}>
       <div
         className="fb-like"
         data-href={url}
@@ -62,7 +73,7 @@ function FacebookShareButton({ url, classPrefix }: { url: string; classPrefix?: 
   );
 }
 
-function LINEShareButton({ url, classPrefix }: { url: string; classPrefix?: string }) {
+function LINEShareButton({ url, style }: { url: string; style: SerializedStyles }) {
   const elementRef = useCallback((element: Element | null) => {
     if (!element) {
       return;
@@ -72,7 +83,7 @@ function LINEShareButton({ url, classPrefix }: { url: string; classPrefix?: stri
   }, []);
 
   return (
-    <li key={url} className={`${classPrefix}share-buttons-item`} ref={elementRef}>
+    <li key={url} ref={elementRef} css={style}>
       <div
         className="line-it-button"
         data-lang="ja"
