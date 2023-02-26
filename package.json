@@ -31,7 +31,6 @@
   },
   "devDependencies": {
     "@types/gtag.js": "^0.0.12",
-    "@types/marked": "^4.0.8",
     "@types/node": "^18.14.0",
     "@types/react": "^18.0.28",
     "@types/react-modal": "^3.13.1",
