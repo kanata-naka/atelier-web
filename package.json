@@ -44,9 +44,5 @@
     "eslint-plugin-import": "^2.27.5",
     "prettier": "^2.8.4",
     "typescript": "^4.9.5"
-  },
-  "eslintIgnore": [
-    ".eslintrc.js",
-    "next.config.js"
-  ]
+  }
 }
