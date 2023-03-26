@@ -1,4 +1,4 @@
-import { Restrict } from "@/types";
+import { Nullable, Restrict } from "@/types";
 import { GetListRequest, GetListResponse } from "@/types/api";
 
 export type WorkGetListRequest = GetListRequest & {
@@ -16,7 +16,7 @@ export type WorkGetResponse = {
   title: string;
   publishedDate: number;
   images: WorkGetResponse.Image[];
-  description?: string;
+  description: Nullable<string>;
   restrict: Restrict;
   createdAt: number;
   updatedAt: number;

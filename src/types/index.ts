@@ -1,5 +1,7 @@
 import { Restrict } from "@/constants";
 
+export type Nullable<T> = T | null;
+
 export type PaginationState = {
   page: number;
   perPage: number;
