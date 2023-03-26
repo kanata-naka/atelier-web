@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
+import { Nullable } from "@/types";
 
 export function matchesMediaQuery(mediaQuery: string) {
   if (typeof window === "undefined") {
@@ -12,7 +13,7 @@ export function matchesMediaQuery(mediaQuery: string) {
   return window.matchMedia(mediaQuery).matches;
 }
 
-export function renderMarkdown(source?: string) {
+export function renderMarkdown(source: Nullable<string>) {
   if (!source) {
     return <span />;
   }
