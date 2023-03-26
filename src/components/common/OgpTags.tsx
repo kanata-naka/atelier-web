@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { SITE_NAME, TWITTER_USERNAME } from "@/constants";
+import { Nullable } from "@/types";
 
 function OgpTags({
   url,
@@ -14,7 +15,7 @@ function OgpTags({
   url: string;
   ogType: string;
   title: string;
-  description?: string;
+  description?: Nullable<string>;
   ogImage?: string;
   twitterCard: string;
   twitterImage?: string;
