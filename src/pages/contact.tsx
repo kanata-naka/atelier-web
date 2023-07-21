@@ -32,7 +32,7 @@ export default function Page() {
       >
         {renderMarkdown(`
 ${new Date().getMonth() + 3}月以降の個人様、企業様からのご依頼お待ちしております！
-※個人様の場合は [Skeb](https://skeb.jp/@atelier_kanata) からもご依頼いただけます。
+※個人様の場合は基本的に [Skeb](https://skeb.jp/@atelier_kanata) にてご依頼いただければ幸いです。
 
 ## できること・やりたいこと
 ※「★」が付いているものはご依頼として制作した（または制作後に公式から採用いただいた）実績がございます。
