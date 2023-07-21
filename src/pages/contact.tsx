@@ -77,13 +77,7 @@ ASMR動画のサムネイル・動画内イラストを担当させていただ�
 | - | - |
 | <img src="/images/works/ebisunyan.webp" style="width:200px;"> | <img src="/images/works/rikujo.webp" style="width:200px;"> |
 
-
 ※その他（同人イベント出展など）の実績は[こちら](/works)もご覧ください。
-## 参考価格表（イラスト）
-- 顔のみ（アイコンなど）: 5,000円～
-- 全身（立ち絵など）: 10,000円～
-- シチュエーションイラストなど: 15,000円～
-  ※背景の有無、作画量、枚数、リテイク回数等によって変わります。
 
 ## お問い合わせ先
 - Twitter: [@atelier_kanata](https://twitter.com/atelier_kanata)
