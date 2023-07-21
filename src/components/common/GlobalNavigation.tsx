@@ -46,10 +46,9 @@ function GlobalNavigation() {
             ${additionalStyle}
           `}
         >
-          <GlobalNavigationItem id="about" title="ABOUT" path="/#about" />
           <GlobalNavigationItem id="blog" title="BLOG" url={BLOG_URL} />
-          <GlobalNavigationItem id="works" title="WORKS" path="/works" />
           <GlobalNavigationItem id="gallery" title="GALLERY" path="/gallery" />
+          <GlobalNavigationItem id="works" title="WORKS" path="/works" />
           <GlobalNavigationItem id="contact" title="CONTACT" path="/contact" />
         </ul>
       </ToggleMenuContext.Provider>

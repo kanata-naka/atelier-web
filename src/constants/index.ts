@@ -6,7 +6,7 @@ export const SITE_NAME = "カナタノアトリエ";
 
 export const SITE_DESCRIPTION = "イラストレーター・漫画家「彼方なか」のホームページです。";
 
-export const BLOG_URL = "https://note.com/kanata_naka";
+export const BLOG_URL = "https://atelier-kanata.fanbox.cc/";
 
 export const TWITTER_USERNAME = "atelier_kanata";
 
