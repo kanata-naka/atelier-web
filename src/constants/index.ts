@@ -4,7 +4,7 @@ export const FIREBASE_REGION = "asia-northeast1";
 
 export const SITE_NAME = "カナタノアトリエ";
 
-export const SITE_DESCRIPTION = "イラストレーター「彼方なか」のホームページです。";
+export const SITE_DESCRIPTION = "イラストレーター・漫画家「彼方なか」のホームページです。";
 
 export const BLOG_URL = "https://note.com/kanata_naka";
 
