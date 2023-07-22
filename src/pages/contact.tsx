@@ -39,7 +39,7 @@ ${new Date().getMonth() + 3}月以降の個人様、企業様からのご依頼�
 かわいい女の子（いわゆる美少女系）のイラストを得意としております。
 
 ## ポートフォリオ
-[ホームページ](/gallery)や[pixiv](https://www.pixiv.net/users/204608)、[クロスフォリオ](https://xfolio.jp/portfolio/atelier_kanata/free/81488)にてポートフォリオを随時更新しております。
+[ホームページ](/gallery)や[pixiv](https://www.pixiv.net/users/204608)、[クロスフォリオ](https://xfolio.jp/portfolio/atelier_kanata/)にてポートフォリオを随時更新しております。
 
 ## できること・やりたいこと
 ※「★」が付いているものはご依頼として制作した（または制作後に公式から採用いただいた）経験・実績がございます。
