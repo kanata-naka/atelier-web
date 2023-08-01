@@ -69,9 +69,9 @@ ASMR動画のサムネイル・動画内イラストを担当させていただ�
 | <iframe width="373" height="210" src="https://www.youtube.com/embed/nOCa-Z69mH8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> | <iframe width="373" height="210" src="https://www.youtube.com/embed/XuDORiF9QnY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> |
 
 直接のご依頼ではありませんが、ファンアートとして制作後にご本人から採用いただけた例もいくつかございます。
-| 大空スバル 様 | 風真いろは 様 |
-| - | - |
-| <iframe width="373" height="210" src="https://www.youtube.com/embed/UEUn7frEWLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> | <iframe width="373" height="210" src="https://www.youtube.com/embed/U6k3ekRP23Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> |
+| 大空スバル 様 | 湊あくあ 様 | 風真いろは 様 |
+| - | - | - |
+| <iframe width="373" height="210" src="https://www.youtube.com/embed/UEUn7frEWLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> | <iframe width="373" height="210" src="https://www.youtube.com/embed/c-VhJ6g6W7w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> | <iframe width="373" height="210" src="https://www.youtube.com/embed/U6k3ekRP23Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> |
 ### コミッション
 | VTuber 恵比寿にゃん 様 | 陸上部の後輩 |
 | - | - |
