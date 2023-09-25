@@ -8,6 +8,8 @@ export const SITE_DESCRIPTION = "イラストレーター・漫画家「彼方�
 
 export const BLOG_URL = "https://atelier-kanata.fanbox.cc/";
 
+export const CONTACT_URL = "https://atelier-kanata.fanbox.cc/posts/6388900";
+
 export const TWITTER_USERNAME = "atelier_kanata";
 
 export const COPYRIGHT = "© 2021 Naka Kanata.";
