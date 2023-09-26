@@ -4,7 +4,7 @@ export const FIREBASE_REGION = "asia-northeast1";
 
 export const SITE_NAME = "カナタノアトリエ";
 
-export const SITE_DESCRIPTION = "イラストレーター・漫画家「彼方なか」のホームページです。";
+export const SITE_DESCRIPTION = "イラストレーター・漫画家「かなたなか」のホームページです。";
 
 export const BLOG_URL = "https://atelier-kanata.fanbox.cc/";
 
@@ -14,7 +14,7 @@ export const TWITTER_USERNAME = "atelier_kanata";
 
 export const COPYRIGHT = "© 2021 Naka Kanata.";
 
-export const AUTHOR_NAME = "彼方なか";
+export const AUTHOR_NAME = "かなたなか";
 
 export const INTRODUCTION = `版権メインの個人サークル「カナタノアトリエ」、
 一次創作オンリーのサークル「old dear place」で活動しています。`;
