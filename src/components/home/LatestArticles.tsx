@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { css } from "@emotion/react";
 import Image from "next/image";
-import { BLOG_URL } from "@/constants";
+import { FANBOX_URL } from "@/constants";
 import { frameBorderColor, responsiveBoundaryWidth } from "@/styles";
 import { BlogGetArticleListResponse } from "@/types/api/blog";
 import { formatDateFromIsoDate } from "@/utils/dateUtil";
@@ -127,7 +127,7 @@ function Footer() {
       `}
     >
       <a
-        href={BLOG_URL}
+        href={FANBOX_URL}
         target="_blank"
         rel="noreferrer"
         css={css`

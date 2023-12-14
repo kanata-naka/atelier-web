@@ -6,7 +6,7 @@ export const SITE_NAME = "カナタノアトリエ";
 
 export const SITE_DESCRIPTION = "イラストレーター・漫画家「かなたなか」のホームページです。";
 
-export const BLOG_URL = "https://atelier-kanata.fanbox.cc/";
+export const FANBOX_URL = "https://atelier-kanata.fanbox.cc/";
 
 export const CONTACT_URL = "https://atelier-kanata.fanbox.cc/posts/6388900";
 

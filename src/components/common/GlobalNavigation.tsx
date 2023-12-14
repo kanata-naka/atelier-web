@@ -1,7 +1,7 @@
 import React, { useState, useCallback, createContext, useContext } from "react";
 import { css } from "@emotion/react";
 import Link from "next/link";
-import { BLOG_URL, CONTACT_URL } from "@/constants";
+import { FANBOX_URL, CONTACT_URL } from "@/constants";
 import { useMediaQuery } from "@/hooks";
 import { responsiveBoundaryWidth } from "@/styles";
 
@@ -46,7 +46,7 @@ function GlobalNavigation() {
             ${additionalStyle}
           `}
         >
-          <GlobalNavigationItem id="blog" title="BLOG" url={BLOG_URL} />
+          <GlobalNavigationItem id="fanbox" title="FANBOX" url={FANBOX_URL} />
           <GlobalNavigationItem id="gallery" title="GALLERY" path="/gallery" />
           <GlobalNavigationItem id="works" title="WORKS" path="/works" />
           <GlobalNavigationItem id="contact" title="CONTACT" url={CONTACT_URL} />
