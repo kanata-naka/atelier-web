@@ -37,11 +37,7 @@ export function useMediaQuery(mediaQuery: string) {
 
 export function usePageview() {
   useEffect(() => {
-    const handleRouteChangeComplete = (path: string) => {
-      setDataLayer({
-        event: "page_view",
-      });
-    };
+    const handleRouteChangeComplete = () => setDataLayer({ event: "page_view" });
     Router.events.on("routeChangeComplete", handleRouteChangeComplete);
     return () => {
       Router.events.off("routeChangeComplete", handleRouteChangeComplete);
