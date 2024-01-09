@@ -1,6 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 import NextDocument, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
+import Script from "next/script";
 
 function Document() {
   return (
@@ -22,20 +23,16 @@ function Document() {
           href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css"
           rel="stylesheet"
         />
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID}`}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID}');
-            `,
-          }}
-        />
+        {/* Google Tag Manager */}
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_CONTAINER_ID}');
+        `}
+        </Script>
       </Head>
       <body
         css={css`
@@ -43,6 +40,15 @@ function Document() {
           line-height: 1.2em;
         `}
       >
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_CONTAINER_ID}`}
+            height="0"
+            width="0"
+            className=" hidden"
+          ></iframe>
+        </noscript>
         <Main />
         <NextScript />
         <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8" />

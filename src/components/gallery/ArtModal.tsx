@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import Image from "next/image";
 import Router from "next/router";
 import Modal from "react-modal";
-import { sendEvent } from "@/api/gtag";
+import { setDataLayer } from "@/api/gtm";
 import ShareButtons from "@/components/common/ShareButtons";
 import { frameBorderColor, galleryModalResponsiveBoundaryWidth } from "@/styles";
 import { ArtGetResponse } from "@/types/api/arts";
@@ -30,9 +30,12 @@ function Component({ onClose }: { onClose?: () => void }) {
     setCurrentImageIndex(0);
     setForegroundActive(true);
     setOpen(true);
-    sendEvent("open", "gallery_modal", {
+    setDataLayer({
+      event: "art_modal_open",
       id: item.id,
       title: item.title,
+      tags: item.tags,
+      index: 0,
     });
   };
 
@@ -140,9 +143,11 @@ function Component({ onClose }: { onClose?: () => void }) {
           currentImageIndex={currentImageIndex}
           onSelect={(index: number) => {
             setCurrentImageIndex(index);
-            sendEvent("switch_diff", "gallery_modal", {
+            setDataLayer({
+              event: "art_modal_switch_diff",
               id: item.id,
               title: item.title,
+              tags: item.tags,
               index,
             });
           }}

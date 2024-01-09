@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { callFunction } from "@/api/firebase";
+import { setDataLayer } from "@/api/gtm";
 import ArtModal from "@/components/gallery/ArtModal";
 import { Restrict } from "@/constants";
 import { useScroll } from "@/hooks";
@@ -34,6 +35,9 @@ function ArtScroll({
         });
         setItems([...items, ...response.data.result]);
         setFetchedAll(response.data.fetchedAll);
+        setDataLayer({
+          event: "art_scroll",
+        });
       } catch (error) {
         console.error(error);
       }

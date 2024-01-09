@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Router from "next/router";
-import { sendPageview } from "@/api/gtag";
+import { setDataLayer } from "@/api/gtm";
 import { matchesMediaQuery, getOffsetScrolledToBottom, getCurrentScrollTop } from "@/utils/domUtil";
 
 /**
@@ -37,7 +37,11 @@ export function useMediaQuery(mediaQuery: string) {
 
 export function usePageview() {
   useEffect(() => {
-    const handleRouteChangeComplete = (path: string) => sendPageview(path);
+    const handleRouteChangeComplete = (path: string) => {
+      setDataLayer({
+        event: "page_view",
+      });
+    };
     Router.events.on("routeChangeComplete", handleRouteChangeComplete);
     return () => {
       Router.events.off("routeChangeComplete", handleRouteChangeComplete);
