@@ -31,6 +31,11 @@ export const SOCIAL_ACCOUNTS: SocialAccount[] = [
     imageUrl: "/images/pixiv-icon.png",
   },
   {
+    name: "Instagram",
+    url: `https://www.instagram.com/knta3s/`,
+    imageUrl: "/images/instagram-icon.png",
+  },
+  {
     name: "YouTube",
     url: `https://www.youtube.com/@atelier_kanata`,
     imageUrl: "/images/youtube-icon.png",
@@ -39,6 +44,11 @@ export const SOCIAL_ACCOUNTS: SocialAccount[] = [
     name: "Misskey.io",
     url: `https://misskey.io/@atelier_kanata`,
     imageUrl: "/images/misskey-io-icon.webp",
+  },
+  {
+    name: "Bluesky",
+    url: `https://bsky.app/profile/atelier-kanata.bsky.social`,
+    imageUrl: "/images/bluesky-icon.png",
   },
 ];
 
