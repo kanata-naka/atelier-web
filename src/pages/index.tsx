@@ -7,26 +7,23 @@ import Header from "@/components/common/Header";
 import OgpTags from "@/components/common/OgpTags";
 import ShareButtons from "@/components/common/ShareButtons";
 import About from "@/components/home/About";
-// import LatestArticles from "@/components/home/LatestArticles";
 import RecentArts from "@/components/home/RecentArts";
 import RecentWorks from "@/components/home/RecentWorks";
 import TopCarousel from "@/components/home/TopCarousel";
 import { SITE_NAME, SITE_DESCRIPTION, TOP_CAROUSEL_SWITCH_INTERVAL } from "@/constants";
 import { Restrict } from "@/constants";
-// import { GetListRequest } from "@/types/api";
 import { responsiveBoundaryWidth } from "@/styles";
 import { ArtGetListRequest, ArtGetListResponse, ArtGetResponse } from "@/types/api/arts";
-// import { BlogGetArticleListResponse } from "@/types/api/blog";
 import { TopImageGetListResponse, TopImageGetResponse } from "@/types/api/topImages";
 import { WorkGetListRequest, WorkGetListResponse, WorkGetResponse } from "@/types/api/works";
 
 function Page({
   topImages,
-  /* latestArticles, */ recentWorks,
+  recentWorks,
   recentArts,
 }: {
   topImages: TopImageGetResponse[];
-  /* latestArticles: BlogGetArticleListResponse.Article[], */ recentWorks: WorkGetResponse[];
+  recentWorks: WorkGetResponse[];
   recentArts: ArtGetResponse[];
 }) {
   return (
@@ -50,12 +47,11 @@ function Page({
           display: flex;
 
           @media (max-width: ${responsiveBoundaryWidth}px) {
-            flex-direction: column; //column-reverse
+            flex-direction: column;
           }
         `}
       >
         <About />
-        {/* <LatestArticles items={latestArticles} /> */}
         <RecentArts items={recentArts} />
       </div>
       <RecentWorks items={recentWorks} />
@@ -88,19 +84,6 @@ Page.getInitialProps = async function () {
         console.error(error);
         return [];
       }),
-    // callFunction<GetListRequest, BlogGetArticleListResponse>(
-    //   "blog-getArticles",
-    //   {
-    //     limit: 3,
-    //   }
-    // )
-    //   .then((response) => {
-    //     return response.data.result;
-    //   })
-    //   .catch((error): BlogGetArticleListResponse.Article[] => {
-    //     console.error(error);
-    //     return [];
-    //   }),
     callFunction<ArtGetListRequest, ArtGetListResponse>("arts-get", {
       restrict: [Restrict.ALL],
       limit: 10,
@@ -131,7 +114,6 @@ Page.getInitialProps = async function () {
   ]);
   return {
     topImages: result[0],
-    // latestArticles: result[1],
     recentArts: result[1],
     recentWorks: result[2],
   };
