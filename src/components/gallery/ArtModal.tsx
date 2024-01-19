@@ -34,7 +34,7 @@ function Component({ onClose }: { onClose?: () => void }) {
       event: "art_modal_open",
       id: item.id,
       title: item.title,
-      tags: item.tags,
+      tags: [...item.tags],
       index: 0,
     });
   };
@@ -147,7 +147,7 @@ function Component({ onClose }: { onClose?: () => void }) {
               event: "art_modal_switch_diff",
               id: item.id,
               title: item.title,
-              tags: item.tags,
+              tags: [...item.tags],
               index,
             });
           }}
