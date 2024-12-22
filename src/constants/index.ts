@@ -4,19 +4,17 @@ export const FIREBASE_REGION = "asia-northeast1";
 
 export const SITE_NAME = "カナタノアトリエ";
 
-export const SITE_DESCRIPTION = "イラストレーター・漫画家「かなたなか」のホームページです。";
+export const SITE_DESCRIPTION = "イラストレーター「かなたなか」のホームページです。";
 
 export const FANBOX_URL = "https://atelier-kanata.fanbox.cc/";
 
-export const CONTACT_URL = "https://atelier-kanata.fanbox.cc/posts/6388900";
-
 export const TWITTER_USERNAME = "atelier_kanata";
 
-export const COPYRIGHT = "© 2024 Naka Kanata.";
+export const COPYRIGHT = "© 2023 Naka Kanata.";
 
 export const AUTHOR_NAME = "かなたなか";
 
-export const INTRODUCTION = `個人サークル「カナタノアトリエ」で活動しています。`;
+export const INTRODUCTION = `この度はご覧いただきありがとうございます！<br />ご依頼・お問い合わせは <a href="/contact">CONTACT</a> よりお願いいたします🙇`;
 
 export const SOCIAL_ACCOUNTS: SocialAccount[] = [
   {
@@ -61,6 +59,6 @@ export const TOP_CAROUSEL_SWITCH_INTERVAL = 10000;
 
 export const ART_SCROLL_FETCH_LIMIT = 12;
 
-export const WORK_LIST_PER_PAGE = 5;
+export const WORK_LIST_PER_PAGE = 10;
 
 export const WORK_LIST_PAGE_NUMBER_DISPLAY_MAX_RANGE = 7;

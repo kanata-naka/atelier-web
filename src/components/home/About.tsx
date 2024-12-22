@@ -138,8 +138,12 @@ function Introduction({ content }: { content: string }) {
       }}
       css={css`
         padding: 24px 12px;
-        font-size: 14px;
+        font-size: 12px;
         background-color: #ecf0ff;
+
+        a:hover {
+          text-decoration: underline;
+        }
       `}
     />
   );

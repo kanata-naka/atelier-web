@@ -44,7 +44,7 @@ function RecentWorkItem({ item, isLast }: { item: WorkGetResponse; isLast: boole
       css={css`
         position: relative;
         flex: 0 1 calc(50% - 10px);
-        height: auto; // 正方形にする
+        height: auto;
         margin: 4px;
         overflow: hidden;
         border: 1px solid ${frameBorderColor};
@@ -56,7 +56,7 @@ function RecentWorkItem({ item, isLast }: { item: WorkGetResponse; isLast: boole
         &:before {
           display: block;
           content: "";
-          padding-top: 143%;
+          padding-top: 100%; // 143%
         }
 
         &:not(:last-child) {
@@ -88,7 +88,7 @@ function RecentWorkItemImage({ image, alt }: { image?: WorkGetResponse.Image; al
       fill
       alt={alt}
       css={css`
-        object-fit: ${image ? "cover" : "contain"};
+        object-fit: contain;
       `}
     />
   );

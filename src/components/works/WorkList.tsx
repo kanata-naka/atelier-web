@@ -27,7 +27,6 @@ function WorkListItem({ item }: { item: WorkGetResponse }) {
   return (
     <article id={item.id}>
       <WorkListItemTitle>{item.title}</WorkListItemTitle>
-      <WorkListItemPublishedDate timestamp={item.publishedDate} />
       <div
         css={css`
           display: flex;
@@ -68,22 +67,25 @@ function WorkListItem({ item }: { item: WorkGetResponse }) {
             `}
           />
         </div>
-        {!!item.images.length && (
-          <div
-            css={css`
-              @media (min-width: ${responsiveBoundaryWidth + 1}px) {
-                width: 400px;
-              }
-            `}
-          >
-            <DiffList
-              item={item}
-              currentImageIndex={currentImageIndex}
-              onSelect={(index) => setCurrentImageIndex(index)}
-            />
-            <WorkListItemImage image={item.images[currentImageIndex]} alt={item.title} />
-          </div>
-        )}
+        <div>
+          <WorkListItemPublishedDate timestamp={item.publishedDate} />
+          {!!item.images.length && (
+            <div
+              css={css`
+                @media (min-width: ${responsiveBoundaryWidth + 1}px) {
+                  width: 400px;
+                }
+              `}
+            >
+              <DiffList
+                item={item}
+                currentImageIndex={currentImageIndex}
+                onSelect={(index) => setCurrentImageIndex(index)}
+              />
+              <WorkListItemImage image={item.images[currentImageIndex]} alt={item.title} />
+            </div>
+          )}
+        </div>
       </div>
     </article>
   );
@@ -110,7 +112,7 @@ function WorkListItemPublishedDate({ timestamp }: { timestamp: number }) {
   return (
     <div
       css={css`
-        padding: 18px 28px 0;
+        padding: 0 4px 18px;
         text-align: right;
       `}
     >

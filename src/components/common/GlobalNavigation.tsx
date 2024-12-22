@@ -1,7 +1,7 @@
 import React, { useState, useCallback, createContext, useContext } from "react";
 import { css } from "@emotion/react";
 import Link from "next/link";
-import { FANBOX_URL, CONTACT_URL } from "@/constants";
+import { FANBOX_URL } from "@/constants";
 import { useMediaQuery } from "@/hooks";
 import { responsiveBoundaryWidth } from "@/styles";
 
@@ -49,7 +49,7 @@ function GlobalNavigation() {
           <GlobalNavigationItem id="fanbox" title="FANBOX" url={FANBOX_URL} />
           <GlobalNavigationItem id="gallery" title="GALLERY" path="/gallery" />
           <GlobalNavigationItem id="works" title="WORKS" path="/works" />
-          <GlobalNavigationItem id="contact" title="CONTACT" url={CONTACT_URL} />
+          <GlobalNavigationItem id="contact" title="CONTACT" path="/contact" />
         </ul>
       </ToggleMenuContext.Provider>
     </nav>
@@ -66,8 +66,15 @@ function HamburgerButton({ onClick }: { onClick: () => void }) {
   const additionalStyle = isActive
     ? css`
         color: white;
-        text-shadow: black 1px 1px 0, black -1px -1px 0, black -1px 1px 0, black 1px -1px 0, black 0px 1px 0,
-          black 0 -1px 0, black -1px 0 0, black 1px 0 0;
+        text-shadow:
+          black 1px 1px 0,
+          black -1px -1px 0,
+          black -1px 1px 0,
+          black 1px -1px 0,
+          black 0px 1px 0,
+          black 0 -1px 0,
+          black -1px 0 0,
+          black 1px 0 0;
       `
     : css`
         &:hover {
