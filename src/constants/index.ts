@@ -14,7 +14,7 @@ export const COPYRIGHT = "© 2023 Naka Kanata.";
 
 export const AUTHOR_NAME = "かなたなか";
 
-export const INTRODUCTION = `この度はご覧いただきありがとうございます！<br />ご依頼・お問い合わせは <a href="/contact">CONTACT</a> よりお願いいたします🙇`;
+export const INTRODUCTION = `この度はご訪問いただきありがとうございます！<br />ご依頼・お問い合わせは <a href="/contact"><strong>CONTACT</strong></a> よりお願いいたします。`;
 
 export const SOCIAL_ACCOUNTS: SocialAccount[] = [
   {

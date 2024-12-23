@@ -141,8 +141,13 @@ function Introduction({ content }: { content: string }) {
         font-size: 12px;
         background-color: #ecf0ff;
 
-        a:hover {
-          text-decoration: underline;
+        a {
+          color: #4c4c4c;
+          text-decoration: none;
+
+          :hover {
+            text-decoration: underline;
+          }
         }
       `}
     />

@@ -24,6 +24,7 @@ export function renderMarkdown(source: Nullable<string>) {
       remarkPlugins={[remarkBreaks, remarkGfm]}
       css={css`
         color: inherit !important;
+        font-family: inherit !important;
 
         ul,
         ol {
@@ -48,7 +49,7 @@ export function getOffsetScrolledToBottom() {
     document.body.offsetHeight,
     document.documentElement.offsetHeight,
     document.body.clientHeight,
-    document.documentElement.clientHeight
+    document.documentElement.clientHeight,
   );
   return pageHeight - window.innerHeight;
 }
