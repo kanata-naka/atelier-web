@@ -55,6 +55,11 @@ export const Restrict = {
   PRIVATE: "2",
 } as const;
 
+export const ComicType = {
+  ONE_SHOT: "0",
+  SERIES: "1",
+} as const;
+
 export const TOP_CAROUSEL_SWITCH_INTERVAL = 10000;
 
 export const ART_SCROLL_FETCH_LIMIT = 12;

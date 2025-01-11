@@ -49,6 +49,7 @@ function GlobalNavigation() {
           <GlobalNavigationItem id="fanbox" title="FANBOX" url={FANBOX_URL} />
           <GlobalNavigationItem id="gallery" title="GALLERY" path="/gallery" />
           <GlobalNavigationItem id="works" title="WORKS" path="/works" />
+          <GlobalNavigationItem id="comics" title="COMICS" path="/comics" />
           <GlobalNavigationItem id="contact" title="CONTACT" path="/contact" />
         </ul>
       </ToggleMenuContext.Provider>
