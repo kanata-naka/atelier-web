@@ -65,14 +65,16 @@ function Page({ item }: { item: ComicGetResponse }) {
             flex: 1;
           `}
         >
-          <p
-            css={css`
-              padding: 24px;
-              word-wrap: break-word;
-            `}
-          >
-            {item.description}
-          </p>
+          {item.description && (
+            <p
+              css={css`
+                padding: 24px;
+                word-wrap: break-word;
+              `}
+            >
+              {item.description}
+            </p>
+          )}
           <ShareButtons
             url={`${process.env.NEXT_PUBLIC_BASE_URL}/comics/${item.id}`}
             title={item.title}

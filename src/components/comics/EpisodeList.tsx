@@ -21,7 +21,7 @@ function EpisodeList({ comicId, items }: { comicId: string; items: ComicGetRespo
         css={css`
           display: flex;
           flex-wrap: wrap;
-          justify-content: center;
+          justify-content: flex-start;
           padding: 0 8px;
         `}
       >

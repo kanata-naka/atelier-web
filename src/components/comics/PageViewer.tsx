@@ -98,7 +98,7 @@ function PageViewer({ comic, episode }: { comic: ComicGetResponse; episode: Comi
   };
 
   const handleForward = () => {
-    if (index < pageElements.length - step) {
+    if (index < (pageElements.length - step || 1)) {
       setIndex(index + (step === 2 && index % 2 === 1 ? 2 : 1));
     }
   };
