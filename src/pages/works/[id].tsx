@@ -19,7 +19,7 @@ function Page({ item }: { item: WorkGetResponse }) {
   return (
     <div>
       <Head>
-        <title>{`WORKS - ${SITE_NAME}`}</title>
+        <title>{`${item.title} - ${SITE_NAME}`}</title>
       </Head>
       <OgpTags
         url={`${process.env.NEXT_PUBLIC_BASE_URL}/works/${item.id}`}

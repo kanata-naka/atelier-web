@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useRef, useState } from "react";
 import { css } from "@emotion/react";
 import Link from "next/link";
 import { useMediaQuery } from "@/hooks";
@@ -10,9 +10,10 @@ const SWIPE_MINIMUM_DISTANCE = 30;
 
 function PageViewer({ comic, episode }: { comic: ComicGetResponse; episode: ComicGetResponse.Episode }) {
   const [index, setIndex] = useState<number>(0);
-  const [isVertical, setIsVertical] = useState<boolean>(false);
+  const [direction, setDirection] = useState<"horizontal" | "vertical">("horizontal");
   const [touchStartPos, setTouchStartPos] = useState<[number, number]>([0, 0]);
-  const disableHorizontal = useMediaQuery(`(max-width: ${responsiveBoundaryWidth}px)`);
+  const viewerRef = useRef<HTMLDivElement>(null);
+  const confined = useMediaQuery(`(max-width: ${responsiveBoundaryWidth}px)`);
 
   const pageElements = episode.pages.map((item, index) => <PageItemImage key={index} image={item.image} />);
   pageElements.push(
@@ -29,9 +30,13 @@ function PageViewer({ comic, episode }: { comic: ComicGetResponse; episode: Comi
       <div
         css={css`
           position: absolute;
-          bottom: 10px;
-          left: 10px;
-          right: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: stretch;
+          width: 100%;
+          height: 100%;
+          margin: auto 0;
           text-align: center;
         `}
       >
@@ -86,17 +91,15 @@ function PageViewer({ comic, episode }: { comic: ComicGetResponse; episode: Comi
     </>,
   );
 
-  useEffect(() => {
-    if (disableHorizontal) setIsVertical(true);
-  }, [disableHorizontal]);
+  const step = direction === "horizontal" && !confined ? 2 : 1;
 
   const handleBack = () => {
-    setIndex(Math.max(0, index - (!isVertical && index % 2 === 1 ? 2 : 1)));
+    setIndex(Math.max(0, index - (step === 2 && index % 2 === 1 ? 2 : 1)));
   };
 
   const handleForward = () => {
-    if (index < pageElements.length - (isVertical ? 1 : 2)) {
-      setIndex(index + (!isVertical && index % 2 === 1 ? 2 : 1));
+    if (index < pageElements.length - step) {
+      setIndex(index + (step === 2 && index % 2 === 1 ? 2 : 1));
     }
   };
 
@@ -110,19 +113,20 @@ function PageViewer({ comic, episode }: { comic: ComicGetResponse; episode: Comi
 
   const handleTouchStart = (event: React.TouchEvent) => {
     setTouchStartPos([event.touches[0].pageX, event.touches[0].pageY]);
+    return false;
   };
 
   const handleTouchEnd = (event: React.TouchEvent) => {
     const distanceX = event.changedTouches[0].pageX - touchStartPos[0];
     const distanceY = event.changedTouches[0].pageY - touchStartPos[1];
-    if (!isVertical && Math.abs(distanceX) > SWIPE_MINIMUM_DISTANCE) {
+    if (direction === "horizontal" && Math.abs(distanceX) > SWIPE_MINIMUM_DISTANCE) {
       if (distanceX > 0) {
         handleForward();
       } else {
         handleBack();
       }
     }
-    if (isVertical && Math.abs(distanceY) > SWIPE_MINIMUM_DISTANCE) {
+    if (direction === "vertical" && Math.abs(distanceY) > SWIPE_MINIMUM_DISTANCE) {
       if (distanceY > 0) {
         handleBack();
       } else {
@@ -131,11 +135,21 @@ function PageViewer({ comic, episode }: { comic: ComicGetResponse; episode: Comi
     }
   };
 
-  const handleVerticalButtonClick = () => {
-    if (isVertical && index % 2 === 1) {
+  const handleFullscreenButtonClick = () => {
+    if (viewerRef.current) {
+      if (!document.fullscreenElement) {
+        viewerRef.current.requestFullscreen();
+      } else if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  };
+
+  const handleDirectionButtonClick = () => {
+    if (index > 0 && direction === "vertical" && !confined && index % 2 === 0) {
       setIndex(index - 1);
     }
-    setIsVertical(!isVertical);
+    setDirection(direction === "horizontal" ? "vertical" : "horizontal");
   };
 
   return (
@@ -144,6 +158,7 @@ function PageViewer({ comic, episode }: { comic: ComicGetResponse; episode: Comi
         onWheel={handleWheel}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
+        ref={viewerRef}
         css={css`
           position: fixed;
           top: 54px;
@@ -152,27 +167,28 @@ function PageViewer({ comic, episode }: { comic: ComicGetResponse; episode: Comi
           right: 0;
           padding: 0 8px;
           background-color: gray;
-
           display: grid;
-          grid-template-columns: ${isVertical ? "1fr" : "1fr 1fr"};
+          grid-template-columns: ${step === 2 ? "1fr 1fr" : "1fr"};
           grid-template-rows: 100%;
           justify-content: center;
         `}
       >
-        {isVertical ? (
-          <>
-            <PageItem onClick={handleForward}>{pageElements[index]}</PageItem>
-          </>
-        ) : index === 0 ? (
-          <PageItemLeft onClick={handleForward}>{pageElements[0]}</PageItemLeft>
+        {step === 2 ? (
+          index === 0 ? (
+            <PageItemLeft onClick={handleForward}>{pageElements[0]}</PageItemLeft>
+          ) : (
+            <>
+              {index < pageElements.length - 1 ? (
+                <PageItemLeft onClick={handleForward}>{pageElements[index + 1]}</PageItemLeft>
+              ) : (
+                <div />
+              )}
+              <PageItemRight onClick={handleBack}>{pageElements[index]}</PageItemRight>
+            </>
+          )
         ) : (
           <>
-            {index < pageElements.length - 1 ? (
-              <PageItemLeft onClick={handleForward}>{pageElements[index + 1]}</PageItemLeft>
-            ) : (
-              <div />
-            )}
-            <PageItemRight onClick={handleBack}>{pageElements[index]}</PageItemRight>
+            <PageItem onClick={handleForward}>{pageElements[index]}</PageItem>
           </>
         )}
       </div>
@@ -189,24 +205,38 @@ function PageViewer({ comic, episode }: { comic: ComicGetResponse; episode: Comi
           color: white;
         `}
       >
-        {!disableHorizontal && (
-          <button
-            onClick={handleVerticalButtonClick}
-            css={css`
-              position: absolute;
-              top: 0;
-              right: 10px;
-              border: none;
-              background-color: black;
-              color: white;
-              height: 36px;
-              font-size: 20px;
-              cursor: pointer;
-            `}
-          >
-            {isVertical ? <i className="fas fa-arrows-alt-h"></i> : <i className="fas fa-arrows-alt-v"></i>}
-          </button>
-        )}
+        <button
+          onClick={handleFullscreenButtonClick}
+          css={css`
+            position: absolute;
+            top: 0;
+            left: 10px;
+            border: none;
+            background-color: black;
+            color: white;
+            height: 36px;
+            font-size: 20px;
+            cursor: pointer;
+          `}
+        >
+          <i className="fas fa-expand"></i>
+        </button>
+        <button
+          onClick={handleDirectionButtonClick}
+          css={css`
+            position: absolute;
+            top: 0;
+            right: 10px;
+            border: none;
+            background-color: black;
+            color: white;
+            height: 36px;
+            font-size: 20px;
+            cursor: pointer;
+          `}
+        >
+          {direction === "vertical" ? <i className="fas fa-arrows-alt-h"></i> : <i className="fas fa-arrows-alt-v"></i>}
+        </button>
         {index + 1} / {pageElements.length}
       </div>
     </>
@@ -216,13 +246,13 @@ function PageViewer({ comic, episode }: { comic: ComicGetResponse; episode: Comi
 function PageItem({ children, onClick }: { children: ReactNode; onClick: () => void }) {
   return (
     <div
-      onClick={onClick}
       css={css`
         display: flex;
         justify-content: center;
       `}
     >
       <div
+        onClick={onClick}
         css={css`
           position: relative;
           display: flex;
@@ -238,13 +268,13 @@ function PageItem({ children, onClick }: { children: ReactNode; onClick: () => v
 function PageItemLeft({ children, onClick }: { children: ReactNode; onClick: () => void }) {
   return (
     <div
-      onClick={onClick}
       css={css`
         display: flex;
         justify-content: flex-end;
       `}
     >
       <div
+        onClick={onClick}
         css={css`
           position: relative;
           display: flex;
@@ -283,7 +313,7 @@ function PageItemImage({ image }: { image: ComicGetResponse.Image }) {
   return (
     <img
       src={image.url}
-      alt={""}
+      alt={image.name}
       css={css`
         max-width: 100%;
         height: 100%;

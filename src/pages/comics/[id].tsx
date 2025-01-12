@@ -24,7 +24,7 @@ function Page({ item }: { item: ComicGetResponse }) {
   return (
     <div>
       <Head>
-        <title>{`${item.title} - COMICS - ${SITE_NAME}`}</title>
+        <title>{`${item.title} - ${SITE_NAME}`}</title>
       </Head>
       <OgpTags
         url={`${process.env.NEXT_PUBLIC_BASE_URL}/comics/${item.id}`}

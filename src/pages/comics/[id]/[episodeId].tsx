@@ -19,16 +19,16 @@ function Page({ item, episodeId }: { item: ComicGetResponse; episodeId: string }
   return (
     <div>
       <Head>
-        <title>{`${item.title} ${episode.title} - COMICS - ${SITE_NAME}`}</title>
+        <title>{`${item.title} ${episode.title} - ${SITE_NAME}`}</title>
       </Head>
       <OgpTags
-        url={`${process.env.NEXT_PUBLIC_BASE_URL}/comics/${item.id}`}
+        url={`${process.env.NEXT_PUBLIC_BASE_URL}/comics/${item.id}/${episode.id}`}
         ogType="article"
-        title={`${item.title} - ${SITE_NAME}`}
-        description={item.description}
-        ogImage={item.image ? item.image.url : undefined}
-        twitterCard={item.image ? "summary_large_image" : "summary_card"}
-        twitterImage={item.image ? item.image.url : undefined}
+        title={`${item.title} ${episode.title} - ${SITE_NAME}`}
+        description={episode.description}
+        ogImage={episode.image ? episode.image.url : undefined}
+        twitterCard={episode.image ? "summary_large_image" : "summary_card"}
+        twitterImage={episode.image ? episode.image.url : undefined}
       />
       <Header />
       <PageViewer comic={item} episode={episode} />

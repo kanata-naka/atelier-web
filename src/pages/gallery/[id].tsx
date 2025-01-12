@@ -25,7 +25,7 @@ function Page({ item }: { item: ArtGetResponse }) {
   return (
     <div>
       <Head>
-        <title>{`GALLERY - ${SITE_NAME}`}</title>
+        <title>{`${item.title} - ${SITE_NAME}`}</title>
       </Head>
       <OgpTags
         url={`${process.env.NEXT_PUBLIC_BASE_URL}/gallery/${item.id}`}
