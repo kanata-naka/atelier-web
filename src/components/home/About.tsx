@@ -21,7 +21,7 @@ function About() {
       `}
     >
       <SectionHeading>ABOUT</SectionHeading>
-      <Description>{SITE_DESCRIPTION}</Description>
+      <Description content={SITE_DESCRIPTION}></Description>
       <ProfileImage url="/images/profile-image.png" />
       <AuthorName>{AUTHOR_NAME}</AuthorName>
       <SocialIcons accounts={SOCIAL_ACCOUNTS} />
@@ -31,16 +31,17 @@ function About() {
   );
 }
 
-function Description({ children }: { children: ReactNode }) {
+function Description({ content }: { content: string }) {
   return (
     <p
+      dangerouslySetInnerHTML={{
+        __html: content.replace(/\n/g, "<br />"),
+      }}
       css={css`
         padding: 0 12px 24px;
         font-size: 14px;
       `}
-    >
-      {children}
-    </p>
+    ></p>
   );
 }
 

@@ -26,9 +26,12 @@ export function renderMarkdown(source: Nullable<string>) {
         color: inherit !important;
         font-family: inherit !important;
 
-        ul,
+        ul {
+          list-style: disc !important;
+        }
+
         ol {
-          list-style: initial !important;
+          list-style: decimal !important;
         }
       `}
     >

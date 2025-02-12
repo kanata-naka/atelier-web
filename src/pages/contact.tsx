@@ -38,49 +38,41 @@ export default function Page() {
             color: #0f165a;
             background-color: #eff0ff;
           }
+
+          hr {
+            margin: 36px -24px;
+          }
         `}
       >
         {renderMarkdown(`
-現在 <big>**2025年2月**</big> 以降着手の <big>**企業様・活動者様**</big> のご依頼を受付中です！
+現在 <big>**2025年3月**</big> 以降着手のご依頼を受付中です！
 
-## ご挨拶
-イラストレーターのかなたなかと申します。
-かわいくてときめくような美少女のイラストが得意です！
-キャラクターの魅力を最大限に引き出す絵作りを意識しております。
-
-## 主な実績
-- VTuber様のグッズ、サムネイル、SDキャラなどのお写真を担当させていただきました。
-  - みーちゃ様 グッズ、サムネイルイラスト
-  - 鳳梨パイン様 サムネイルイラスト
-  - えみり様 SDイラスト
-  - 綺羅山りん様 サムネイルイラスト
-  - サプー様 サムネイルイラスト
-  - 詩優レモナ様 バースデーイラスト
-    etc.
-- 大手企業VTuber様の配信のサムネイルにも度々ファンアートを採用いただいております。※直接のご依頼ではございません<br />
-  <iframe src="https://www.youtube.com/embed/UEUn7frEWLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <!-- <iframe src="https://www.youtube.com/embed/c-VhJ6g6W7w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-  <iframe src="https://www.youtube.com/embed/U6k3ekRP23Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/AmJbAWcwZTo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/_40VsbvFKuk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/QUbBJhhrU60" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-- 企業案件としてゲームのキャラクターデザイン、立ち絵、CG（差分あり）を担当させていただきました。（別名義）
-- ASMR動画のサムネイル・動画内イラスト（差分あり）を担当させていただきました。
-- 40名近くが参加する合同誌の表紙を担当させていただきました。
-- 漫画の表紙や本文の着彩、アシスタントの経験もございます。
-  - くじらじーお様 <a href="https://manga.nicovideo.jp/comic/63373">異世界最高峰のギルドリーダー</a>
-    etc.
-- ※その他（同人イベント出展など）の実績は[こちら](/works)もご覧ください。
-
-## その他
-- これまで公開、納品しました全ての作品におきまして「生成AI」は一切使用しておりません。
-  必要に応じて未統合のPSDやCLIPファイルなど制作過程を証明できる形式での提出、納品が可能です。
-- 背景等で素材を利用する場合も、権利関係や商用利用の可否などを確認した上で採用しております。
+## お取引の流れ
+1. 打ち合わせ
+  ご依頼用テンプレートにご記入いただいた内容からお見積りいたします。
+2. 大ラフの提出
+  2～4案ほど提示いたしますので、どれか1つお選びいただくか、構図はAでポーズはBのような形でお申し付けください。
+  ※構図、ポーズ、表情、衣装などを明確にご指定いただいている、または短納期の場合、省略させていただきます。
+3. 詳細ラフ（色ラフ）の提出
+  構図、ポーズなどの修正はラフの時点でお申し付けください。
+  ※ラフ提出後のキャンセルは料金の50%を頂戴します。
+4. 清書の提出
+  清書後は着彩、表情などの軽微な修正のみ対応可能です。
+6. お支払い
+  基本的には銀行振込、PayPalのいずれかでお願いいたします。
+  その他の方法をご希望の場合はご相談ください。
+5. 納品🎉
 
 ## お問い合わせ先
 - Twitter: [@atelier_kanata](https://twitter.com/atelier_kanata)
   ※DMからご連絡くださいませ。
 - メール: <a href="mailto:atelier.kanata@gmail.com">atelier.kanata@gmail.com</a>
+
+コミッションサイトからのご依頼もお受けしております。
+- Skeb: https://skeb.jp/@atelier_kanata
+- pixivリクエスト: https://www.pixiv.net/users/204608/request
+- ココナラ: https://coconala.com/users/4660403
+- SKIMA: https://skima.jp/profile?id=416766
 
 **ご依頼の際はお手数ですが以下の内容をご記入いただければ幸いです。**
 ~~~~
@@ -110,6 +102,43 @@ export default function Page() {
 お取引にあたっては迅速で丁寧なやり取りを心がけております。
 ご質問・ご相談などございましたらお気軽にお問い合わせくださいませ！
 ご希望に添えるよう誠心誠意努めますので、何卒よろしくお願いいたします。
+
+----
+
+## ご挨拶
+イラストレーターのかなたなかと申します。
+かわいくてときめくような美少女のイラストが得意です！
+キャラクターの魅力を最大限に引き出す絵作りを意識しております。
+
+## 主な実績
+- VTuber様のグッズ、サムネイル、SDキャラなどのお写真を担当させていただきました。
+  - みーちゃ様 グッズ、サムネイルイラスト
+  - 鳳梨パイン様 サムネイルイラスト
+  - えみり様 SDイラスト
+  - 綺羅山りん様 サムネイルイラスト
+  - サプー様 サムネイルイラスト
+  - 詩優レモナ様 バースデーイラスト
+    etc.
+- 大手企業VTuber様の配信のサムネイルにも度々ファンアートを採用いただいております。※直接のご依頼ではございません<br />
+  <iframe src="https://www.youtube.com/embed/UEUn7frEWLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <!-- <iframe src="https://www.youtube.com/embed/c-VhJ6g6W7w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+  <iframe src="https://www.youtube.com/embed/U6k3ekRP23Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/AmJbAWcwZTo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/_40VsbvFKuk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/QUbBJhhrU60" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/0RG5AxPcRCQ?si=fp7dMudcvkUCw5b-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+- 企業案件としてゲームのキャラクターデザイン、立ち絵、CG（差分あり）を担当させていただきました。（別名義）
+- ASMR動画のサムネイル・動画内イラスト（差分あり）を担当させていただきました。
+- 40名近くが参加する合同誌の表紙を担当させていただきました。
+- 漫画の表紙や本文の着彩、アシスタントの経験もございます。
+  - くじらじーお様 <a href="https://manga.nicovideo.jp/comic/63373">異世界最高峰のギルドリーダー</a>
+    etc.
+- ※その他（同人イベント出展など）の実績は[こちら](/works)もご覧ください。
+
+## その他
+- これまで公開、納品しました全ての作品におきまして「生成AI」は一切使用しておりません。
+  必要に応じて未統合のPSDやCLIPファイルなど制作過程を証明できる形式での提出、納品が可能です。
+- 背景等で素材を利用する場合も、権利関係や商用利用の可否などを確認した上で採用しております。
         `)}
       </section>
       <Footer />
