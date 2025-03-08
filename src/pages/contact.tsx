@@ -45,7 +45,7 @@ export default function Page() {
         `}
       >
         {renderMarkdown(`
-現在 <big>**2025年3月**</big> 以降着手のご依頼を受付中です！
+現在 <big>**2025年5月**</big> 以降着手のご依頼を受付中です！
 
 ## お取引の流れ
 1. 打ち合わせ
@@ -59,7 +59,7 @@ export default function Page() {
 4. 清書の提出
   清書後は着彩、表情などの軽微な修正のみ対応可能です。
 6. お支払い
-  基本的には銀行振込、PayPalのいずれかでお願いいたします。
+  基本的には銀行振込、PayPay、PayPalのいずれかでお願いいたします。
   その他の方法をご希望の場合はご相談ください。
 5. 納品🎉
 
@@ -111,12 +111,11 @@ export default function Page() {
 キャラクターの魅力を最大限に引き出す絵作りを意識しております。
 
 ## 主な実績
-- VTuber様のグッズ、サムネイル、SDキャラなどのお写真を担当させていただきました。
+- VTuber様の立ち絵、グッズ、サムネイル、SDキャラなどのイラストを担当させていただきました。
+  - cozoru所属 本城小百合様 立ち絵
+  - ライブナウV所属 悪宮ゆずりは様 立ち絵
   - みーちゃ様 グッズ、サムネイルイラスト
   - 鳳梨パイン様 サムネイルイラスト
-  - えみり様 SDイラスト
-  - 綺羅山りん様 サムネイルイラスト
-  - サプー様 サムネイルイラスト
   - 詩優レモナ様 バースデーイラスト
     etc.
 - 大手企業VTuber様の配信のサムネイルにも度々ファンアートを採用いただいております。※直接のご依頼ではございません<br />
@@ -128,7 +127,6 @@ export default function Page() {
   <iframe src="https://www.youtube.com/embed/QUbBJhhrU60" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   <iframe src="https://www.youtube.com/embed/0RG5AxPcRCQ?si=fp7dMudcvkUCw5b-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 - 企業案件としてゲームのキャラクターデザイン、立ち絵、CG（差分あり）を担当させていただきました。（別名義）
-- ASMR動画のサムネイル・動画内イラスト（差分あり）を担当させていただきました。
 - 40名近くが参加する合同誌の表紙を担当させていただきました。
 - 漫画の表紙や本文の着彩、アシスタントの経験もございます。
   - くじらじーお様 <a href="https://manga.nicovideo.jp/comic/63373">異世界最高峰のギルドリーダー</a>
