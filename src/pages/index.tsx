@@ -9,8 +9,8 @@ import ShareButtons from "@/components/common/ShareButtons";
 import About from "@/components/home/About";
 import RecentArts from "@/components/home/RecentArts";
 import RecentWorks from "@/components/home/RecentWorks";
-// import TopCarousel from "@/components/home/TopCarousel";
-import { SITE_NAME, SITE_DESCRIPTION /* TOP_CAROUSEL_SWITCH_INTERVAL */ } from "@/constants";
+import TopCarousel from "@/components/home/TopCarousel";
+import { SITE_NAME, SITE_DESCRIPTION, TOP_CAROUSEL_SWITCH_INTERVAL } from "@/constants";
 import { Restrict } from "@/constants";
 import { responsiveBoundaryWidth } from "@/styles";
 import { ArtGetListRequest, ArtGetListResponse, ArtGetResponse } from "@/types/api/arts";
@@ -18,7 +18,7 @@ import { TopImageGetListResponse, TopImageGetResponse } from "@/types/api/topIma
 import { WorkGetListRequest, WorkGetListResponse, WorkGetResponse } from "@/types/api/works";
 
 function Page({
-  // topImages,
+  topImages,
   recentWorks,
   recentArts,
 }: {
@@ -41,7 +41,7 @@ function Page({
         twitterImage="/images/ogp-twitter-image.png"
       />
       <Header />
-      {/* <TopCarousel items={topImages} switchInterval={TOP_CAROUSEL_SWITCH_INTERVAL} /> */}
+      <TopCarousel items={topImages} switchInterval={TOP_CAROUSEL_SWITCH_INTERVAL} />
       <div
         css={css`
           display: flex;
