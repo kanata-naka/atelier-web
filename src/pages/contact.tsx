@@ -45,7 +45,7 @@ export default function Page() {
         `}
       >
         {renderMarkdown(`
-現在 <big>**2025年6月**</big> 以降着手のご依頼を受付中です！
+現在 <big>**2025年8月**</big> 以降着手のご依頼を受付中です！
 
 ## 料金表 ※個人様向け
 - キャラクター: 1体につき
