@@ -49,7 +49,6 @@ export default function Page() {
 企業様、活動者様→短納期でも対応可能な場合がございますのでご気軽にご相談ください！
 
 ## 料金表 (個人様向け)
-※2025/5/16 料金体系を改定しました
 - キャラクター: 1体につき
   - 顔アップ（アイコン）: 12,000円
   - バストアップ: 24,000円
@@ -127,14 +126,13 @@ export default function Page() {
 キャラクターの魅力を最大限に引き出す絵作りを意識しております。
 
 ## 主な実績
-- VTuber様の立ち絵、グッズ、サムネイル、SDキャラなどのイラストを担当させていただきました。
-  - cozoru所属 本城小百合様 立ち絵
-  - cozoru所属 暁兎苺様 立ち絵
-  - cozoru所属 優音様 立ち絵
-  - ライブナウV所属 悪宮ゆずりは様 立ち絵
-  - みーちゃ様 グッズ、サムネイルイラスト
-  - 鳳梨パイン様 サムネイルイラスト
-  - 詩優レモナ様 バースデーイラスト
+- VTuber様の立ち絵（キャラクターデザイン）を担当させていただきました。
+  - cozoru所属 本城小百合様、暁兎苺様、優音様、東雲茜様
+  - ライブナウV所属 悪宮ゆずりは様、猫宮とあ様
+- VTuber様のグッズ、サムネイルなどのイラストを担当させていただきました。
+  - みーちゃ様 グッズイラスト
+  - 鳳梨パイン様 歌ってみた サムネイルイラスト
+  - 詩優レモナ様 1周年記念イラスト
     etc.
 - 大手企業VTuber様の配信のサムネイルにも度々ファンアートを採用いただいております。※直接のご依頼ではございません<br />
   <iframe src="https://www.youtube.com/embed/UEUn7frEWLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -146,6 +144,7 @@ export default function Page() {
   <iframe src="https://www.youtube.com/embed/0RG5AxPcRCQ?si=fp7dMudcvkUCw5b-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 - 企業案件としてゲームのキャラクターデザイン、立ち絵、CG（差分あり）を担当させていただきました。（別名義）
 - 40名近くが参加する合同誌の表紙を担当させていただきました。
+- 80名近くが参加するイベントのポスターイラストを担当させていただきました。
 - 漫画の表紙や本文の着彩、アシスタントの経験もございます。
   - くじらじーお様 <a href="https://manga.nicovideo.jp/comic/63373">異世界最高峰のギルドリーダー</a>
     etc.
