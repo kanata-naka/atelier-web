@@ -10,7 +10,7 @@ export const FANBOX_URL = "https://atelier-kanata.fanbox.cc/";
 
 export const TWITTER_USERNAME = "atelier_kanata";
 
-export const COPYRIGHT = "© 2023 Naka Kanata.";
+export const COPYRIGHT = "© 2023 かなたなか.";
 
 export const AUTHOR_NAME = "かなたなか";
 

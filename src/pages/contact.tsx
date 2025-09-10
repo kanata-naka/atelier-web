@@ -45,10 +45,10 @@ export default function Page() {
         `}
       >
         {renderMarkdown(`
-<big>**2025年12月**</big> 以降のご依頼を受付中です！
+<big>**2025年11月**</big> 以降のご依頼を受付中です！
 ※短納期でも対応可能な場合がございますのでご気軽にご相談ください！
 
-## 料金表 (個人様、活動者様向け)
+## 料金表 (個人様向け)
 ### 1枚絵
 - キャラクター: 1体につき
   - 顔アップ（アイコン）: 10,000円
@@ -85,7 +85,7 @@ export default function Page() {
 5. 納品🎉
 
 ## お問い合わせ先
-- Twitter: [@atelier_kanata](https://twitter.com/atelier_kanata)
+- X (旧Twitter): [@atelier_kanata](https://x.com/atelier_kanata)
   ※DMからご連絡くださいませ。
 - メール: <a href="mailto:atelier.kanata@gmail.com">atelier.kanata@gmail.com</a>
 
@@ -134,8 +134,8 @@ export default function Page() {
 
 ## 主な実績
 - VTuber様の立ち絵（キャラクターデザイン）を担当させていただきました。
-  - cozoru所属 本城小百合様、暁兎苺様、優音様、東雲茜様
-  - ライブナウV所属 悪宮ゆずりは様、猫宮とあ様
+  - cozoru所属 本城小百合様、暁兎苺様、優音様、東雲茜様、雀田すずめ様
+  - ライブナウV所属 悪宮ゆずりは様、猫宮とあ様、雨内はちす様
   - BUBBLE所属 水無月鏡花様
 - VTuber様のグッズ、サムネイルなどのイラストを担当させていただきました。
   - みーちゃ様 グッズイラスト
