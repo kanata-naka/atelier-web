@@ -7,7 +7,7 @@ export const siteHeaderHeight = 54;
 
 export const frameBorderColor = "#dbdbdb";
 
-export const galleryModalResponsiveBoundaryWidth = 414;
+export const modalResponsiveBoundaryWidth = 414;
 
 export const loadingImageKeyframes = keyframes`
   0% {

@@ -1,20 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { NextPageContext } from "next";
 import Head from "next/head";
+import Router from "next/router";
 import { callFunction } from "@/api/firebase";
 import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
 import OgpTags from "@/components/common/OgpTags";
 import PageHeading from "@/components/common/PageHeading";
-import WorkList from "@/components/works/WorkList";
+import WorkModal from "@/components/works/WorkModal";
 import { SITE_NAME } from "@/constants";
 import { GetByIdRequest } from "@/types/api";
 import { WorkGetResponse } from "@/types/api/works";
 
 function Page({ item }: { item: WorkGetResponse }) {
   useEffect(() => {
+    WorkModal.open(item);
     scrollTo(0, 0);
   }, [item]);
+
+  const onClose = useCallback(() => {
+    Router.push("/works");
+  }, []);
 
   return (
     <div>
@@ -32,7 +38,7 @@ function Page({ item }: { item: WorkGetResponse }) {
       />
       <Header />
       <PageHeading>WORKS</PageHeading>
-      <WorkList items={[item]} />
+      <WorkModal.Component onClose={onClose} />
       <Footer />
     </div>
   );

@@ -64,6 +64,4 @@ export const TOP_CAROUSEL_SWITCH_INTERVAL = 10000;
 
 export const ART_SCROLL_FETCH_LIMIT = 12;
 
-export const WORK_LIST_PER_PAGE = 10;
-
-export const WORK_LIST_PAGE_NUMBER_DISPLAY_MAX_RANGE = 7;
+export const WORK_SCROLL_FETCH_LIMIT = 12;

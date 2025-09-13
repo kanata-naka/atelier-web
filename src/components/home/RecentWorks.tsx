@@ -5,6 +5,7 @@ import Link from "next/link";
 import SectionHeading from "@/components/common/SectionHeading";
 import { frameBorderColor, responsiveBoundaryWidth } from "@/styles";
 import { WorkGetResponse } from "@/types/api/works";
+import WorkModal from "../works/WorkModal";
 
 function RecentWorks({ items }: { items: WorkGetResponse[] }) {
   return (
@@ -34,6 +35,7 @@ function RecentWorks({ items }: { items: WorkGetResponse[] }) {
           <RecentWorkItem key={index} item={item} isLast={index === items.length - 1} />
         ))}
       </div>
+      <WorkModal.Component />
     </section>
   );
 }
@@ -73,6 +75,13 @@ function RecentWorkItem({ item, isLast }: { item: WorkGetResponse; isLast: boole
           display: block;
         `}
         href={`/works${isLast ? "" : `/${item.id}`}`}
+        onClick={(event) => {
+          if (isLast) {
+            return;
+          }
+          event.preventDefault();
+          WorkModal.open(item);
+        }}
       >
         <RecentWorkItemImage image={item.images && item.images[0]} alt={item.title} />
         <RecentWorkItemForeground isLast={isLast} title={item.title} />

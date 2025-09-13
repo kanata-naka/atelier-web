@@ -96,13 +96,8 @@ Page.getInitialProps = async function () {
         return [];
       }),
     callFunction<WorkGetListRequest, WorkGetListResponse>("works-get", {
-      limit: 6,
       restrict: [Restrict.ALL],
-      sort: {
-        // 出版日の降順
-        column: "publishedDate",
-        order: "desc",
-      },
+      limit: 6,
     })
       .then((response) => {
         return response.data.result;
