@@ -14,15 +14,10 @@ function Document() {
           rel="stylesheet"
         />
         <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-          crossOrigin="anonymous"
-        />
-        <link
           href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css"
           rel="stylesheet"
         />
+        <script async src="https://kit.fontawesome.com/429da85690.js" crossOrigin="anonymous" />
         {/* Google Tag Manager */}
         <Script id="google-analytics" strategy="afterInteractive">
           {`

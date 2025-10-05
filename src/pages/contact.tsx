@@ -45,7 +45,12 @@ export default function Page() {
         `}
       >
         {renderMarkdown(`
-<big>**2025年11月**</big> 以降のご依頼を受付中です！
+## ご挨拶
+イラストレーターのかなたなかと申します。
+かわいくて心ときめくような美少女キャラのイラストが得意です！
+キャラクターの魅力を最大限に引き出す絵作りを意識しております。
+
+<big>**2025年12月**</big> 以降のご依頼を受付中です！
 ※短納期でも対応可能な場合がございますのでご気軽にご相談ください！
 
 ## 料金表 (個人様向け)
@@ -124,39 +129,6 @@ export default function Page() {
 お取引にあたっては迅速で丁寧なやり取りを心がけております。
 ご質問・ご相談などございましたらお気軽にお問い合わせくださいませ！
 ご希望に添えるよう誠心誠意努めますので、何卒よろしくお願いいたします。
-
-----
-
-## ご挨拶
-イラストレーターのかなたなかと申します。
-かわいくて心ときめくような美少女キャラのイラストが得意です！
-キャラクターの魅力を最大限に引き出す絵作りを意識しております。
-
-## 主な実績
-- VTuber様の立ち絵（キャラクターデザイン）を担当させていただきました。
-  - cozoru所属 本城小百合様、暁兎苺様、優音様、東雲茜様、雀田すずめ様
-  - ライブナウV所属 悪宮ゆずりは様、猫宮とあ様、雨内はちす様
-  - BUBBLE所属 水無月鏡花様
-- VTuber様のグッズ、サムネイルなどのイラストを担当させていただきました。
-  - みーちゃ様 グッズイラスト
-  - 鳳梨パイン様 歌ってみた サムネイルイラスト
-  - 詩優レモナ様 1周年記念イラスト
-    etc.
-- 大手企業VTuber様の配信のサムネイルにも度々ファンアートを採用いただいております。※直接のご依頼ではございません<br />
-  <iframe src="https://www.youtube.com/embed/UEUn7frEWLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <!-- <iframe src="https://www.youtube.com/embed/c-VhJ6g6W7w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-  <iframe src="https://www.youtube.com/embed/U6k3ekRP23Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/AmJbAWcwZTo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/_40VsbvFKuk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/QUbBJhhrU60" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/0RG5AxPcRCQ?si=fp7dMudcvkUCw5b-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-- 企業案件としてゲームのキャラクターデザイン、立ち絵、CG（差分あり）を担当させていただきました。（別名義）
-- 40名近くが参加する合同誌の表紙を担当させていただきました。
-- 80名近くが参加するイベントのポスターイラストを担当させていただきました。
-- 漫画の表紙や本文の着彩、アシスタントの経験もございます。
-  - くじらじーお様 <a href="https://manga.nicovideo.jp/comic/63373">異世界最高峰のギルドリーダー</a>
-    etc.
-- ※その他（同人イベント出展など）の実績は[こちら](/works)もご覧ください。
 
 ## その他
 - これまで公開、納品しました全ての作品におきまして「生成AI」は一切使用しておりません。
