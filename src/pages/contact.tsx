@@ -90,9 +90,11 @@ export default function Page() {
 5. 納品🎉
 
 ## お問い合わせ先
-- X (旧Twitter): [@atelier_kanata](https://x.com/atelier_kanata)
-  ※DMからご連絡くださいませ。
+- ~~X (旧Twitter): [@atelier_kanata](https://x.com/atelier_kanata)~~
+  ~~※DMからご連絡くださいませ。~~
+  ※現在フォロー外からのDMが表示できない不具合が発生しております。お手数ですが当面の間はメールまたはDiscordからご連絡いただければ幸いです。
 - メール: <a href="mailto:atelier.kanata@gmail.com">atelier.kanata@gmail.com</a>
+- Discord: kanata_naka
 
 コミッションサイトからのご依頼もお受けしております。
 - Skeb: https://skeb.jp/@atelier_kanata
