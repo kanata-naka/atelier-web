@@ -45,7 +45,7 @@ export default function Page() {
         `}
       >
         {renderMarkdown(`
-<big>**2026年4月**</big> から着手のご依頼を受付中です！
+<big>**2026年8月**</big> から着手のご依頼を受付中です！
 
 ## ご挨拶
 イラストレーターのかなたなかと申します。
