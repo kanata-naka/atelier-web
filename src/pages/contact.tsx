@@ -45,7 +45,7 @@ export default function Page() {
         `}
       >
         {renderMarkdown(`
-<big>**2026年8月**</big> から着手のご依頼を受付中です！
+<big>**2026年9月**</big> から着手のご依頼を受付中です！
 
 ## ご挨拶
 イラストレーターのかなたなかと申します。
@@ -79,14 +79,13 @@ export default function Page() {
 4. 清書の提出
   清書後は着彩、表情などの軽微な修正のみ対応可能です。
 5. お支払い
-  基本的には銀行振込、PayPay、PayPal（海外の方向け）のいずれかでお願いいたします。
+  基本的には銀行振込、PayPay、PayPalのいずれかでお願いいたします。
   その他の方法をご希望の場合はご相談ください。
 6. 納品🎉
 
 ## お問い合わせ先
-- ~~X (旧Twitter): [@atelier_kanata](https://x.com/atelier_kanata)~~
-  ~~※DMからご連絡くださいませ。~~
-  ※現在フォロー外からのDMが表示できない不具合が発生しております。お手数ですが当面の間はメールかDiscordからご連絡いただければ幸いです。
+- X (旧Twitter): [@atelier_kanata](https://x.com/atelier_kanata)
+  ※DMからご連絡くださいませ。
 - メール: <a href="mailto:atelier.kanata@gmail.com">atelier.kanata@gmail.com</a>
 - Discord: kanata_naka
 
