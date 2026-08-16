@@ -1,6 +1,6 @@
 import React, { useState, ReactNode } from "react";
 import { css } from "@emotion/react";
-import Image from "next/image";
+// import Image from "next/image";
 import Router from "next/router";
 import Modal from "react-modal";
 import { setDataLayer } from "@/api/gtm";
@@ -8,7 +8,7 @@ import ShareButtons from "@/components/common/ShareButtons";
 import { frameBorderColor, modalResponsiveBoundaryWidth, responsiveBoundaryWidth } from "@/styles";
 import { WorkGetResponse } from "@/types/api/works";
 import { formatDateFromUnixTimestamp } from "@/utils/dateUtil";
-import { renderMarkdown } from "@/utils/domUtil";
+import { fillImage, renderMarkdown } from "@/utils/domUtil";
 
 // Next.jsのルート要素を指定する
 Modal.setAppElement("#__next");
@@ -177,16 +177,19 @@ function Component({ onClose }: { onClose?: () => void }) {
                   bottom: 0;
                   left: 0;
                   right: 0;
+
+                  // 応急処置
+                  ${fillImage(item.images[currentImageIndex].url)}
                 `}
               >
-                <Image
+                {/* <img
                   src={item.images[currentImageIndex].url}
-                  fill
+                  // fill
                   alt={item.title}
                   css={css`
                     object-fit: contain;
                   `}
-                />
+                /> */}
               </div>
             )}
             <DiffList
@@ -353,7 +356,7 @@ function DiffList({
 
 function DiffListItem({
   image,
-  alt,
+  // alt,
   isActive,
   onClick,
 }: {
@@ -382,6 +385,9 @@ function DiffListItem({
         &:hover {
           opacity: 1;
         }
+
+        // 応急処置
+        ${fillImage(image.thumbnailUrl.small)}
       `}
     >
       <a
@@ -396,15 +402,15 @@ function DiffListItem({
           display: block;
         `}
       >
-        <Image
+        {/* <img
           className="diff-list-item__image"
           src={image.thumbnailUrl.small}
-          fill
+          // fill
           alt={alt}
           css={css`
             object-fit: contain;
           `}
-        />
+        /> */}
       </a>
     </li>
   );

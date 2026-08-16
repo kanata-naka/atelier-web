@@ -63,3 +63,12 @@ export function getCurrentScrollTop() {
   }
   return window.pageYOffset || document.documentElement.scrollTop;
 }
+
+export function fillImage(imageUrl: Nullable<string> | undefined) {
+  return css`
+    background-image: url(${imageUrl || "/images/no-image.png"});
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  `;
+}

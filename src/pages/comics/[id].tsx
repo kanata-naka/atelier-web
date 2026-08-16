@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { css } from "@emotion/react";
 import { NextPageContext } from "next";
 import Head from "next/head";
-import Image from "next/image";
+// import Image from "next/image";
 import { callFunction } from "@/api/firebase";
 import EpisodeList from "@/components/comics/EpisodeList";
 import Footer from "@/components/common/Footer";
@@ -113,12 +113,13 @@ function Page({ item }: { item: ComicGetResponse }) {
             {item.type === ComicType.ONE_SHOT && <OneShotLabel />}
             {item.type === ComicType.SERIES && item.completed && <CompletedLabel />}
             {item.episodes && item.episodes.length && <UpdatedDate episode={item.episodes[0]} />}
-            <Image
+            <img
               src={item.image ? item.image.url : "/images/no-image.png"}
-              fill
+              // fill
               alt={item.title}
               css={css`
                 position: static !important;
+                width: 100%;
                 height: auto !important;
                 border: 1px solid ${frameBorderColor};
               `}

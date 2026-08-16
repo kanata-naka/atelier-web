@@ -1,10 +1,11 @@
 import React, { useCallback, ReactNode } from "react";
 import { css } from "@emotion/react";
-import Image from "next/image";
+// import Image from "next/image";
 import SectionHeading from "@/components/common/SectionHeading";
 import { AUTHOR_NAME, INTRODUCTION, SITE_DESCRIPTION, SOCIAL_ACCOUNTS, TWITTER_USERNAME } from "@/constants";
 import { responsiveBoundaryWidth } from "@/styles";
 import { SocialAccount } from "@/types";
+import { fillImage } from "@/utils/domUtil";
 import { reloadTwitterWidgets } from "@/utils/vendorUtil";
 
 function About() {
@@ -57,7 +58,7 @@ function ProfileImage({ url }: { url: string }) {
         border-radius: 50%;
       `}
     >
-      <Image src={url} width={100} height={100} alt="プロフィール画像" />
+      <img src={url} width={100} height={100} alt="プロフィール画像" />
     </figure>
   );
 }
@@ -107,6 +108,9 @@ function SocialIcon({ account }: { account: SocialAccount }) {
         &:not(:first-child) {
           margin-left: 12px;
         }
+
+        // 応急処置
+        ${fillImage(account.imageUrl)}
       `}
     >
       <a
@@ -118,14 +122,14 @@ function SocialIcon({ account }: { account: SocialAccount }) {
           height: 24px;
         `}
       >
-        <Image
+        {/* <img
           src={account.imageUrl}
-          fill
+          // fill
           alt={account.name}
           css={css`
             object-fit: contain;
           `}
-        />
+        /> */}
       </a>
     </li>
   );

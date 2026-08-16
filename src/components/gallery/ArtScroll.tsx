@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { css } from "@emotion/react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { callFunction } from "@/api/firebase";
 import { setDataLayer } from "@/api/gtm";
@@ -9,6 +9,7 @@ import { Restrict } from "@/constants";
 import { useScroll } from "@/hooks";
 import { frameBorderColor, loadingImageKeyframes, responsiveBoundaryWidth } from "@/styles";
 import { ArtGetListRequest, ArtGetListResponse, ArtGetResponse } from "@/types/api/arts";
+import { fillImage } from "@/utils/domUtil";
 
 function ArtScroll({
   tag,
@@ -44,7 +45,7 @@ function ArtScroll({
     },
     100,
     fetchedAll,
-    [items]
+    [items],
   );
 
   useEffect(() => {
@@ -76,7 +77,7 @@ function ArtScroll({
         `}
       >
         {loading && (
-          <Image
+          <img
             src="/images/loading.svg"
             width={32}
             height={32}
@@ -107,6 +108,9 @@ function ArtScrollItem({ item }: { item: ArtGetResponse }) {
         border: 1px solid ${frameBorderColor};
         transition: opacity 250ms;
 
+        // 応急処置
+        ${fillImage(item.images[0].thumbnailUrl.medium)}
+
         @media (min-width: ${responsiveBoundaryWidth + 1}px) {
           flex: 0 1 calc(33.3% - 10px);
         }
@@ -131,16 +135,23 @@ function ArtScrollItem({ item }: { item: ArtGetResponse }) {
         }}
         css={css`
           display: block;
+
+          // 応急処置
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
         `}
       >
-        <Image
+        {/* <img
           src={item.images[0].thumbnailUrl.medium}
-          fill
+          // fill
           alt={item.title}
           css={css`
             object-fit: contain;
           `}
-        />
+        /> */}
       </Link>
     </div>
   );

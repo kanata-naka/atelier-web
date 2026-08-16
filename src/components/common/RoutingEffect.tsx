@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { css } from "@emotion/react";
-import Image from "next/image";
+// import Image from "next/image";
 import Router from "next/router";
 import { Transition, TransitionStatus } from "react-transition-group";
 import { loadingImageKeyframes } from "@/styles";
@@ -48,7 +48,7 @@ function RoutingEffect() {
           `}
           style={transitionStyle[state]}
         >
-          <Image
+          <img
             src="/images/loading.svg"
             width={64}
             height={64}

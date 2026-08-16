@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "@emotion/react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import GlobalNavigation from "@/components/common/GlobalNavigation";
 import { frameBorderColor, siteHeaderHeight } from "@/styles";
@@ -43,7 +43,7 @@ function SiteLogo() {
       `}
     >
       <Link href="/">
-        <Image
+        <img
           src="/images/atelier-logo.svg"
           width={205}
           height={28}

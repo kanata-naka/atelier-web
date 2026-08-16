@@ -1,10 +1,11 @@
 import React, { ReactNode } from "react";
 import { css } from "@emotion/react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/common/SectionHeading";
 import { frameBorderColor, responsiveBoundaryWidth } from "@/styles";
 import { WorkGetResponse } from "@/types/api/works";
+import { fillImage } from "@/utils/domUtil";
 import WorkModal from "../works/WorkModal";
 
 function RecentWorks({ items }: { items: WorkGetResponse[] }) {
@@ -51,6 +52,9 @@ function RecentWorkItem({ item, isLast }: { item: WorkGetResponse; isLast: boole
         overflow: hidden;
         border: 1px solid ${frameBorderColor};
 
+        // 応急処置
+        ${fillImage(item.images[0]?.url)}
+
         @media (min-width: ${responsiveBoundaryWidth + 1}px) {
           flex: 0 1 calc(33.3% - 10px);
         }
@@ -73,6 +77,13 @@ function RecentWorkItem({ item, isLast }: { item: WorkGetResponse; isLast: boole
       <Link
         css={css`
           display: block;
+
+          // 応急処置
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
         `}
         href={`/works${isLast ? "" : `/${item.id}`}`}
         onClick={(event) => {
@@ -83,25 +94,25 @@ function RecentWorkItem({ item, isLast }: { item: WorkGetResponse; isLast: boole
           WorkModal.open(item);
         }}
       >
-        <RecentWorkItemImage image={item.images && item.images[0]} alt={item.title} />
+        {/* <RecentWorkItemImage image={item.images && item.images[0]} alt={item.title} /> */}
         <RecentWorkItemForeground isLast={isLast} title={item.title} />
       </Link>
     </div>
   );
 }
 
-function RecentWorkItemImage({ image, alt }: { image?: WorkGetResponse.Image; alt: string }) {
-  return (
-    <Image
-      src={image ? image.url : "/images/no-image.png"}
-      fill
-      alt={alt}
-      css={css`
-        object-fit: contain;
-      `}
-    />
-  );
-}
+// function RecentWorkItemImage({ image, alt }: { image?: WorkGetResponse.Image; alt: string }) {
+//   return (
+//     <img
+//       src={image ? image.url : "/images/no-image.png"}
+//       // fill
+//       alt={alt}
+//       css={css`
+//         object-fit: contain;
+//       `}
+//     />
+//   );
+// }
 
 function RecentWorkItemForeground({ isLast, title }: { isLast: boolean; title: string }) {
   const additionalStyle = isLast

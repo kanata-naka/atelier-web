@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, createContext, useContext } from "react";
 import { css } from "@emotion/react";
-import Image from "next/image";
+// import Image from "next/image";
 import { useStateRef } from "@/hooks";
 import { responsiveBoundaryWidth } from "@/styles";
 import { TopImageGetResponse } from "@/types/api/topImages";
+import { fillImage } from "@/utils/domUtil";
 
 const TopCarouselContext = createContext({
   preloading: false,
@@ -94,16 +95,19 @@ function TopCarouselItem({ item, isActive }: { item: TopImageGetResponse; isActi
         css`
           transition: opacity 1s;
         `}
+
+        // 応急処置
+                ${fillImage(item.image.url)}
       `}
     >
-      <Image
+      {/* <img
         src={item.image.url}
-        fill
+        // fill
         alt={`${item.description}`}
         css={css`
           object-fit: cover;
         `}
-      />
+      /> */}
     </li>
   );
 }
@@ -164,6 +168,9 @@ function NavigationItem({
         transition-duration: 250ms;
         transition-property: box-shadow, opacity;
 
+        // 応急処置
+        ${fillImage(item.thumbnailImage.url)}
+
         @media (max-width: ${responsiveBoundaryWidth}px) {
           width: 24px;
           height: 24px;
@@ -184,7 +191,14 @@ function NavigationItem({
         }
       `}
     >
-      <Image src={item.thumbnailImage.url} fill alt={`${item.description}`} />
+      {/* <img
+        src={item.thumbnailImage.url}
+        // fill
+        alt={`${item.description}`}
+        css={css`
+          object-fit: cover;
+        `}
+      /> */}
     </li>
   );
 }

@@ -1,12 +1,13 @@
 import React, { ReactNode } from "react";
 import { css } from "@emotion/react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { ComicType } from "@/constants";
 import { frameBorderColor, responsiveBoundaryWidth } from "@/styles";
-import { Nullable } from "@/types";
+// import { Nullable } from "@/types";
 import { ComicGetResponse } from "@/types/api/comics";
 import { formatDateFromUnixTimestamp } from "@/utils/dateUtil";
+import { fillImage } from "@/utils/domUtil";
 
 function ComicList({ items }: { items: ComicGetResponse[] }) {
   return (
@@ -36,6 +37,9 @@ function ComicItem({ item }: { item: ComicGetResponse }) {
         overflow: hidden;
         border: 1px solid ${frameBorderColor};
 
+        // 応急処置
+        ${fillImage(item.image?.url)}
+
         @media (min-width: ${responsiveBoundaryWidth + 1}px) {
           flex: 0 1 calc(33.3% - 10px);
         }
@@ -54,28 +58,35 @@ function ComicItem({ item }: { item: ComicGetResponse }) {
       <Link
         css={css`
           display: block;
+
+          // 応急処置
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
         `}
         href={`/comics/${item.id}`}
       >
-        <ComicItemImage image={item.image} alt={item.title} />
+        {/* <ComicItemImage image={item.image} alt={item.title} /> */}
         <ComicItemForeground item={item} />
       </Link>
     </div>
   );
 }
 
-function ComicItemImage({ image, alt }: { image: Nullable<ComicGetResponse.Image>; alt: string }) {
-  return (
-    <Image
-      src={image ? image.url : "/images/no-image.png"}
-      fill
-      alt={alt}
-      css={css`
-        object-fit: contain;
-      `}
-    />
-  );
-}
+// function ComicItemImage({ image, alt }: { image: Nullable<ComicGetResponse.Image>; alt: string }) {
+//   return (
+//     <img
+//       src={image ? image.url : "/images/no-image.png"}
+//       // fill
+//       alt={alt}
+//       css={css`
+//         object-fit: contain;
+//       `}
+//     />
+//   );
+// }
 
 function ComicItemForeground({ item }: { item: ComicGetResponse }) {
   return (

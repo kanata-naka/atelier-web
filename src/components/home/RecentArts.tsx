@@ -1,11 +1,12 @@
 import React from "react";
 import { css } from "@emotion/react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/common/SectionHeading";
 import ArtModal from "@/components/gallery/ArtModal";
 import { frameBorderColor, responsiveBoundaryWidth } from "@/styles";
 import { ArtGetResponse } from "@/types/api/arts";
+import { fillImage } from "@/utils/domUtil";
 
 function RecentArts({ items }: { items: ArtGetResponse[] }) {
   return (
@@ -56,6 +57,9 @@ function RecentArtItem({ item, isLast }: { item: ArtGetResponse; isLast: boolean
         overflow: hidden;
         border: 1px solid ${frameBorderColor};
 
+        // 応急処置
+        ${fillImage(item.images[0].thumbnailUrl.medium)}
+
         &:before {
           display: block;
           content: "";
@@ -82,16 +86,23 @@ function RecentArtItem({ item, isLast }: { item: ArtGetResponse; isLast: boolean
         }}
         css={css`
           display: block;
+
+          // 応急処置
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
         `}
       >
-        <Image
+        {/* <Image
           src={item.images[0].thumbnailUrl.medium}
           fill
           alt={item.title}
           css={css`
             object-fit: contain;
           `}
-        />
+        /> */}
         <RecentArtItemForeground isLast={isLast} />
       </Link>
     </div>

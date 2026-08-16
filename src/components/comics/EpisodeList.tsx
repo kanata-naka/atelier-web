@@ -1,11 +1,12 @@
 import React, { ReactNode } from "react";
 import { css } from "@emotion/react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { frameBorderColor, responsiveBoundaryWidth } from "@/styles";
-import { Nullable } from "@/types";
+// import { Nullable } from "@/types";
 import { ComicGetResponse } from "@/types/api/comics";
 import { formatDateFromUnixTimestamp } from "@/utils/dateUtil";
+import { fillImage } from "@/utils/domUtil";
 
 function EpisodeList({ comicId, items }: { comicId: string; items: ComicGetResponse.Episode[] }) {
   return (
@@ -44,6 +45,9 @@ function EpisodeItem({ comicId, item }: { comicId: string; item: ComicGetRespons
         overflow: hidden;
         border: 1px solid ${frameBorderColor};
 
+        // 応急処置
+        ${fillImage(item.image?.url)}
+
         @media (min-width: ${responsiveBoundaryWidth + 201}px) {
           flex: 0 1 calc(50% - 10px);
         }
@@ -62,28 +66,35 @@ function EpisodeItem({ comicId, item }: { comicId: string; item: ComicGetRespons
       <Link
         css={css`
           display: block;
+
+          // 応急処置
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
         `}
         href={`/comics/${comicId}/${item.id}`}
       >
-        <EpisodeItemImage image={item.image} alt={item.title} />
+        {/* <EpisodeItemImage image={item.image} alt={item.title} /> */}
         <EpisodeItemForeground item={item} />
       </Link>
     </div>
   );
 }
 
-function EpisodeItemImage({ image, alt }: { image: Nullable<ComicGetResponse.Image>; alt: string }) {
-  return (
-    <Image
-      src={image ? image.url : "/images/no-image.png"}
-      fill
-      alt={alt}
-      css={css`
-        object-fit: contain;
-      `}
-    />
-  );
-}
+// function EpisodeItemImage({ image, alt }: { image: Nullable<ComicGetResponse.Image>; alt: string }) {
+//   return (
+//     <img
+//       src={image ? image.url : "/images/no-image.png"}
+//       // fill
+//       alt={alt}
+//       css={css`
+//         object-fit: contain;
+//       `}
+//     />
+//   );
+// }
 
 function EpisodeItemForeground({ item }: { item: ComicGetResponse.Episode }) {
   return (
